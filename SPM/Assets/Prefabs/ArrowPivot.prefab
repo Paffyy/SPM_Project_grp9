@@ -47,7 +47,7 @@ MonoBehaviour:
   CollisionMask:
     serializedVersion: 2
     m_Bits: 1024
-  GravityForce: 25
+  GravityForce: 15
   ArrowObject: {fileID: 1167609288385800612}
 --- !u!1001 &1167609289622413709
 PrefabInstance:
@@ -56,6 +56,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1167609288385800613}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: CollisionMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: GravityForce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4922832434141063200, guid: 9b96a398aa0f2ce4a8bbfd513f95b02b,
         type: 3}
       propertyPath: m_Name
@@ -110,14 +118,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: CollisionMask.m_Bits
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: GravityForce
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b96a398aa0f2ce4a8bbfd513f95b02b, type: 3}

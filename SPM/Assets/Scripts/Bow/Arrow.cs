@@ -29,8 +29,8 @@ public class Arrow : MonoBehaviour
         {
             ApplyGravity();
             transform.rotation = Quaternion.LookRotation(velocity);
-            transform.position += velocity * Time.deltaTime;
             IsColliding();
+            transform.position += velocity * Time.deltaTime;
         }
         else
         {
@@ -59,18 +59,18 @@ public class Arrow : MonoBehaviour
     protected virtual void IsColliding()
     {
         RaycastHit hit;
-        Vector3 point1 = transform.position + capCollider.center + Vector3.up * (capCollider.height / 2 - capCollider.radius);
-        Vector3 point2 = transform.position + capCollider.center + Vector3.down * (capCollider.height / 2 - capCollider.radius);
-        if (Physics.CapsuleCast(point1, point2, capCollider.radius, velocity.normalized, out hit, velocity.magnitude * Time.deltaTime + skinWidth, CollisionMask) && limit < 10)
+        Vector3 point1 = transform.position + capCollider.center + velocity.normalized * (capCollider.height / 2 - capCollider.radius);
+        Vector3 point2 = transform.position + capCollider.center + -velocity.normalized * (capCollider.height / 2 - capCollider.radius);
+        //Debug.DrawLine(point1, point2);
+        if (Physics.CapsuleCast(point1, point2, capCollider.radius, velocity.normalized, out hit, velocity.magnitude * Time.deltaTime, CollisionMask))
         {
-            RaycastHit normalHit;
-            Physics.CapsuleCast(point1, point2, capCollider.radius, -hit.normal, out normalHit, velocity.magnitude * Time.deltaTime + skinWidth, CollisionMask);
-            Vector3 moveDistance = velocity.normalized * (normalHit.distance - skinWidth);
-            transform.position += moveDistance;
-            limit++;
-            IsColliding();
+            //RaycastHit normalHit;
+            //Physics.CapsuleCast(point1, point2, capCollider.radius, -hit.normal, out normalHit, velocity.magnitude * Time.deltaTime, CollisionMask);
+            //Vector3 moveDistance = velocity.normalized * (normalHit.distance);
+            //transform.position += moveDistance;
+            //limit++;
+            //IsColliding();
             hasCollided = true;
         }
-        limit = 0;
     }
 }
