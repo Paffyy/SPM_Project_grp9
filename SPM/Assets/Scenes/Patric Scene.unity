@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 11400000, guid: 91e718eab7cc75f4da335d1a67947e26, type: 2}
+  - {fileID: 11400000, guid: 98cd0db194b84fa4baabff0376a0727a, type: 2}
   - {fileID: 11400000, guid: 32e72b5f5cceb9c4780a4e01d5b76f5c, type: 2}
   RevitalizedMaterial: {fileID: 2100000, guid: 337c168d52747e046b0723974dcdf7fc, type: 2}
 --- !u!65 &759003513
@@ -700,4 +700,5 @@ MonoBehaviour:
   Velocity: {x: 0, y: 0, z: 0}
   RotationX: 0
   RotationY: 0
+  Shield: {fileID: 0}
   FirstPersonView: 0

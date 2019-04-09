@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "RevGeometry/IdleState")]
-public class IdleState : BaseState
+[CreateAssetMenu(menuName = "RevGeometry/DefaultState")]
+public class DefaultState : BaseState
 {
     public override void HandleUpdate()
     {
