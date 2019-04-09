@@ -23,10 +23,10 @@ public class Bow : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            var arrow = Instantiate(Arrow, transform.position, Quaternion.Euler(playerCamera.transform.forward), parent.transform);
+            var arrow = Instantiate(Arrow, transform.position + new Vector3(0,1,0), Quaternion.Euler(playerCamera.transform.forward), parent.transform);
             var direction = playerCamera.transform.forward;
-            direction = Vector3.ProjectOnPlane(direction, new Vector3(-0.2f,1,-0.2f));
-            arrow.GetComponent<Arrow>().ApplyInitialVelocity(direction.normalized * 25);
+            direction = Vector3.ProjectOnPlane(direction, Vector3.down);
+            arrow.GetComponent<Arrow>().ApplyInitialVelocity(direction.normalized * 35);
         }
     }
 

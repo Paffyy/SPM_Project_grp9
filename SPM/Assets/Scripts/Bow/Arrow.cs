@@ -7,6 +7,7 @@ public class Arrow : MonoBehaviour
 {
     public LayerMask CollisionMask;
     public float GravityForce;
+    public GameObject ArrowObject;
     private CapsuleCollider capCollider;
     private int limit;
     private float skinWidth;
@@ -44,7 +45,7 @@ public class Arrow : MonoBehaviour
     {
         isTerminating = true;
         yield return new WaitForSeconds(5);
-        Destroy(this);
+        Destroy(ArrowObject);
     }
     public void ApplyInitialVelocity(Vector3 v)
     {
