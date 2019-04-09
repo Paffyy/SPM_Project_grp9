@@ -13,6 +13,5 @@ public class RevitalizedState : BaseState
     public override void HandleUpdate()
     {
         base.HandleUpdate();
-
     }
 }

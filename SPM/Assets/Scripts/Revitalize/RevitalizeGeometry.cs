@@ -7,6 +7,8 @@ using UnityEngine;
 public class RevitalizeGeometry : StateMachine
 {
     public Material RevitalizedMaterial;
+    public float Interval;
+    public bool AlphaFading;
     private Renderer rend;
     protected override void Awake()
     {
@@ -20,14 +22,14 @@ public class RevitalizeGeometry : StateMachine
     public void Revitalize()
     {
         var colList = GetColors(RevitalizedMaterial.color, rend.material.color);
-        StartCoroutine(ApplyColorOverTime(0.10f, colList));
+        StartCoroutine(ApplyColorOverTime(Interval, colList));
     }
 
     IEnumerator ApplyColorOverTime(float time, List<Color> colList)
     {
         for (int i = 0; i < colList.Count; i++)
         {
-            yield return new WaitForSecondsRealtime(time + UnityEngine.Random.Range(-0.9f, 0.03f));
+            yield return new WaitForSecondsRealtime(time + UnityEngine.Random.Range(-Interval/2, Interval/8f));
             rend.material.color = colList[i];
         }
     }
@@ -37,12 +39,25 @@ public class RevitalizeGeometry : StateMachine
     private List<Color> GetColors(Color a, Color b)
     {
         var colList = new List<Color>();
-        for (int i = 1; i < 10; i++)
+        if (!AlphaFading)
         {
-            var rDelta = ((a.r - b.r) / 10f) * i ;
-            var gDelta = ((a.g - b.g) / 10f) * i;
-            var bDelta = ((a.b - b.b) / 10f) * i ;
-            colList.Add(new Color(b.r + rDelta, b.g + gDelta, b.b + bDelta));
+            for (int i = 1; i < 10; i++)
+            {
+                var rDelta = ((a.r - b.r) / 10f) * i;
+                var gDelta = ((a.g - b.g) / 10f) * i;
+                var bDelta = ((a.b - b.b) / 10f) * i;
+                colList.Add(new Color(b.r + rDelta, b.g + gDelta, b.b + bDelta));
+            }
+        }
+        else
+        {
+            for (int i = 1; i < 10; i++)
+            {
+                var rDelta = ((a.r - b.r) / 10f) * i;
+                var gDelta = ((a.g - b.g) / 10f) * i;
+                var bDelta = ((a.b - b.b) / 10f) * i;
+                colList.Add(new Color(b.r + rDelta, b.g + gDelta, b.b + bDelta, i / 10f));
+            }
         }
         colList.Add(a);
         return colList;
