@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class Arrow : MonoBehaviour
     private float skinWidth;
     private Vector3 velocity;
     private bool hasCollided;
+    private bool isTerminating;
     void Awake()
     {
         skinWidth = 0.02f;
@@ -25,10 +27,24 @@ public class Arrow : MonoBehaviour
         if (!hasCollided)
         {
             ApplyGravity();
-            transform.rotation = Quaternion.LookRotation(velocity + new Vector3(0,0,-90));
+            transform.rotation = Quaternion.LookRotation(velocity);
             transform.position += velocity * Time.deltaTime;
             IsColliding();
         }
+        else
+        {
+            if (!isTerminating)
+            {
+                StartCoroutine(Terminate());
+            }
+        }
+    }
+
+    IEnumerator Terminate()
+    {
+        isTerminating = true;
+        yield return new WaitForSeconds(5);
+        Destroy(this);
     }
     public void ApplyInitialVelocity(Vector3 v)
     {
