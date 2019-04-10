@@ -15,7 +15,7 @@ public class IdleState : EnemyBaseState
         Debug.Log("Idle");
         if (IsAggroed())
         {
-            owner.Transition<AttackState>();
+            owner.Transition<EAttackState>();
         }
     }
 }
