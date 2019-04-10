@@ -10,6 +10,8 @@ public class RevitalizeGeometry : StateMachine
     public float Interval;
     public bool AlphaFading;
     private Renderer rend;
+    private List<Color> colList = new List<Color>();
+    private Color defaultColor;
     protected override void Awake()
     {
         base.Awake();
@@ -18,13 +20,26 @@ public class RevitalizeGeometry : StateMachine
             rend = GetComponent<Renderer>();
             rend.enabled = true;
         }
+        colList = GetColors(RevitalizedMaterial.color, rend.material.color);
     }
     public void Revitalize()
     {
-        var colList = GetColors(RevitalizedMaterial.color, rend.material.color);
         StartCoroutine(ApplyColorOverTime(Interval, colList));
     }
 
+    public void DullMaterial()
+    {
+        if (colList.Count > 0)
+        {
+            var revList = new List<Color>();
+            for (int i = colList.Count - 1; i >= 0; i--)
+            {
+                revList.Add(colList[i]);
+            }
+            StartCoroutine(ApplyColorOverTime(Interval, revList));
+        }
+      
+    }
     IEnumerator ApplyColorOverTime(float time, List<Color> colList)
     {
         for (int i = 0; i < colList.Count; i++)
@@ -39,6 +54,7 @@ public class RevitalizeGeometry : StateMachine
     private List<Color> GetColors(Color a, Color b)
     {
         var colList = new List<Color>();
+        colList.Add(new Color(b.r,b.g,b.b,0f));
         if (!AlphaFading)
         {
             for (int i = 1; i < 10; i++)
