@@ -8,6 +8,8 @@ public class BaseEnemy : StateMachine
     //för debug
     [HideInInspector] public MeshRenderer MeshRen;
 
+
+    public PathMaker Path;
     [HideInInspector] public LinkedList<GameObject> BaseEnemyList = new LinkedList<GameObject>();
     [HideInInspector] public NavMeshAgent NavAgent;
     public float AttackRange;
