@@ -26,7 +26,7 @@ public class WalkingState : PlayerBaseState
         if (shieldActive)
         {
             owner.Shield.SetActive(true);
-          //  owner.Shield.GetComponent<Shield>().Reflect();
+            owner.Shield.GetComponent<Shield>().Reflect();
         }
         else
         {

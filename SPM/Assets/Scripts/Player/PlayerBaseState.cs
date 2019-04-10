@@ -18,8 +18,8 @@ public class PlayerBaseState : State
     protected CapsuleCollider playerCollider;
     protected int limit = 0;
     protected Camera playerCamera;
-    protected float minCameraAngle = -20;
-    protected float maxCameraAngle = 70;
+    protected float minCameraAngle = -40;
+    protected float maxCameraAngle = 40;
     protected Vector3 cameraPosition;
     protected SphereCollider sphere;
     protected Player owner;
