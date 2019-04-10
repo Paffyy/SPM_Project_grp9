@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "BaseEnemy/PatrolState")]
-public class PatrolState : BaseEnemyBaseState
+public class BaseEnemyPatrolState : BaseEnemyBaseState
 {
     [SerializeField] private Vector3[] patrolPoints;
     [SerializeField] private float chaseDistance;
-    [SerializeField] private float hearingRange;
+    //[SerializeField] private float hearingRange;
     private int currentPoint = 0;
 
     public override void Enter()

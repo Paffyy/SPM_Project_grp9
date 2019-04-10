@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "BaseEnemy/ChaseState")]
 
-public class ChaseState : BaseEnemyBaseState
+public class BaseEnemyChaseState : BaseEnemyBaseState
 {
     [SerializeField] private float attackDistance;
     [SerializeField] private float lostTargetDistance;
@@ -16,6 +16,6 @@ public class ChaseState : BaseEnemyBaseState
 
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > lostTargetDistance)
-            owner.Transition<PatrolState>();
+            owner.Transition<BaseEnemyPatrolState>();
     }
 }
