@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy/AttackState")]
-public class AttackState : EnemyBaseState
+[CreateAssetMenu(menuName = "Enemy/EAttackState")]
+public class EAttackState : EnemyBaseState
 {
     private float delay = 0.5f;
     private float delayCounter;
