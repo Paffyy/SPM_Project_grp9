@@ -7,8 +7,10 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
 {
     [SerializeField] private Vector3[] patrolPoints;
     [SerializeField] private float chaseDistance;
+    //avståndet som fienden behöver vara från punkten för att gå till nästa
+    public float pointSize;
     //[SerializeField] private float hearingRange;
-    private int currentPoint = 0;
+    public int currentPoint = 0;
 
     public override void Enter()
     {
@@ -18,13 +20,15 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
-        owner.NavAgent.SetDestination(patrolPoints[currentPoint]);
-        if (Vector3.Distance(owner.transform.position, patrolPoints[currentPoint]) < 1)
-            currentPoint = (currentPoint + 1) % patrolPoints.Length;
-        if (CanHearPlayer())
+        owner.NavAgent.SetDestination(owner.Path.PathObjects[currentPoint].position);
+        if (Vector3.Distance(owner.transform.position, owner.Path.PathObjects[currentPoint].position) < 1 )
         {
-
+            currentPoint = (currentPoint + 1) % owner.Path.PathObjects.Count;
         }
+
+        if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < chaseDistance)
+            owner.Transition<BaseEnemyChaseState>();
+
 
     }
 
