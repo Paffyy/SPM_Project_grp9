@@ -9,7 +9,7 @@ public class Player : StateMachine
     [HideInInspector] public Vector3 Velocity;
     [HideInInspector] public float RotationX;
     [HideInInspector] public float RotationY;
-    public GameObject Shield;
+    //public GameObject Shield;
     public bool FirstPersonView = false;
 
 

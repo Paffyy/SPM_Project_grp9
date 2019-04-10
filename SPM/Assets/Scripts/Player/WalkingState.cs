@@ -6,7 +6,7 @@ using UnityEngine;
 public class WalkingState : PlayerBaseState
 {
 
-    private bool shieldActive = false;
+   // private bool shieldActive = false;
     public override void Enter()
     {
         base.Enter();
@@ -19,19 +19,19 @@ public class WalkingState : PlayerBaseState
         IsColliding();
         owner.Velocity *= Mathf.Pow(AirResistance, Time.deltaTime);
         owner.transform.position += owner.Velocity * Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            shieldActive = !shieldActive;
-        }
-        if (shieldActive)
-        {
-            owner.Shield.SetActive(true);
-            owner.Shield.GetComponent<Shield>().Reflect();
-        }
-        else
-        {
-            owner.Shield.SetActive(false);
-        }
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    shieldActive = !shieldActive;
+        //}
+        //if (shieldActive)
+        //{
+        //    owner.Shield.SetActive(true);
+        //    owner.Shield.GetComponent<Shield>().Reflect();
+        //}
+        //else
+        //{
+        //    owner.Shield.SetActive(false);
+        //}
         if (Input.GetKeyDown(KeyCode.Space))
             owner.Transition<AirState>();
 

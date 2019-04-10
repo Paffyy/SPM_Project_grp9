@@ -20,6 +20,7 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Reflect();
         var direction = playerCamera.transform.forward; 
         //direction = Vector3.ProjectOnPlane(direction * 3.0f, new Vector3(0,-0.5f,0));
         transform.rotation = Quaternion.LookRotation(direction);
@@ -41,7 +42,7 @@ public class Shield : MonoBehaviour
 
         ExtDebug.DrawBoxCastBox(transform.position, Quaternion.Euler(0, 90, 0) * boxCollider.size / 2, transform.rotation, transform.forward, 0.5f, Color.white);
 
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
     }
 
     //private void OnTriggerEnter(Collider other)
