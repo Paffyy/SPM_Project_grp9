@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487d73780c0f0104484ab47dceff2a0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayColor: {r: 0, g: 0, b: 1, a: 1}
+  rayColor: {r: 0, g: 0, b: 1, a: 0}
   PathObjects:
   - {fileID: 1434736916}
   - {fileID: 832518482}
@@ -544,6 +544,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719473764917768239, guid: 6548a8a2ffee4c047824784473f995a8,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1719473764917768239, guid: 6548a8a2ffee4c047824784473f995a8,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1719473764917768235, guid: 6548a8a2ffee4c047824784473f995a8,
         type: 3}

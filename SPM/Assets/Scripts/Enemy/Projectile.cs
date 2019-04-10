@@ -10,12 +10,12 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Velocity = (Speed * Time.deltaTime) * (Player.transform.position - transform.position).normalized;
+        Velocity = Speed  * (Player.transform.position - transform.position).normalized;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += Velocity;
+        transform.position += Velocity * Time.deltaTime;
     }
 }
