@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : StateMachine
 {
-    public Player Player;
-    public Projectile Projectile;
+    public GameObject Player;
+    public GameObject Projectile;
 
     protected override void Awake()
     {

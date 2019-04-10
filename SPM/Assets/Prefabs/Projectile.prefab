@@ -87,11 +87,11 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719473764917768238}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.56226337
+  m_Center: {x: 0, y: 0, z: 0.062263284}
 --- !u!114 &1719473764917768235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,4 +106,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Velocity: {x: 0, y: 0, z: 0}
   Speed: 15
-  Player: {fileID: 7651501562885396185, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
+  Player: {fileID: 7651501562885396188, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
+  ProjectileObject: {fileID: 1719473764917768238}

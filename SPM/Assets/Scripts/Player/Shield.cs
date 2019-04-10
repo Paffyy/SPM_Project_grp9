@@ -20,7 +20,7 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Reflect();
+      //  Reflect();
         var direction = playerCamera.transform.forward; 
         //direction = Vector3.ProjectOnPlane(direction * 3.0f, new Vector3(0,-0.5f,0));
         transform.rotation = Quaternion.LookRotation(direction);
@@ -60,7 +60,7 @@ public class Shield : MonoBehaviour
         var size = Quaternion.Euler(0, 90, 0) * boxCollider.size /2 ;
         RaycastHit hit;
         //Debug.DrawRay(transform.position, transform.position.normalized * transform.position.magnitude);
-        if (Physics.BoxCast(transform.position, size, transform.forward, out hit, transform.rotation, 0.5f , ProjectileMask))
+        if (Physics.BoxCast(transform.position, size, transform.forward, out hit, transform.rotation, 0.5f, ProjectileMask))
         {
             if (hit.collider != null)
             {
