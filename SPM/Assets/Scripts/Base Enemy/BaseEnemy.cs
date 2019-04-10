@@ -7,6 +7,7 @@ public class BaseEnemy : StateMachine
 {
     //för debug
     [HideInInspector] public MeshRenderer MeshRen;
+    [HideInInspector] public Renderer Ren;
 
 
     public PathMaker Path;
@@ -21,6 +22,7 @@ public class BaseEnemy : StateMachine
     {
         //för debug
         MeshRen = GetComponent<MeshRenderer>();
+        Ren = GetComponent<Renderer>();
 
         BaseEnemyList.AddLast(this.gameObject);
         NavAgent = GetComponent<NavMeshAgent>();

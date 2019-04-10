@@ -17,5 +17,7 @@ public class BaseEnemyChaseState : BaseEnemyBaseState
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > lostTargetDistance)
             owner.Transition<BaseEnemyPatrolState>();
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < attackDistance)
+            owner.Transition<BaseEnemyAttackState>();
     }
 }

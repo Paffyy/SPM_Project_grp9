@@ -15,6 +15,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
     public override void Enter()
     {
         base.Enter();
+        owner.MeshRen.material.color = Color.red;
         currentCooldown = cooldown;
         //hitta hur många andra fiender som är i AttackState
     }
