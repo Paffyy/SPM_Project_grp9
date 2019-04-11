@@ -32,6 +32,8 @@ public class FieldOfView : MonoBehaviour
 
             }
         }
+        if (objs.Count == 0)
+            return null;
         return objs.ToArray();
     }
 

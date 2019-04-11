@@ -6,8 +6,8 @@ using UnityEngine;
 public class BaseEnemyAttackState : BaseEnemyBaseState
 {
 
-    [SerializeField] private float chaseDistance;
-    [SerializeField] private float cooldown;
+    //[SerializeField] private float chaseDistance;
+    //[SerializeField] private float cooldown;
     public float PlacmentDistance;
 
     private float currentCooldown;
@@ -23,14 +23,30 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
-        owner.NavAgent.SetDestination(owner.player.transform.position - new Vector3(-PlacmentDistance, -PlacmentDistance, 0));
-        Attack();
+        owner.NavAgent.SetDestination(owner.player.transform.position);
+        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
+        {
+            Attack();
+            //owner.NavAgent.isStopped = true;
+        }
 
         //tittar på spelaren
         owner.transform.LookAt(owner.player.transform.position);
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > chaseDistance)
             owner.Transition<BaseEnemyChaseState>();
+
+        base.HandleUpdate();
+    }
+
+    void BackOff()
+    {
+
+    }
+
+    void CirclePlayer()
+    {
+
     }
 
     private void Attack()
@@ -39,7 +55,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         if (currentCooldown > 0)
             return;
 
-        //Spelare tar skada
+        //Skadar spelarn
         GameObject[] arr = owner.Fow.TargetsInFieldOfView();
         if (arr != null)
         {

@@ -6,7 +6,8 @@ using UnityEngine;
 public class BaseEnemyPatrolState : BaseEnemyBaseState
 {
     [SerializeField] private Vector3[] patrolPoints;
-    [SerializeField] private float chaseDistance;
+    //[SerializeField] private float chaseDistance;
+
     //avståndet som fienden behöver vara från punkten för att gå till nästa
     public float pointSize;
     //[SerializeField] private float hearingRange;
@@ -27,9 +28,15 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
             currentPoint = (currentPoint + 1) % owner.Path.PathObjects.Count;
         }
 
-        if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < chaseDistance)
+        //if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < chaseDistance)
+        if(owner.Fow.TargetsInFieldOfView() != null && Vector3.Distance(owner.player.transform.position, owner.transform.position) < chaseDistance)
+        {
+            Debug.Log(owner.Fow.TargetsInFieldOfView().ToString());
             owner.Transition<BaseEnemyChaseState>();
+        }
 
+
+        base.HandleUpdate();
 
     }
 

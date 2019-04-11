@@ -693,9 +693,17 @@ MonoBehaviour:
   MeshRen: {fileID: 0}
   Path: {fileID: 1737575581}
   Health: 7
+  Damage: 2
   IFrameTime: 1
+  IFrameCoolDown: 0
   NavAgent: {fileID: 0}
   Fow: {fileID: 0}
+  chaseDistance: 4
+  cooldown: 1.3
+  attackDistance: 2
+  lostTargetDistance: 11.13
+  moveSpeed: 3
+  hearRadius: 4
   visionMask:
     serializedVersion: 2
     m_Bits: 1024

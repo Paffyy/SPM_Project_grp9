@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class BaseEnemyChaseState : BaseEnemyBaseState
 {
-    [SerializeField] private float attackDistance;
-    [SerializeField] private float lostTargetDistance;
+    //[SerializeField] private float attackDistance;
+    //[SerializeField] private float lostTargetDistance;
+
 
 
     public override void HandleUpdate()
@@ -17,7 +18,10 @@ public class BaseEnemyChaseState : BaseEnemyBaseState
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > lostTargetDistance)
             owner.Transition<BaseEnemyPatrolState>();
+
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < attackDistance)
             owner.Transition<BaseEnemyAttackState>();
+
+        base.HandleUpdate();
     }
 }
