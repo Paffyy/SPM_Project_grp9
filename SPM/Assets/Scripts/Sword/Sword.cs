@@ -13,15 +13,14 @@ public class Sword : MonoBehaviour
     public LayerMask CollisionMask;
     public float CoolDownValue;
     public GameObject SwordObject;
+    public Camera playerCamera;
     private float coolDownCounter;
     private bool onCooldown;
-    private Camera playerCamera;
     private Vector3 swordOffset;
     private float swingValue = 70f;
 
     void Start()
     {
-        playerCamera = GetComponentInChildren<Camera>();
         swordOffset = new Vector3(0.5f, 0, 0f);
     }
 
@@ -79,13 +78,14 @@ public class Sword : MonoBehaviour
     {
         //testing
 
+        Color c = item.GetComponent<Renderer>().material.color;
         item.GetComponent<Renderer>().material.color = Color.red;
-        StartCoroutine(RemoveRedColor(item));
+        StartCoroutine(RemoveRedColor(item, c));
     }
     //testing
-    IEnumerator RemoveRedColor(Collider item)
+    IEnumerator RemoveRedColor(Collider item, Color c)
     {
         yield return new WaitForSeconds(0.2f);
-        item.GetComponent<Renderer>().material.color = Color.white;
+        item.GetComponent<Renderer>().material.color = c;
     }
 }
