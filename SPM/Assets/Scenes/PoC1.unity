@@ -565,6 +565,11 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 899224301}
+    - target: {fileID: 9136173843970777388, guid: 5b90179c585184e4abb38ac0909b5a46,
+        type: 3}
+      propertyPath: ShieldObject
+      value: 
+      objectReference: {fileID: 368517112}
     - target: {fileID: 9136173843718274696, guid: 5b90179c585184e4abb38ac0909b5a46,
         type: 3}
       propertyPath: m_Layer
@@ -2138,7 +2143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &2140452105
 NavMeshAgent:
   m_ObjectHideFlags: 0
