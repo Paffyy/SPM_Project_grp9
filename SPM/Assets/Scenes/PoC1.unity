@@ -2281,7 +2281,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Arrow: {fileID: 1167609288385800612, guid: db29058702a81ea4587d597535503c87, type: 3}
-  parent: {fileID: 381712771}
+  Parent: {fileID: 381712771}
+  Player: {fileID: 784922744}
   playerCamera: {fileID: 899224301}
 --- !u!65 &2107413197
 BoxCollider:
