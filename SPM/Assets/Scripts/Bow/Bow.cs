@@ -14,7 +14,7 @@ public class Bow : MonoBehaviour
     private float angle = 0.1f;
     void Awake()
     {
-        bowOffset = new Vector3(0.5f, 0, 0f);
+        bowOffset = new Vector3(0.55f, 0.1f, 0f);
     }
     void Start()
     {
