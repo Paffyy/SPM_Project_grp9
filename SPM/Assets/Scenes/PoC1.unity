@@ -585,6 +585,11 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: -0.012254879
       objectReference: {fileID: 0}
+    - target: {fileID: 9136173843718274702, guid: 5b90179c585184e4abb38ac0909b5a46,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b90179c585184e4abb38ac0909b5a46, type: 3}
 --- !u!1001 &465958771
@@ -2188,9 +2193,17 @@ MonoBehaviour:
   MeshRen: {fileID: 0}
   Path: {fileID: 72084807}
   Health: 0
+  Damage: 0
   IFrameTime: 0
+  IFrameCoolDown: 0
   NavAgent: {fileID: 0}
   Fow: {fileID: 0}
+  chaseDistance: 0
+  cooldown: 0
+  attackDistance: 0
+  lostTargetDistance: 0
+  moveSpeed: 0
+  hearRadius: 0
   visionMask:
     serializedVersion: 2
     m_Bits: 1024
