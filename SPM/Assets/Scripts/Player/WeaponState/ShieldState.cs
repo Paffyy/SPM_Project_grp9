@@ -10,13 +10,19 @@ public class ShieldState : WeaponBaseState
     public override void Enter()
     {
         //Debug.Log("Shield");
-        owner.Shield.SetActive(true);
+        if (owner.Shield != null)
+        {
+            owner.Shield.SetActive(true);
+        }
         base.Enter();
     }
 
     public override void Exit()
     {
-        owner.Shield.SetActive(false);
+        if(owner.Shield != null)
+        {
+            owner.Shield.SetActive(false);
+        } 
     }
 
     public override void HandleUpdate()
