@@ -14,6 +14,7 @@ public class Sword : MonoBehaviour
     public float CoolDownValue;
     public GameObject PlayerObject;
     public Camera playerCamera;
+    public int Damage = 50;
     private float coolDownCounter;
     private bool onCooldown;
     private Vector3 swordOffset;
@@ -77,7 +78,7 @@ public class Sword : MonoBehaviour
     private void DealDamage(Collider item)
     {
         //testing
-
+        item.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
         Color c = item.GetComponent<Renderer>().material.color;
         item.GetComponent<Renderer>().material.color = Color.red;
         StartCoroutine(RemoveRedColor(item, c));

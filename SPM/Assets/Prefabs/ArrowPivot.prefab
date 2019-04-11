@@ -46,9 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollisionMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 17408
   GravityForce: 15
   ArrowObject: {fileID: 1167609288385800612}
+  Damage: 25
 --- !u!1001 &1167609289622413709
 PrefabInstance:
   m_ObjectHideFlags: 0
