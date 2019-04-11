@@ -10,6 +10,8 @@ public class Projectile : MonoBehaviour
     Vector3 prev;
     private bool isTerminating;
     public GameObject ProjectileObject;
+    public LayerMask ShieldLayer;
+    public SphereCollider coll;
 
     // Start is called before the first frame update
     void Start()
@@ -18,31 +20,29 @@ public class Projectile : MonoBehaviour
        // Velocity = Speed  * (Player.transform.position - transform.position).normalized;
     }
 
-    //void FixedUpdate()
-    //{
-    //    RaycastHit hit;
-    //    if (Physics.Linecast(prev, transform.position, out hit))
-    //    {
-    //        if (hit.collider.gameObject.CompareTag("Shield"))
-    //        {
-    //            Debug.Log("Collided");
-    //            Velocity = -Velocity;
-    //        }
-    //    }
-    //    prev = transform.position;
-    //    transform.position += Velocity * Time.deltaTime;
-    //}
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         RaycastHit hit;
-        if (Physics.Linecast(prev, transform.position, out hit))
+        if (Physics.SphereCast(transform.position, coll.radius * 0.2f, Velocity.normalized, out hit, Velocity.magnitude * Time.deltaTime, ShieldLayer))
         {
             if (hit.collider.gameObject.CompareTag("Shield"))
             {
                 Debug.Log("Collided");
-                Velocity = -Velocity;
+                Velocity = Velocity.magnitude * Vector3.Reflect(Velocity.normalized, hit.normal);
+            }
+        }
+    }
+
+    void Update()
+    {
+        RaycastHit hit;
+        if (Physics.SphereCast(transform.position, coll.radius * 0.2f, Velocity.normalized, out hit, Velocity.magnitude * Time.deltaTime, ShieldLayer))
+        {
+            if (hit.collider.gameObject.CompareTag("Shield"))
+            {
+
+                Debug.Log("Collided");
+                Velocity = Velocity.magnitude * Vector3.Reflect(Velocity.normalized, hit.normal);
             }
         }
         prev = transform.position;
