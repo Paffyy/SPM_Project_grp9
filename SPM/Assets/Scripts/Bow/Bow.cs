@@ -27,7 +27,7 @@ public class Bow : MonoBehaviour
         {
             if (speed < 30)
             {
-                speed += speed * 2f * Time.deltaTime;
+                speed += speed * 3f * Time.deltaTime;
             }
             if (angle < 0.3f)
             {
