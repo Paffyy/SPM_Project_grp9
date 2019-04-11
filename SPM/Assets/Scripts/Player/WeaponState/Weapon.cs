@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : StateMachine
+public class Weapon : StateMachine
 {
-    public GameObject Player;
-    public GameObject Projectile;
-
+    public GameObject Shield;
     protected override void Awake()
     {
         base.Awake();

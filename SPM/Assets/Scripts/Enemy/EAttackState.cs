@@ -29,6 +29,7 @@ public class EAttackState : EnemyBaseState
 
     public void Shoot()
     {
-        Projectile clone = Instantiate(owner.Projectile, owner.transform.position, owner.transform.rotation);
+        var clone = Instantiate(owner.Projectile, owner.transform.position, owner.transform.rotation);
+        clone.GetComponent<Projectile>().Velocity = clone.GetComponent<Projectile>().Speed * (owner.Player.transform.position - clone.transform.position).normalized;
     }
 }

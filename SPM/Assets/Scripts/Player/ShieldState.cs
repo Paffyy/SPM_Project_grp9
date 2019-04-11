@@ -2,39 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Player/ShieldState")]
-public class ShieldState : PlayerBaseState
+[CreateAssetMenu(menuName = "Weapon/ShieldState")]
+public class ShieldState : WeaponBaseState
 {
+
 
     public override void Enter()
     {
+        Debug.Log("Shield");
+        owner.Shield.SetActive(true);
         base.Enter();
+    }
+
+    public override void Exit()
+    {
+        owner.Shield.SetActive(false);
     }
 
     public override void HandleUpdate()
     {
-        HandleInput();
-        ApplyGravity();
-        IsColliding();
-        owner.Velocity *= Mathf.Pow(AirResistance, Time.deltaTime);
-        Position += owner.Velocity * Time.deltaTime;
-        if (IsGrounded())
-        {
-            owner.Transition<WalkingState>();
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            owner.Transition<ShieldState>();
-        }
-
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+            owner.Transition<NoWeaponState>();
     }
 
-    private void Jump()
-    {
-        if (IsGrounded())
-        {
-            Vector3 jump = Vector3.up * JumpDistance;
-            owner.Velocity += jump;
-        }
-    }
 }
