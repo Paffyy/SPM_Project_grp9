@@ -78,6 +78,7 @@ public class Sword : MonoBehaviour
     private void DealDamage(Collider item)
     {
         //testing
+
         item.GetComponent<Renderer>().material.color = Color.red;
         StartCoroutine(RemoveRedColor(item));
     }
