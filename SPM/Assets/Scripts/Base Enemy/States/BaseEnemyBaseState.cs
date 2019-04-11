@@ -16,6 +16,7 @@ public class BaseEnemyBaseState : State
 
     public override void Enter()
     {
+        Debug.Log("BaseState");
         owner.MeshRen.material = material;
         owner.NavAgent.speed = moveSpeed;
     }

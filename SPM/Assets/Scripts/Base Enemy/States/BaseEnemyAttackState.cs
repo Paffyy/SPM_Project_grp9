@@ -26,12 +26,11 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         owner.NavAgent.SetDestination(owner.player.transform.position - new Vector3(-PlacmentDistance, -PlacmentDistance, 0));
         Attack();
 
-        //if (!canseeplayer())
-        //    owner.transition<alertstate>();
+        //tittar på spelaren
+        owner.transform.LookAt(owner.player.transform.position);
+
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > chaseDistance)
             owner.Transition<BaseEnemyChaseState>();
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //    owner.Transition<FleeState>();
     }
 
     private void Attack()

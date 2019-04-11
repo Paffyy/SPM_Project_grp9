@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BEnemy Patrol State
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  hearRadius: 0
-  material: {fileID: 0}
+  hearRadius: 1
+  material: {fileID: 2100000, guid: 337c168d52747e046b0723974dcdf7fc, type: 2}
   patrolPoints: []
   chaseDistance: 4
-  pointSize: 1
+  pointSize: 2
   currentPoint: 0
