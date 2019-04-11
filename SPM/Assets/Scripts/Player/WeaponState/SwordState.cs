@@ -1,20 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Weapon/SwordState")]
 public class SwordState : WeaponBaseState
 {
 
-
     public override void Enter()
     {
+        owner.SwordIcon.GetComponent<Image>().color = Color.white;
         owner.Sword.SetActive(true);
         base.Enter();
     }
 
     public override void Exit()
     {
+        owner.SwordIcon.GetComponent<Image>().color = Color.clear;
         owner.Sword.SetActive(false);
     }
 

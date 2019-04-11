@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(menuName = "Weapon/ShieldState")]
 public class ShieldState : WeaponBaseState
@@ -9,6 +10,7 @@ public class ShieldState : WeaponBaseState
 
     public override void Enter()
     {
+        owner.ShieldIcon.GetComponent<Image>().color = Color.white;
         //Debug.Log("Shield");
         if (owner.Shield != null)
         {
@@ -19,7 +21,8 @@ public class ShieldState : WeaponBaseState
 
     public override void Exit()
     {
-        if(owner.Shield != null)
+        owner.ShieldIcon.GetComponent<Image>().color = Color.clear;
+        if (owner.Shield != null)
         {
             owner.Shield.SetActive(false);
         } 
