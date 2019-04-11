@@ -30,7 +30,7 @@ public class Bow : MonoBehaviour
         {
             var direction = playerCamera.transform.forward;
             direction = Vector3.ProjectOnPlane(direction, Vector3.down);
-            var arrow = Instantiate(Arrow, transform.position + new Vector3(0, 1, 0) + direction, Quaternion.LookRotation(direction * speed), parent.transform);
+            var arrow = Instantiate(Arrow, transform.position + new Vector3(0, 0, 0) + direction, Quaternion.LookRotation(direction * speed), parent.transform);
             arrow.GetComponent<Arrow>().ApplyInitialVelocity(direction.normalized * speed);
             speed = 5;
         }
