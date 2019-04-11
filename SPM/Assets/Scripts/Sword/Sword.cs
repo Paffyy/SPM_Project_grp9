@@ -12,7 +12,7 @@ public class Sword : MonoBehaviour
     public float Angle;
     public LayerMask CollisionMask;
     public float CoolDownValue;
-    public GameObject SwordObject;
+    public GameObject PlayerObject;
     public Camera playerCamera;
     private float coolDownCounter;
     private bool onCooldown;
@@ -56,18 +56,18 @@ public class Sword : MonoBehaviour
     private void UpdateRotation(float swing = 0)
     {
         var direction = playerCamera.transform.forward;
-        SwordObject.transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
+        transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
     }
 
     private void UpdatePosition()
     {
-        Vector3 update = SwordObject.transform.rotation * swordOffset.normalized;
-        SwordObject.transform.position = update * swordOffset.magnitude + transform.position;
+        Vector3 update = transform.rotation * swordOffset.normalized;
+        transform.position = update * swordOffset.magnitude + PlayerObject.transform.position;
     }
 
     void CheckCollision()
     {
-        var enemyInRange = Manager.Instance.GetFrontConeHit(playerCamera.transform.forward,transform, CollisionMask, Radius, Angle);
+        var enemyInRange = Manager.Instance.GetFrontConeHit(playerCamera.transform.forward, PlayerObject.transform, CollisionMask, Radius, Angle);
         foreach (var item in enemyInRange)
         {
             DealDamage(item);
