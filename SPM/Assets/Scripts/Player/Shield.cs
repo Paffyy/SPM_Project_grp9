@@ -10,7 +10,7 @@ public class Shield : MonoBehaviour
     public LayerMask ProjectileMask;
     public Camera playerCamera;
     private Vector3 shieldPos;
-    public int ShieldHealth = 250;
+    public int ShieldHealth = 500;
     public int CurrentHealth;
     public GameObject ShieldObject;
     // Start is called before the first frame update

@@ -7,11 +7,10 @@ public class Bow : MonoBehaviour
     // Start is called before the first frame update
     public GameObject Arrow;
     public GameObject parent;
-    private Camera playerCamera;
+    public Camera playerCamera;
     private float speed = 5;
     void Awake()
     {
-        playerCamera = GetComponentInChildren<Camera>();
     }
     void Start()
     {
