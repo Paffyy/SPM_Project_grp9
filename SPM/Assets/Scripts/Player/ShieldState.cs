@@ -9,7 +9,7 @@ public class ShieldState : WeaponBaseState
 
     public override void Enter()
     {
-        Debug.Log("Shield");
+        //Debug.Log("Shield");
         owner.Shield.SetActive(true);
         base.Enter();
     }

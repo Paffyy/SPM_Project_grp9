@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Enemy/EAttackState")]
 public class EAttackState : EnemyBaseState
 {
-    private float delay = 0.2f;
+    private float delay = 0.5f;
     private float delayCounter;
 
     public override void Enter()
@@ -20,7 +20,7 @@ public class EAttackState : EnemyBaseState
              Shoot();
             delayCounter = delay;
         }
-        Debug.Log("Attack");
+       // Debug.Log("Attack");
         if (!IsAggroed())
         {
             owner.Transition<IdleState>();
