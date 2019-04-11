@@ -14,6 +14,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
     public override void Enter()
     {
+        Debug.Log("AttackState");
         base.Enter();
         owner.MeshRen.material.color = Color.red;
         currentCooldown = cooldown;
@@ -39,11 +40,13 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         if (currentCooldown > 0)
             return;
 
-        if (Vector3.Dot(owner.transform.position, owner.player.transform.position) < -0.6f && CanSeePlayer() && Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.AttackRange)
-            //Spelare tar skada
+        //Spelare tar skada
+        GameObject[] arr = owner.Fow.TargetsInFieldOfView();
+        if (arr != null)
+        {
+            //arr[0].GetComponent<Player>.Hit();
+        } 
 
-         //owner.transform.position += -owner.player.transform.position.normalized 
-
-            currentCooldown = cooldown;
+         currentCooldown = cooldown;
     }
 }

@@ -16,6 +16,7 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
     {
         base.Enter();
         ClosestPoint();
+        Debug.Log("PatrolState");
     }
 
     public override void HandleUpdate()
@@ -34,6 +35,7 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
 
     private void ClosestPoint()
     {
+        
         int closest = 0;
         for (int i = 0; i < patrolPoints.Length; i++)
         {

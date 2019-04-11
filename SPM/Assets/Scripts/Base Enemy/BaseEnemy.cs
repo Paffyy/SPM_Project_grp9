@@ -7,13 +7,16 @@ public class BaseEnemy : StateMachine
 {
     //för debug
     [HideInInspector] public MeshRenderer MeshRen;
-    [HideInInspector] public Renderer Ren;
 
 
     public PathMaker Path;
-    [HideInInspector] public LinkedList<GameObject> BaseEnemyList = new LinkedList<GameObject>();
+    public int Health;
+    public float IFrameTime;
+    private float IFrameCoolDown;
+    //[HideInInspector] public LinkedList<GameObject> BaseEnemyList = new LinkedList<GameObject>();
     [HideInInspector] public NavMeshAgent NavAgent;
-    public float AttackRange;
+    [HideInInspector] public FieldOfView Fow;
+    //public float AttackRange;
 
     public LayerMask visionMask;
     public Player player;
@@ -22,10 +25,29 @@ public class BaseEnemy : StateMachine
     {
         //för debug
         MeshRen = GetComponent<MeshRenderer>();
-        Ren = GetComponent<Renderer>();
 
-        BaseEnemyList.AddLast(this.gameObject);
+        IFrameCoolDown = IFrameTime;
+        //BaseEnemyList.AddLast(this.gameObject);
         NavAgent = GetComponent<NavMeshAgent>();
+        Fow = GetComponent<FieldOfView>();
         base.Awake();
+    }
+
+    private void Update()
+    {
+        IFrameCoolDown -= Time.deltaTime;
+    }
+
+    //hitOrigin normalizerad vector, används för att putta tillbaka fienden från den positionen
+    public bool hit(int dmg, Vector3 hitOrigin, float pushBackDistance)
+    {
+        if(IFrameCoolDown > 0)
+            return false;
+
+        Health -= dmg;
+        transform.position += hitOrigin * pushBackDistance * Time.deltaTime;
+
+        IFrameCoolDown = IFrameTime;
+        return true;
     }
 }

@@ -27,7 +27,8 @@ public class BaseEnemyBaseState : State
 
     protected bool CanSeePlayer()
     {
-        return !Physics.Linecast(owner.transform.position, owner.player.transform.position, owner.visionMask);
+        //return !Physics.Linecast(owner.transform.position, owner.player.transform.position, owner.visionMask);
+        return owner.Fow.TargetsInFieldOfView() != null;
     }
 
     protected bool CanHearPlayer()
