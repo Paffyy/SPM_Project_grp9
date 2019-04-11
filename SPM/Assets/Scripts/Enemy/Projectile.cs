@@ -127,8 +127,9 @@ void Update()
         {
             Debug.Log("ShieldHit");
             isReflected = true;
-            Velocity = Velocity.magnitude * other.gameObject.transform.forward;
-            other.gameObject.GetComponentInParent<Shield>().TakeDamage(Damage);
+           // Velocity = Quaternion.Euler(0, 90, 0) * -(Velocity.magnitude * other.gameObject.transform.forward);
+            Velocity = Velocity.magnitude * -other.gameObject.transform.right;
+            //  other.gameObject.GetComponentInParent<Shield>().TakeDamage(Damage);
         } else if(other.gameObject.CompareTag("Enemy") && isReflected)
         {
             Debug.Log("EnemyHit");
