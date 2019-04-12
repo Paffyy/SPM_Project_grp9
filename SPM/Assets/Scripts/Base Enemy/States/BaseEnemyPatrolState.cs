@@ -29,9 +29,11 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
         }
 
         //if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < chaseDistance)
-        if(owner.Fow.TargetsInFieldOfView() != null && Vector3.Distance(owner.player.transform.position, owner.transform.position) < chaseDistance)
+        //if(owner.Fow.TargetsInFieldOfView() != null && Vector3.Distance(owner.player.transform.position, owner.transform.position) < chaseDistance)
+        if (owner.Fow.TargetsInFieldOfView() != null
+            || Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius)
         {
-            Debug.Log(owner.Fow.TargetsInFieldOfView().ToString());
+            //Debug.Log(owner.Fow.TargetsInFieldOfView().ToString());
             owner.Transition<BaseEnemyChaseState>();
         }
 

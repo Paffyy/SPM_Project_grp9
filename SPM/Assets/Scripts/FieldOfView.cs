@@ -29,11 +29,15 @@ public class FieldOfView : MonoBehaviour
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {
                 //layermasken är dess egna så att den inte kolliderar med objekt av samma typ
-                if(Physics.Linecast(transform.position, target.position, gameObject.layer))
+                if(Physics.Linecast(transform.position, target.position, TargetsToHit))
+                {
                     objs.Add(target.gameObject);
-                Debug.DrawLine(transform.position, target.position, Color.red);
+                    Debug.DrawLine(transform.position, target.position, Color.red);
+
+                }
             }
         }
+        Debug.Log("count " + objs.Count);
         if (objs.Count == 0)
             return null;
         return objs.ToArray();
@@ -52,7 +56,7 @@ public class FieldOfView : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, leftRayDirection * rayRange);
         Gizmos.DrawRay(transform.position, rightRayDirection * rayRange);
-        Gizmos.DrawWireSphere(transform.position, viewRadius);
+        //Gizmos.DrawWireSphere(transform.position, viewRadius);
     }
 
 }

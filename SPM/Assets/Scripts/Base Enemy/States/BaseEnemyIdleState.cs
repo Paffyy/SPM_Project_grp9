@@ -17,6 +17,12 @@ public class BaseEnemyIdleState : BaseEnemyBaseState
     {
 
         base.HandleUpdate();
+        if (owner.Fow.TargetsInFieldOfView() != null && Physics.Linecast(owner.transform.position, owner.player.transform.position) 
+            || Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius)
+        {
+            //Debug.Log(owner.Fow.TargetsInFieldOfView().ToString());
+            owner.Transition<BaseEnemyChaseState>();
+        }
     }
 
 }
