@@ -8,12 +8,15 @@ public class Arrow : MonoBehaviour
     public LayerMask CollisionMask;
     public float GravityForce;
     public GameObject ArrowObject;
+    public int Damage = 25;
     private CapsuleCollider capCollider;
     private int limit;
     private float skinWidth;
     private Vector3 velocity;
     private bool hasCollided;
     private bool isTerminating;
+
+
     void Awake()
     {
         skinWidth = 0.02f;
@@ -62,15 +65,33 @@ public class Arrow : MonoBehaviour
         Vector3 point1 = transform.position + capCollider.center + velocity.normalized * (capCollider.height / 2 - capCollider.radius);
         Vector3 point2 = transform.position + capCollider.center + -velocity.normalized * (capCollider.height / 2 - capCollider.radius);
         //Debug.DrawLine(point1, point2);
-        if (Physics.CapsuleCast(point1, point2, capCollider.radius, velocity.normalized, out hit, velocity.magnitude * Time.deltaTime, CollisionMask))
+        //if (Physics.CapsuleCast(point1, point2, capCollider.radius, velocity.normalized, out hit, velocity.magnitude * Time.deltaTime, CollisionMask))
+        //{
+        //    if (hit.collider.gameObject.CompareTag("Enemy"))
+        //    {
+        //        hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+        //    } 
+        //        hasCollided = true;
+        //    //RaycastHit normalHit;
+        //    //Physics.CapsuleCast(point1, point2, capCollider.radius, -hit.normal, out normalHit, velocity.magnitude * Time.deltaTime, CollisionMask);
+        //    //Vector3 moveDistance = velocity.normalized * (normalHit.distance);
+        //    //transform.position += moveDistance;
+        //    //limit++;
+        //    //IsColliding();
+        //}
+        if (Physics.Raycast(transform.position, velocity.normalized, out hit, velocity.magnitude * Time.deltaTime, CollisionMask))
         {
+            if (hit.collider.gameObject.CompareTag("Enemy"))
+            {
+                hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+            }
+            hasCollided = true;
             //RaycastHit normalHit;
             //Physics.CapsuleCast(point1, point2, capCollider.radius, -hit.normal, out normalHit, velocity.magnitude * Time.deltaTime, CollisionMask);
             //Vector3 moveDistance = velocity.normalized * (normalHit.distance);
             //transform.position += moveDistance;
             //limit++;
             //IsColliding();
-            hasCollided = true;
         }
     }
 }

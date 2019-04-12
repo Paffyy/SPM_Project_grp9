@@ -44,75 +44,103 @@ public class Projectile : MonoBehaviour
         //    }
         //}
         //prevPos = transform.position;
-        RaycastHit hit;
-        if (Physics.SphereCast(transform.position, coll.radius * 0.5f, Velocity.normalized, out hit, Velocity.magnitude * Time.deltaTime))
-        {
-            if (hit.collider.gameObject.CompareTag("Shield"))
-            {
-                isReflected = true;
-                Debug.Log(isReflected);
-                Velocity = Velocity.magnitude * Vector3.Reflect(Velocity.normalized, hit.normal);
-            }
-            else if (hit.collider.gameObject.CompareTag("Player"))
-            {
-                Debug.Log("PlayerHit");
-                hit.collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(Damage);
-                Destroy(ProjectileObject);
-            }
-            else if (hit.collider.gameObject.CompareTag("Enemy") && isReflected)
-            {
-                Debug.Log("EnemyHit");
-                hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
-                Destroy(ProjectileObject);
-            }
-            else
-            {
-                if (!hit.collider.gameObject.CompareTag("Projectile"))
-                {
-                    Debug.Log("OtherColl");
-                    Destroy(ProjectileObject);
-                }
-            }
-        }
+        //RaycastHit hit;
+        //if (Physics.SphereCast(transform.position, coll.radius * 0.5f, Velocity.normalized, out hit, Velocity.magnitude * Time.deltaTime))
+        //{
+        //    if (hit.collider.gameObject.CompareTag("Shield"))
+        //    {
+        //        isReflected = true;
+        //        Debug.Log(isReflected);
+        //        Velocity = Velocity.magnitude * Vector3.Reflect(Velocity.normalized, hit.normal);
+        //    }
+        //    else if (hit.collider.gameObject.CompareTag("Player"))
+        //    {
+        //        Debug.Log("PlayerHit");
+        //        hit.collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(Damage);
+        //        Destroy(ProjectileObject);
+        //    }
+        //    else if (hit.collider.gameObject.CompareTag("Enemy") && isReflected)
+        //    {
+        //        Debug.Log("EnemyHit");
+        //        hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+        //        Destroy(ProjectileObject);
+        //    }
+        //    else
+        //    {
+        //        if (!hit.collider.gameObject.CompareTag("Projectile"))
+        //        {
+        //            Debug.Log("OtherColl");
+        //            Destroy(ProjectileObject);
+        //        }
+        //    }
+        //}
     }
 
 void Update()
     {
-        RaycastHit hit;
-        if (Physics.SphereCast(transform.position, coll.radius * 0.2f, Velocity.normalized, out hit, Velocity.magnitude * Time.deltaTime))
-        {
-            if (hit.collider.gameObject.CompareTag("Shield"))
-            {
+        //RaycastHit hit;
+        //if (Physics.SphereCast(transform.position, coll.radius, Velocity.normalized, out hit, Velocity.magnitude * Time.deltaTime))
+        //{
+        //    if (hit.collider.gameObject.CompareTag("Shield"))
+        //    {
 
-                isReflected = true;
-                Debug.Log(isReflected);
-                Velocity = Velocity.magnitude * Vector3.Reflect(Velocity.normalized, hit.normal);
-            }
-            else if (hit.collider.gameObject.CompareTag("Player"))
-            {
-                Debug.Log("PlayerHit");
-                hit.collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(Damage);
-                Destroy(ProjectileObject);
-            }
-            else if (hit.collider.gameObject.CompareTag("Enemy") && isReflected)
-            {
-                Debug.Log("EnemyHit");
-                hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
-                Destroy(ProjectileObject);
-            }
-            else
-            {
-                if (!hit.collider.gameObject.CompareTag("Projectile"))
-                {
-                    Debug.Log("OtherColl");
-                    Destroy(ProjectileObject);
-                }
-            }
-        }
+        //        isReflected = true;
+        //        Debug.Log(isReflected);
+        //        Velocity = Velocity.magnitude * Vector3.Reflect(Velocity.normalized, hit.normal);
+        //    }
+        //    else if (hit.collider.gameObject.CompareTag("Player"))
+        //    {
+        //        Debug.Log("PlayerHit");
+        //        hit.collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(Damage);
+        //        Destroy(ProjectileObject);
+        //    }
+        //    else if (hit.collider.gameObject.CompareTag("Enemy") && isReflected)
+        //    {
+        //        Debug.Log("EnemyHit");
+        //        hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+        //        Destroy(ProjectileObject);
+        //    }
+        //    else
+        //    {
+        //        if (!hit.collider.gameObject.CompareTag("Projectile"))
+        //        {
+        //            Debug.Log("OtherColl");
+        //            Destroy(ProjectileObject);
+        //        }
+        //    }
+        //}
         transform.position += Velocity * Time.deltaTime;
         if (!isTerminating)
         {
             StartCoroutine(Terminate());
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("PlayerHit");
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(Damage);
+            Destroy(ProjectileObject);
+        } else if (other.gameObject.CompareTag("Shield"))
+        {
+            Debug.Log("ShieldHit");
+            isReflected = true;
+            Velocity = Velocity.magnitude * -other.gameObject.transform.right;
+            other.gameObject.GetComponentInParent<Shield>().TakeDamage(Damage);
+        } else if(other.gameObject.CompareTag("Enemy") && isReflected)
+        {
+            Debug.Log("EnemyHit");
+            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+            Destroy(ProjectileObject);
+        } else
+        {
+            //if (!other.gameObject.CompareTag("Projectile"))
+            //{
+            //    Debug.Log("OtherColl");
+            //    Destroy(ProjectileObject);
+            //}
         }
     }
 

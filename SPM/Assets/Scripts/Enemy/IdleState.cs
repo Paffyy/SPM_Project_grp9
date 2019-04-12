@@ -12,7 +12,6 @@ public class IdleState : EnemyBaseState
 
     public override void HandleUpdate()
     {
-        Debug.Log("Idle");
         if (IsAggroed())
         {
             owner.Transition<EAttackState>();

@@ -12,16 +12,16 @@ public class Sword : MonoBehaviour
     public float Angle;
     public LayerMask CollisionMask;
     public float CoolDownValue;
-    public GameObject SwordObject;
+    public GameObject PlayerObject;
+    public Camera playerCamera;
+    public int Damage = 50;
     private float coolDownCounter;
     private bool onCooldown;
-    private Camera playerCamera;
     private Vector3 swordOffset;
     private float swingValue = 70f;
 
     void Start()
     {
-        playerCamera = GetComponentInChildren<Camera>();
         swordOffset = new Vector3(0.5f, 0, 0f);
     }
 
@@ -57,18 +57,18 @@ public class Sword : MonoBehaviour
     private void UpdateRotation(float swing = 0)
     {
         var direction = playerCamera.transform.forward;
-        SwordObject.transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
+        transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
     }
 
     private void UpdatePosition()
     {
-        Vector3 update = SwordObject.transform.rotation * swordOffset.normalized;
-        SwordObject.transform.position = update * swordOffset.magnitude + transform.position;
+        Vector3 update = transform.rotation * swordOffset.normalized;
+        transform.position = update * swordOffset.magnitude + PlayerObject.transform.position;
     }
 
     void CheckCollision()
     {
-        var enemyInRange = Manager.Instance.GetFrontConeHit(playerCamera.transform.forward,transform, CollisionMask, Radius, Angle);
+        var enemyInRange = Manager.Instance.GetFrontConeHit(playerCamera.transform.forward, PlayerObject.transform, CollisionMask, Radius, Angle);
         foreach (var item in enemyInRange)
         {
             DealDamage(item);
@@ -78,13 +78,15 @@ public class Sword : MonoBehaviour
     private void DealDamage(Collider item)
     {
         //testing
+        item.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+        Color c = item.GetComponent<Renderer>().material.color;
         item.GetComponent<Renderer>().material.color = Color.red;
-        StartCoroutine(RemoveRedColor(item));
+        StartCoroutine(RemoveRedColor(item, c));
     }
     //testing
-    IEnumerator RemoveRedColor(Collider item)
+    IEnumerator RemoveRedColor(Collider item, Color c)
     {
         yield return new WaitForSeconds(0.2f);
-        item.GetComponent<Renderer>().material.color = Color.white;
+        item.GetComponent<Renderer>().material.color = c;
     }
 }

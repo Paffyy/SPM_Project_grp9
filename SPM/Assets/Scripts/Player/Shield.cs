@@ -10,11 +10,15 @@ public class Shield : MonoBehaviour
     public LayerMask ProjectileMask;
     public Camera playerCamera;
     private Vector3 shieldPos;
+    public int ShieldHealth = 500;
+    public int CurrentHealth;
+    public GameObject ShieldObject;
     // Start is called before the first frame update
     void Start()
     {
-        shieldPos = new Vector3(0f, 0.2f, 1.0f);
+        shieldPos = new Vector3(0f, 0.1f, 1.0f);
         boxCollider = GetComponentInChildren<BoxCollider>();
+        CurrentHealth = ShieldHealth;
     }
 
     // Update is called once per frame
@@ -54,19 +58,29 @@ public class Shield : MonoBehaviour
     //    }
     //}
 
-    public void Reflect()
+
+    //public void Reflect()
+    //{
+    //    Debug.Log("test");
+    //    var size = Quaternion.Euler(0, 90, 0) * boxCollider.size /2 ;
+    //    RaycastHit hit;
+    //    //Debug.DrawRay(transform.position, transform.position.normalized * transform.position.magnitude);
+    //    if (Physics.BoxCast(transform.position, size, transform.forward, out hit, transform.rotation, 0.5f, ProjectileMask))
+    //    {
+    //        if (hit.collider != null)
+    //        {
+    //            Debug.Log("test2");
+    //            hit.collider.GetComponent<Projectile>().Velocity = -hit.collider.GetComponent<Projectile>().Velocity;
+    //        }
+    //    }
+    //}
+
+      public void TakeDamage(int damage)
     {
-        Debug.Log("test");
-        var size = Quaternion.Euler(0, 90, 0) * boxCollider.size /2 ;
-        RaycastHit hit;
-        //Debug.DrawRay(transform.position, transform.position.normalized * transform.position.magnitude);
-        if (Physics.BoxCast(transform.position, size, transform.forward, out hit, transform.rotation, 0.5f, ProjectileMask))
+        CurrentHealth -= damage;
+        if(CurrentHealth <= 0 && ShieldObject != null)
         {
-            if (hit.collider != null)
-            {
-                Debug.Log("test2");
-                hit.collider.GetComponent<Projectile>().Velocity = -hit.collider.GetComponent<Projectile>().Velocity;
-            }
+            Destroy(ShieldObject);
         }
     }
   
