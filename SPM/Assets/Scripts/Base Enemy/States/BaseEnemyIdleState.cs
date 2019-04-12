@@ -8,7 +8,7 @@ public class BaseEnemyIdleState : BaseEnemyBaseState
 
     public override void Enter()
     {
-        Debug.Log("IdleState");
+        //Debug.Log("IdleState");
         base.Enter();
         owner.MeshRen.material.color = Color.white;
     }

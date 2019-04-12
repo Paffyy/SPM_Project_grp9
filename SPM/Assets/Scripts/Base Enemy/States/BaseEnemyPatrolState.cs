@@ -17,7 +17,7 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
     {
         base.Enter();
         ClosestPoint();
-        Debug.Log("PatrolState");
+        //Debug.Log("PatrolState");
     }
 
     public override void HandleUpdate()

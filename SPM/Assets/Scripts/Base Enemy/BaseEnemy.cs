@@ -25,6 +25,7 @@ public class BaseEnemy : StateMachine
     public float lostTargetDistance;
     public float moveSpeed;
     public float hearRadius;
+    public float AttackPlacmentDistance;
 
     //public float AttackRange;
 

@@ -8,13 +8,13 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
     //[SerializeField] private float chaseDistance;
     //[SerializeField] private float cooldown;
-    public float PlacmentDistance;
+    //public float PlacmentDistance;
 
     private float currentCooldown;
 
     public override void Enter()
     {
-        Debug.Log("AttackState");
+        //Debug.Log("AttackState");
         base.Enter();
         owner.MeshRen.material.color = Color.red;
         currentCooldown = cooldown;
@@ -23,15 +23,23 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
-        owner.NavAgent.SetDestination(owner.player.transform.position);
+        
         if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
         {
+            owner.NavAgent.isStopped = true;
             Attack();
-            //owner.NavAgent.isStopped = true;
         }
+        else{
+            owner.NavAgent.isStopped = false;
+            owner.NavAgent.SetDestination(owner.player.transform.position);
+        }
+
 
         //tittar på spelaren
         owner.transform.LookAt(owner.player.transform.position);
+
+        //skumt stuff måste fixa det här
+        //owner.transform.LookAt(Vector3.Scale(owner.player.transform.position, new Vector3(1,0,1)));
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > chaseDistance)
             owner.Transition<BaseEnemyChaseState>();

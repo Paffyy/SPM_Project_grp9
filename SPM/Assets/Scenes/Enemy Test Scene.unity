@@ -625,6 +625,7 @@ MonoBehaviour:
   lostTargetDistance: 11.13
   moveSpeed: 3
   hearRadius: 4
+  AttackPlacmentDistance: 0
   visionMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -872,10 +873,11 @@ MonoBehaviour:
   currectState: {fileID: 0}
   chaseDistance: 4
   cooldown: 1.3
-  attackDistance: 2
+  attackDistance: 2.5
   lostTargetDistance: 11.13
   moveSpeed: 3
   hearRadius: 4
+  AttackPlacmentDistance: 2
   visionMask:
     serializedVersion: 2
     m_Bits: 1024

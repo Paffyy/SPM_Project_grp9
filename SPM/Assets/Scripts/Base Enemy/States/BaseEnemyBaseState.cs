@@ -13,6 +13,7 @@ public class BaseEnemyBaseState : State
     protected float lostTargetDistance;
     protected float moveSpeed;
     protected float hearRadius;
+    protected float PlacmentDistance;
     //public LayerMask PlayerLayer;
 
     //för debug
@@ -22,7 +23,7 @@ public class BaseEnemyBaseState : State
 
     public override void Enter()
     {
-        Debug.Log("BaseState");
+        //Debug.Log("BaseState");
         owner.MeshRen.material = material;
         owner.NavAgent.speed = moveSpeed;
     }
@@ -36,6 +37,7 @@ public class BaseEnemyBaseState : State
         lostTargetDistance = this.owner.lostTargetDistance;
         moveSpeed = this.owner.moveSpeed;
         hearRadius = this.owner.hearRadius;
+        PlacmentDistance = this.owner.AttackPlacmentDistance;
     }
 
     public override void HandleUpdate()
