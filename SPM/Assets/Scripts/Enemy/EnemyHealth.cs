@@ -26,14 +26,12 @@ public class EnemyHealth : MonoBehaviour
     {
         CurrentHealth -= damage;
         EnemyHealthSlider.value = CurrentHealth;
-        Debug.Log(CurrentHealth);
         if (CurrentHealth <= 0)
             EnemyDead();
     }
 
     public void EnemyDead()
     {
-        Debug.Log("EnemyDead");
-        //Destroy(Enemy);
+        Destroy(Enemy);
     }
 }

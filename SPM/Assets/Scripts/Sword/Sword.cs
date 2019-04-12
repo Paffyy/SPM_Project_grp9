@@ -87,6 +87,7 @@ public class Sword : MonoBehaviour
     IEnumerator RemoveRedColor(Collider item, Color c)
     {
         yield return new WaitForSeconds(0.2f);
-        item.GetComponent<Renderer>().material.color = c;
+        if(item != null)
+             item.GetComponent<Renderer>().material.color = c;
     }
 }

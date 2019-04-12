@@ -65,7 +65,7 @@ public class BaseEnemy : StateMachine
             return false;
 
         Health -= dmg;
-        if(Health < 0)
+        if(Health <= 0)
         {
             transform.position += (Vector3.up * 0.2f) + (transform.position - hitOrigin).normalized * (pushBackDistance * 3) * Time.deltaTime;
             die();
@@ -81,6 +81,6 @@ public class BaseEnemy : StateMachine
     public void die()
     {
         MeshRen.material.color = Color.gray;
-        Object.Destroy(this.gameObject, 1.5f);
+        Destroy(gameObject, 1.5f);
     }
 }

@@ -83,6 +83,7 @@ public class Arrow : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
+                ArrowObject.transform.SetParent(hit.collider.gameObject.transform);
                 hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
             }
             hasCollided = true;

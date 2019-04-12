@@ -10,8 +10,9 @@ public class Bow : MonoBehaviour
     public GameObject Player;
     public Camera playerCamera;
     private Vector3 bowOffset;
-    private float speed = 12;
-    private float angle = 0.05f;
+    private float speed = 10;
+    private float angle = 0.1f;
+    private float coolDownCounter = 0f;
     void Awake()
     {
         bowOffset = new Vector3(0.55f, 0.1f, 0f);
@@ -23,27 +24,36 @@ public class Bow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse1))
+        Debug.Log(coolDownCounter);
+        if (coolDownCounter <= 0)
         {
-            if (speed < 27)
+            if (Input.GetKey(KeyCode.Mouse1))
             {
-                speed += speed * 2f * Time.deltaTime;
+                if (speed < 25)
+                {
+                    speed += speed * Time.deltaTime;
+                }
+                if (angle < 0.4f)
+                {
+                    angle += angle * 2f * Time.deltaTime;
+                }
+                Debug.Log(angle + ":" + speed);
             }
-            if (angle < 0.15f)
+            if (Input.GetKeyUp(KeyCode.Mouse1))
             {
-                angle += (angle / 2f) * Time.deltaTime;
+                var direction = playerCamera.transform.forward;
+                direction = Vector3.ProjectOnPlane(direction, Vector3.down);
+                var arrow = Instantiate(Arrow, transform.position + direction, Quaternion.LookRotation(direction * speed), Parent.transform);
+                arrow.GetComponent<Arrow>().ApplyInitialVelocity(direction.normalized * speed + new Vector3(0, angle, 0) * speed);
+
+                speed = 10;
+                angle = 0.1f;
+                coolDownCounter = 0.8f;
             }
-            Debug.Log(angle + ":" + speed);
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1))
+        else
         {
-            var direction = playerCamera.transform.forward;
-            direction = Vector3.ProjectOnPlane(direction, Vector3.down);
-            var arrow = Instantiate(Arrow, transform.position + direction, Quaternion.LookRotation(direction * speed), Parent.transform);
-            arrow.GetComponent<Arrow>().ApplyInitialVelocity(direction.normalized * speed + new Vector3(0, speed / 90,0) * speed);
-           
-            speed = 12;
-            angle = 0.05f;
+            coolDownCounter -= Time.deltaTime;
         }
         UpdatePosition();
         UpdateRotation();
