@@ -10,8 +10,8 @@ public class Bow : MonoBehaviour
     public GameObject Player;
     public Camera playerCamera;
     private Vector3 bowOffset;
-    private float speed = 7;
-    private float angle = 0.1f;
+    private float speed = 12;
+    private float angle = 0.05f;
     void Awake()
     {
         bowOffset = new Vector3(0.55f, 0.1f, 0f);
@@ -25,13 +25,13 @@ public class Bow : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            if (speed < 30)
+            if (speed < 27)
             {
-                speed += speed * 3f * Time.deltaTime;
+                speed += speed * 2f * Time.deltaTime;
             }
-            if (angle < 0.3f)
+            if (angle < 0.15f)
             {
-                angle += angle * Time.deltaTime;
+                angle += (angle / 2f) * Time.deltaTime;
             }
             Debug.Log(angle + ":" + speed);
         }
@@ -42,8 +42,8 @@ public class Bow : MonoBehaviour
             var arrow = Instantiate(Arrow, transform.position + direction, Quaternion.LookRotation(direction * speed), Parent.transform);
             arrow.GetComponent<Arrow>().ApplyInitialVelocity(direction.normalized * speed + new Vector3(0, speed / 90,0) * speed);
            
-            speed = 5;
-            angle = 0.1f;
+            speed = 12;
+            angle = 0.05f;
         }
         UpdatePosition();
         UpdateRotation();
