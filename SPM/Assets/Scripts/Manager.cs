@@ -5,10 +5,7 @@ using UnityEngine;
 
 public class Manager
 {
-    private Manager()
-    {
-        // Prevent outside instantiation
-    }
+    private Manager() {  }
     private static Manager instance;
     public static Manager Instance
     {
