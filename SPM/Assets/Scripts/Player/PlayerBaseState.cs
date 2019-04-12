@@ -28,7 +28,7 @@ public class PlayerBaseState : State
 
     public override void Enter()
     {
-        cameraPosition = new Vector3(0, 5, -11);
+        cameraPosition = new Vector3(0, owner.yAngle, owner.zAngle);
         sphere = owner.GetComponentInChildren<SphereCollider>();
         playerCollider = owner.GetComponent<CapsuleCollider>();
         playerCamera = owner.GetComponentInChildren<Camera>();
