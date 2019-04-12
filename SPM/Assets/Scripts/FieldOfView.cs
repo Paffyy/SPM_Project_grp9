@@ -28,8 +28,10 @@ public class FieldOfView : MonoBehaviour
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
             {
-                objs.Add(target.gameObject);
-
+                //layermasken är dess egna så att den inte kolliderar med objekt av samma typ
+                if(Physics.Linecast(transform.position, target.position, gameObject.layer))
+                    objs.Add(target.gameObject);
+                Debug.DrawLine(transform.position, target.position, Color.red);
             }
         }
         if (objs.Count == 0)
@@ -37,10 +39,9 @@ public class FieldOfView : MonoBehaviour
         return objs.ToArray();
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         //Gizmos.DrawWireSphere(transform.position, viewRadius);
-        //Gizmos.DrawFrustum(transform.position, viewAngle, viewRadius, 0.0f, 1.0f);
         float totalFOV = viewAngle;
         float rayRange = viewRadius;
         float halfFOV = totalFOV / 2.0f;
@@ -51,7 +52,7 @@ public class FieldOfView : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, leftRayDirection * rayRange);
         Gizmos.DrawRay(transform.position, rightRayDirection * rayRange);
-        //Gizmos.DrawWireSphere(transform.position, viewRadius);
+        Gizmos.DrawWireSphere(transform.position, viewRadius);
     }
 
 }

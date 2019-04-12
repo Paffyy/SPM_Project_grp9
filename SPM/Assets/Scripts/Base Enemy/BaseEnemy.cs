@@ -14,10 +14,10 @@ public class BaseEnemy : StateMachine
     public int Damage;
     public float IFrameTime;
     [HideInInspector] public float IFrameCoolDown;
-    //[HideInInspector] public LinkedList<GameObject> BaseEnemyList = new LinkedList<GameObject>();
     [HideInInspector] public NavMeshAgent NavAgent;
     [HideInInspector] public FieldOfView Fow;
-    //public float AttackRange;
+
+    public State currectState;
 
     [HideInInspector] public float chaseDistance;
     public float cooldown;
@@ -25,6 +25,8 @@ public class BaseEnemy : StateMachine
     public float lostTargetDistance;
     public float moveSpeed;
     public float hearRadius;
+
+    //public float AttackRange;
 
     public LayerMask visionMask;
     public Player player;

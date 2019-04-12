@@ -49,6 +49,7 @@ public class BaseEnemyBaseState : State
         //debug shit
 
         owner.IFrameCoolDown -= Time.deltaTime;
+
     }
 
     protected bool CanSeePlayer()
