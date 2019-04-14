@@ -36,4 +36,11 @@ public class Manager
         var colliders = Physics.OverlapSphere(pos, radius, layerMask).ToList() ?? new List<Collider>();
         return colliders;
     }
+    public Vector3 GetInitialVelocity(Vector3 pos, Vector3 target, float timeToTarget, int angleInDegrees, float gravityForce)
+    {
+        var distance = Vector3.Distance(pos, target);
+        var direction = (target - pos).normalized + new Vector3(0, Mathf.Cos(angleInDegrees), 0);
+        var initialVelocity = Mathf.Sqrt((distance * gravityForce) / Mathf.Sin(2 * angleInDegrees));
+        return direction.normalized * initialVelocity;
+    }
 }
