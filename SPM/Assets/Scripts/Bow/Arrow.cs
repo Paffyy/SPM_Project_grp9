@@ -86,6 +86,10 @@ public class Arrow : MonoBehaviour
                 ArrowObject.transform.SetParent(hit.collider.gameObject.transform);
                 hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
             }
+            if (hit.collider.gameObject.CompareTag("RevObject"))
+            {
+                hit.collider.gameObject.GetComponent<RevitalizeGeometry>().Revitalize();
+            }
             hasCollided = true;
             //RaycastHit normalHit;
             //Physics.CapsuleCast(point1, point2, capCollider.radius, -hit.normal, out normalHit, velocity.magnitude * Time.deltaTime, CollisionMask);
