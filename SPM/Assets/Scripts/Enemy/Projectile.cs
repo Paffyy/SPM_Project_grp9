@@ -120,18 +120,15 @@ void Update()
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("PlayerHit");
             other.gameObject.GetComponent<PlayerHealth>().TakeDamage(Damage);
             Destroy(ProjectileObject);
         } else if (other.gameObject.CompareTag("Shield"))
         {
-            Debug.Log("ShieldHit");
             isReflected = true;
             Velocity = Velocity.magnitude * -other.gameObject.transform.right;
             other.gameObject.GetComponentInParent<Shield>().TakeDamage(Damage);
         } else if(other.gameObject.CompareTag("Enemy") && isReflected)
         {
-            Debug.Log("EnemyHit");
             other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
             Destroy(ProjectileObject);
         } else

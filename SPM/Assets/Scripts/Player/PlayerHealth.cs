@@ -26,7 +26,6 @@ public class PlayerHealth : MonoBehaviour
     {
         CurrentHealth -= damage;
         HealthSlider.value = CurrentHealth;
-        Debug.Log(CurrentHealth);
         if (CurrentHealth <= 0)
             PlayerDead();
     }
@@ -34,7 +33,8 @@ public class PlayerHealth : MonoBehaviour
     public void PlayerDead()
     {
         Player.transform.position = Manager.Instance.GetCheckPoint();
-        Debug.Log("PlayerDead");
+        CurrentHealth = 100;
+        HealthSlider.value = CurrentHealth;
         //Destroy(Player);
     }
 }

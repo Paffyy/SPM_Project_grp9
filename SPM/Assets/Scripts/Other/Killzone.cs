@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckPoint : MonoBehaviour
+public class Killzone : MonoBehaviour
 {
+    public GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
-        Manager.Instance.SetCheckPoint(transform.position); // temp
+        
     }
 
     // Update is called once per frame
@@ -16,11 +17,11 @@ public class CheckPoint : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Manager.Instance.SetCheckPoint(transform.position);
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(100);
         }
     }
 }

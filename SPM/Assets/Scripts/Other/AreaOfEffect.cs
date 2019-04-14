@@ -41,7 +41,6 @@ public class AreaOfEffect : MonoBehaviour
             if (CheckArea())
             {
                 Player.GetComponent<PlayerHealth>().TakeDamage(Damage);
-                Debug.Log("Damaging");
             }
         }
     }
