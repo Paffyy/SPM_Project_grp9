@@ -40,9 +40,10 @@ public class Manager
     }
     public Vector3 GetInitialVelocity(Vector3 pos, Vector3 target, float timeToTarget, int angleInDegrees, float gravityForce)
     {
+        var radialAngle = angleInDegrees * Mathf.PI / 180f;
         var distance = Vector3.Distance(pos, target);
-        var direction = (target - pos).normalized + new Vector3(0, Mathf.Cos(angleInDegrees), 0);
-        var initialVelocity = Mathf.Sqrt((distance * gravityForce) / Mathf.Sin(2 * angleInDegrees));
+        var direction = (target - pos).normalized + new Vector3(0, Mathf.Cos(radialAngle), 0);
+        var initialVelocity = Mathf.Sqrt((distance * gravityForce) / Mathf.Sin(2 * radialAngle));
         return direction.normalized * initialVelocity;
     }
 
