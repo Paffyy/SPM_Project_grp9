@@ -24,12 +24,13 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      //  Reflect();
-        var direction = playerCamera.transform.forward; 
-        //direction = Vector3.ProjectOnPlane(direction * 3.0f, new Vector3(0,-0.5f,0));
-        transform.rotation = Quaternion.LookRotation(direction);
-        Vector3 update = transform.rotation * shieldPos.normalized;
-        transform.position = update * shieldPos.magnitude + Player.transform.position;
+        //  Reflect();
+        //var direction = playerCamera.transform.forward; 
+        ////direction = Vector3.ProjectOnPlane(direction * 3.0f, new Vector3(0,-0.5f,0));
+        //transform.rotation = Quaternion.LookRotation(direction);
+        //Vector3 update = transform.rotation * shieldPos.normalized;
+        //transform.position = update * shieldPos.magnitude + Player.transform.position;
+        UpdateTransformation();
         Debug.DrawRay(transform.position, playerCamera.transform.forward);
         //var topRight = transform.position + new Vector3(boxCollider.size.x / 2, boxCollider.size.z / 2);
         //var topLeft = transform.position +  new Vector3(-boxCollider.size.x / 2, boxCollider.size.y / 2);
@@ -47,6 +48,14 @@ public class Shield : MonoBehaviour
         ExtDebug.DrawBoxCastBox(transform.position, Quaternion.Euler(0, 90, 0) * boxCollider.size / 2, transform.rotation, transform.forward, 0.5f, Color.white);
 
         //Debug.Log(transform.position);
+    }
+
+    public void UpdateTransformation()
+    {
+        var direction = playerCamera.transform.forward;
+        transform.rotation = Quaternion.LookRotation(direction);
+        Vector3 update = transform.rotation * shieldPos.normalized;
+        transform.position = update * shieldPos.magnitude + Player.transform.position;
     }
 
     //private void OnTriggerEnter(Collider other)

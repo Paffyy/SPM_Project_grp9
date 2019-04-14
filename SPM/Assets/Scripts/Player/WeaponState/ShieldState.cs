@@ -14,6 +14,7 @@ public class ShieldState : WeaponBaseState
         //Debug.Log("Shield");
         if (owner.Shield != null)
         {
+            owner.Shield.GetComponent<Shield>().UpdateTransformation();
             owner.Shield.SetActive(true);
         }
         base.Enter();
