@@ -33,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void PlayerDead()
     {
+        Player.transform.position = Manager.Instance.GetCheckPoint();
         Debug.Log("PlayerDead");
         //Destroy(Player);
     }

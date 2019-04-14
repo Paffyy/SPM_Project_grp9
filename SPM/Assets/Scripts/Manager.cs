@@ -7,6 +7,8 @@ public class Manager
 {
     private Manager() {  }
     private static Manager instance;
+    private Vector3 checkPoint;
+
     public static Manager Instance
     {
         get
@@ -43,4 +45,15 @@ public class Manager
         var initialVelocity = Mathf.Sqrt((distance * gravityForce) / Mathf.Sin(2 * angleInDegrees));
         return direction.normalized * initialVelocity;
     }
+
+    public Vector3 GetCheckPoint()
+    {
+        return checkPoint;
+    }
+
+    public void SetCheckPoint(Vector3 position)
+    {
+        checkPoint = position;
+    }
+
 }

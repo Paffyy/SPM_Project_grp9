@@ -22,7 +22,7 @@ public class AreaOfEffect : MonoBehaviour
 
     private bool CheckArea()
     {
-        List<Collider> colliders = Manager.Instance.GetAoeHit(transform.position, CollisionMask, SphereCollider.radius);
+        List<Collider> colliders = Manager.Instance.GetAoeHit(transform.position, CollisionMask, SphereCollider.radius * ((transform.localScale.x + transform.localScale.z) / 2));
         foreach (Collider c in colliders)
         {
             if (c.gameObject.CompareTag("Player"))
@@ -31,7 +31,6 @@ public class AreaOfEffect : MonoBehaviour
             }
         }
         return false;
-
     }
 
     IEnumerator InflictDamage()
