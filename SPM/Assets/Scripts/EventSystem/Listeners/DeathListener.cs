@@ -34,7 +34,7 @@ public class DeathListener : MonoBehaviour
         var deathEventInfo = e as DeathEventInfo;
         if (deathEventInfo != null)
         {
-            StartCoroutine(Grow(deathEventInfo.GameObject.GetComponent<DestroyableGameObject>(), deathEventInfo));
+            //StartCoroutine(Grow(deathEventInfo.GameObject.GetComponent<DestroyableGameObject>(), deathEventInfo));
         }
     }
     IEnumerator DelayedDeath(float seconds, BaseEventInfo e)
@@ -47,13 +47,13 @@ public class DeathListener : MonoBehaviour
             Destroy(deathEventInfo.GameObject);
         }
     }
-    IEnumerator Grow(DestroyableGameObject destroyableGameObject, DeathEventInfo deathEventInfo)
-    {
-        for (int i = 0; i < 25; i++)
-        {
-            yield return new WaitForSeconds(ExplodeTime / 25f);
-            destroyableGameObject.transform.localScale *= 1 + ScaleFactor;
-        }
-        EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, new DeathEventInfo(deathEventInfo.GameObject));
-    }
+    //IEnumerator Grow(DestroyableGameObject destroyableGameObject, DeathEventInfo deathEventInfo)
+    //{
+    //    for (int i = 0; i < 25; i++)
+    //    {
+    //        yield return new WaitForSeconds(ExplodeTime / 25f);
+    //        destroyableGameObject.transform.localScale *= 1 + ScaleFactor;
+    //    }
+    //    EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, new DeathEventInfo(deathEventInfo.GameObject));
+    //}
 }

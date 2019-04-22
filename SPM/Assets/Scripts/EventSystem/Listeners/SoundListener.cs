@@ -27,7 +27,7 @@ public class SoundListener : MonoBehaviour
         {
             if (!audioSource.isPlaying)
             {
-                audioSource.clip = deathEventInfo.GameObject.GetComponent<DestroyableGameObject>().DeathSound;
+                //audioSource.clip = deathEventInfo.GameObject.GetComponent<DestroyableGameObject>().DeathSound;
                 audioSource.Play();
             }
         }
