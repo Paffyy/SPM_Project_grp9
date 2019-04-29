@@ -31,7 +31,7 @@ public class Sword : MonoBehaviour
         if (coolDownCounter < 0)
         {
 
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 coolDownCounter = CoolDownValue;
                 CheckCollision();

@@ -29,7 +29,7 @@ public class Bow : MonoBehaviour
     {
         if (coolDownCounter <= 0)
         {
-            if (Input.GetKey(KeyCode.Mouse1))
+            if (Input.GetKey(KeyCode.Mouse0))
             {
                 if (thirdPersonCrosshair != null)
                 {
@@ -44,7 +44,7 @@ public class Bow : MonoBehaviour
                     angle += angle * 2f * Time.deltaTime;
                 }
             }
-            if (Input.GetKeyUp(KeyCode.Mouse1))
+            if (Input.GetKeyUp(KeyCode.Mouse0))
             {
                 ShootArrow();
 
