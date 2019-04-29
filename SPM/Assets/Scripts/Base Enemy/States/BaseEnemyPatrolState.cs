@@ -9,7 +9,7 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
     //[SerializeField] private float chaseDistance;
 
     //avståndet som fienden behöver vara från punkten för att gå till nästa
-    public float pointSize;
+    private float pointSize = 2.0f;
     //[SerializeField] private float hearingRange;
     public int currentPoint = 0;
 
@@ -18,12 +18,13 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
         base.Enter();
         ClosestPoint();
         //Debug.Log("PatrolState");
+        owner.currectState = this;
     }
 
     public override void HandleUpdate()
     {
         owner.NavAgent.SetDestination(owner.Path.PathObjects[currentPoint].position);
-        if (Vector3.Distance(owner.transform.position, owner.Path.PathObjects[currentPoint].position) < 1 )
+        if (Vector3.Distance(owner.transform.position, owner.Path.PathObjects[currentPoint].position) < pointSize )
         {
             currentPoint = (currentPoint + 1) % owner.Path.PathObjects.Count;
         }

@@ -46,18 +46,6 @@ public class BaseEnemy : StateMachine
         base.Awake();
     }
 
-    //private void Update()
-    //{
-    //    //debug shit
-    //    if (Input.GetKeyDown("h"))
-    //    {
-    //        hit(2, player.transform.position, 20.0f);
-    //    }
-    //    //debug shit
-
-    //    IFrameCoolDown -= Time.deltaTime;
-    //}
-
     //hitOrigin vectorn används för att putta tillbaka fienden från denna vectorns riktning i förhållande till dennes position
     public bool hit(int dmg, Vector3 hitOrigin, float pushBackDistance)
     {
@@ -76,6 +64,17 @@ public class BaseEnemy : StateMachine
 
         IFrameCoolDown = IFrameTime;
         return true;
+    }
+
+    public void UpdateDestination(Vector3 destination, float timer)
+    {
+        StartCoroutine(DestinationIEnum(destination, timer));
+    }
+
+    private IEnumerator DestinationIEnum(Vector3 destination, float timer)
+    {
+        NavAgent.SetDestination(destination);
+        yield return new WaitForSeconds(timer);
     }
 
     public void die()

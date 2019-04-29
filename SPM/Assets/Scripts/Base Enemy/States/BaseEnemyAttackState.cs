@@ -11,6 +11,13 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
     //public float PlacmentDistance;
 
     private float currentCooldown;
+    private bool backOff = false;
+    private bool toPlayer = false;
+    private bool circle = false;
+    private float backTimer = 2.0f;
+    private float timer;
+
+    private float circleDistance = 1.5f;
 
     public override void Enter()
     {
@@ -18,28 +25,68 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         base.Enter();
         owner.MeshRen.material.color = Color.red;
         currentCooldown = cooldown;
+        owner.currectState = this;
+        timer = backTimer;
         //hitta hur många andra fiender som är i AttackState
     }
 
     public override void HandleUpdate()
     {
-        
-        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
+        Debug.Log("back off " + backOff);
+        Debug.Log("cicle player " + circle);
+        Debug.Log("to player " + toPlayer);
+        //if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
+        //{
+        //    owner.NavAgent.isStopped = true;
+        //    Attack();
+        //}
+        //else{
+        //    owner.NavAgent.isStopped = false;
+        //    owner.NavAgent.SetDestination(owner.player.transform.position);
+        //}
+        //owner.NavAgent.SetDestination(owner.player.transform.position);
+
+        if (backOff)
         {
-            owner.NavAgent.isStopped = true;
+            BackOff();
+            timer -= Time.deltaTime;
+        }
+        //if(timer < 0)
+        //{
+        //    backOff = false;
+        //    toPlayer = true;
+        //    timer = backTimer;
+        //}
+        if(backOff && Vector3.Distance(owner.transform.position, owner.player.transform.position) < circleDistance || timer < 0)
+        {
+            backOff = false;
+            timer = backTimer;
+            //circle = true;
+            toPlayer = true;
+        }
+        if (toPlayer)
+        {
+            owner.UpdateDestination(owner.player.transform.position, 0.1f);
+        }
+        //if (circle && timer < 0)
+        //{
+        //    timer -= Time.deltaTime;
+        //    CirclePlayer();
+        //}
+
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
+        {
             Attack();
+            backOff = true;
         }
-        else{
-            owner.NavAgent.isStopped = false;
-            owner.NavAgent.SetDestination(owner.player.transform.position);
-        }
+
+
+
 
 
         //tittar på spelaren
-        owner.transform.LookAt(owner.player.transform.position);
-
-        //skumt stuff måste fixa det här
-        //owner.transform.LookAt(Vector3.Scale(owner.player.transform.position, new Vector3(1,0,1)));
+        LookAtTarget(owner.player.transform);
+        //owner.transform.LookAt(owner.player.transform.position);
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > chaseDistance)
             owner.Transition<BaseEnemyChaseState>();
@@ -47,14 +94,37 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         base.HandleUpdate();
     }
 
+    void LookAtTarget(Transform target)
+    {
+        Vector3 dir = (target.position - owner.transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
+        owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, lookRotation, 5f);
+    }
+
     void BackOff()
     {
-
+        owner.NavAgent.updateRotation = false;
+        //owner.transform.LookAt(owner.player.transform);
+        owner.UpdateDestination(-owner.transform.forward * 10, 2f);
+        //owner.NavAgent.updateRotation = true;
+        //Debug.Log("back off");
     }
+
+
 
     void CirclePlayer()
     {
+        float angleDiviation = 1.5f;
+        float currentDistance = Vector3.Distance(owner.transform.position, owner.player.transform.position);
+        float currentAngle = Vector3.Angle(owner.player.transform.position, owner.transform.position);
+        float randomAgle = Random.Range(-angleDiviation, angleDiviation);
 
+        Vector3 position = owner.player.transform.forward * currentDistance;
+
+        float x = owner.player.transform.position.x + currentDistance * Mathf.Cos(currentAngle + randomAgle);
+        float y = owner.player.transform.position.y + currentDistance * Mathf.Sin(currentAngle + randomAgle);
+
+        owner.UpdateDestination(new Vector3(x, y, owner.transform.position.z), 0.1f);
     }
 
     private void Attack()

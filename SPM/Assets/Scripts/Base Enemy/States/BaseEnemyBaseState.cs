@@ -37,6 +37,7 @@ public class BaseEnemyBaseState : State
         lostTargetDistance = this.owner.lostTargetDistance;
         moveSpeed = this.owner.moveSpeed;
         hearRadius = this.owner.hearRadius;
+        //måste vara högre än navAgent stopping distance
         PlacmentDistance = this.owner.AttackPlacmentDistance;
     }
 

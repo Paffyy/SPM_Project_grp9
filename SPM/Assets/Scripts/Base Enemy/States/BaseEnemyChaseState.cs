@@ -9,7 +9,11 @@ public class BaseEnemyChaseState : BaseEnemyBaseState
     //[SerializeField] private float attackDistance;
     //[SerializeField] private float lostTargetDistance;
 
-
+    public override void Enter()
+    {
+        base.Enter();
+        owner.currectState = this;
+    }
 
     public override void HandleUpdate()
     {
