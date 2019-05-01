@@ -20,11 +20,11 @@ public class Test : MonoBehaviour
         {
             ShootArrow();
         }
-        transform.position = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
+        //transform.position = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
     }
     private void ShootArrow()
     {
         var arrow = Instantiate(Arrow, transform.position, Quaternion.LookRotation(Player.transform.position), Parent.transform);
-        arrow.GetComponent<Arrow>().ApplyInitialVelocity(Manager.Instance.GetInitialVelocity(transform.position,Player.transform.position,3,45,15));
+        arrow.GetComponent<Arrow>().ApplyInitialVelocity(Manager.Instance.GetInitialVelocity2(transform.position,Player.transform.position,-15));
     }
 }

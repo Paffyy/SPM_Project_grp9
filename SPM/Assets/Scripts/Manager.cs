@@ -46,6 +46,25 @@ public class Manager
         var initialVelocity = Mathf.Sqrt((distance * gravityForce) / Mathf.Sin(2 * radialAngle));
         return direction.normalized * initialVelocity;
     }
+    public Vector3 GetInitialVelocity2(Vector3 pos, Vector3 target, float gravityForce)
+    {
+        var heightDifference = target.y - pos.y;
+        var distanceXZ = new Vector3(target.x - pos.x, 0, target.z - pos.z);
+        var arcHeight = Mathf.Abs(heightDifference) + distanceXZ.magnitude / 10;
+        var velocityY = Vector3.up * Mathf.Sqrt(-2 * gravityForce * arcHeight);
+        var velocityXZ = distanceXZ / (Mathf.Sqrt(-2 * arcHeight / gravityForce) + Mathf.Sqrt(2 * (heightDifference - arcHeight) / gravityForce));
+        return velocityXZ + velocityY;
+    }
+
+    public List<Vector3> GetRandomPointsInArea(Vector3 position,int count, float radius)
+    {
+        List<Vector3> listOfRandomPoints = new List<Vector3>();
+        for (int i = 0; i < count-1; i++)
+        {
+            listOfRandomPoints.Add(new Vector3(Random.Range(-radius, +radius),0, Random.Range(-radius, +radius)) + position);
+        }
+        return listOfRandomPoints;
+    }
 
     public Vector3 GetCheckPoint()
     {
