@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class RevitalizeGeometry : StateMachine
+public class RevitalizeGeometry : MonoBehaviour
 {
     public Material RevitalizedMaterial;
     public float Interval;
     public bool AlphaFading;
+    public bool IsRevitalized;
     private Renderer rend;
     private List<Color> colList = new List<Color>();
     private Color defaultColor;
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
         if (GetComponent<Renderer>() != null)
         {
             rend = GetComponent<Renderer>();
@@ -22,12 +22,13 @@ public class RevitalizeGeometry : StateMachine
         }
         colList = GetColors(RevitalizedMaterial.color, rend.material.color);
     }
-    public void Revitalize()
+    public void Revitalize(float offset = 0)
     {
-        StartCoroutine(ApplyColorOverTime(Interval, colList));
+        StartCoroutine(ApplyColorOverTime(Interval + offset, colList));
+        IsRevitalized = true;
     }
 
-    public void DullMaterial()
+    public void DullMaterial(float offset = 0)
     {
         if (colList.Count > 0)
         {
@@ -36,9 +37,9 @@ public class RevitalizeGeometry : StateMachine
             {
                 revList.Add(colList[i]);
             }
-            StartCoroutine(ApplyColorOverTime(Interval, revList));
+            StartCoroutine(ApplyColorOverTime(Interval + offset, revList));
         }
-      
+        IsRevitalized = false;
     }
     IEnumerator ApplyColorOverTime(float time, List<Color> colList)
     {

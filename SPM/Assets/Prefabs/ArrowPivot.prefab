@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollisionMask:
     serializedVersion: 2
-    m_Bits: 17408
+    m_Bits: 50176
   GravityForce: 15
   ArrowObject: {fileID: 1167609288385800612}
   Damage: 25
@@ -64,11 +64,6 @@ PrefabInstance:
     - target: {fileID: 0}
       propertyPath: GravityForce
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922832434141063200, guid: 9b96a398aa0f2ce4a8bbfd513f95b02b,
-        type: 3}
-      propertyPath: m_Name
-      value: Arrow
       objectReference: {fileID: 0}
     - target: {fileID: 4922832434126727743, guid: 9b96a398aa0f2ce4a8bbfd513f95b02b,
         type: 3}
@@ -119,6 +114,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922832434141063200, guid: 9b96a398aa0f2ce4a8bbfd513f95b02b,
+        type: 3}
+      propertyPath: m_Name
+      value: Arrow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b96a398aa0f2ce4a8bbfd513f95b02b, type: 3}

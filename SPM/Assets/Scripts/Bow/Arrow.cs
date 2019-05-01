@@ -91,6 +91,10 @@ public class Arrow : MonoBehaviour
                 hit.collider.gameObject.GetComponent<RevitalizeGeometry>().Revitalize();
             }
             hasCollided = true;
+            if (EventHandler.Instance != null)
+            {
+                EventHandler.Instance.FireEvent(EventHandler.EventType.RevitalizeEvent, new ArrowHitEventInfo(gameObject));
+            }
             //RaycastHit normalHit;
             //Physics.CapsuleCast(point1, point2, capCollider.radius, -hit.normal, out normalHit, velocity.magnitude * Time.deltaTime, CollisionMask);
             //Vector3 moveDistance = velocity.normalized * (normalHit.distance);

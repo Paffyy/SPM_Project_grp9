@@ -7,13 +7,9 @@ public class RevitalizedState : BaseState
 {
     public override void Enter()
     {
-        owner.Revitalize();
         base.Enter();
     }
     public override void HandleUpdate()
     {
-        base.HandleUpdate();
-        if (Input.GetKeyDown(KeyCode.P))
-            owner.Transition<DefaultState>();
     }
 }
