@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9136173843970777391
 Transform:
   m_ObjectHideFlags: 0
@@ -95,6 +95,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   playerCamera: {fileID: 0}
+  ShieldHealth: 500
+  CurrentHealth: 0
+  ShieldObject: {fileID: 0}
 --- !u!1 &9136173844328914669
 GameObject:
   m_ObjectHideFlags: 0

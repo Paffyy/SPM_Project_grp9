@@ -15,10 +15,18 @@ public class Sword : MonoBehaviour
     public GameObject PlayerObject;
     public Camera playerCamera;
     public int Damage = 50;
+    public int BladeStormDamage = 20;
+    public GameObject BladeStormEffect;
     private float coolDownCounter;
     private bool onCooldown;
     private Vector3 swordOffset;
     private float swingValue = 70f;
+    private bool bladeStormOnCoolDown;
+    private float bladeStormCoolDown = 10.0f;
+    private bool isBladeStorming;
+    private float BladeStormTimer = 3f;
+
+ 
 
     void Start()
     {
@@ -28,30 +36,90 @@ public class Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (coolDownCounter < 0)
+        if (Input.GetKeyDown(KeyCode.Z) && !bladeStormOnCoolDown && !isBladeStorming)
         {
-
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                coolDownCounter = CoolDownValue;
-                CheckCollision();
-            }
-            UpdateRotation();
+            BladeStorm();
+            isBladeStorming = true;
+            bladeStormOnCoolDown = true;
         }
-        else
+        if (bladeStormOnCoolDown && !isBladeStorming)
         {
-            coolDownCounter -= Time.deltaTime;
+            bladeStormCoolDown -= Time.deltaTime;
+        }
+        if(bladeStormCoolDown <= 0)
+        {
+            bladeStormOnCoolDown = false;
+            bladeStormCoolDown = 10.0f;
 
-            if (coolDownCounter < CoolDownValue)
+        }
+        if (isBladeStorming)
+        {
+            if (BladeStormEffect.activeInHierarchy == false)
             {
-                UpdateRotation(swingValue);
+                BladeStormEffect.SetActive(true);
+                BladeStormEffect.transform.position = PlayerObject.transform.position;
+            }
+            var direction = playerCamera.transform.forward;
+            transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swingValue, 0, 0);
+            BladeStormTimer -= Time.deltaTime;
+            if (BladeStormTimer <= 0)
+            {
+                BladeStormEffect.SetActive(false);
+                Debug.Log("Stop BS!");
+                isBladeStorming = false;
+                BladeStormTimer = 3f;
+                StopAllCoroutines();
+            }
+        }
+        if(!isBladeStorming)
+        {
+            if (coolDownCounter < 0)
+            {
+
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    coolDownCounter = CoolDownValue;
+                    CheckCollision();
+                }
+                UpdateRotation();
             }
             else
             {
-                UpdateRotation(swingValue);
+                coolDownCounter -= Time.deltaTime;
+
+                if (coolDownCounter < CoolDownValue)
+                {
+                    UpdateRotation(swingValue);
+                }
+                else
+                {
+                    UpdateRotation(swingValue);
+                }
             }
         }
         UpdatePosition();
+    }
+    IEnumerator InflictBladeStormDamage()
+    { 
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            List<Collider> colliders = Manager.Instance.GetAoeHit(PlayerObject.transform.position, CollisionMask, 3.5f);
+           // Gizmos.DrawSphere(PlayerObject.transform.position, BladeStormCollider.radius * ((transform.localScale.x + transform.localScale.z) / 2));
+            foreach (Collider c in colliders)
+            {
+                if (c.gameObject.CompareTag("Enemy"))
+                {
+                    Debug.Log("Hit");
+                    c.gameObject.GetComponent<EnemyHealth>().TakeDamage(BladeStormDamage);
+                }
+            }
+        }
+    }
+
+    private void BladeStorm()
+    {
+        StartCoroutine(InflictBladeStormDamage());
     }
 
     private void UpdateRotation(float swing = 0)
