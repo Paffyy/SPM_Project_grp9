@@ -2312,6 +2312,11 @@ PrefabInstance:
       propertyPath: TrailModule.worldSpace
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5774726577991287432, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: TrailModule.widthOverTrail.scalar
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8752145146576930250, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_RootOrder
@@ -2355,7 +2360,12 @@ PrefabInstance:
     - target: {fileID: 6659768545773868569, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_CullingMode
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659768545773868569, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
@@ -3246,6 +3256,16 @@ MonoBehaviour:
   Parent: {fileID: 381712771}
   Player: {fileID: 784922744}
   playerCamera: {fileID: 899224301}
+  MaxArrowDistance: 0
+  GravityForce: 0
+  AreaOfEffectObject: {fileID: 0}
+  AreaOfEffectMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ArrowLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  RainOfArrowCount: 0
 --- !u!65 &2107413197
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3800,14 +3820,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7651501562885396166, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+    - target: {fileID: 5738035986175220915, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
-      propertyPath: parent
-      value: 
-      objectReference: {fileID: 381712771}
-    - target: {fileID: 7651501562885396166, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 784922750, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
@@ -3852,6 +3867,16 @@ PrefabInstance:
       propertyPath: SwordIcon
       value: 
       objectReference: {fileID: 1775338996}
+    - target: {fileID: 7651501562885396166, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 381712771}
+    - target: {fileID: 7651501562885396166, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7651501563027799724, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_Layer
@@ -3869,11 +3894,6 @@ PrefabInstance:
     - target: {fileID: 7651501562885396189, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5738035986175220915, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 396527090, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
