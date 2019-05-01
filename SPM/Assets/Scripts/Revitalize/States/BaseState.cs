@@ -7,7 +7,7 @@ public class BaseState : State
     protected RevitalizeGeometry owner;
     public override void Initialize(StateMachine owner)
     {
-        this.owner = (RevitalizeGeometry)owner;
+        //this.owner = (RevitalizeGeometry)owner;
     }
     public override void Enter()
     {

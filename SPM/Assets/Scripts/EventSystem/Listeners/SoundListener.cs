@@ -13,6 +13,7 @@ public class SoundListener : MonoBehaviour
     public void Register()
     {
         EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, PlayDeathSound);
+        EventHandler.Instance.Register(EventHandler.EventType.PickUpEvent, PlayPickUpSound);
     }
 
     void Start()
@@ -30,6 +31,17 @@ public class SoundListener : MonoBehaviour
                 //audioSource.clip = deathEventInfo.GameObject.GetComponent<DestroyableGameObject>().DeathSound;
                 audioSource.Play();
             }
+        }
+    }
+
+    private void PlayPickUpSound(BaseEventInfo e)
+    {
+        Debug.Log("PlayingPickupSound");
+        var pickUpEventInfo = e as PickupEventInfo;
+        if(pickUpEventInfo != null)
+        {
+                audioSource.clip = pickUpEventInfo.PickUpObject.GetComponent<PickUp>().PickUpSound;
+                audioSource.Play();
         }
     }
 }

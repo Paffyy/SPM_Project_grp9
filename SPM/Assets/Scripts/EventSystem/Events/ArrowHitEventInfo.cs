@@ -6,9 +6,8 @@ public class ArrowHitEventInfo : BaseEventInfo
 {
     public GameObject Arrow;
     public GameObject TargetHit;
-    public ArrowHitEventInfo(GameObject arrow, GameObject targetHit)
+    public ArrowHitEventInfo(GameObject arrow)
     {
         Arrow = arrow;
-        TargetHit = targetHit;
     }
 }

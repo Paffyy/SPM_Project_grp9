@@ -16,6 +16,7 @@ public class Bow : MonoBehaviour
     public LayerMask AreaOfEffectMask;
     public LayerMask ArrowLayerMask;
     public int RainOfArrowCount;
+    public int ArrowCount;
     private Camera bowCamera;
     private float chargeTime = 0.1f;
     private ThirdPersonCrosshair thirdPersonCrosshair;
@@ -39,7 +40,7 @@ public class Bow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (coolDownCounter <= 0)
+        if (coolDownCounter <= 0 && ArrowCount > 0)
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
@@ -84,6 +85,7 @@ public class Bow : MonoBehaviour
                 {
                     ShootArrow2(GetRayPosition());
                 }
+                ArrowCount--;
                 chargeTime = 0.1f;
                 //speed = 10;
                 //angle = 0.1f;
@@ -106,6 +108,11 @@ public class Bow : MonoBehaviour
         }
         UpdatePosition();
         UpdateRotation();
+    }
+
+    public void AddArrows(int arrows)
+    {
+        ArrowCount += arrows;
     }
 
     private void ShootArrow()
