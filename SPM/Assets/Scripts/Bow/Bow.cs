@@ -70,7 +70,6 @@ public class Bow : MonoBehaviour
             }
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                speed = 10;
                 if (isDoingSpecialAttack && AreaOfEffectObject.activeSelf) // special attack
                 {
                     var arrowPoints = Manager.Instance.GetRandomPointsInArea(AreaOfEffectObject.transform.position, RainOfArrowCount, 
