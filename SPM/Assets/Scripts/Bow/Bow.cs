@@ -32,6 +32,7 @@ public class Bow : MonoBehaviour
         bowOffset = new Vector3(0.55f, 0.1f, 0f);
         thirdPersonCrosshair = GetComponent<ThirdPersonCrosshair>();
         bowCamera = GetComponentInChildren<Camera>();
+        Parent = Instantiate<GameObject>(Parent);
     }
     void Start()
     {
