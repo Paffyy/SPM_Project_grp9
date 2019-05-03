@@ -10,7 +10,7 @@ public class BaseEnemy : StateMachine
 
 
     public PathMaker Path;
-    public int Health;
+    //public int Health;
     public int Damage;
     public float IFrameTime;
     [HideInInspector] public float IFrameCoolDown;
@@ -26,6 +26,10 @@ public class BaseEnemy : StateMachine
     public float moveSpeed;
     public float hearRadius;
     public float AttackPlacmentDistance;
+    public float waitAtPatrolPoints = 0.0f;
+
+    [HideInInspector] public EnemyHealth healthSystem;
+    [HideInInspector] public CharacterController controller;
 
     //public float AttackRange;
 
@@ -41,30 +45,32 @@ public class BaseEnemy : StateMachine
         IFrameCoolDown = IFrameTime;
         //BaseEnemyList.AddLast(this.gameObject);
         NavAgent = GetComponent<NavMeshAgent>();
+        healthSystem = GetComponent<EnemyHealth>();
         Fow = GetComponent<FieldOfView>();
         chaseDistance = Fow.viewRadius;
+        controller = GetComponent<CharacterController>();
         base.Awake();
     }
 
     //hitOrigin vectorn används för att putta tillbaka fienden från denna vectorns riktning i förhållande till dennes position
-    public bool hit(int dmg, Vector3 hitOrigin, float pushBackDistance)
-    {
-        if(IFrameCoolDown > 0)
-            return false;
+    //public bool hit(int dmg, Vector3 hitOrigin, float pushBackDistance)
+    //{
+    //    if(IFrameCoolDown > 0)
+    //        return false;
 
-        Health -= dmg;
-        if(Health <= 0)
-        {
-            transform.position += (Vector3.up * 0.2f) + (transform.position - hitOrigin).normalized * (pushBackDistance * 3) * Time.deltaTime;
-            die();
-        }
+    //    Health -= dmg;
+    //    if(Health <= 0)
+    //    {
+    //        transform.position += (Vector3.up * 0.2f) + (transform.position - hitOrigin).normalized * (pushBackDistance * 3) * Time.deltaTime;
+    //        die();
+    //    }
 
-        //denna pushback grej måste göras bättre
-        transform.position += (Vector3.up * 0.2f) + (transform.position - hitOrigin).normalized * pushBackDistance * Time.deltaTime;
+    //    //denna pushback grej måste göras bättre
+    //    transform.position += (Vector3.up * 0.2f) + (transform.position - hitOrigin).normalized * pushBackDistance * Time.deltaTime;
 
-        IFrameCoolDown = IFrameTime;
-        return true;
-    }
+    //    IFrameCoolDown = IFrameTime;
+    //    return true;
+    //}
 
     public void UpdateDestination(Vector3 destination, float timer)
     {
@@ -77,9 +83,25 @@ public class BaseEnemy : StateMachine
         yield return new WaitForSeconds(timer);
     }
 
-    public void die()
+    public void WaitAtPosition(float seconds)
     {
-        MeshRen.material.color = Color.gray;
-        Destroy(gameObject, 1.5f);
+        
+        StartCoroutine(Wait(seconds));
+        
     }
+
+
+    private IEnumerator Wait(float seconds)
+    {
+        NavAgent.isStopped = true;
+        //idleState
+        yield return new WaitForSeconds(seconds);
+        NavAgent.isStopped = false;
+    }
+
+    //public void die()
+    //{
+    //    MeshRen.material.color = Color.gray;
+    //    Destroy(gameObject, 1.5f);
+    //}
 }
