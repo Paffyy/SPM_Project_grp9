@@ -35,7 +35,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void PlayerDead()
     {
-        Player.transform.position = Manager.Instance.GetCheckPoint();
+        DeathEventInfo deathEventInfo = new DeathEventInfo(Player);
+        EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, deathEventInfo);
         CurrentHealth = 100;
         HealthSlider.value = CurrentHealth;
         //Destroy(Player);
