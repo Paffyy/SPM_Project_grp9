@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Enemy/EAttackState")]
 public class EAttackState : EnemyBaseState
 {
-    private float delay = 0.5f;
+    public float delay = 2f;
     private float delayCounter;
 
     public override void Enter()
@@ -15,6 +15,9 @@ public class EAttackState : EnemyBaseState
 
     public override void HandleUpdate()
     {
+        Vector3 direction = owner.Player.transform.position - owner.transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        owner.transform.rotation = rotation;
         delayCounter -= Time.deltaTime;
         if (delayCounter <= 0){
              Shoot();
