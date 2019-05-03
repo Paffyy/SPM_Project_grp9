@@ -14,6 +14,7 @@ public class BaseEnemyBaseState : State
     protected float moveSpeed;
     protected float hearRadius;
     protected float PlacmentDistance;
+    protected float waitAtPatrolPoints;
     //public LayerMask PlayerLayer;
 
     //för debug
@@ -37,6 +38,7 @@ public class BaseEnemyBaseState : State
         lostTargetDistance = this.owner.lostTargetDistance;
         moveSpeed = this.owner.moveSpeed;
         hearRadius = this.owner.hearRadius;
+        waitAtPatrolPoints = this.owner.waitAtPatrolPoints;
         //måste vara högre än navAgent stopping distance
         PlacmentDistance = this.owner.AttackPlacmentDistance;
     }
@@ -45,10 +47,10 @@ public class BaseEnemyBaseState : State
     {
         base.HandleUpdate();
         //debug shit
-        if (Input.GetKeyDown("h"))
-        {
-            owner.hit(2, owner.player.transform.position, 20.0f);
-        }
+        //if (Input.GetKeyDown("h"))
+        //{
+        //    owner.hit(2, owner.player.transform.position, 20.0f);
+        //}
         //debug shit
 
         owner.IFrameCoolDown -= Time.deltaTime;

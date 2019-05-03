@@ -26,6 +26,7 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
         owner.NavAgent.SetDestination(owner.Path.PathObjects[currentPoint].position);
         if (Vector3.Distance(owner.transform.position, owner.Path.PathObjects[currentPoint].position) < pointSize )
         {
+            owner.WaitAtPosition(waitAtPatrolPoints);
             currentPoint = (currentPoint + 1) % owner.Path.PathObjects.Count;
         }
 
