@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3962207174032820633}
   - component: {fileID: 5813285643268287159}
+  - component: {fileID: 6662173548673211580}
   - component: {fileID: 1049793238256425519}
   - component: {fileID: 2744911733522080716}
   m_Layer: 0
@@ -43,6 +44,22 @@ Tree:
   m_SpeedTreeWindAsset: {fileID: 0}
   m_TreeData: {fileID: 114956194072517756, guid: 2b90429b4da2d594bb6f811edae1273d,
     type: 3}
+--- !u!114 &6662173548673211580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3699185640799038192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aace796205fcf224d87af6812a368c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RevitalizedMaterial: {fileID: 2100000, guid: 337c168d52747e046b0723974dcdf7fc, type: 2}
+  Interval: 0.1
+  AlphaFading: 0
+  IsRevitalized: 0
 --- !u!33 &1049793238256425519
 MeshFilter:
   m_ObjectHideFlags: 0
