@@ -7065,7 +7065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 380.4, y: 5.2}
+  m_AnchoredPosition: {x: 380.4, y: 5.200012}
   m_SizeDelta: {x: 174.76, y: 36.93}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &575751978
@@ -12736,6 +12736,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 974586524}
+  - component: {fileID: 974586525}
   m_Layer: 0
   m_Name: UIListener
   m_TagString: Untagged
@@ -12757,6 +12758,21 @@ Transform:
   m_Father: {fileID: 664508262}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &974586525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974586523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f68b9991e858c42a4d0f909d153d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PickUpText: {fileID: 7862457721269997802, guid: 03a411e3e15e595498b7f8359b9dd464,
+    type: 3}
+  UICanvas: {fileID: 1875580772}
 --- !u!1001 &985158664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12823,6 +12839,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199647391932393264, guid: 2659046d54c82b9458b20f55249a64ba,
+        type: 3}
+      propertyPath: UIAlertText
+      value: + 5 ARROWS
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2659046d54c82b9458b20f55249a64ba, type: 3}
@@ -13421,6 +13442,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199647391932393264, guid: 2659046d54c82b9458b20f55249a64ba,
+        type: 3}
+      propertyPath: UIAlertText
+      value: + 3 ARROWS
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2659046d54c82b9458b20f55249a64ba, type: 3}
@@ -21678,6 +21704,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199647391932393264, guid: 2659046d54c82b9458b20f55249a64ba,
+        type: 3}
+      propertyPath: UIAlertText
+      value: + 1 ARROW
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2659046d54c82b9458b20f55249a64ba, type: 3}

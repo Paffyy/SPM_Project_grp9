@@ -5,6 +5,7 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     public AudioClip PickUpSound;
+    public string UIAlertText;
     // Start is called before the first frame update
     void Start()
     {
