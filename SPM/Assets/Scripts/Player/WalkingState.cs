@@ -34,7 +34,5 @@ public class WalkingState : PlayerBaseState
         //}
         if (Input.GetKeyDown(KeyCode.Space))
             owner.Transition<AirState>();
-
-
     }
 }
