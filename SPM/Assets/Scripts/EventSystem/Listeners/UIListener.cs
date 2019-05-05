@@ -7,6 +7,8 @@ public class UIListener : MonoBehaviour
 {
     public GameObject PickUpText;
     public Canvas UICanvas;
+    public Image SwordCoolDown;
+    public Image BowCoolDown;
 
     void Start()
     {
@@ -16,7 +18,6 @@ public class UIListener : MonoBehaviour
     public void Register()
     {
         EventHandler.Instance.Register(EventHandler.EventType.PickUpEvent, UpdateUIText);
-        EventHandler.Instance.Register(EventHandler.EventType.CoolDownEvent, UpdateUIWeaponBar);
     }
 
     private void UpdateUIText(BaseEventInfo e)
@@ -29,10 +30,5 @@ public class UIListener : MonoBehaviour
             UIAlertText.SetActive(true);
             Destroy(UIAlertText, 2f);
         }
-    }
-
-    private void UpdateUIWeaponBar(BaseEventInfo e)
-    {
-   
     }
 }

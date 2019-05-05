@@ -8,9 +8,9 @@ public class Weapon : StateMachine
     public GameObject Shield;
     public GameObject Bow;
     public GameObject Sword;
-    public Button ShieldIcon;
-    public Button BowIcon;
-    public Button SwordIcon;
+    public Image ShieldIcon;
+    public Image BowIcon;
+    public Image SwordIcon;
 
     protected override void Awake()
     {

@@ -22,6 +22,7 @@ public class Bow : MonoBehaviour
     private ThirdPersonCrosshair thirdPersonCrosshair;
     private Vector3 bowOffset;
     private float coolDownCounter = 0f;
+    private float ArrowRainCoolDown = 10.0f;
     private bool isDoingSpecialAttack;
     private Vector3 rayPos;
     private bool foundTarget;
@@ -53,7 +54,7 @@ public class Bow : MonoBehaviour
                 {
                     chargeTime += Time.deltaTime;
                 }
-                if (Input.GetKeyDown(KeyCode.E))
+                if (Input.GetKeyDown(KeyCode.E) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
                 {
                     isDoingSpecialAttack = !isDoingSpecialAttack;
                 }
@@ -74,6 +75,7 @@ public class Bow : MonoBehaviour
             {
                 if (isDoingSpecialAttack && AreaOfEffectObject.activeSelf) // special attack
                 {
+                    CoolDownManager.Instance.StartArrowRainCoolDown(ArrowRainCoolDown);
                     var arrowPoints = Manager.Instance.GetRandomPointsInArea(AreaOfEffectObject.transform.position, RainOfArrowCount, 
                         AreaOfEffectObject.GetComponent<SphereCollider>().radius * (
                         ((AreaOfEffectObject.transform.localScale.x + AreaOfEffectObject.transform.localScale.z)/2)));
