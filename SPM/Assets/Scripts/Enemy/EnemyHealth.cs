@@ -31,12 +31,10 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-
         if (currentCooldown > 0)
             return;
         else
             currentCooldown = DamageCooldown;
-
         CurrentHealth -= damage;
         EnemyHealthSlider.value = CurrentHealth;
         if (CurrentHealth <= 0)
@@ -45,6 +43,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void EnemyDead()
     {
+        EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, new DeathEventInfo(gameObject));
         Destroy(this.gameObject);
     }
 }
