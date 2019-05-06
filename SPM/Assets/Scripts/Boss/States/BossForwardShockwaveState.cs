@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Boss/ForwardShockwaveState")]
-public class BossForwardShockwaveState : BaseEnemyBaseState
+public class BossForwardShockwaveState : BossBaseState
 {
     private bool fired = false;
     public GameObject ShockWaveObject;

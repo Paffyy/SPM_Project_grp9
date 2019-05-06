@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss : BaseEnemy
 {
-    public GameObject shockwaveObject;
+    public GameObject FireArea;
 
     protected override void Awake()
     {

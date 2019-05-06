@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Boss Attack State
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: a7e4b2e4eb72d3948b65b4edbfa60fe9, type: 2}
-  HealthPhase1: 0.2
+  HealthPhase1: 0.071
   HealthPhase2: 0.5
   HealthPhase3: 0.843
   TimePhase1: 0
   TimePhase2: 0
   TimePhase3: 0
-  JumpAttackDistance: 10
+  ShockWaveTimer: 10
+  FiresOfHeavenTimer: 5

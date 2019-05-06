@@ -138,8 +138,10 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
             for (int i = 0; i < arr.Length; i++)
             {
                 Debug.Log(arr[i]);
-                arr[i].GetComponent<PlayerHealth>().TakeDamage(owner.Damage);
-            }
+                PlayerHealth player = arr[i].GetComponent<PlayerHealth>();
+                Vector3 push = (((player.transform.position) - owner.transform.position).normalized + Vector3.up * 5) * 10;
+                player.TakeDamage(owner.Damage, push);
+        }
         //arr[0].GetComponent<Player>.Hit();
         currentCooldown = cooldown;
 

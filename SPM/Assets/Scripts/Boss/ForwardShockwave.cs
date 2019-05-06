@@ -6,6 +6,8 @@ public class ForwardShockwave : MonoBehaviour
 {
     public float ForwardSpeed;
     public float AliveTime;
+    public int Damage;
+    public float PushBack;
     private float timer;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,16 @@ public class ForwardShockwave : MonoBehaviour
         {
             gameObject.transform.position += gameObject.transform.forward * ForwardSpeed;
             timer -= Time.deltaTime;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            PlayerHealth player = other.GetComponent<PlayerHealth>();
+            Vector3 push = ((((player.transform.position) - transform.position).normalized* 3) + Vector3.up * 3) * 5;
+            player.TakeDamage(Damage, push);
         }
     }
 }

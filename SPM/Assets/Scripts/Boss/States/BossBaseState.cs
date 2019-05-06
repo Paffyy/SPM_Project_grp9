@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseEnemyBaseState : State
+public class BossBaseState : State
 {
 
     //[SerializeField] protected float moveSpeed;
@@ -20,7 +20,7 @@ public class BaseEnemyBaseState : State
     //för debug
     [SerializeField] protected Material material;
 
-    protected BaseEnemy owner;
+    protected Boss owner;
 
     public override void Enter()
     {
@@ -31,7 +31,7 @@ public class BaseEnemyBaseState : State
 
     public override void Initialize(StateMachine owner)
     {
-        this.owner = (BaseEnemy)owner;
+        this.owner = (Boss)owner;
         chaseDistance = this.owner.chaseDistance;
         cooldown = this.owner.cooldown;
         attackDistance = this.owner.attackDistance;
