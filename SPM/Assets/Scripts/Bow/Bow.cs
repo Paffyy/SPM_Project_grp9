@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bow : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Bow : MonoBehaviour
     public LayerMask ArrowLayerMask;
     public int RainOfArrowCount;
     public int ArrowCount;
+    public Text ArrowCountText;
     private Camera bowCamera;
     private float chargeTime = 0.1f;
     private ThirdPersonCrosshair thirdPersonCrosshair;
@@ -34,6 +36,7 @@ public class Bow : MonoBehaviour
         thirdPersonCrosshair = GetComponent<ThirdPersonCrosshair>();
         bowCamera = GetComponentInChildren<Camera>();
         Parent = Instantiate<GameObject>(Parent);
+        ArrowCountText.text = ArrowCount.ToString();
     }
     void Start()
     {
@@ -89,6 +92,7 @@ public class Bow : MonoBehaviour
                     ShootArrow2(GetRayPosition());
                 }
                 ArrowCount--;
+                ArrowCountText.text = ArrowCount.ToString();
                 chargeTime = 0.1f;
                 //speed = 10;
                 //angle = 0.1f;
@@ -116,6 +120,7 @@ public class Bow : MonoBehaviour
     public void AddArrows(int arrows)
     {
         ArrowCount += arrows;
+        ArrowCountText.text = ArrowCount.ToString();
     }
 
     private void ShootArrow()

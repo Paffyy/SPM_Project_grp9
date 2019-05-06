@@ -8,12 +8,24 @@ public class RevitalizeZone : MonoBehaviour
     private float timer;
     private bool shouldRevitalize;
     private bool hasRevitalized;
+    public void Register()
+    {
+        if (EventHandler.Instance != null)
+        {
+            EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, CheckIfShouldRevitalize);
+        }
+    }
+
     void Start()
     {
+        Register();
+        if (Objectives.Count == 0 )
+        {
+            hasRevitalized = true; // if objectives count == 0, don't revitalize immediately;
+        }
         timer = 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!hasRevitalized)
@@ -23,30 +35,24 @@ public class RevitalizeZone : MonoBehaviour
                 RevitalizeTheZone();
                 hasRevitalized = true;
             }
-            else
+            else if (Objectives.Count == 0)
             {
-                timer -= Time.deltaTime;
-                if (timer <= 0)
-                {
-                    Debug.Log(shouldRevitalize);
-                    shouldRevitalize = true;
-                    foreach (var item in Objectives)
-                    {
-                        var revObjective = item.GetComponent<RevitalizeObjective>();
-                        if (revObjective != null)
-                        {
-                            shouldRevitalize = shouldRevitalize && revObjective.IsCompleted;
-                        }
-                        else
-                        {
-                            shouldRevitalize = shouldRevitalize && true;
-                        }
-                    }
-                    timer = 1;
-                }
+                shouldRevitalize = true;
             }
         }
     }
+    void CheckIfShouldRevitalize(BaseEventInfo e)
+    {
+        var deathEventInfo = e as DeathEventInfo;
+        if (deathEventInfo != null)
+        {
+            if (Objectives.Contains(deathEventInfo.GameObject))
+            {
+                Objectives.Remove(deathEventInfo.GameObject);
+            }
+        }
+    }
+
     void RevitalizeTheZone()
     {
         foreach (Transform child in transform)
