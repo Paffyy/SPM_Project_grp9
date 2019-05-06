@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Boss/PatrolState")]
-public class BossPatrolState : BaseEnemyBaseState
+public class BossPatrolState : BossBaseState
 {
     [SerializeField] private Vector3[] patrolPoints;
     //[SerializeField] private float chaseDistance;

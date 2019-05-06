@@ -159,7 +159,7 @@ Transform:
   - {fileID: 1156250640}
   - {fileID: 1346840766}
   m_Father: {fileID: 231134729}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &53984251
 GameObject:
@@ -661,11 +661,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1402795406}
   - {fileID: 8827700144091368854}
   - {fileID: 45096376}
   - {fileID: 1668180585}
   - {fileID: 1993990058}
-  - {fileID: 1402795406}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1711,7 +1711,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2481,6 +2481,10 @@ PrefabInstance:
       propertyPath: HealthSlider
       value: 
       objectReference: {fileID: 1218488246}
+    - target: {fileID: 520724104, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
+      propertyPath: DamageCooldown
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
 --- !u!1 &1402795405
@@ -2509,12 +2513,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402795405}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 47.3, y: 0, z: 38.4}
   m_LocalScale: {x: 47.05581, y: 7.6131, z: 73.22508}
   m_Children: []
   m_Father: {fileID: 231134729}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1402795407
 BoxCollider:
@@ -3032,7 +3036,7 @@ RectTransform:
   m_Children:
   - {fileID: 378173098}
   m_Father: {fileID: 231134729}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3550,7 +3554,7 @@ Transform:
   m_LocalScale: {x: 54.88691, y: 23.514, z: 97.87909}
   m_Children: []
   m_Father: {fileID: 231134729}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1993990059
 Rigidbody:
@@ -3790,7 +3794,7 @@ Transform:
   m_Children:
   - {fileID: 1756154588}
   m_Father: {fileID: 231134729}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &8827700144091368856
 NavMeshAgent:
@@ -3843,7 +3847,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491e67703b4c44240a58dbda505cca3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 0}
   StartingHealth: 500
   CurrentHealth: 0
   DamageCooldown: 1
@@ -3865,9 +3868,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5eab40b86f96fa942a7f1bc8f9e9acb8, type: 2}
   - {fileID: 11400000, guid: 916d352f32bcec746ad9b79f159743af, type: 2}
   - {fileID: 11400000, guid: 0d2bcbe86b6b8dd42a7c00b0a0d7fba1, type: 2}
+  - {fileID: 11400000, guid: 2d8be3cff9fd52745bd5df246c712e29, type: 2}
   MeshRen: {fileID: 0}
   Path: {fileID: 45096375}
   Damage: 2
+  PushBack: 4.5
   IFrameTime: 2
   IFrameCoolDown: 0
   NavAgent: {fileID: 0}
@@ -3887,4 +3892,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   player: {fileID: 395612075}
-  shockwaveObject: {fileID: 0}
+  FireArea: {fileID: 1402795405}

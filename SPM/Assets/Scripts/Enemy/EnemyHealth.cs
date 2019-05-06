@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public GameObject Enemy;
     public int StartingHealth = 100;
     public int CurrentHealth;
     public float DamageCooldown;
@@ -46,6 +45,6 @@ public class EnemyHealth : MonoBehaviour
 
     public void EnemyDead()
     {
-        Destroy(Enemy);
+        Destroy(this.gameObject);
     }
 }

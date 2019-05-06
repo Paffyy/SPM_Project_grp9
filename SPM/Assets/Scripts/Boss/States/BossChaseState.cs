@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Boss/ChaseState")]
 
-public class BossChaseState : BaseEnemyBaseState
+public class BossChaseState : BossBaseState
 {
     //[SerializeField] private float attackDistance;
     //[SerializeField] private float lostTargetDistance;
