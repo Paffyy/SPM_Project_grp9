@@ -60,6 +60,19 @@ public class PlayerHealth : MonoBehaviour
         if (CurrentHealth <= 0)
             PlayerDead();
     }
+    
+    public void AddHealth(int health)
+    {
+        if(CurrentHealth < 100)
+        {
+            CurrentHealth += health;
+            if(CurrentHealth > 100)
+            {
+                CurrentHealth = 100;
+            }
+            HealthSlider.value = CurrentHealth;
+        }
+    }
 
     public void PlayerDead()
     {
