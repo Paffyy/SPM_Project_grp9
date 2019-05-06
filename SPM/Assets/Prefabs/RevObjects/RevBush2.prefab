@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6702570627387540984}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: RevBush2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6702570627386213848}
   - component: {fileID: 6702570627385247512}
   - component: {fileID: 4276987916354800162}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: pCube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aace796205fcf224d87af6812a368c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RevitalizedMaterial: {fileID: 2100000, guid: fa7d74ceb8b9c7e43b33026fde757a10, type: 2}
+  RevitalizedMaterial: {fileID: 2100000, guid: 337c168d52747e046b0723974dcdf7fc, type: 2}
   Interval: 0.1
   AlphaFading: 0
   IsRevitalized: 0

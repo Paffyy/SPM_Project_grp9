@@ -294,6 +294,7 @@ MonoBehaviour:
     m_Bits: 52224
   RainOfArrowCount: 25
   ArrowCount: 15
+  ArrowCountText: {fileID: 0}
 --- !u!114 &8314908191368525051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +339,8 @@ MonoBehaviour:
   playerCamera: {fileID: 7651501562274134278}
   Damage: 50
   BladeStormDamage: 20
-  BladeStormEffect: {fileID: 0}
+  BladeStormEffect: {fileID: 721226239138098749}
+  IsBladeStorming: 0
 --- !u!1 &7651501562274134296
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +543,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 289b443858ec8ed40a7d837a4d2aa850, type: 2}
   CollisionMask:
     serializedVersion: 2
-    m_Bits: 3072
+    m_Bits: 35840
   Velocity: {x: 0, y: 0, z: 0}
   RotationX: 0
   RotationY: 0
@@ -583,10 +585,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c6f9c888a6c4a4fbd7486c5a85c2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 7651501562885396188}
   StartingHealth: 100
   CurrentHealth: 0
   HealthSlider: {fileID: 0}
+  DamageCooldown: 0
 --- !u!1 &7651501563027799724
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,15 +814,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd758cd7912933c47aa2c050e00620d3, type: 3}
---- !u!224 &7486069670875497263 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4877964741923731671, guid: bd758cd7912933c47aa2c050e00620d3,
-    type: 3}
-  m_PrefabInstance: {fileID: 2617118760345172984}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7486069670875497267 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4877964741923731659, guid: bd758cd7912933c47aa2c050e00620d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2617118760345172984}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7486069670875497263 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4877964741923731671, guid: bd758cd7912933c47aa2c050e00620d3,
     type: 3}
   m_PrefabInstance: {fileID: 2617118760345172984}
   m_PrefabAsset: {fileID: 0}
@@ -962,6 +964,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7651501562885396184}
     m_Modifications:
+    - target: {fileID: 2706102015894810966, guid: 43428addf63169d499c3811de094f91e,
+        type: 3}
+      propertyPath: m_Name
+      value: SwordPivot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706102015894810966, guid: 43428addf63169d499c3811de094f91e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2706102015894810961, guid: 43428addf63169d499c3811de094f91e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1017,16 +1029,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.013
       objectReference: {fileID: 0}
-    - target: {fileID: 2706102015894810966, guid: 43428addf63169d499c3811de094f91e,
-        type: 3}
-      propertyPath: m_Name
-      value: SwordPivot
-      objectReference: {fileID: 0}
-    - target: {fileID: 2706102015894810966, guid: 43428addf63169d499c3811de094f91e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43428addf63169d499c3811de094f91e, type: 3}
 --- !u!1 &5738035986175220915 stripped
@@ -1038,6 +1040,12 @@ GameObject:
 --- !u!4 &5738035986175220916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2706102015894810961, guid: 43428addf63169d499c3811de094f91e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7651501563168501221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &721226239138098749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6930432142967391192, guid: 43428addf63169d499c3811de094f91e,
     type: 3}
   m_PrefabInstance: {fileID: 7651501563168501221}
   m_PrefabAsset: {fileID: 0}
