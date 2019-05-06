@@ -10,44 +10,67 @@ public class BossFiresOfHeavenState : BossBaseState
     public float StartingHeight;
     public GameObject FireBall;
     //tid mellan eldbollar
-    public float Time;
+    public float BetweenTime = 0.5f;
 
+    private Vector3[] vecArr;
+    private int count = 0;
+    private float coolDown;
     public override void Enter()
     {
         base.Enter();
         //förbereder attacken
         fireArea = owner.FireArea.GetComponent<RectTransform>();
-        owner.StartCoroutine(FiresOfHeavenState());
+        //owner.StartCoroutine(FiresOfHeavenState());
+        vecArr = CreateRandomVectors();
     }
     public override void HandleUpdate()
     {
-        base.HandleUpdate();
-    }
-
-    private IEnumerator FiresOfHeavenState()
-    {
-        Vector3[] arr = CreateRandomVectors();
-        Debug.Log(arr.Length);
-
-        //förbereder attacken
-        yield return new  WaitForSeconds(1);
-
-        for (int i = 0; i > arr.Length; i++)
+        cooldown -= Time.deltaTime;
+        if(cooldown < 0)
         {
-            GameObject.Instantiate(fireArea, arr[i], Quaternion.identity, owner.FireArea.transform);
-            Debug.Log("drop " + i);
-            yield return new WaitForSeconds(Time);
+            if(count < vecArr.Length)
+            {
+            //Debug.Log(owner.FireArea.transform.position + vecArr[count] + " " + count);
+            GameObject obj = GameObject.Instantiate(FireBall, owner.FireArea.transform.position + vecArr[count] + (Vector3.up * 50), Quaternion.identity);
+            obj.transform.SetParent(owner.FireArea.transform);
+            count++;
+            }
+            else
+                owner.Transition<BossAttackState>();
+
+            cooldown = BetweenTime;
         }
 
-        //efter attacken  chilling
-        yield return new WaitForSeconds(3);
-
-        owner.Transition<BossAttackState>();
-
+        base.HandleUpdate();
+            
     }
+
+    //private IEnumerator FiresOfHeavenState()
+    //{
+    //    Vector3[] arr = CreateRandomVectors();
+    //    Debug.Log(arr.ToString());
+    //    Debug.Log(arr.Length);
+
+    //    //förbereder attacken
+    //    yield return new  WaitForSeconds(1);
+    //    Debug.Log("boop");
+    //     foreach(Vector3 vec in arr)
+    //    {
+    //        GameObject.Instantiate(fireArea, vec, Quaternion.identity, owner.FireArea.transform);
+    //        Debug.Log("drop " + vec);
+    //        yield return new WaitForSeconds(Time);
+    //    }
+
+    //    //efter attacken  chilling
+    //    yield return new WaitForSeconds(3);
+
+    //    owner.Transition<BossAttackState>();
+
+    //}
 
     private Vector3[] CreateRandomVectors()
     {
+        Debug.Log("boopus");
 
         float minX = fireArea.rect.xMin;
         float maxX = fireArea.rect.xMax;
@@ -57,6 +80,7 @@ public class BossFiresOfHeavenState : BossBaseState
         Vector3[] arr = new Vector3[NumberOfFires];
         for (int i = 0; i > NumberOfFires; i++)
         {
+            Debug.Log("creating vector " + i + arr[i]);
             arr[i] = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), StartingHeight);
         }
 
