@@ -55,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
         CurrentHealth -= damage;
         HealthSlider.value = CurrentHealth;
 
-        player.Velocity += pushBack + Vector3.up;
+        player.Velocity += pushBack;
 
         if (CurrentHealth <= 0)
             PlayerDead();
@@ -63,7 +63,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void PlayerDead()
     {
-        DeathEventInfo deathEventInfo = new DeathEventInfo(Player);
+        DeathEventInfo deathEventInfo = new DeathEventInfo(gameObject);
         EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, deathEventInfo);
         CurrentHealth = 100;
         HealthSlider.value = CurrentHealth;

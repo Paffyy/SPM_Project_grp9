@@ -32,7 +32,7 @@ public class ForwardShockwave : MonoBehaviour
         if(other.tag == "Player")
         {
             PlayerHealth player = other.GetComponent<PlayerHealth>();
-            Vector3 push = (((player.transform.position) - transform.position).normalized + Vector3.up * 5) * 5;
+            Vector3 push = ((((player.transform.position) - transform.position).normalized* 3) + Vector3.up * 3) * 5;
             player.TakeDamage(Damage, push);
         }
     }

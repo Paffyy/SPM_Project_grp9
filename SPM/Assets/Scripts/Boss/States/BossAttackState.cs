@@ -53,19 +53,43 @@ public class BossAttackState : BossBaseState
             Attack();
         }
 
-
-        //Forward Shockwave attack
-        if(/*Mathf.Clamp(owner.healthSystem.CurrentHealth, 0, owner.healthSystem.StartingHealth) > HealthPhase1 &&*/
-            Vector3.Distance(owner.transform.position, owner.player.transform.position) > ShockWaveAttackDistance && timeSinceShockwave < 0)
-        {
-            owner.Transition<BossForwardShockwaveState>();
-        }
-
-        //Fires of Heaven attack
-        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > FiresOfHeavenDistance && timeSinceFiresOfHeaven < 0)
+        //debug shit
+        if (Input.GetKey(KeyCode.E))
         {
             owner.Transition<BossFiresOfHeavenState>();
         }
+        //debug shit
+
+        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > ShockWaveAttackDistance && timeSinceShockwave < 0)
+        {
+
+            int rand = Random.Range(1,3);
+            switch(rand)
+            {
+                case 1:
+                case 2:
+                    owner.Transition<BossForwardShockwaveState>();
+                    break;
+                //case 1:
+                //case 2:
+                case 3:
+                    owner.Transition<BossFiresOfHeavenState>();
+                    break;
+            }
+        }
+
+        ////Forward Shockwave attack
+        //if (/*Mathf.Clamp(owner.healthSystem.CurrentHealth, 0, owner.healthSystem.StartingHealth) > HealthPhase1 &&*/
+        //    Vector3.Distance(owner.transform.position, owner.player.transform.position) > ShockWaveAttackDistance && timeSinceShockwave < 0)
+        //{
+        //    owner.Transition<BossForwardShockwaveState>();
+        //}
+
+        ////Fires of Heaven attack
+        //if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > FiresOfHeavenDistance && timeSinceFiresOfHeaven < 0)
+        //{
+        //    owner.Transition<BossFiresOfHeavenState>();
+        //}
 
         base.HandleUpdate();
     }

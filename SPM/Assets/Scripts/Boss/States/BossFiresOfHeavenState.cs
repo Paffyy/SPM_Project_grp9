@@ -6,7 +6,7 @@ using UnityEngine;
 public class BossFiresOfHeavenState : BossBaseState
 {
     public int NumberOfFires;
-    private GameObject fireArea;
+    private RectTransform fireArea;
     public float StartingHeight;
     public GameObject FireBall;
     //tid mellan eldbollar
@@ -16,7 +16,7 @@ public class BossFiresOfHeavenState : BossBaseState
     {
         base.Enter();
         //förbereder attacken
-        fireArea = owner.FireArea;
+        fireArea = owner.FireArea.GetComponent<RectTransform>();
         owner.StartCoroutine(FiresOfHeavenState());
     }
     public override void HandleUpdate()
@@ -27,28 +27,32 @@ public class BossFiresOfHeavenState : BossBaseState
     private IEnumerator FiresOfHeavenState()
     {
         Vector3[] arr = CreateRandomVectors();
+        Debug.Log(arr.Length);
 
         //förbereder attacken
         yield return new  WaitForSeconds(1);
 
         for (int i = 0; i > arr.Length; i++)
         {
-            GameObject.Instantiate(fireArea, arr[i], Quaternion.identity, fireArea.transform);
+            GameObject.Instantiate(fireArea, arr[i], Quaternion.identity, owner.FireArea.transform);
+            Debug.Log("drop " + i);
             yield return new WaitForSeconds(Time);
         }
 
         //efter attacken  chilling
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
+
+        owner.Transition<BossAttackState>();
 
     }
 
     private Vector3[] CreateRandomVectors()
     {
-        RectTransform rt = (RectTransform)fireArea.transform;
-        float minX = rt.rect.xMin;
-        float maxX = rt.rect.xMax;
-        float minY = rt.rect.yMin;
-        float maxY = rt.rect.yMax;
+
+        float minX = fireArea.rect.xMin;
+        float maxX = fireArea.rect.xMax;
+        float minY = fireArea.rect.yMin;
+        float maxY = fireArea.rect.yMax;
 
         Vector3[] arr = new Vector3[NumberOfFires];
         for (int i = 0; i > NumberOfFires; i++)
