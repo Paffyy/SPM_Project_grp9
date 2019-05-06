@@ -22,12 +22,15 @@ public class SwordState : WeaponBaseState
 
     public override void HandleUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-            owner.Transition<NoWeaponState>();
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-            owner.Transition<BowState>();
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-            owner.Transition<ShieldState>();
+        if (!owner.Sword.GetComponent<Sword>().IsBladeStorming)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha0))
+                owner.Transition<NoWeaponState>();
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+                owner.Transition<BowState>();
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+                owner.Transition<ShieldState>();
+        }
 
         //kolla ev. om karaktären har tillgång till dessa vapen innan byte av state
     }

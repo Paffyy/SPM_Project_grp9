@@ -169,7 +169,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -407,8 +407,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.15
-      minScalar: 0.05
+      scalar: 0.5
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4017,7 +4017,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
+          value: 0.12068939
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4026,7 +4026,7 @@ ParticleSystem:
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 1
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -5030,6 +5030,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3876435676864795105}
     m_Modifications:
+    - target: {fileID: 119738, guid: 68e12fbe32672a74fb0b5e2a021e1343, type: 3}
+      propertyPath: m_Name
+      value: free_sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 119738, guid: 68e12fbe32672a74fb0b5e2a021e1343, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 408216, guid: 68e12fbe32672a74fb0b5e2a021e1343, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.024884636
@@ -5085,14 +5093,6 @@ PrefabInstance:
     - target: {fileID: 408216, guid: 68e12fbe32672a74fb0b5e2a021e1343, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.6658702
-      objectReference: {fileID: 0}
-    - target: {fileID: 119738, guid: 68e12fbe32672a74fb0b5e2a021e1343, type: 3}
-      propertyPath: m_Name
-      value: free_sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 119738, guid: 68e12fbe32672a74fb0b5e2a021e1343, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2331358, guid: 68e12fbe32672a74fb0b5e2a021e1343, type: 3}
       propertyPath: m_Enabled
