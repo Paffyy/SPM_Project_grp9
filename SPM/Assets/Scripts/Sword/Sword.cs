@@ -21,7 +21,7 @@ public class Sword : MonoBehaviour
     private bool onCooldown;
     private Vector3 swordOffset;
     private float swingValue = 70f;
-    private bool bladeStormOnCoolDown;
+    //private bool bladeStormOnCoolDown;
     private float bladeStormCoolDown = 10.0f;
     private bool isBladeStorming;
     private float BladeStormTimer = 3f;
@@ -36,22 +36,23 @@ public class Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && !bladeStormOnCoolDown && !isBladeStorming)
+        if (Input.GetKeyDown(KeyCode.Z) && !CoolDownManager.Instance.BladeStormOnCoolDown && !isBladeStorming)
         {
             BladeStorm();
             isBladeStorming = true;
-            bladeStormOnCoolDown = true;
+            CoolDownManager.Instance.StartBladeStormCoolDown(bladeStormCoolDown);
+          //  bladeStormOnCoolDown = true;
         }
-        if (bladeStormOnCoolDown && !isBladeStorming)
-        {
-            bladeStormCoolDown -= Time.deltaTime;
-        }
-        if(bladeStormCoolDown <= 0)
-        {
-            bladeStormOnCoolDown = false;
-            bladeStormCoolDown = 10.0f;
+        //if (bladeStormOnCoolDown && !isBladeStorming)
+        //{
+        //    bladeStormCoolDown -= Time.deltaTime;
+        //}
+        //if(bladeStormCoolDown <= 0)
+        //{
+        //    bladeStormOnCoolDown = false;
+        //    bladeStormCoolDown = 10.0f;
 
-        }
+        //}
         if (isBladeStorming)
         {
             if (BladeStormEffect.activeInHierarchy == false)

@@ -9,14 +9,14 @@ public class BowState : WeaponBaseState
 {
     public override void Enter()
     {
-        owner.BowIcon.GetComponent<Image>().color = Color.white;
+        owner.BowIcon.GetComponent<Image>().color = Color.green;
         owner.Bow.SetActive(true);
         base.Enter();
     }
 
     public override void Exit()
     {
-        owner.BowIcon.GetComponent<Image>().color = Color.clear;
+        owner.BowIcon.GetComponent<Image>().color = Color.white;
         owner.Bow.SetActive(false);
     }
 
@@ -25,9 +25,9 @@ public class BowState : WeaponBaseState
         if (Input.GetKeyDown(KeyCode.Alpha0))
             owner.Transition<NoWeaponState>();
         else if (Input.GetKeyDown(KeyCode.Alpha1))
-            owner.Transition<ShieldState>();
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
             owner.Transition<SwordState>();
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+            owner.Transition<ShieldState>();
     }
 
 }

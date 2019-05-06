@@ -14,11 +14,11 @@ public class NoWeaponState : WeaponBaseState
     public override void HandleUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            owner.Transition<ShieldState>();
+            owner.Transition<SwordState>();
         else if (Input.GetKeyDown(KeyCode.Alpha2))
             owner.Transition<BowState>();
         else if (Input.GetKeyDown(KeyCode.Alpha3))
-            owner.Transition<SwordState>();
+            owner.Transition<ShieldState>();
 
         // lägg till kommandon för att växla till andra vapen
     }

@@ -10,7 +10,7 @@ public class ShieldState : WeaponBaseState
 
     public override void Enter()
     {
-        owner.ShieldIcon.GetComponent<Image>().color = Color.white;
+        owner.ShieldIcon.GetComponent<Image>().color = Color.green;
         //Debug.Log("Shield");
         if (owner.Shield != null)
         {
@@ -22,7 +22,7 @@ public class ShieldState : WeaponBaseState
 
     public override void Exit()
     {
-        owner.ShieldIcon.GetComponent<Image>().color = Color.clear;
+        owner.ShieldIcon.GetComponent<Image>().color = Color.white;
         if (owner.Shield != null)
         {
             owner.Shield.SetActive(false);
@@ -35,7 +35,7 @@ public class ShieldState : WeaponBaseState
             owner.Transition<NoWeaponState>();
         else if (Input.GetKeyDown(KeyCode.Alpha2))
             owner.Transition<BowState>();
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
             owner.Transition<SwordState>();
     }
 
