@@ -115,7 +115,7 @@ public class BossAttackState : BossBaseState
             //Debug.Log(arr[i]);
             PlayerHealth health = arr[i].GetComponent<PlayerHealth>();
             Vector3 push = (((health.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * owner.PushBack;
-            health.TakeDamage(owner.Damage, push);
+            health.TakeDamage(owner.Damage, push, owner.transform.position);
             }
         currentCooldown = cooldown;
     }

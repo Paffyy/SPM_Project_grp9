@@ -143,7 +143,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
                 Debug.Log(arr[i]);
                 PlayerHealth player = arr[i].GetComponent<PlayerHealth>();
                 Vector3 push = (((player.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * 4;
-                player.TakeDamage(owner.Damage, push);
+                player.TakeDamage(owner.Damage, push, owner.transform.position);
             }
         }
         //arr[0].GetComponent<Player>.Hit();

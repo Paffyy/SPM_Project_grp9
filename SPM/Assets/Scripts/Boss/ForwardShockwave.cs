@@ -33,7 +33,7 @@ public class ForwardShockwave : MonoBehaviour
         {
             PlayerHealth player = other.GetComponent<PlayerHealth>();
             Vector3 push = ((((player.transform.position) - transform.position).normalized* 3) + Vector3.up * 3) * 5;
-            player.TakeDamage(Damage, push);
+            player.TakeDamage(Damage, push, transform.position);
         }
     }
 }
