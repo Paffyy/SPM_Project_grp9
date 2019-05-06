@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1989663003150398062}
   - component: {fileID: 2566062692571902809}
   - component: {fileID: 4293070087990095872}
+  - component: {fileID: 4864374549314919924}
   m_Layer: 0
   m_Name: FiresOfHeavenObject
   m_TagString: Untagged
@@ -117,3 +118,18 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4864374549314919924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989663003150398060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b08b57da7d68b7c4194864910818d6f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AOEEffect: {fileID: 1829086021566472451, guid: 1ffa2d939aab46847812f8fcd7671712,
+    type: 3}
+  Parent: {fileID: 0}

@@ -6,7 +6,7 @@ using UnityEngine;
 public class BossFiresOfHeavenState : BossBaseState
 {
     public int NumberOfFires;
-    private RectTransform fireArea;
+    private BoxCollider fireArea;
     public float StartingHeight;
     public GameObject FireBall;
     //tid mellan eldbollar
@@ -15,34 +15,52 @@ public class BossFiresOfHeavenState : BossBaseState
     private Vector3[] vecArr;
     private int count = 0;
     private float coolDown;
+
+    float minX;
+    float maxX;
+    float maxZ;
+    float minZ;
+
     public override void Enter()
     {
         base.Enter();
         //förbereder attacken
-        fireArea = owner.FireArea.GetComponent<RectTransform>();
+        fireArea = owner.FireArea.GetComponent<BoxCollider>();
+         minX = fireArea.transform.position.x - (fireArea.size.x / 2);
+         maxX = fireArea.transform.position.x + (fireArea.size.x / 2);
+         maxZ = fireArea.transform.position.z - (fireArea.size.z / 2);
+         minZ = fireArea.transform.position.z + (fireArea.size.z / 2);
         //owner.StartCoroutine(FiresOfHeavenState());
-        vecArr = CreateRandomVectors();
+        //vecArr = CreateRandomVectors();
     }
     public override void HandleUpdate()
     {
         cooldown -= Time.deltaTime;
         if(cooldown < 0)
         {
-            if(count < vecArr.Length)
-            {
-            //Debug.Log(owner.FireArea.transform.position + vecArr[count] + " " + count);
-            GameObject obj = GameObject.Instantiate(FireBall, owner.FireArea.transform.position + vecArr[count] + (Vector3.up * 50), Quaternion.identity);
-            obj.transform.SetParent(owner.FireArea.transform);
-            count++;
-            }
-            else
-                owner.Transition<BossAttackState>();
-
+            SpawnFire();
             cooldown = BetweenTime;
         }
 
         base.HandleUpdate();
             
+    }
+
+    private void SpawnFire()
+    {
+
+        if (count < NumberOfFires)
+        {
+            //Debug.Log(owner.FireArea.transform.position + vecArr[count] + " " + count);
+            //GameObject obj = GameObject.Instantiate(FireBall, owner.FireArea.transform.position + vecArr[count] + (Vector3.up * 50), Quaternion.identity);
+            Vector3 vec = new Vector3(Random.Range(minX, maxX), fireArea.transform.position.y + StartingHeight, Random.Range(minZ, maxZ));
+            Debug.Log(vec);
+            GameObject obj = GameObject.Instantiate(FireBall, vec, Quaternion.identity);
+            obj.transform.SetParent(owner.FireArea.transform);
+            count++;
+        }
+        else
+            owner.Transition<BossAttackState>();
     }
 
     //private IEnumerator FiresOfHeavenState()
@@ -68,22 +86,22 @@ public class BossFiresOfHeavenState : BossBaseState
 
     //}
 
-    private Vector3[] CreateRandomVectors()
-    {
-        Debug.Log("boopus");
+    //private Vector3[] CreateRandomVectors()
+    //{
+    //    float minX = fireArea.transform.position.x - (fireArea.size.x / 2);
+    //    float maxX = fireArea.transform.position.x + (fireArea.size.x / 2);
+    //    float maxZ = fireArea.transform.position.z - (fireArea.size.z / 2);
+    //    float minZ = fireArea.transform.position.z + (fireArea.size.z / 2);
 
-        float minX = fireArea.rect.xMin;
-        float maxX = fireArea.rect.xMax;
-        float minY = fireArea.rect.yMin;
-        float maxY = fireArea.rect.yMax;
 
-        Vector3[] arr = new Vector3[NumberOfFires];
-        for (int i = 0; i > NumberOfFires; i++)
-        {
-            Debug.Log("creating vector " + i + arr[i]);
-            arr[i] = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), StartingHeight);
-        }
+    //    Vector3[] arr = new Vector3[NumberOfFires];
+    //    for (int i = 0; i > NumberOfFires; i++)
+    //    {
+    //        Debug.Log("creating vector " + i + arr[i]);
+    //        arr[i] = new Vector3(Random.Range(minX, maxX), StartingHeight, Random.Range(maxZ, minZ));
+    //        //arr[i] = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), StartingHeight);
+    //    }
 
-        return arr;
-    }
+    //    return arr;
+    //}
 }
