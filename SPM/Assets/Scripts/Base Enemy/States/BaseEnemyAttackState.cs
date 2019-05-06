@@ -32,9 +32,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
-        Debug.Log("back off " + backOff);
-        Debug.Log("cicle player " + circle);
-        Debug.Log("to player " + toPlayer);
+
         //if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
         //{
         //    owner.NavAgent.isStopped = true;
@@ -66,7 +64,10 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         }
         if (toPlayer)
         {
-            owner.UpdateDestination(owner.player.transform.position, 0.1f);
+            if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > 1f)
+            {
+                owner.UpdateDestination(owner.player.transform.position, 0.1f);
+            }
         }
         //if (circle && timer < 0)
         //{
@@ -135,12 +136,15 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
         //Skadar spelarn
         GameObject[] arr = owner.Fow.TargetsInFieldOfView();
+        if(arr != null)
+        {
             for (int i = 0; i < arr.Length; i++)
             {
                 Debug.Log(arr[i]);
                 PlayerHealth player = arr[i].GetComponent<PlayerHealth>();
-                Vector3 push = (((player.transform.position) - owner.transform.position).normalized + Vector3.up * 5) * 10;
+                Vector3 push = (((player.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * 4;
                 player.TakeDamage(owner.Damage, push);
+            }
         }
         //arr[0].GetComponent<Player>.Hit();
         currentCooldown = cooldown;
