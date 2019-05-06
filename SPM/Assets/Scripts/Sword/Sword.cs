@@ -23,7 +23,7 @@ public class Sword : MonoBehaviour
     private float swingValue = 70f;
     //private bool bladeStormOnCoolDown;
     private float bladeStormCoolDown = 10.0f;
-    private bool isBladeStorming;
+    public bool IsBladeStorming;
     private float BladeStormTimer = 3f;
 
  
@@ -36,10 +36,10 @@ public class Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && !CoolDownManager.Instance.BladeStormOnCoolDown && !isBladeStorming)
+        if (Input.GetKeyDown(KeyCode.Z) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming)
         {
             BladeStorm();
-            isBladeStorming = true;
+            IsBladeStorming = true;
             CoolDownManager.Instance.StartBladeStormCoolDown(bladeStormCoolDown);
           //  bladeStormOnCoolDown = true;
         }
@@ -53,7 +53,7 @@ public class Sword : MonoBehaviour
         //    bladeStormCoolDown = 10.0f;
 
         //}
-        if (isBladeStorming)
+        if (IsBladeStorming)
         {
             if (BladeStormEffect.activeInHierarchy == false)
             {
@@ -67,12 +67,12 @@ public class Sword : MonoBehaviour
             {
                 BladeStormEffect.SetActive(false);
                 Debug.Log("Stop BS!");
-                isBladeStorming = false;
+                IsBladeStorming = false;
                 BladeStormTimer = 3f;
                 StopAllCoroutines();
             }
         }
-        if(!isBladeStorming)
+        if(!IsBladeStorming)
         {
             if (coolDownCounter < 0)
             {
