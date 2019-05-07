@@ -25,6 +25,7 @@ public class ForwardShockwave : MonoBehaviour
             gameObject.transform.position += gameObject.transform.forward * ForwardSpeed;
             timer -= Time.deltaTime;
         }
+ 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,7 +33,7 @@ public class ForwardShockwave : MonoBehaviour
         if(other.tag == "Player")
         {
             PlayerHealth player = other.GetComponent<PlayerHealth>();
-            Vector3 push = ((((player.transform.position) - transform.position).normalized* 3) + Vector3.up * 3) * 5;
+            Vector3 push = ((((player.transform.position) - (transform.position)).normalized* 3) + Vector3.up * 2.5f) * 5;
             player.TakeDamage(Damage, push);
         }
     }

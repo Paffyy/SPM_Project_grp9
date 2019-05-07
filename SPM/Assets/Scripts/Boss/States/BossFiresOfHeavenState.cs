@@ -23,6 +23,7 @@ public class BossFiresOfHeavenState : BossBaseState
 
     public override void Enter()
     {
+        owner.NavAgent.isStopped = true;
         base.Enter();
         //förbereder attacken
         fireArea = owner.FireArea.GetComponent<BoxCollider>();
@@ -60,7 +61,10 @@ public class BossFiresOfHeavenState : BossBaseState
             count++;
         }
         else
+        {
+            owner.NavAgent.isStopped = false;
             owner.Transition<BossAttackState>();
+        }
     }
 
     //private IEnumerator FiresOfHeavenState()

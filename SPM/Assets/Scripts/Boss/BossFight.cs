@@ -31,6 +31,7 @@ public class BossFight : MonoBehaviour
             BossCanvas.SetActive(true);
             health.SetupHealthSlider();
             Debug.Log("Fight Start!");
+            Boss.Transition<BossAttackState>();
         }
     }
 }

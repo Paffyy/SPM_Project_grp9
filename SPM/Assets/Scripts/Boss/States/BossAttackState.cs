@@ -63,7 +63,7 @@ public class BossAttackState : BossBaseState
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > ShockWaveAttackDistance && timeSinceShockwave < 0)
         {
 
-            int rand = Random.Range(1,3);
+            int rand = Random.Range(1,4);
             switch(rand)
             {
                 case 1:

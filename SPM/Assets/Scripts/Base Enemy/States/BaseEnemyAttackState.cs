@@ -135,12 +135,15 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
         //Skadar spelarn
         GameObject[] arr = owner.Fow.TargetsInFieldOfView();
+        if(arr != null)
+        {
             for (int i = 0; i < arr.Length; i++)
             {
                 Debug.Log(arr[i]);
                 PlayerHealth player = arr[i].GetComponent<PlayerHealth>();
                 Vector3 push = (((player.transform.position) - owner.transform.position).normalized + Vector3.up * 5) * 10;
                 player.TakeDamage(owner.Damage, push);
+            }
         }
         //arr[0].GetComponent<Player>.Hit();
         currentCooldown = cooldown;

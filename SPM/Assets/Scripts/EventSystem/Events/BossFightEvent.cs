@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckPointEventInfo : BaseEventInfo
+public class BossFightEventInfo : BaseEventInfo
 {
 
-    public CheckPointEventInfo(GameObject newCheckPoint)
+    public BossFightEventInfo(GameObject newCheckPoint)
     {
         
     }
