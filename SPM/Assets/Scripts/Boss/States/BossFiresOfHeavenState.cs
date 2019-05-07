@@ -56,13 +56,12 @@ public class BossFiresOfHeavenState : BossBaseState
 
         if (count < NumberOfFires)
         {
-            //Debug.Log(owner.FireArea.transform.position + vecArr[count] + " " + count);
-            //GameObject obj = GameObject.Instantiate(FireBall, owner.FireArea.transform.position + vecArr[count] + (Vector3.up * 50), Quaternion.identity);
 
             //spawnar innom ett område
-            //Vector3 vec = new Vector3(Random.Range(minX, maxX), fireArea.transform.position.y + StartingHeight, Random.Range(minZ, maxZ));
+            //Vector3 vec = AreaSpawn()
 
-            Vector3 vec = SpawnNearPlayer();
+            //spawnar nära spelaren
+            Vector3 vec = SpawnNearPlayer(2.0f);
 
 
             GameObject obj = GameObject.Instantiate(FireBall, vec, Quaternion.identity);
@@ -76,10 +75,15 @@ public class BossFiresOfHeavenState : BossBaseState
         }
     }
 
-    public Vector3 SpawnNearPlayer()
+    public Vector3 AreaSpawn()
     {
-        float max = 2.0f;
-        float min = -2.0f;
+        return new Vector3(Random.Range(minX, maxX), fireArea.transform.position.y + StartingHeight, Random.Range(minZ, maxZ));
+    }
+
+    public Vector3 SpawnNearPlayer(float distance)
+    {
+        float max = distance;
+        float min = -distance;
 
         return new Vector3(Random.Range(min, max) + owner.player.transform.position.x, fireArea.transform.position.y + StartingHeight, Random.Range(min, max) + owner.player.transform.position.z);
     }
