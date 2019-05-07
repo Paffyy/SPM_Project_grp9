@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 426112718}
   - component: {fileID: 426112717}
   - component: {fileID: 426112716}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569471237}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.1, y: 0, z: 44.6}
+  m_LocalPosition: {x: 9.1, y: 2.9, z: 44.6}
   m_LocalScale: {x: 1, y: 4.8278, z: 120.36771}
   m_Children:
   - {fileID: 1730986890}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 1125578896}
   - component: {fileID: 1125578895}
   - component: {fileID: 1125578894}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 1395240720}
   - component: {fileID: 1395240719}
   - component: {fileID: 1395240718}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 1730986893}
   - component: {fileID: 1730986892}
   - component: {fileID: 1730986891}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1594,7 +1594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BossCanvas: {fileID: 3801160271395005028}
   Boss: {fileID: 5639111063107978647}
-  FightBorder: {fileID: 0}
+  FightBorder: {fileID: 569471237}
 --- !u!1 &3801160272902999553
 GameObject:
   m_ObjectHideFlags: 0
