@@ -101,7 +101,7 @@ Transform:
   m_GameObject: {fileID: 2949503713932833679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.38199997, y: 0.42539716, z: 0.467}
-  m_LocalScale: {x: 6.275109, y: 3, z: 6.2751093}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 7651501562885396184}
   m_RootOrder: 3
@@ -283,7 +283,7 @@ MonoBehaviour:
   ArrowLayerMask:
     serializedVersion: 2
     m_Bits: 52224
-  RainOfArrowCount: 25
+  RainOfArrowCount: 10
   ArrowCount: 15
   ArrowCountText: {fileID: 0}
 --- !u!114 &8314908191368525051
