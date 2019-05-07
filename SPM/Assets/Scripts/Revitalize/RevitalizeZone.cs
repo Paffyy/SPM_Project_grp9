@@ -5,6 +5,7 @@ using UnityEngine;
 public class RevitalizeZone : MonoBehaviour
 {
     public List<GameObject> Objectives;
+    private float TransitionDelay = 0.4f;
     private float timer;
     private bool shouldRevitalize;
     private bool hasRevitalized;
@@ -60,7 +61,7 @@ public class RevitalizeZone : MonoBehaviour
             var rev = child.GetComponent<RevitalizeGeometry>();
             if (rev != null)
             {
-                rev.Revitalize(0.4f);
+                rev.Revitalize(TransitionDelay);
             }
             else
             {
@@ -69,7 +70,7 @@ public class RevitalizeZone : MonoBehaviour
                     var rev2 = grandchildren.GetComponent<RevitalizeGeometry>();
                     if (rev2 != null)
                     {
-                        rev2.Revitalize(0.4f);
+                        rev2.Revitalize(TransitionDelay);
                     }
                 }
             }
