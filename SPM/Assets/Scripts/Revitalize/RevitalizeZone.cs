@@ -60,7 +60,7 @@ public class RevitalizeZone : MonoBehaviour
             var rev = child.GetComponent<RevitalizeGeometry>();
             if (rev != null)
             {
-                rev.Revitalize(0.7f);
+                rev.Revitalize(0.4f);
             }
             else
             {
@@ -69,7 +69,7 @@ public class RevitalizeZone : MonoBehaviour
                     var rev2 = grandchildren.GetComponent<RevitalizeGeometry>();
                     if (rev2 != null)
                     {
-                        rev2.Revitalize(0.7f);
+                        rev2.Revitalize(0.4f);
                     }
                 }
             }
