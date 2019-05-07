@@ -5,16 +5,20 @@ using UnityEngine;
 public class BossFight : MonoBehaviour
 {
 
-    private Collider Trigger;
     public GameObject BossCanvas;
     public Boss Boss;
     private EnemyHealth health;
+    public GameObject FightBorder;
     // Start is called before the first frame update
+
+    public void Start()
+    {
+        Register();
+    }
 
     private void Awake()
     {
-        Trigger = GetComponent<Collider>();
-        Trigger.isTrigger = true;
+
         health = Boss.GetComponent<EnemyHealth>();
     }
 
@@ -23,15 +27,17 @@ public class BossFight : MonoBehaviour
     {
 
     }
-
-    private void OnTriggerEnter(Collider other)
+    public void Register()
     {
-        if(other.gameObject.tag == "Player")
-        {
-            BossCanvas.SetActive(true);
-            health.SetupHealthSlider();
-            Debug.Log("Fight Start!");
-            Boss.Transition<BossAttackState>();
-        }
+        EventHandler.Instance.Register(EventHandler.EventType.BossFightTrigger, TriggerFight);
     }
+
+    public void TriggerFight(BaseEventInfo e)
+    {
+        health.SetupHealthSlider();
+        BossCanvas.SetActive(true);
+        FightBorder.SetActive(true);
+        Boss.Transition<BossAttackState>();
+    }
+
 }

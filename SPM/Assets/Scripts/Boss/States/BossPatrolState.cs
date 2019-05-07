@@ -9,7 +9,7 @@ public class BossPatrolState : BossBaseState
     //[SerializeField] private float chaseDistance;
 
     //avståndet som fienden behöver vara från punkten för att gå till nästa
-    private float pointSize = 2.0f;
+    public float pointSize = 2.0f;
     //[SerializeField] private float hearingRange;
     public int currentPoint = 0;
 
