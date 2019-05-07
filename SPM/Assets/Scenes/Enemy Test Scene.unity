@@ -532,7 +532,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &483821574 stripped
 Transform:
@@ -590,7 +590,7 @@ PrefabInstance:
     - target: {fileID: 2093523449477133053, guid: f6b851c321ca85d4383a91689fe3e32c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2093523449477133053, guid: f6b851c321ca85d4383a91689fe3e32c,
         type: 3}
@@ -636,12 +636,6 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &569471237 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 569471237, guid: 934b4553cfdef9246b8b62bf7b19782a,
-    type: 3}
-  m_PrefabInstance: {fileID: 3801160272987408396}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &682564857 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8614785410681197161, guid: 47d39f719808ba144ae109aee7a84d8d,
@@ -1151,7 +1145,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1350783894
 MonoBehaviour:
@@ -1857,7 +1851,7 @@ PrefabInstance:
     - target: {fileID: 3801160272764935685, guid: 934b4553cfdef9246b8b62bf7b19782a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3801160272764935685, guid: 934b4553cfdef9246b8b62bf7b19782a,
         type: 3}
@@ -1874,19 +1868,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3801160272764935684, guid: 934b4553cfdef9246b8b62bf7b19782a,
-        type: 3}
-      propertyPath: FightBorder
-      value: 
-      objectReference: {fileID: 569471237}
     - target: {fileID: 5639111063107978647, guid: 934b4553cfdef9246b8b62bf7b19782a,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 395612075}
-    - target: {fileID: 569471238, guid: 934b4553cfdef9246b8b62bf7b19782a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.9
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 934b4553cfdef9246b8b62bf7b19782a, type: 3}
