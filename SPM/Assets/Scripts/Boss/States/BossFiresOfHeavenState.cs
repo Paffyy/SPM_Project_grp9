@@ -23,6 +23,7 @@ public class BossFiresOfHeavenState : BossBaseState
 
     public override void Enter()
     {
+        owner.anim.SetBool("FireRain", true);
         owner.NavAgent.isStopped = true;
         base.Enter();
         //förbereder attacken
@@ -55,13 +56,13 @@ public class BossFiresOfHeavenState : BossBaseState
             //Debug.Log(owner.FireArea.transform.position + vecArr[count] + " " + count);
             //GameObject obj = GameObject.Instantiate(FireBall, owner.FireArea.transform.position + vecArr[count] + (Vector3.up * 50), Quaternion.identity);
             Vector3 vec = new Vector3(Random.Range(minX, maxX), fireArea.transform.position.y + StartingHeight, Random.Range(minZ, maxZ));
-            Debug.Log(vec);
             GameObject obj = GameObject.Instantiate(FireBall, vec, Quaternion.identity);
             obj.transform.SetParent(owner.FireArea.transform);
             count++;
         }
         else
         {
+            owner.anim.SetBool("FireRain", false);
             owner.NavAgent.isStopped = false;
             owner.Transition<BossAttackState>();
         }

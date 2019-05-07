@@ -54,9 +54,13 @@ public class BossAttackState : BossBaseState
         }
 
         //debug shit
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             owner.Transition<BossFiresOfHeavenState>();
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            owner.Transition<BossForwardShockwaveState>();
         }
         //debug shit
 
@@ -64,6 +68,7 @@ public class BossAttackState : BossBaseState
         {
 
             int rand = Random.Range(1,4);
+            Debug.Log("Random " + rand);
             switch(rand)
             {
                 case 1:
@@ -109,14 +114,17 @@ public class BossAttackState : BossBaseState
             return;
 
         //Skadar spelarn
-        GameObject[] arr = owner.Fow.TargetsInFieldOfView();
-            for (int i = 0; i < arr.Length; i++)
-            {
-            //Debug.Log(arr[i]);
-            PlayerHealth health = arr[i].GetComponent<PlayerHealth>();
-            Vector3 push = (((health.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * owner.PushBack;
-            health.TakeDamage(owner.Damage, push, owner.transform.position);
-            }
+        owner.anim.SetTrigger("AttackRight");
+        owner.RightHand.ActivateHand();
+        //GameObject[] arr = owner.Fow.TargetsInFieldOfView();
+        //    for (int i = 0; i < arr.Length; i++)
+        //    {
+        //    //Debug.Log(arr[i]);
+        //    PlayerHealth health = arr[i].GetComponent<PlayerHealth>();
+        //    Vector3 push = (((health.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * owner.PushBack;
+        //    health.TakeDamage(owner.Damage, push, owner.transform.position);
+        //    }
+
         currentCooldown = cooldown;
     }
 

@@ -27,7 +27,7 @@ public class AOEEffect : MonoBehaviour
             Debug.Log("boop");
         if(collider.gameObject.tag == "Player")
         {
-            collider.GetComponent<PlayerHealth>().TakeDamage(Damage, Vector3.up * 2);
+            collider.GetComponent<PlayerHealth>().TakeDamage(Damage, Vector3.up * 2, Vector3.zero);
         }
     }
 

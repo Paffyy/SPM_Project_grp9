@@ -12,6 +12,7 @@ public class BossForwardShockwaveState : BossBaseState
     {
         base.Enter();
         owner.currectState = this;
+        owner.anim.SetTrigger("ShockWave");
         owner.NavAgent.isStopped = true;
 
     }
@@ -39,7 +40,8 @@ public class BossForwardShockwaveState : BossBaseState
     {
         owner.NavAgent.isStopped = true;
         yield return new WaitForSeconds(1.2f);
-        GameObject.Instantiate(ShockWaveObject, new Vector3(owner.transform.position.x, owner.transform.position.y / 2, owner.transform.position.z),
+        //Y-värdet är så att shockvågen spawnar vid fötterna på bossen + några enheter under marken
+        GameObject.Instantiate(ShockWaveObject, new Vector3(owner.transform.position.x, (owner.transform.position.y / 2) - 1f, owner.transform.position.z),
         owner.transform.rotation);
         yield return new WaitForSeconds(1);
         owner.NavAgent.isStopped = false;
