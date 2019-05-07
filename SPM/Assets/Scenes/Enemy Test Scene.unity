@@ -1251,6 +1251,11 @@ PrefabInstance:
       propertyPath: ArrowCountText
       value: 
       objectReference: {fileID: 682564857}
+    - target: {fileID: 5421823845990970223, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: AreaOfEffectMask.m_Bits
+      value: 52224
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
 --- !u!1 &1422876933
@@ -1962,18 +1967,5 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 395612075}
-    - target: {fileID: 3801160271068927910, guid: 934b4553cfdef9246b8b62bf7b19782a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 48.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 569471237, guid: 934b4553cfdef9246b8b62bf7b19782a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1395240717, guid: 934b4553cfdef9246b8b62bf7b19782a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.271
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 934b4553cfdef9246b8b62bf7b19782a, type: 3}
