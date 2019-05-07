@@ -24,7 +24,6 @@ public class AOEEffect : MonoBehaviour
 
     public void OnTriggerStay(Collider collider)
     {
-            Debug.Log("boop");
         if(collider.gameObject.tag == "Player")
         {
             collider.GetComponent<PlayerHealth>().TakeDamage(Damage, Vector3.up * 2, Vector3.zero);

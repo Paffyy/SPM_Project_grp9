@@ -6,16 +6,14 @@ using UnityEngine;
 public class BossAttackState : BossBaseState
 {
 
-    //[SerializeField] private float chaseDistance;
-    //[SerializeField] private float cooldown;
-    //public float PlacmentDistance;
-
+    //procet av hälsan
     [Range(0, 1)] public float HealthPhase1;
-    [Range(0, 1)] public float HealthPhase2;
-    [Range(0, 1)] public float HealthPhase3;
+    //[Range(0, 1)] public float HealthPhase2;
+    //[Range(0, 1)] public float HealthPhase3;
+
     public float TimePhase1;
-    public float TimePhase2;
-    public float TimePhase3;
+    //public float TimePhase2;
+    //public float TimePhase3;
 
     private float ShockWaveAttackDistance = 10.5f;
     private float timeSinceShockwave;
@@ -26,6 +24,7 @@ public class BossAttackState : BossBaseState
     public float FiresOfHeavenTimer;
 
     private float currentCooldown;
+    private bool doubleAttackAllowed = false;
 
     public override void Enter()
     {
@@ -50,7 +49,9 @@ public class BossAttackState : BossBaseState
         //Vanlig attack
         if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < attackDistance && owner.Fow.TargetsInFieldOfView() != null)
         {
-            Attack();
+            if (doubleAttackAllowed)
+                DoubleAttack();
+            SingelAttack();
         }
 
         //debug shit
@@ -107,7 +108,7 @@ public class BossAttackState : BossBaseState
     }
 
 
-    private void Attack()
+    private void SingelAttack()
     {
         currentCooldown -= Time.deltaTime;
         if (currentCooldown > 0)
@@ -115,7 +116,6 @@ public class BossAttackState : BossBaseState
 
         //Skadar spelarn
         owner.anim.SetTrigger("AttackRight");
-        owner.RightHand.ActivateHand();
         //GameObject[] arr = owner.Fow.TargetsInFieldOfView();
         //    for (int i = 0; i < arr.Length; i++)
         //    {
@@ -125,7 +125,32 @@ public class BossAttackState : BossBaseState
         //    health.TakeDamage(owner.Damage, push, owner.transform.position);
         //    }
 
+        doubleAttackAllowed = true;
         currentCooldown = cooldown;
+    }
+
+    private void DoubleAttack()
+    {
+        currentCooldown -= Time.deltaTime;
+        if (currentCooldown > 0)
+            return;
+
+        //Skadar spelarn
+        owner.anim.SetTrigger("AttackRight");
+
+        owner.anim.SetTrigger("AttackLeft");
+        //GameObject[] arr = owner.Fow.TargetsInFieldOfView();
+        //    for (int i = 0; i < arr.Length; i++)
+        //    {
+        //    //Debug.Log(arr[i]);
+        //    PlayerHealth health = arr[i].GetComponent<PlayerHealth>();
+        //    Vector3 push = (((health.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * owner.PushBack;
+        //    health.TakeDamage(owner.Damage, push, owner.transform.position);
+        //    }
+
+        doubleAttackAllowed = false;
+        //En liten extra coolDown för dubbelattacken
+        currentCooldown = cooldown + 0.2f;
     }
 
 }

@@ -95,6 +95,7 @@ MonoBehaviour:
   CollisionMask:
     serializedVersion: 2
     m_Bits: 3072
+  RotationSpeed: 0
   Acceleration: 20
   GravityForce: 15
   StaticFriction: 0.1
@@ -130,5 +131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08b57da7d68b7c4194864910818d6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AOEEffect: {fileID: 1829086021566472451, guid: c072ba4591413f4498a47cc59d4d709a,
+  AOEEffect: {fileID: 1829086021566472450, guid: 1ffa2d939aab46847812f8fcd7671712,
     type: 3}
+  LifeTimeOFFireEffect: 10

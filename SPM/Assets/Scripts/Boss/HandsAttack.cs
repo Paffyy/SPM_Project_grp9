@@ -6,14 +6,12 @@ public class HandsAttack : MonoBehaviour
 {
     private bool isActive = false;
     private Boss boss;
-    private float timeActive;
+    //private float timeActive;
     private float timer;
-    public AnimationClip animClip;
     // Start is called before the first frame update
     void Start()
     {
         boss = GetComponentInParent<Boss>();
-        timeActive = animClip.length;
     }
 
     // Update is called once per frame
@@ -27,15 +25,15 @@ public class HandsAttack : MonoBehaviour
         }
     }
 
-    public void ActivateHand()
+    public void ActivateHand(float stateTime)
     {
+
         isActive = true;
-        timer = timeActive;
+        timer = stateTime;
     }
 
     public void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("hit" + isActive + timer + timeActive);
         if (isActive)
         {
             if(collider.gameObject.tag == "Player")
