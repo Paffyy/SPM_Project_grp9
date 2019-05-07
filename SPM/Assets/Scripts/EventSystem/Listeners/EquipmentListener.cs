@@ -23,9 +23,12 @@ public class EquipmentListener : MonoBehaviour
         {
             if (pickUpEventInfo.PickUpObject.CompareTag("Arrows"))
             {
-                Debug.Log("Arrows");
                 PlayerObject.GetComponent<Weapon>().Bow.GetComponent<Bow>().AddArrows(pickUpEventInfo.PickUpObject.GetComponent<Arrows>().ArrowAmount);
+            } else if (pickUpEventInfo.PickUpObject.CompareTag("HealthPotion"))
+            {
+                PlayerObject.GetComponent<PlayerHealth>().AddHealth(pickUpEventInfo.PickUpObject.GetComponent<HealthPotion>().HealthAmount);
             }
+            
         }
     }
 }

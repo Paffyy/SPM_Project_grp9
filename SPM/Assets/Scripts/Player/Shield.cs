@@ -10,6 +10,7 @@ public class Shield : MonoBehaviour
     public LayerMask ProjectileMask;
     public Camera playerCamera;
     private Vector3 shieldPos;
+    public float FacingOffset;
     public int ShieldHealth = 500;
     public int CurrentHealth;
     public GameObject ShieldObject;

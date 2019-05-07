@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class PuzzleEventInfo : BaseEventInfo
 {
-    public List<GameObject> PuzzleObjects;
-    public List<GameObject> RevitalizedObjects;
-    public PuzzleEventInfo(List<GameObject> puzzleObjects, List<GameObject> revitalizeObjects)
+    public GameObject PuzzleObject;
+    public PuzzleEventInfo(GameObject puzzleObject)
     {
-        PuzzleObjects = puzzleObjects;
-        RevitalizedObjects = revitalizeObjects;
+        PuzzleObject = puzzleObject;
     }
 }

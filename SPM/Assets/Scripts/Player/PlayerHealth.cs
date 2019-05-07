@@ -45,20 +45,45 @@ public class PlayerHealth : MonoBehaviour
     }
 
     //ger spelaren skada med pushback
-    public void TakeDamage(int damage, Vector3 pushBack)
+    //om spelaren inte ska kunna ta damage, skicka in Vector3.zero på position
+    public void TakeDamage(int damage, Vector3 pushBack, Vector3 position)
     {
         if (currentCooldown > 0)
             return;
         else
             currentCooldown = DamageCooldown;
 
+        var shield = GetComponentInChildren<Shield>();
+        if (shield != null)
+        {
+            var dotProduct = Vector3.Dot(shield.transform.TransformDirection(transform.forward), position - transform.position);
+            if (dotProduct > shield.FacingOffset) // shieldblocked
+            {
+                shield.TakeDamage(damage);
+                player.Velocity += pushBack;
+                return;
+            }
+        }
+
         CurrentHealth -= damage;
         HealthSlider.value = CurrentHealth;
-
         player.Velocity += pushBack;
 
         if (CurrentHealth <= 0)
             PlayerDead();
+    }
+    
+    public void AddHealth(int health)
+    {
+        if(CurrentHealth < 100)
+        {
+            CurrentHealth += health;
+            if(CurrentHealth > 100)
+            {
+                CurrentHealth = 100;
+            }
+            HealthSlider.value = CurrentHealth;
+        }
     }
 
     public void PlayerDead()
