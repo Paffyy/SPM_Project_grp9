@@ -55,7 +55,7 @@ public class BossAttackState : BossBaseState
         }
 
         //debug shit
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             owner.Transition<BossFiresOfHeavenState>();
         }
