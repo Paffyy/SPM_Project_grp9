@@ -31,11 +31,11 @@ public class BossPatrolState : BossBaseState
         }
 
 
-        if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius)
-        {
-            //Debug.Log(owner.Fow.TargetsInFieldOfView().ToString());
-            owner.Transition<BossChaseState>();
-        }
+        //if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius)
+        //{
+        //    //Debug.Log(owner.Fow.TargetsInFieldOfView().ToString());
+        //    owner.Transition<BossChaseState>();
+        //}
         //Debug.Log("boop");
 
 

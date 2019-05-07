@@ -8,6 +8,9 @@ public class CharacterController : MonoBehaviour
     [HideInInspector] private Vector3 Velocity;
     [HideInInspector] private float RotationX;
     [HideInInspector] private float RotationY;
+    [HideInInspector] private Quaternion Rotation;
+    private Vector3 rotateDir;
+    public float RotationSpeed;
     //public float yAngle, zAngle;
 
     [SerializeField] private float Acceleration = 20.0f;
@@ -39,6 +42,8 @@ public class CharacterController : MonoBehaviour
         IsColliding();
         Velocity *= Mathf.Pow(AirResistance, Time.deltaTime);
         transform.position += Velocity * Time.deltaTime;
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, rotateDir, Time.deltaTime * RotationSpeed, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDir);
     }
 
     public void MovePosition(Vector3 newPos)
@@ -51,9 +56,10 @@ public class CharacterController : MonoBehaviour
 
     }
 
-    public void MoveRotation(Quaternion newRot)
+    public void MoveRotation(Vector3 targetDir, float speed)
     {
-        transform.rotation = newRot;
+        rotateDir = targetDir;
+
     }
 
     private void ApplyGravity()
