@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BossFightEventInfo : BaseEventInfo
 {
-
-    public BossFightEventInfo(GameObject newCheckPoint)
+    public bool FightOn;
+    public BossFightEventInfo(bool fight)
     {
-        
+        FightOn = fight;
     }
 }
