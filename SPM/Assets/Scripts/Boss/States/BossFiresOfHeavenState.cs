@@ -9,6 +9,7 @@ public class BossFiresOfHeavenState : BossBaseState
     private BoxCollider fireArea;
     public float StartingHeight;
     public GameObject FireBall;
+
     //tid mellan eldbollar
     public float BetweenTime = 0.5f;
 
@@ -23,7 +24,9 @@ public class BossFiresOfHeavenState : BossBaseState
 
     public override void Enter()
     {
+        
         owner.anim.SetBool("FireRain", true);
+        owner.FireEffectOnBoss.SetActive(true);
         owner.NavAgent.isStopped = true;
         base.Enter();
         //förbereder attacken
@@ -55,17 +58,38 @@ public class BossFiresOfHeavenState : BossBaseState
         {
             //Debug.Log(owner.FireArea.transform.position + vecArr[count] + " " + count);
             //GameObject obj = GameObject.Instantiate(FireBall, owner.FireArea.transform.position + vecArr[count] + (Vector3.up * 50), Quaternion.identity);
-            Vector3 vec = new Vector3(Random.Range(minX, maxX), fireArea.transform.position.y + StartingHeight, Random.Range(minZ, maxZ));
+
+            //spawnar innom ett område
+            //Vector3 vec = new Vector3(Random.Range(minX, maxX), fireArea.transform.position.y + StartingHeight, Random.Range(minZ, maxZ));
+
+            Vector3 vec = SpawnNearPlayer();
+
+
             GameObject obj = GameObject.Instantiate(FireBall, vec, Quaternion.identity);
             obj.transform.SetParent(owner.FireArea.transform);
             count++;
         }
         else
         {
-            owner.anim.SetBool("FireRain", false);
-            owner.NavAgent.isStopped = false;
+
             owner.Transition<BossAttackState>();
         }
+    }
+
+    public Vector3 SpawnNearPlayer()
+    {
+        float max = 2.0f;
+        float min = -2.0f;
+
+        return new Vector3(Random.Range(min, max) + owner.player.transform.position.x, fireArea.transform.position.y + StartingHeight, Random.Range(min, max) + owner.player.transform.position.z);
+    }
+
+    public override void Exit()
+    {
+        owner.FireEffectOnBoss.SetActive(false);
+        owner.anim.SetBool("FireRain", false);
+        owner.NavAgent.isStopped = false;
+        base.Exit();
     }
 
     //private IEnumerator FiresOfHeavenState()
