@@ -27,8 +27,7 @@ public class EquipmentListener : MonoBehaviour
             } else if (pickUpEventInfo.PickUpObject.CompareTag("HealthPotion"))
             {
                 PlayerObject.GetComponent<PlayerHealth>().AddHealth(pickUpEventInfo.PickUpObject.GetComponent<HealthPotion>().HealthAmount);
-            }
-            
+            } 
         }
     }
 }
