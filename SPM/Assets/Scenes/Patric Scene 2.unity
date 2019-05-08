@@ -1764,7 +1764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &549899673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5655,7 +5655,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 100
   CurrentHealth: 0
-  DamageCooldown: 0
+  DmgCoolDownTimer: 0
+  StunTimer: 0
   EnemyHealthSlider: {fileID: 1399545444}
 --- !u!1 &1762233074
 GameObject:
@@ -5913,7 +5914,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807883468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.08, z: 0}
+  m_LocalPosition: {x: 0, y: 4.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6794,7 +6795,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 100
   CurrentHealth: 0
-  DamageCooldown: 0
+  DmgCoolDownTimer: 0
+  StunTimer: 0
   EnemyHealthSlider: {fileID: 1349362025}
 --- !u!4 &2140812519 stripped
 Transform:

@@ -9,7 +9,7 @@ public abstract class Health : MonoBehaviour
     public float DmgCoolDownTimer;
     private float timer;
 
-    public virtual void TakeDamage(int damage) { }
+    public abstract void TakeDamage(int damage);
     public virtual void TakeDamage(int damage, Vector3 pushBack, Vector3 position) { }
 
 
@@ -26,7 +26,7 @@ public abstract class Health : MonoBehaviour
 
     }
 
-    public bool CanTakeDamage()
+    virtual public bool CanTakeDamage()
     {
         return timer < 0;
     }

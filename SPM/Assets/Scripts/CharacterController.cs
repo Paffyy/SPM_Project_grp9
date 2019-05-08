@@ -5,23 +5,23 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     public LayerMask CollisionMask;
-    [HideInInspector] private Vector3 Velocity;
-    [HideInInspector] private float RotationX;
-    [HideInInspector] private float RotationY;
-    [HideInInspector] private Quaternion Rotation;
+    private Vector3 Velocity;
+    private float RotationX;
+    private float RotationY;
+    private Quaternion Rotation;
     private Vector3 rotateDir;
     public float RotationSpeed;
     //public float yAngle, zAngle;
 
-    [SerializeField] private float Acceleration = 20.0f;
-    [SerializeField] private float GravityForce = 15.0f;
-    [SerializeField] private float StaticFriction = 0.1f;
-    [SerializeField] private float DynamicFriction = 0.06f;
-    [SerializeField] private float JumpDistance = 5.0f;
-    [SerializeField] private float AirResistance = 0.9f;
-    [SerializeField] private float MouseSensitivity = 3.0f;
-    [SerializeField] private float skinWidth = 0.005f;
-    [SerializeField] private float groundCheckDistance = 0.5f;
+    public float Acceleration = 20.0f;
+    public float GravityForce = 15.0f;
+    public float StaticFriction = 0.1f;
+    public float DynamicFriction = 0.06f;
+    public float JumpDistance = 5.0f;
+    public float AirResistance = 0.9f;
+    public float MouseSensitivity = 3.0f;
+    public float skinWidth = 0.005f;
+    public float groundCheckDistance = 0.5f;
     public CapsuleCollider characterCollider;
     private int collisionLimit = 0;
 
@@ -32,7 +32,7 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
 
-        //characterCollider = GetComponent<CapsuleCollider>();
+        characterCollider = GetComponent<CapsuleCollider>();
 
     }
 
@@ -48,7 +48,7 @@ public class CharacterController : MonoBehaviour
 
     public void MovePosition(Vector3 newPos)
     {
-
+        Debug.Log("boop");
         Vector3 direction = newPos;
         direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
         float distance = Acceleration * Time.deltaTime;

@@ -12,7 +12,6 @@ public class BaseEnemy : StateMachine
     public PathMaker Path;
     //public int Health;
     public int Damage;
-    public float PushBack;
     public float IFrameTime;
     [HideInInspector] public float IFrameCoolDown;
     [HideInInspector] public NavMeshAgent NavAgent;
@@ -101,9 +100,4 @@ public class BaseEnemy : StateMachine
         NavAgent.isStopped = false;
     }
 
-    //public void die()
-    //{
-    //    MeshRen.material.color = Color.gray;
-    //    Destroy(gameObject, 1.5f);
-    //}
 }

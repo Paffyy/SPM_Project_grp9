@@ -33,8 +33,15 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
     private IEnumerator CirlcleIEnum()
     {
         yield return new WaitForSeconds(2);
+        Circle();
+
+    }
+
+    private void Circle()
+    {
         Debug.Log("circle");
         owner.UpdateDestination(PlayerCircle(), 0.5f);
         angle += NextAnglePoint;
     }
+
 }

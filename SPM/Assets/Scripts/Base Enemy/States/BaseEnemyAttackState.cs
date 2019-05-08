@@ -21,7 +21,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         owner.MeshRen.material.color = Color.red;
         currentCooldown = cooldown;
         owner.currectState = this;
-        timer = backTimer;
+        timer = 0;
         //hitta hur många andra fiender som är i AttackState
     }
 
@@ -29,38 +29,12 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
     {
         owner.NavAgent.SetDestination(owner.player.transform.position);
 
-
-        if (backOff)
-        {
-            BackOff();
-            timer -= Time.deltaTime;
-        }
-
-        if(backOff && Vector3.Distance(owner.transform.position, owner.player.transform.position) < circleDistance || timer < 0)
-        {
-            //owner.Transition<BaseEnemyCircleState>();
-            backOff = false;
-            timer = backTimer;
-            toPlayer = true;
-        }
-        if (toPlayer)
-        {
-            if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > 1f)
-            {
-                owner.UpdateDestination(owner.player.transform.position, 0.1f);
-            }
-        }
-
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
         {
             Attack();
-            backOff = true;
+            owner.Transition<BaseEnemyBackOffState>();
         }
-
-
-
-
-
+        currentCooldown -= Time.deltaTime;
         //tittar på spelaren
         LookAtTarget(owner.player.transform);
         //owner.transform.LookAt(owner.player.transform.position);
@@ -78,15 +52,6 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, lookRotation, 5f);
     }
 
-    void BackOff()
-    {
-        owner.NavAgent.updateRotation = false;
-        //owner.transform.LookAt(owner.player.transform);
-        owner.UpdateDestination(-owner.transform.forward * 10, 2f);
-        //owner.NavAgent.updateRotation = true;
-        //Debug.Log("back off");
-    }
-
     private void Attack()
     {
         currentCooldown -= Time.deltaTime;
@@ -95,15 +60,16 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
         //Skadar spelarn
         GameObject[] arr = owner.Fow.TargetsInFieldOfView();
-        if(arr != null)
+        if (arr != null)
         {
-            for (int i = 0; i < arr.Length; i++)
+                Debug.Log(arr[0]);
+                PlayerHealth player = arr[0].GetComponent<PlayerHealth>();
+            if(Vector3.Distance(player.transform.position, owner.transform.position) < owner.attackDistance)
             {
-                Debug.Log(arr[i]);
-                PlayerHealth player = arr[i].GetComponent<PlayerHealth>();
-                Vector3 push = (((player.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * 4;
+                Vector3 push = (((player.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * 6;
                 player.TakeDamage(owner.Damage, push, owner.transform.position);
             }
+
         }
         //arr[0].GetComponent<Player>.Hit();
         currentCooldown = cooldown;
