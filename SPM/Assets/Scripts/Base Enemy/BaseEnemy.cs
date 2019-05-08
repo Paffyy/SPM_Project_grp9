@@ -48,7 +48,10 @@ public class BaseEnemy : StateMachine
         Fow = GetComponent<FieldOfView>();
         chaseDistance = Fow.viewRadius;
         controller = GetComponent<CharacterController>();
-        controller.enabled = false;
+        if(controller != null)
+        {
+            controller.enabled = false;
+        }
         base.Awake();
     }
 
