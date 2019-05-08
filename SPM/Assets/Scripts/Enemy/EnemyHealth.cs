@@ -8,13 +8,13 @@ public class EnemyHealth : Health
 {
     //public float DamageCooldown;
     //private float currentCooldown;
-    public float StunTimer;
+    private float StunTimer;
     private float currenTimer;
     public Slider EnemyHealthSlider;
     private CharacterController controller;
     private NavMeshAgent navAgent;
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         navAgent = GetComponent<NavMeshAgent>();
         controller = GetComponent<CharacterController>();

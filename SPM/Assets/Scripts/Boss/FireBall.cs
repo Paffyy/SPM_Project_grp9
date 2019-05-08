@@ -5,9 +5,13 @@ using UnityEngine;
 public class FireBall : MonoBehaviour
 {
 
+    //public float SplashDamageArea;
+    //public float SplashDamage;
+
     private CharacterController controller;
     public AreaOfEffect AOEEffect;
     public float LifeTimeOFFireEffect;
+    private PlayerHealth player;
     //public GameObject Parent;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,7 @@ public class FireBall : MonoBehaviour
         if (controller.IsGrounded())
         {
             GameObject obj = Instantiate(AOEEffect.gameObject, transform.position, Quaternion.identity);
+
             //obj.transform.SetParent(Parent.transform);
             Destroy(gameObject);
         }

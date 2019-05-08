@@ -12,7 +12,6 @@ public class BaseEnemy : StateMachine
     public PathMaker Path;
     //public int Health;
     public int Damage;
-    public float PushBack;
     public float IFrameTime;
     [HideInInspector] public float IFrameCoolDown;
     [HideInInspector] public NavMeshAgent NavAgent;

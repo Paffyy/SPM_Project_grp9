@@ -6,8 +6,6 @@ public class Boss : BaseEnemy
 {
     public GameObject FireArea;
     [HideInInspector]public Animator anim;
-    public HandsAttack LeftHand;
-    public HandsAttack RightHand;
     public GameObject FireEffectOnBoss;
 
     protected override void Awake()

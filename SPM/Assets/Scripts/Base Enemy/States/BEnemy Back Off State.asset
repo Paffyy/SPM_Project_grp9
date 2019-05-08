@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BEnemy Back Off State
   m_EditorClassIdentifier: 
   material: {fileID: 0}
-  BackTime: 3
-  Speed: 10
+  BackTime: 1
+  Speed: 8
   MaxDistance: 6
+  SpeedIncreas: 4

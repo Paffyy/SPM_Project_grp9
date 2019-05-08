@@ -8,11 +8,13 @@ public class BaseEnemyBackOffState : BaseEnemyBaseState
     public float BackTime;
     public float Speed;
     public float MaxDistance;
+    public float SpeedIncreas;
     public override void Enter()
     {
         base.Enter();
         Debug.Log("Back Off State");
         owner.NavAgent.updateRotation = false;
+        owner.NavAgent.speed += SpeedIncreas;
         owner.StartCoroutine(BackOff());
     }
 
@@ -25,14 +27,20 @@ public class BaseEnemyBackOffState : BaseEnemyBaseState
         owner.transform.LookAt(owner.transform.position);
         owner.UpdateDestination(owner.player.transform.position - owner.transform.forward * Speed, 2f);
         if(Vector3.Distance(owner.player.transform.position, owner.transform.position) > MaxDistance)
-            owner.Transition<BaseEnemyCircleState>();
-            //owner.Transition<BaseEnemyAttackState>();
+            owner.Transition<BaseEnemyAttackState>();
+            //owner.Transition<BaseEnemyCircleState>();
     }
 
     private IEnumerator BackOff()
     {
         yield return new WaitForSeconds(BackTime);
-        //owner.Transition<BaseEnemyAttackState>();
-        owner.Transition<BaseEnemyCircleState>();
+        owner.Transition<BaseEnemyAttackState>();
+        //owner.Transition<BaseEnemyCircleState>();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        owner.NavAgent.speed -= SpeedIncreas;
     }
 }
