@@ -101,9 +101,4 @@ public class BaseEnemy : StateMachine
         NavAgent.isStopped = false;
     }
 
-    //public void die()
-    //{
-    //    MeshRen.material.color = Color.gray;
-    //    Destroy(gameObject, 1.5f);
-    //}
 }

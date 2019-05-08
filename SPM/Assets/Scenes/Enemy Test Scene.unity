@@ -237,38 +237,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &55778840 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5639111063107978654, guid: 934b4553cfdef9246b8b62bf7b19782a,
-    type: 3}
-  m_PrefabInstance: {fileID: 3801160272987408396}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &55778851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 55778840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acd4414f5436cc0458d038ba660fc230, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionMask:
-    serializedVersion: 2
-    m_Bits: 19968
-  RotationSpeed: 0
-  Acceleration: 40
-  GravityForce: 30
-  StaticFriction: 0.9
-  DynamicFriction: 0.6
-  JumpDistance: 5
-  AirResistance: 0.3
-  MouseSensitivity: 3
-  skinWidth: 0.005
-  groundCheckDistance: 0.5
-  characterCollider: {fileID: 0}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,6 +1892,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2796968206420594173, guid: 4b648d8a30adb72409de9a5d885d9707,
         type: 3}
+      propertyPath: states.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796968206420594173, guid: 4b648d8a30adb72409de9a5d885d9707,
+        type: 3}
       propertyPath: Path
       value: 
       objectReference: {fileID: 1737575581}
@@ -1932,6 +1905,12 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 395612075}
+    - target: {fileID: 2796968206420594173, guid: 4b648d8a30adb72409de9a5d885d9707,
+        type: 3}
+      propertyPath: states.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 375bcd30a0be5bb46874f5d425d336e0,
+        type: 2}
     - target: {fileID: 542565467, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
       propertyPath: characterCollider
       value: 
@@ -1951,6 +1930,18 @@ PrefabInstance:
     - target: {fileID: 89316340, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528928883, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528778428, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337071234, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}

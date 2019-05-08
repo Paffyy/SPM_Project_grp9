@@ -37,4 +37,5 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
         owner.UpdateDestination(PlayerCircle(), 0.5f);
         angle += NextAnglePoint;
     }
+
 }

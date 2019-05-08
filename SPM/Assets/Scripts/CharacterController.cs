@@ -48,7 +48,7 @@ public class CharacterController : MonoBehaviour
 
     public void MovePosition(Vector3 newPos)
     {
-
+        Debug.Log("boop");
         Vector3 direction = newPos;
         direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
         float distance = Acceleration * Time.deltaTime;

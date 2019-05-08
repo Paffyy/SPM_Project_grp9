@@ -29,32 +29,10 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
     {
         owner.NavAgent.SetDestination(owner.player.transform.position);
 
-
-        if (backOff)
-        {
-            BackOff();
-            timer -= Time.deltaTime;
-        }
-
-        if(backOff && Vector3.Distance(owner.transform.position, owner.player.transform.position) < circleDistance || timer < 0)
-        {
-            //owner.Transition<BaseEnemyCircleState>();
-            backOff = false;
-            timer = backTimer;
-            toPlayer = true;
-        }
-        if (toPlayer)
-        {
-            if(Vector3.Distance(owner.transform.position, owner.player.transform.position) > 1f)
-            {
-                owner.UpdateDestination(owner.player.transform.position, 0.1f);
-            }
-        }
-
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
         {
             Attack();
-            backOff = true;
+            owner.Transition<BaseEnemyBackOffState>();
         }
 
 
@@ -76,15 +54,6 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         Vector3 dir = (target.position - owner.transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
         owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, lookRotation, 5f);
-    }
-
-    void BackOff()
-    {
-        owner.NavAgent.updateRotation = false;
-        //owner.transform.LookAt(owner.player.transform);
-        owner.UpdateDestination(-owner.transform.forward * 10, 2f);
-        //owner.NavAgent.updateRotation = true;
-        //Debug.Log("back off");
     }
 
     private void Attack()

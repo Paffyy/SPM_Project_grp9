@@ -1704,6 +1704,7 @@ GameObject:
   - component: {fileID: 5639111063107978646}
   - component: {fileID: 5639111063107978640}
   - component: {fileID: 5639111063107978641}
+  - component: {fileID: 55778851}
   m_Layer: 14
   m_Name: Boss
   m_TagString: Enemy
@@ -1888,7 +1889,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 800
   CurrentHealth: 0
-  DamageCooldown: 0
+  DmgCoolDownTimer: 0
+  StunTimer: 0
   EnemyHealthSlider: {fileID: 3801160272676634279}
 --- !u!95 &5639111063107978640
 Animator:
@@ -1923,6 +1925,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightHand: {fileID: 3801160272257591141}
   leftHand: {fileID: 3801160271886688433}
+--- !u!114 &55778851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5639111063107978654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd4414f5436cc0458d038ba660fc230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionMask:
+    serializedVersion: 2
+    m_Bits: 19968
+  RotationSpeed: 0
+  Acceleration: 40
+  GravityForce: 30
+  StaticFriction: 0.9
+  DynamicFriction: 0.6
+  JumpDistance: 5
+  AirResistance: 0.3
+  MouseSensitivity: 3
+  skinWidth: 0.005
+  groundCheckDistance: 0.5
+  characterCollider: {fileID: 0}
 --- !u!1001 &3801160270957761148
 PrefabInstance:
   m_ObjectHideFlags: 0
