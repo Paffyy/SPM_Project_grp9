@@ -135,7 +135,10 @@ public class Sword : MonoBehaviour
     private void DealDamage(Collider item)
     {
         //testing
-        item.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+        Vector3 pushBack = (PlayerObject.transform.position - item.transform.position).normalized + (Vector3.up * 6) * 10;
+
+        item.gameObject.GetComponent<Health>().TakeDamage(Damage, pushBack, PlayerObject.transform.position);
+        //item.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
         Color c = item.GetComponent<Renderer>().material.color;
         item.GetComponent<Renderer>().material.color = Color.red;
         StartCoroutine(RemoveRedColor(item, c));

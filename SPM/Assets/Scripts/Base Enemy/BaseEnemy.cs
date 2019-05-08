@@ -39,7 +39,6 @@ public class BaseEnemy : StateMachine
 
     protected override void Awake()
     {
-
         //för debug
         MeshRen = GetComponent<MeshRenderer>();
 
@@ -50,8 +49,10 @@ public class BaseEnemy : StateMachine
         Fow = GetComponent<FieldOfView>();
         chaseDistance = Fow.viewRadius;
         controller = GetComponent<CharacterController>();
+        controller.enabled = false;
         base.Awake();
     }
+
 
     //hitOrigin vectorn används för att putta tillbaka fienden från denna vectorns riktning i förhållande till dennes position
     //public bool hit(int dmg, Vector3 hitOrigin, float pushBackDistance)

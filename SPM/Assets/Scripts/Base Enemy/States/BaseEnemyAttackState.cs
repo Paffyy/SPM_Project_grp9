@@ -27,17 +27,8 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
+        owner.NavAgent.SetDestination(owner.player.transform.position);
 
-        //if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
-        //{
-        //    owner.NavAgent.isStopped = true;
-        //    Attack();
-        //}
-        //else{
-        //    owner.NavAgent.isStopped = false;
-        //    owner.NavAgent.SetDestination(owner.player.transform.position);
-        //}
-        //owner.NavAgent.SetDestination(owner.player.transform.position);
 
         if (backOff)
         {
@@ -47,7 +38,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
         if(backOff && Vector3.Distance(owner.transform.position, owner.player.transform.position) < circleDistance || timer < 0)
         {
-            owner.Transition<BaseEnemyCircleState>();
+            //owner.Transition<BaseEnemyCircleState>();
             backOff = false;
             timer = backTimer;
             toPlayer = true;

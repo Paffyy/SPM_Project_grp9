@@ -24,9 +24,9 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
     private Vector3 PlayerCircle()
     {
         float xPos = owner.player.transform.position.x + circleDistance * Mathf.Cos(angle);
-        float yPos = owner.player.transform.position.y + circleDistance * Mathf.Sin(angle);
+        float zPos = owner.player.transform.position.z + circleDistance * Mathf.Sin(angle);
 
-        Vector3 newPos = new Vector3(xPos, yPos);
+        Vector3 newPos = new Vector3(xPos, zPos);
         return newPos;
     }
 

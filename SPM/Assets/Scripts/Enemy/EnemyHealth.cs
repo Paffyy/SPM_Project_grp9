@@ -2,41 +2,76 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : Health
 {
-    public int StartingHealth = 100;
-    public int CurrentHealth;
-    public float DamageCooldown;
-    private float currentCooldown;
+    //public float DamageCooldown;
+    //private float currentCooldown;
+    public float StunTimer;
+    private float currenTimer;
     public Slider EnemyHealthSlider;
+    private CharacterController controller;
+    private NavMeshAgent navAgent;
     // Start is called before the first frame update
     void Start()
     {
+        navAgent = GetComponent<NavMeshAgent>();
+        controller = GetComponent<CharacterController>();
         SetupHealthSlider();
+        DmgCoolDownTimer = StunTimer;
     }
 
     public void SetupHealthSlider()
     {
         CurrentHealth = StartingHealth;
         EnemyHealthSlider.maxValue = StartingHealth;
-        currentCooldown = DamageCooldown;
+        //currentCooldown = DamageCooldown;
     }
 
     // Update is called once per frame
-    void Update()
+    //void Update()
+    //{
+    //    //currentCooldown -= Time.deltaTime;
+    //}
+
+    public override void Update()
     {
-        currentCooldown -= Time.deltaTime;
+        base.Update();
+        currenTimer -= Time.deltaTime;
+        if(currenTimer < 0 && navAgent.isStopped == true)
+        {
+            navAgent.isStopped = false;
+            controller.enabled = false;
+        }
     }
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
-        if (currentCooldown > 0)
+        if (!CanTakeDamage())
             return;
         else
-            currentCooldown = DamageCooldown;
+            RestartCoolDown();
         CurrentHealth -= damage;
         EnemyHealthSlider.value = CurrentHealth;
+        if (CurrentHealth <= 0)
+            EnemyDead();
+    }
+
+    public override void TakeDamage(int damage, Vector3 pushBack, Vector3 position)
+    {
+        if (!CanTakeDamage())
+            return;
+        else
+            RestartCoolDown();
+        CurrentHealth -= damage;
+        EnemyHealthSlider.value = CurrentHealth;
+        navAgent.isStopped = true;
+
+        //controller.Velocity += pushBack;
+        controller.enabled = true;
+        controller.MovePosition(pushBack);
+
         if (CurrentHealth <= 0)
             EnemyDead();
     }

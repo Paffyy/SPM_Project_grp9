@@ -22,7 +22,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float MouseSensitivity = 3.0f;
     [SerializeField] private float skinWidth = 0.005f;
     [SerializeField] private float groundCheckDistance = 0.5f;
-    private CapsuleCollider characterCollider;
+    public CapsuleCollider characterCollider;
     private int collisionLimit = 0;
 
 
@@ -32,7 +32,7 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
 
-        characterCollider = GetComponent<CapsuleCollider>();
+        //characterCollider = GetComponent<CapsuleCollider>();
 
     }
 
@@ -130,6 +130,7 @@ public class CharacterController : MonoBehaviour
 
     public bool IsGrounded()
     {
+
         Vector3 point1 = transform.position + characterCollider.center + Vector3.up * (characterCollider.height / 2 - characterCollider.radius);
         Vector3 point2 = transform.position + characterCollider.center + Vector3.down * (characterCollider.height / 2 - characterCollider.radius);
         if (Physics.CapsuleCast(point1, point2, characterCollider.radius, Vector3.down, groundCheckDistance + skinWidth, CollisionMask))
@@ -141,6 +142,7 @@ public class CharacterController : MonoBehaviour
 
     private Vector3 GetGroundNormal()
     {
+        Debug.Log(characterCollider.center + " char collider");
         Vector3 point1 = transform.position + characterCollider.center + Vector3.up * (characterCollider.height / 2 - characterCollider.radius);
         Vector3 point2 = transform.position + characterCollider.center + Vector3.down * (characterCollider.height / 2 - characterCollider.radius);
         RaycastHit hit;
