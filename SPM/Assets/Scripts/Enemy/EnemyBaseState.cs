@@ -12,7 +12,7 @@ public class EnemyBaseState : State
 
     protected bool IsAggroed()
     {
-        if (Vector3.Distance(owner.transform.position, owner.Player.transform.position) < 20)
+        if (Vector3.Distance(owner.transform.position, owner.Player.transform.position) < 40)
         {
             return true;
         }
