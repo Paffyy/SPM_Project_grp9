@@ -38,6 +38,21 @@ public class BossFight : MonoBehaviour
         BossCanvas.SetActive(true);
         FightBorder.SetActive(true);
         Boss.Transition<BossAttackState>();
+
+        EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, BossDeath);
+    }
+
+    public void BossDeath(BaseEventInfo e)
+    {
+        DeathEventInfo death = (DeathEventInfo)e;
+
+        if(death.GameObject.name == "Boss")
+        {
+
+            //borde göra något fadeout av ui:n
+            BossCanvas.SetActive(false);
+            FightBorder.SetActive(false);
+        }
     }
 
 }

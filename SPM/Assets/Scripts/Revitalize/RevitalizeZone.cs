@@ -5,7 +5,7 @@ using UnityEngine;
 public class RevitalizeZone : MonoBehaviour
 {
     public List<GameObject> Objectives;
-    private float TransitionDelay = 0.4f;
+    public float TransitionDelay;
     private float timer;
     private bool shouldRevitalize;
     private bool hasRevitalized;
