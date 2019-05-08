@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class BossFight : MonoBehaviour
 {
@@ -52,6 +54,9 @@ public class BossFight : MonoBehaviour
             //borde göra något fadeout av ui:n
             BossCanvas.SetActive(false);
             FightBorder.SetActive(false);
+
+            //temp
+            SceneManager.LoadScene(0);
 
         }
     }
