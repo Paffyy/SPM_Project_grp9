@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989663003150398060}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -106,6 +106,7 @@ MonoBehaviour:
   MouseSensitivity: 3
   skinWidth: 0.005
   groundCheckDistance: 0.5
+  characterCollider: {fileID: 0}
 --- !u!136 &4293070087990095872
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -142,11 +143,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1989663003150398048}
     m_Modifications:
-    - target: {fileID: 920048580236380232, guid: 9c821ac261e55cc46ac7447f63c4b02c,
-        type: 3}
-      propertyPath: m_Name
-      value: Small_Fire
-      objectReference: {fileID: 0}
     - target: {fileID: 920048580236380245, guid: 9c821ac261e55cc46ac7447f63c4b02c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -201,6 +197,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920048580236380232, guid: 9c821ac261e55cc46ac7447f63c4b02c,
+        type: 3}
+      propertyPath: m_Name
+      value: Small_Fire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c821ac261e55cc46ac7447f63c4b02c, type: 3}

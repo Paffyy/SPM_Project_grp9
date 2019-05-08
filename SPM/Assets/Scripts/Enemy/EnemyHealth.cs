@@ -40,10 +40,13 @@ public class EnemyHealth : Health
     {
         base.Update();
         currenTimer -= Time.deltaTime;
-        if(currenTimer < 0 && navAgent.isStopped == true)
+        if(navAgent != null && controller != null)
         {
-            navAgent.isStopped = false;
-            controller.enabled = false;
+            if (currenTimer < 0 && navAgent.isStopped == true)
+            {
+                navAgent.isStopped = false;
+                controller.enabled = false;
+            }
         }
     }
 
@@ -67,12 +70,14 @@ public class EnemyHealth : Health
             RestartCoolDown();
         CurrentHealth -= damage;
         EnemyHealthSlider.value = CurrentHealth;
-        navAgent.isStopped = true;
+        if(navAgent != null && controller != null)
+        {
+            navAgent.isStopped = true;
 
-        //controller.Velocity += pushBack;
-        controller.enabled = true;
-        controller.MovePosition(pushBack);
-
+            //controller.Velocity += pushBack;
+            controller.enabled = true;
+            controller.MovePosition(pushBack);
+        }
         if (CurrentHealth <= 0)
             EnemyDead();
     }

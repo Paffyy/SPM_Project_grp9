@@ -18,7 +18,7 @@ public class Shield : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shieldPos = new Vector3(0f, 0.1f, 1.0f);
+        shieldPos = new Vector3(0f, 0.1f, 1.5f);
         boxCollider = GetComponentInChildren<BoxCollider>();
         CurrentHealth = ShieldHealth;
     }
