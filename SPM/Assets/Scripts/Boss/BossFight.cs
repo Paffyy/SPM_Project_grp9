@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class BossFight : MonoBehaviour
 {
@@ -39,10 +41,10 @@ public class BossFight : MonoBehaviour
         FightBorder.SetActive(true);
         Boss.Transition<BossAttackState>();
 
-        EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, BossDeath);
+        EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, OnBossDeath);
     }
 
-    public void BossDeath(BaseEventInfo e)
+    public void OnBossDeath(BaseEventInfo e)
     {
         DeathEventInfo death = (DeathEventInfo)e;
 
@@ -52,6 +54,9 @@ public class BossFight : MonoBehaviour
             //borde göra något fadeout av ui:n
             BossCanvas.SetActive(false);
             FightBorder.SetActive(false);
+
+            //temp
+            SceneManager.LoadScene(0);
 
         }
     }
