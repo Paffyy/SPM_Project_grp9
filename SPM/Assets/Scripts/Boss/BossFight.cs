@@ -41,10 +41,10 @@ public class BossFight : MonoBehaviour
         FightBorder.SetActive(true);
         Boss.Transition<BossAttackState>();
 
-        EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, BossDeath);
+        EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, OnBossDeath);
     }
 
-    public void BossDeath(BaseEventInfo e)
+    public void OnBossDeath(BaseEventInfo e)
     {
         DeathEventInfo death = (DeathEventInfo)e;
 
