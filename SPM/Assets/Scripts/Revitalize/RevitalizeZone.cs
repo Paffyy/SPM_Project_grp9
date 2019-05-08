@@ -36,7 +36,7 @@ public class RevitalizeZone : MonoBehaviour
                 RevitalizeTheZone();
                 hasRevitalized = true;
             }
-            else if (Objectives.Count == 0)
+            else if (Objectives != null && Objectives.Count == 0)
             {
                 shouldRevitalize = true;
             }
