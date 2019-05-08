@@ -6,15 +6,10 @@ using UnityEngine;
 public class BaseEnemyAttackState : BaseEnemyBaseState
 {
 
-    //[SerializeField] private float chaseDistance;
-    //[SerializeField] private float cooldown;
-    //public float PlacmentDistance;
-
     private float currentCooldown;
     private bool backOff = false;
     private bool toPlayer = false;
-    private bool circle = false;
-    private float backTimer = 2.0f;
+    private float backTimer = 5.0f;
     private float timer;
 
     private float circleDistance = 1.5f;
@@ -49,17 +44,12 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
             BackOff();
             timer -= Time.deltaTime;
         }
-        //if(timer < 0)
-        //{
-        //    backOff = false;
-        //    toPlayer = true;
-        //    timer = backTimer;
-        //}
+
         if(backOff && Vector3.Distance(owner.transform.position, owner.player.transform.position) < circleDistance || timer < 0)
         {
+            owner.Transition<BaseEnemyCircleState>();
             backOff = false;
             timer = backTimer;
-            //circle = true;
             toPlayer = true;
         }
         if (toPlayer)
@@ -69,11 +59,6 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
                 owner.UpdateDestination(owner.player.transform.position, 0.1f);
             }
         }
-        //if (circle && timer < 0)
-        //{
-        //    timer -= Time.deltaTime;
-        //    CirclePlayer();
-        //}
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
         {
@@ -109,23 +94,6 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         owner.UpdateDestination(-owner.transform.forward * 10, 2f);
         //owner.NavAgent.updateRotation = true;
         //Debug.Log("back off");
-    }
-
-
-
-    void CirclePlayer()
-    {
-        float angleDiviation = 1.5f;
-        float currentDistance = Vector3.Distance(owner.transform.position, owner.player.transform.position);
-        float currentAngle = Vector3.Angle(owner.player.transform.position, owner.transform.position);
-        float randomAgle = Random.Range(-angleDiviation, angleDiviation);
-
-        Vector3 position = owner.player.transform.forward * currentDistance;
-
-        float x = owner.player.transform.position.x + currentDistance * Mathf.Cos(currentAngle + randomAgle);
-        float y = owner.player.transform.position.y + currentDistance * Mathf.Sin(currentAngle + randomAgle);
-
-        owner.UpdateDestination(new Vector3(x, y, owner.transform.position.z), 0.1f);
     }
 
     private void Attack()
