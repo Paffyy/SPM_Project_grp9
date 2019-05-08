@@ -20,6 +20,7 @@ public class EnemyHealth : Health
         controller = GetComponent<CharacterController>();
         SetupHealthSlider();
         DmgCoolDownTimer = StunTimer;
+        EnemyHealthSlider.value = EnemyHealthSlider.maxValue;
     }
 
     public void SetupHealthSlider()
