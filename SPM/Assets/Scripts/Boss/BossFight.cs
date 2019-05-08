@@ -52,6 +52,7 @@ public class BossFight : MonoBehaviour
             //borde göra något fadeout av ui:n
             BossCanvas.SetActive(false);
             FightBorder.SetActive(false);
+
         }
     }
 
