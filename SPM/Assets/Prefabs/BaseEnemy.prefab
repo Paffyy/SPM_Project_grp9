@@ -272,13 +272,13 @@ GameObject:
   - component: {fileID: 1337071238}
   - component: {fileID: 1337071237}
   - component: {fileID: 1337071236}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1337071235
 Transform:
   m_ObjectHideFlags: 0
@@ -363,13 +363,13 @@ GameObject:
   - component: {fileID: 1528778432}
   - component: {fileID: 1528778431}
   - component: {fileID: 1528778430}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1528778429
 Transform:
   m_ObjectHideFlags: 0
@@ -454,13 +454,13 @@ GameObject:
   - component: {fileID: 1528928887}
   - component: {fileID: 1528928886}
   - component: {fileID: 1528928885}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1528928884
 Transform:
   m_ObjectHideFlags: 0
@@ -764,10 +764,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c7efa7895a41a6549a2fbff20094e608, type: 2}
   - {fileID: 11400000, guid: a88f92a56c6c9244497ab9ac170cfceb, type: 2}
   - {fileID: 11400000, guid: 1cb4586fd362ce249ab038a89a9f111f, type: 2}
+  - {fileID: 11400000, guid: 375bcd30a0be5bb46874f5d425d336e0, type: 2}
   MeshRen: {fileID: 0}
   Path: {fileID: 0}
   Damage: 2
-  PushBack: 0
   IFrameTime: 1
   IFrameCoolDown: 0
   NavAgent: {fileID: 0}
@@ -848,6 +848,7 @@ MonoBehaviour:
   MouseSensitivity: 3
   skinWidth: 0.005
   groundCheckDistance: 0.5
+  characterCollider: {fileID: 2796968206420594169}
 --- !u!114 &542565461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,8 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491e67703b4c44240a58dbda505cca3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingHealth: 100
+  StartingHealth: 200
   CurrentHealth: 0
-  DmgCoolDownTimer: 1
-  StunTimer: 0
+  DmgCoolDownTimer: 2
   EnemyHealthSlider: {fileID: 551245279}
