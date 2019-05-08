@@ -5,15 +5,16 @@ using UnityEngine;
 public class Shield : MonoBehaviour
 {
 
-    private BoxCollider boxCollider;
     public Player Player;
     public LayerMask ProjectileMask;
     public Camera playerCamera;
-    private Vector3 shieldPos;
     public float FacingOffset;
     public int ShieldHealth = 500;
     public int CurrentHealth;
     public GameObject ShieldObject;
+    private BoxCollider boxCollider;
+    private Vector3 shieldPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,30 +26,10 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //  Reflect();
-        //var direction = playerCamera.transform.forward; 
-        ////direction = Vector3.ProjectOnPlane(direction * 3.0f, new Vector3(0,-0.5f,0));
-        //transform.rotation = Quaternion.LookRotation(direction);
-        //Vector3 update = transform.rotation * shieldPos.normalized;
-        //transform.position = update * shieldPos.magnitude + Player.transform.position;
         UpdateTransformation();
         Debug.DrawRay(transform.position, playerCamera.transform.forward);
-        //var topRight = transform.position + new Vector3(boxCollider.size.x / 2, boxCollider.size.z / 2);
-        //var topLeft = transform.position +  new Vector3(-boxCollider.size.x / 2, boxCollider.size.y / 2);
-        //var botRight = transform.position + new Vector3(boxCollider.size.x / 2, -boxCollider.size.z / 2);
-        //var botLeft = transform.position - new Vector3(boxCollider.size.x / 2, boxCollider.size.z / 2);
-
-
-
-        //Debug.DrawRay(topRight, playerCamera.transform.forward);
-        //Debug.DrawRay(topLeft, playerCamera.transform.forward);
-
-        //Debug.DrawRay(botRight, playerCamera.transform.forward);
-        //Debug.DrawRay(botLeft, playerCamera.transform.forward);
 
         ExtDebug.DrawBoxCastBox(transform.position, Quaternion.Euler(0, 90, 0) * boxCollider.size / 2, transform.rotation, transform.forward, 0.5f, Color.white);
-
-        //Debug.Log(transform.position);
     }
 
     public void UpdateTransformation()
@@ -58,33 +39,6 @@ public class Shield : MonoBehaviour
         Vector3 update = transform.rotation * shieldPos.normalized;
         transform.position = update * shieldPos.magnitude + Player.transform.position;
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Projectile"))
-    //    {
-    //        Debug.Log("Träff");
-    //        other.GetComponent<Projectile>().Velocity = -other.GetComponent<Projectile>().Velocity.normalized * other.GetComponent<Projectile>().Velocity.magnitude;
-    //    }
-    //}
-
-
-    //public void Reflect()
-    //{
-    //    Debug.Log("test");
-    //    var size = Quaternion.Euler(0, 90, 0) * boxCollider.size /2 ;
-    //    RaycastHit hit;
-    //    //Debug.DrawRay(transform.position, transform.position.normalized * transform.position.magnitude);
-    //    if (Physics.BoxCast(transform.position, size, transform.forward, out hit, transform.rotation, 0.5f, ProjectileMask))
-    //    {
-    //        if (hit.collider != null)
-    //        {
-    //            Debug.Log("test2");
-    //            hit.collider.GetComponent<Projectile>().Velocity = -hit.collider.GetComponent<Projectile>().Velocity;
-    //        }
-    //    }
-    //}
-
       public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;

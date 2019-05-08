@@ -17,13 +17,12 @@ public class Sword : MonoBehaviour
     public int Damage = 50;
     public int BladeStormDamage = 20;
     public GameObject BladeStormEffect;
+    public bool IsBladeStorming;
     private float coolDownCounter;
     private bool onCooldown;
     private Vector3 swordOffset;
     private float swingValue = 70f;
-    //private bool bladeStormOnCoolDown;
     private float bladeStormCoolDown = 10.0f;
-    public bool IsBladeStorming;
     private float BladeStormTimer = 3f;
 
  
@@ -41,18 +40,7 @@ public class Sword : MonoBehaviour
             BladeStorm();
             IsBladeStorming = true;
             CoolDownManager.Instance.StartBladeStormCoolDown(bladeStormCoolDown);
-          //  bladeStormOnCoolDown = true;
         }
-        //if (bladeStormOnCoolDown && !isBladeStorming)
-        //{
-        //    bladeStormCoolDown -= Time.deltaTime;
-        //}
-        //if(bladeStormCoolDown <= 0)
-        //{
-        //    bladeStormOnCoolDown = false;
-        //    bladeStormCoolDown = 10.0f;
-
-        //}
         if (IsBladeStorming)
         {
             if (BladeStormEffect.activeInHierarchy == false)

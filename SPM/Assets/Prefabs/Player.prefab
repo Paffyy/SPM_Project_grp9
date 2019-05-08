@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7374473512219714251}
   - component: {fileID: 8890812834780987347}
-  - component: {fileID: 3473406857608170901}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -74,14 +73,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3473406857608170901
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2631581490294820184}
-  m_Enabled: 1
 --- !u!1 &2949503713932833679
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +101,7 @@ Transform:
   m_GameObject: {fileID: 2949503713932833679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.38199997, y: 0.42539716, z: 0.467}
-  m_LocalScale: {x: 6.275109, y: 3, z: 6.2751093}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 7651501562885396184}
   m_RootOrder: 3
@@ -292,7 +283,7 @@ MonoBehaviour:
   ArrowLayerMask:
     serializedVersion: 2
     m_Bits: 52224
-  RainOfArrowCount: 25
+  RainOfArrowCount: 10
   ArrowCount: 15
   ArrowCountText: {fileID: 0}
 --- !u!114 &8314908191368525051

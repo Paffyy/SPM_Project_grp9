@@ -6,12 +6,9 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "Weapon/ShieldState")]
 public class ShieldState : WeaponBaseState
 {
-
-
     public override void Enter()
     {
         owner.ShieldIcon.GetComponent<Image>().color = Color.green;
-        //Debug.Log("Shield");
         if (owner.Shield != null)
         {
             owner.Shield.GetComponent<Shield>().UpdateTransformation();
@@ -38,5 +35,4 @@ public class ShieldState : WeaponBaseState
         else if (Input.GetKeyDown(KeyCode.Alpha1))
             owner.Transition<SwordState>();
     }
-
 }
