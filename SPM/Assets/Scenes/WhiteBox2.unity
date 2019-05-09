@@ -1878,15 +1878,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.53321
       objectReference: {fileID: 0}
-    - target: {fileID: 5199647391932393264, guid: 2659046d54c82b9458b20f55249a64ba,
-        type: 3}
-      propertyPath: UIAlertText
-      value: + 20 ARROWS
-      objectReference: {fileID: 0}
     - target: {fileID: 5199647391932393265, guid: 2659046d54c82b9458b20f55249a64ba,
         type: 3}
       propertyPath: ArrowAmount
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199647391932393264, guid: 2659046d54c82b9458b20f55249a64ba,
+        type: 3}
+      propertyPath: UIAlertText
+      value: + 20 ARROWS
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2659046d54c82b9458b20f55249a64ba, type: 3}
@@ -17666,11 +17666,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8919539902246668199, guid: ba96f18e1d3c39b41b1c79a6285ca5d4,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5652868184600775487, guid: ba96f18e1d3c39b41b1c79a6285ca5d4,
         type: 3}
       propertyPath: UIAlertText
@@ -17680,6 +17675,11 @@ PrefabInstance:
         type: 3}
       propertyPath: HealthAmount
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919539902246668199, guid: ba96f18e1d3c39b41b1c79a6285ca5d4,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba96f18e1d3c39b41b1c79a6285ca5d4, type: 3}
@@ -30619,15 +30619,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.53321
       objectReference: {fileID: 0}
-    - target: {fileID: 5199647391932393264, guid: 2659046d54c82b9458b20f55249a64ba,
-        type: 3}
-      propertyPath: UIAlertText
-      value: + 20 ARROWS
-      objectReference: {fileID: 0}
     - target: {fileID: 5199647391932393265, guid: 2659046d54c82b9458b20f55249a64ba,
         type: 3}
       propertyPath: ArrowAmount
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199647391932393264, guid: 2659046d54c82b9458b20f55249a64ba,
+        type: 3}
+      propertyPath: UIAlertText
+      value: + 20 ARROWS
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2659046d54c82b9458b20f55249a64ba, type: 3}
@@ -39763,11 +39763,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8919539902246668199, guid: ba96f18e1d3c39b41b1c79a6285ca5d4,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5652868184600775487, guid: ba96f18e1d3c39b41b1c79a6285ca5d4,
         type: 3}
       propertyPath: UIAlertText
@@ -39777,6 +39772,11 @@ PrefabInstance:
         type: 3}
       propertyPath: HealthAmount
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919539902246668199, guid: ba96f18e1d3c39b41b1c79a6285ca5d4,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba96f18e1d3c39b41b1c79a6285ca5d4, type: 3}
@@ -43345,11 +43345,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2093523448594472253, guid: f6b851c321ca85d4383a91689fe3e32c,
-        type: 3}
-      propertyPath: FirstCheckPoint
-      value: 
-      objectReference: {fileID: 1171575577}
     - target: {fileID: 2093523448998684422, guid: f6b851c321ca85d4383a91689fe3e32c,
         type: 3}
       propertyPath: UICanvas
@@ -43365,6 +43360,11 @@ PrefabInstance:
       propertyPath: BowCoolDown
       value: 
       objectReference: {fileID: 62734823}
+    - target: {fileID: 2093523448594472253, guid: f6b851c321ca85d4383a91689fe3e32c,
+        type: 3}
+      propertyPath: FirstCheckPoint
+      value: 
+      objectReference: {fileID: 1171575577}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6b851c321ca85d4383a91689fe3e32c, type: 3}
 --- !u!1001 &1413596142
@@ -52515,15 +52515,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5199647391932393264, guid: 2659046d54c82b9458b20f55249a64ba,
-        type: 3}
-      propertyPath: UIAlertText
-      value: + 3 ARROWS
-      objectReference: {fileID: 0}
     - target: {fileID: 5199647391932393265, guid: 2659046d54c82b9458b20f55249a64ba,
         type: 3}
       propertyPath: ArrowAmount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199647391932393264, guid: 2659046d54c82b9458b20f55249a64ba,
+        type: 3}
+      propertyPath: UIAlertText
+      value: + 3 ARROWS
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2659046d54c82b9458b20f55249a64ba, type: 3}
@@ -56303,11 +56303,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8919539902246668199, guid: ba96f18e1d3c39b41b1c79a6285ca5d4,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5652868184600775487, guid: ba96f18e1d3c39b41b1c79a6285ca5d4,
         type: 3}
       propertyPath: UIAlertText
@@ -56317,6 +56312,11 @@ PrefabInstance:
         type: 3}
       propertyPath: HealthAmount
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919539902246668199, guid: ba96f18e1d3c39b41b1c79a6285ca5d4,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba96f18e1d3c39b41b1c79a6285ca5d4, type: 3}
@@ -56908,15 +56908,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5199647391932393264, guid: 2659046d54c82b9458b20f55249a64ba,
-        type: 3}
-      propertyPath: UIAlertText
-      value: + 2 ARROWS
-      objectReference: {fileID: 0}
     - target: {fileID: 5199647391932393265, guid: 2659046d54c82b9458b20f55249a64ba,
         type: 3}
       propertyPath: ArrowAmount
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199647391932393264, guid: 2659046d54c82b9458b20f55249a64ba,
+        type: 3}
+      propertyPath: UIAlertText
+      value: + 2 ARROWS
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2659046d54c82b9458b20f55249a64ba, type: 3}

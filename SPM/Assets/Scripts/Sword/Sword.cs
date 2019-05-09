@@ -35,7 +35,7 @@ public class Sword : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming)
+        if (Input.GetKeyDown(KeyCode.E) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming)
         {
             BladeStorm();
             IsBladeStorming = true;
