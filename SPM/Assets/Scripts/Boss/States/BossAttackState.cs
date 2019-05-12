@@ -55,14 +55,14 @@ public class BossAttackState : BossBaseState
         }
 
         //debug shit
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            owner.Transition<BossFiresOfHeavenState>();
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            owner.Transition<BossForwardShockwaveState>();
-        }
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    owner.Transition<BossFiresOfHeavenState>();
+        //}
+        //if (Input.GetKeyDown(KeyCode.G))
+        //{
+        //    owner.Transition<BossForwardShockwaveState>();
+        //}
         //debug shit
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > ShockWaveAttackDistance && timeSinceShockwave < 0)
