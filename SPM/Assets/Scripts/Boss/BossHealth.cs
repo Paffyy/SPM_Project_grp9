@@ -12,11 +12,13 @@ public class BossHealth : EnemyHealth
 
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, bool overrideCooldown = false)
     {
-
-        if (!CanTakeDamage())
-            return;
+        if (!overrideCooldown)
+        {
+            if (!CanTakeDamage())
+                return;
+        }
         Debug.Log("boop");
         RestartCoolDown();
         CurrentHealth -= damage;
