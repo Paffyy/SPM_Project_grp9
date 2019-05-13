@@ -6,19 +6,19 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     public LayerMask CollisionMask;
-    public float GravityForce;
     public GameObject ArrowObject;
     public int Damage = 25;
+
+    private int baseDamage = 25;
     private CapsuleCollider capCollider;
+    private float gravityForce;
     private int limit;
-    private float skinWidth;
     private Vector3 velocity;
     private bool hasCollided;
     private bool isTerminating;
 
     void Awake()
     {
-        skinWidth = 0.02f;
         capCollider = GetComponentInChildren<CapsuleCollider>();
     }
     void Update()
@@ -45,13 +45,21 @@ public class Arrow : MonoBehaviour
         yield return new WaitForSeconds(5);
         Destroy(ArrowObject);
     }
+    public void SetGravity(float gravForce)
+    {
+        gravityForce = gravForce;
+    }
+    public void SetDamage(float chargeTime)
+    {
+        Damage = (int)(baseDamage * chargeTime);
+    }
     public void ApplyInitialVelocity(Vector3 v)
     {
         velocity += v;
     }
     protected virtual void ApplyGravity()
     {
-        velocity += Vector3.down * GravityForce * Time.deltaTime;
+        velocity += Vector3.down * gravityForce * Time.deltaTime;
     }
 
     protected virtual void IsColliding()

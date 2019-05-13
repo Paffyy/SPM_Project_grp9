@@ -5,13 +5,22 @@ using UnityEngine;
 public class TutorialScript : MonoBehaviour
 {
     public float terminationDelay;
-    void Awake()
+    public GameObject TutorialText;
+
+    void Update()
     {
-        StartCoroutine(Terminate(terminationDelay));
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            TutorialText.SetActive(!TutorialText.activeSelf);
+            if (TutorialText.activeSelf)
+            {
+                StartCoroutine(Display(terminationDelay));
+            }
+        }
     }
-    IEnumerator Terminate(float seconds)
+    IEnumerator Display(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        Destroy(gameObject);
+        TutorialText.SetActive(false);
     }
 }
