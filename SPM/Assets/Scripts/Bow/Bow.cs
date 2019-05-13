@@ -83,10 +83,11 @@ public class Bow : MonoBehaviour
                     //{
                     //    ShootArrowWithCalculatedArc(item);
                     //}
+
                     var arrowPoints = Manager.Instance.GetRandomPointsInAreaXYZ(playerCamera.transform.forward, 50, RainOfArrowCount, 2);
                     foreach (var item in arrowPoints)
                     {
-                        ShootArrowRapidFire(item.normalized);
+                        ShootArrowShotgun(item.normalized);
                     }
                 }
                 else // default arrow shot
@@ -125,25 +126,32 @@ public class Bow : MonoBehaviour
         Vector3 direction = playerCamera.transform.forward;
         var arrow = Instantiate(Arrow, playerCamera.transform.position, Quaternion.LookRotation(direction), Parent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        arrowScript.SetGravity(GravityForce);
-        arrowScript.SetDamage(chargeTime);
-        arrowScript.ApplyInitialVelocity(direction * Speed);
+        SetArrowProperties(arrowScript, direction * Speed, chargeTime);
     }
     private void ShootArrowWithCalculatedArc(Vector3 direction)
     {
         var velocity = Manager.Instance.GetInitialVelocity2(transform.position, direction, -GravityForce);
         var arrow = Instantiate(Arrow, transform.position, Quaternion.LookRotation(playerCamera.transform.forward), Parent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        arrowScript.SetGravity(GravityForce);
-        arrowScript.ApplyInitialVelocity(velocity);
+        SetArrowProperties(arrowScript, velocity, 1);
     }
-    private void ShootArrowRapidFire(Vector3 direction)
+    private void ShootArrowShotgun(Vector3 direction)
     {
-        var arrow = Instantiate(Arrow, transform.position, Quaternion.LookRotation(playerCamera.transform.forward), Parent.transform);
+        var arrow = Instantiate(Arrow, playerCamera.transform.position, Quaternion.LookRotation(playerCamera.transform.forward), Parent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        arrowScript.SetGravity(GravityForce);
-        arrowScript.SetDamage(1);
-        arrowScript.ApplyInitialVelocity(direction * Speed);
+        SetArrowProperties(arrowScript, direction * Speed, 1);
+    }
+    private void ShootArrowExplosion(Vector3 direction)
+    {
+        var arrow = Instantiate(Arrow, playerCamera.transform.position, Quaternion.LookRotation(playerCamera.transform.forward), Parent.transform);
+        Arrow arrowScript = arrow.GetComponent<Arrow>();
+        SetArrowProperties(arrowScript, direction * Speed, 1);
+    }
+    private void SetArrowProperties(Arrow arrow , Vector3 initialVelocity, float damageMultiplier)
+    {
+        arrow.SetGravity(GravityForce);
+        arrow.SetDamage(damageMultiplier);
+        arrow.ApplyInitialVelocity(initialVelocity);
     }
     private void UpdateAreaOfEffectPosition(Vector3 targetPos)
     {
