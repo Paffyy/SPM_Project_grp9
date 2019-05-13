@@ -33,7 +33,6 @@ public class Bow : MonoBehaviour
     private Vector3 rayPos;
     private bool foundTarget;
 
-
     void Awake()
     {
         bowOffset = new Vector3(0.55f, 0.1f, 0f);
@@ -43,9 +42,9 @@ public class Bow : MonoBehaviour
     }
     void Start()
     {
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (coolDownCounter <= 0 && ArrowCount > 0)
@@ -72,15 +71,22 @@ public class Bow : MonoBehaviour
             }
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                if (isDoingSpecialAttack && AreaOfEffectObject.activeSelf) // special attack
+                //if (isDoingSpecialAttack && AreaOfEffectObject.activeSelf) // special attack
+                if (isDoingSpecialAttack) // special attack
                 {
-                    CoolDownManager.Instance.StartArrowRainCoolDown(ArrowRainCoolDown);
-                    var arrowPoints = Manager.Instance.GetRandomPointsInArea(AreaOfEffectObject.transform.position, RainOfArrowCount, 
-                        AreaOfEffectObject.GetComponent<SphereCollider>().radius * (
-                        ((AreaOfEffectObject.transform.localScale.x + AreaOfEffectObject.transform.localScale.z)/2)));
+                    // OLD ArrowRain
+                    //CoolDownManager.Instance.StartArrowRainCoolDown(ArrowRainCoolDown); 
+                    //var arrowPoints = Manager.Instance.GetRandomPointsInAreaXZ(AreaOfEffectObject.transform.position, RainOfArrowCount, 
+                    //    AreaOfEffectObject.GetComponent<SphereCollider>().radius * (
+                    //    ((AreaOfEffectObject.transform.localScale.x + AreaOfEffectObject.transform.localScale.z)/2)));
+                    //foreach (var item in arrowPoints)
+                    //{
+                    //    ShootArrowWithCalculatedArc(item);
+                    //}
+                    var arrowPoints = Manager.Instance.GetRandomPointsInAreaXYZ(playerCamera.transform.forward, 50, RainOfArrowCount, 2);
                     foreach (var item in arrowPoints)
                     {
-                        ShootArrowWithCalculatedArc(item);
+                        ShootArrowRapidFire(item.normalized);
                     }
                 }
                 else // default arrow shot
@@ -131,7 +137,14 @@ public class Bow : MonoBehaviour
         arrowScript.SetGravity(GravityForce);
         arrowScript.ApplyInitialVelocity(velocity);
     }
-
+    private void ShootArrowRapidFire(Vector3 direction)
+    {
+        var arrow = Instantiate(Arrow, transform.position, Quaternion.LookRotation(playerCamera.transform.forward), Parent.transform);
+        Arrow arrowScript = arrow.GetComponent<Arrow>();
+        arrowScript.SetGravity(GravityForce);
+        arrowScript.SetDamage(1);
+        arrowScript.ApplyInitialVelocity(direction * Speed);
+    }
     private void UpdateAreaOfEffectPosition(Vector3 targetPos)
     {
         if (targetPos != Vector3.zero)
