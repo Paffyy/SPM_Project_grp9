@@ -5,8 +5,6 @@ using UnityEngine;
 public class ArrowHitListener : MonoBehaviour
 {
     public LayerMask CollidersToHit;
-    public float AoeRadius;
-    public int AoeDamage;
     public GameObject RevParticleEffect;
     private ParticleSystem partSystem;
     private Vector3 verticalParticlesOffset = new Vector3(0, 0.2f, 0);
@@ -27,19 +25,20 @@ public class ArrowHitListener : MonoBehaviour
         var arrowEventInfo = e as ArrowHitEventInfo;
         if (arrowEventInfo != null)
         {
-            Vector3 arrowHitLocation = arrowEventInfo.Arrow.transform.position;
-            var enemiesInArea = Manager.Instance.GetAoeHit(arrowHitLocation, CollidersToHit, AoeRadius);
+            Transform arrowHitLocation = arrowEventInfo.Arrow.transform;
+            Arrow arrowScript = arrowEventInfo.Arrow.GetComponent<Arrow>();
+            var enemiesInArea = Manager.Instance.GetAoeHit(arrowHitLocation.position, CollidersToHit, arrowScript.AoeRadius);
             if (enemiesInArea.Count > 0 && !partSystem.isPlaying)
             {
-                transform.position = arrowHitLocation + verticalParticlesOffset;
+                transform.position = arrowHitLocation.position + verticalParticlesOffset;
                 partSystem.Play();
             }
             foreach (var item in enemiesInArea)
             {
                 var enemyHealth = item.GetComponent<Health>();
-                enemyHealth.TakeDamage(AoeDamage,true);
+                enemyHealth.TakeDamage(arrowScript.AoeDamage, true);
                 var revEffect = Instantiate(RevParticleEffect, item.transform.position + yOffset, item.transform.rotation);
-                Destroy(revEffect, 3f);
+                Destroy(revEffect, 2.5f);
             }
         }
     }
