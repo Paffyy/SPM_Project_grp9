@@ -7,18 +7,23 @@ using UnityEngine.UI;
 public class Bow : MonoBehaviour
 {
     // Start is called before the first frame update
+    [Header("References")] 
     public GameObject Arrow;
     public GameObject Parent;
     public GameObject Player;
     public Camera playerCamera;
+    public GameObject AreaOfEffectObject;
+    public Text ArrowCountText;
+
+    [Header("Variables")]
     public float MaxArrowDistance;
     public float GravityForce;
-    public GameObject AreaOfEffectObject;
     public LayerMask AreaOfEffectMask;
     public LayerMask ArrowLayerMask;
     public int RainOfArrowCount;
     public int ArrowCount;
-    public Text ArrowCountText;
+    public float Speed;
+
     private Camera bowCamera;
     private float chargeTime = 0.1f;
     private ThirdPersonCrosshair thirdPersonCrosshair;
@@ -52,8 +57,9 @@ public class Bow : MonoBehaviour
                 if (thirdPersonCrosshair != null)
                 {
                     thirdPersonCrosshair.ToggleCrosshair(true);
+                    Player.GetComponent<Player>().FirstPersonView = true;
                 }
-                if (chargeTime < 1.5f)
+                if (chargeTime < 2f)
                 {
                     chargeTime += Time.deltaTime;
                 }
@@ -61,14 +67,6 @@ public class Bow : MonoBehaviour
                 {
                     isDoingSpecialAttack = !isDoingSpecialAttack;
                 }
-                //if (speed < 25)
-                //{
-                //    speed += speed * Time.deltaTime;
-                //}
-                //if (angle < 0.4f)
-                //{
-                //    angle += angle * 2f * Time.deltaTime;
-                //}
                 if (isDoingSpecialAttack)
                 {
                     UpdateAreaOfEffectPosition(GetRayPosition2());
@@ -84,21 +82,20 @@ public class Bow : MonoBehaviour
                         ((AreaOfEffectObject.transform.localScale.x + AreaOfEffectObject.transform.localScale.z)/2)));
                     foreach (var item in arrowPoints)
                     {
-                        ShootArrow2(item);
+                        ShootArrowWithCalculatedArc(item);
                     }
                 }
                 else // default arrow shot
                 {
-                    ShootArrow2(GetRayPosition());
+                    ShootArrow();
                 }
                 ArrowCount--;
                 ArrowCountText.text = ArrowCount.ToString();
-                chargeTime = 0.1f;
-                //speed = 10;
-                //angle = 0.1f;
-                coolDownCounter = 0.8f;
+                chargeTime = 1f; // resets
+                coolDownCounter = 0.8f; // resets
                 if (thirdPersonCrosshair != null)
                 {
+                    Player.GetComponent<Player>().FirstPersonView = false;
                     thirdPersonCrosshair.ToggleCrosshair(false);
                 }
                 AreaOfEffectObject.SetActive(false);
@@ -108,10 +105,6 @@ public class Bow : MonoBehaviour
         else
         {
             coolDownCounter -= Time.deltaTime;
-        }
-        if (thirdPersonCrosshair != null)
-        {
-            thirdPersonCrosshair.PositionCrosshair();
         }
         UpdatePosition();
         UpdateRotation();
@@ -125,16 +118,20 @@ public class Bow : MonoBehaviour
 
     private void ShootArrow()
     {
-        //var direction = playerCamera.transform.forward;
-        //direction = Vector3.ProjectOnPlane(direction, Vector3.down);
-        //var arrow = Instantiate(Arrow, transform.position + direction, Quaternion.LookRotation(direction * speed), Parent.transform);
-        //arrow.GetComponent<Arrow>().ApplyInitialVelocity(direction.normalized * speed + new Vector3(0, angle, 0) * speed);
+        Vector3 direction = playerCamera.transform.forward;
+        var arrow = Instantiate(Arrow, playerCamera.transform.position, Quaternion.LookRotation(direction), Parent.transform);
+        Arrow arrowScript = arrow.GetComponent<Arrow>();
+        arrowScript.SetGravity(GravityForce);
+        arrowScript.SetDamage(chargeTime);
+        arrowScript.ApplyInitialVelocity(direction * Speed);
     }
-    private void ShootArrow2(Vector3 direction)
+    private void ShootArrowWithCalculatedArc(Vector3 direction)
     {
         var velocity = Manager.Instance.GetInitialVelocity2(transform.position, direction, -GravityForce);
         var arrow = Instantiate(Arrow, transform.position, Quaternion.LookRotation(playerCamera.transform.forward), Parent.transform);
-        arrow.GetComponent<Arrow>().ApplyInitialVelocity(velocity);
+        Arrow arrowScript = arrow.GetComponent<Arrow>();
+        arrowScript.SetGravity(GravityForce);
+        arrowScript.ApplyInitialVelocity(velocity);
     }
 
     private void UpdateAreaOfEffectPosition(Vector3 targetPos)
