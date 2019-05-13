@@ -17,11 +17,12 @@ public class Arrow : MonoBehaviour
     private bool hasCollided;
     private bool isTerminating;
     private bool isAoeHitEnabled;
-    void Awake()
+
+    private void Awake()
     {
         capCollider = GetComponentInChildren<CapsuleCollider>();
     }
-    void Update()
+    private void Update()
     {
         if (!hasCollided)
         {
@@ -39,7 +40,7 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    IEnumerator Terminate()
+    private IEnumerator Terminate()
     {
         isTerminating = true;
         yield return new WaitForSeconds(5);

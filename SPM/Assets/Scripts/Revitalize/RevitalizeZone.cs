@@ -17,7 +17,7 @@ public class RevitalizeZone : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
         Register();
         if (Objectives.Count == 0 )
@@ -27,7 +27,7 @@ public class RevitalizeZone : MonoBehaviour
         timer = 1;
     }
 
-    void Update()
+    private void Update()
     {
         if (!hasRevitalized)
         {
@@ -42,7 +42,7 @@ public class RevitalizeZone : MonoBehaviour
             }
         }
     }
-    void CheckIfShouldRevitalize(BaseEventInfo e)
+    private void CheckIfShouldRevitalize(BaseEventInfo e)
     {
         var deathEventInfo = e as DeathEventInfo;
         if (deathEventInfo != null)
@@ -54,7 +54,7 @@ public class RevitalizeZone : MonoBehaviour
         }
     }
 
-    void RevitalizeTheZone()
+    private void RevitalizeTheZone()
     {
         foreach (Transform child in transform)
         {

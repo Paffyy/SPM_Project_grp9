@@ -33,19 +33,25 @@ public class Bow : MonoBehaviour
     private float coolDownCounter = 0f;
     private float ArrowRainCoolDown = 10.0f;
     private bool isDoingSpecialAttack;
-    private Vector3 rayPos;
-    private bool foundTarget;
+
     [HideInInspector]
     public enum SpecialArrowType { RainOfArrows, ShotgunArrows, AoeHitArrow }
 
-    void Awake()
+    private void Awake()
     {
         bowOffset = new Vector3(0.55f, 0.1f, 0f);
         thirdPersonCrosshair = GetComponent<ThirdPersonCrosshair>();
         Parent = Instantiate<GameObject>(Parent);
         ArrowCountText.text = ArrowCount.ToString();
+        Player.GetComponent<Player>().FirstPersonView = true;
     }
-    void Update()
+    private void OnDisable()
+    {
+        Player.GetComponent<Player>().FirstPersonView = false;
+        thirdPersonCrosshair.ToggleCrosshair(false);
+        AreaOfEffectObject.SetActive(false);
+    }
+    private void Update()
     {
         if (coolDownCounter <= 0 && ArrowCount > 0)
         {
@@ -54,7 +60,6 @@ public class Bow : MonoBehaviour
                 if (thirdPersonCrosshair != null)
                 {
                     thirdPersonCrosshair.ToggleCrosshair(true);
-                    Player.GetComponent<Player>().FirstPersonView = true;
                 }
                 if (chargeTime < 2f)
                 {
@@ -101,7 +106,7 @@ public class Bow : MonoBehaviour
                 coolDownCounter = 0.8f; // resets
                 if (thirdPersonCrosshair != null)
                 {
-                    Player.GetComponent<Player>().FirstPersonView = false;
+                    //Player.GetComponent<Player>().FirstPersonView = false;
                     thirdPersonCrosshair.ToggleCrosshair(false);
                 }
                 AreaOfEffectObject.SetActive(false);

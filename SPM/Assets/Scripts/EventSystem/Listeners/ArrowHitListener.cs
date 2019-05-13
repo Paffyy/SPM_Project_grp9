@@ -7,20 +7,22 @@ public class ArrowHitListener : MonoBehaviour
     public LayerMask CollidersToHit;
     public float AoeRadius;
     public int AoeDamage;
+    public GameObject RevParticleEffect;
     private ParticleSystem partSystem;
     private Vector3 verticalParticlesOffset = new Vector3(0, 0.2f, 0);
+    private Vector3 yOffset = new Vector3(0, 1, 0);
     public void Register()
     {
         EventHandler.Instance.Register(EventHandler.EventType.ArrowAoeHitEvent, DoAoeArrowAttack);
     }
 
-    void Start()
+    private void Start()
     {
         partSystem = GetComponent<ParticleSystem>();
         Register();
     }
 
-    void DoAoeArrowAttack(BaseEventInfo e)
+    private void DoAoeArrowAttack(BaseEventInfo e)
     {
         var arrowEventInfo = e as ArrowHitEventInfo;
         if (arrowEventInfo != null)
@@ -36,8 +38,9 @@ public class ArrowHitListener : MonoBehaviour
             {
                 var enemyHealth = item.GetComponent<Health>();
                 enemyHealth.TakeDamage(AoeDamage,true);
+                var revEffect = Instantiate(RevParticleEffect, item.transform.position + yOffset, item.transform.rotation);
+                Destroy(revEffect, 3f);
             }
-            Debug.Log(enemiesInArea.Count);
         }
     }
 }
