@@ -64,7 +64,7 @@ public class Bow : MonoBehaviour
                 {
                     isDoingSpecialAttack = !isDoingSpecialAttack;
                 }
-                if (isDoingSpecialAttack)
+                if (isDoingSpecialAttack && SpecialAttack == SpecialArrowType.RainOfArrows)
                 {
                     UpdateAreaOfEffectPosition(GetRayPosition2());
                 }
@@ -178,7 +178,7 @@ public class Bow : MonoBehaviour
     }
     private void SetArrowProperties(Arrow arrow , Vector3 initialVelocity, float damageMultiplier)
     {
-        arrow.SetGravity(GravityForce * 3);
+        arrow.SetGravity(GravityForce);
         arrow.SetDamage(damageMultiplier);
         arrow.ApplyInitialVelocity(initialVelocity);
     }
