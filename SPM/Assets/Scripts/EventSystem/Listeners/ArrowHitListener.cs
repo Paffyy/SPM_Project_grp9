@@ -34,9 +34,10 @@ public class ArrowHitListener : MonoBehaviour
             }
             foreach (var item in enemiesInArea)
             {
-                var enemyHealth = item.GetComponent<EnemyHealth>();
-                enemyHealth.TakeDamage(AoeDamage);
+                var enemyHealth = item.GetComponent<Health>();
+                enemyHealth.TakeDamage(AoeDamage,true);
             }
+            Debug.Log(enemiesInArea.Count);
         }
     }
 }

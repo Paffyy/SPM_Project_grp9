@@ -50,12 +50,15 @@ public class EnemyHealth : Health
         }
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, bool overrideCooldown = false)
     {
-        if (!CanTakeDamage())
-            return;
-        else
-            RestartCoolDown();
+        if (!overrideCooldown)
+        {
+            if (!CanTakeDamage())
+                return;
+            else
+                RestartCoolDown();
+        }
         CurrentHealth -= damage;
         EnemyHealthSlider.value = CurrentHealth;
         if (CurrentHealth <= 0)

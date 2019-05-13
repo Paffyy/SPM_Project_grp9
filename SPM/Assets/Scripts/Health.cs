@@ -9,7 +9,7 @@ public abstract class Health : MonoBehaviour
     public float DmgCoolDownTimer;
     private float timer;
 
-    public abstract void TakeDamage(int damage);
+    public abstract void TakeDamage(int damage, bool overrideCooldown);
     public virtual void TakeDamage(int damage, Vector3 pushBack, Vector3 position) { }
 
 

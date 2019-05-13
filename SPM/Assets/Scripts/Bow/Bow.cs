@@ -173,7 +173,7 @@ public class Bow : MonoBehaviour
     {
         var arrow = Instantiate(Arrow, playerCamera.transform.position, Quaternion.LookRotation(playerCamera.transform.forward), Parent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        SetArrowProperties(arrowScript, direction * Speed, 1);
+        SetArrowProperties(arrowScript, direction * Speed, chargeTime);
         arrowScript.EnableAoeOnHit();
     }
     private void SetArrowProperties(Arrow arrow , Vector3 initialVelocity, float damageMultiplier)
