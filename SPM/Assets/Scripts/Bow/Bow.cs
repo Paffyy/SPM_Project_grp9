@@ -24,7 +24,6 @@ public class Bow : MonoBehaviour
     public int ArrowCount;
     public float Speed;
 
-    private Camera bowCamera;
     private float chargeTime = 0.1f;
     private ThirdPersonCrosshair thirdPersonCrosshair;
     private Vector3 bowOffset;
@@ -39,7 +38,6 @@ public class Bow : MonoBehaviour
     {
         bowOffset = new Vector3(0.55f, 0.1f, 0f);
         thirdPersonCrosshair = GetComponent<ThirdPersonCrosshair>();
-        bowCamera = GetComponentInChildren<Camera>();
         Parent = Instantiate<GameObject>(Parent);
         ArrowCountText.text = ArrowCount.ToString();
     }
@@ -161,21 +159,21 @@ public class Bow : MonoBehaviour
     {
         RaycastHit hit;
         var distance = MaxArrowDistance * (chargeTime / 1.5f);
-        Physics.Raycast(bowCamera.transform.position, bowCamera.transform.forward, out hit, distance, ArrowLayerMask);
+        Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, distance, ArrowLayerMask);
         if (hit.collider != null)
         {
             return hit.point;
         }
         else
         {
-            return bowCamera.transform.position + bowCamera.transform.forward * distance;
+            return playerCamera.transform.position + playerCamera.transform.forward * distance;
         }
     }
     private Vector3 GetRayPosition2()
     {
         RaycastHit hit;
         var distance = MaxArrowDistance;
-        Physics.Raycast(bowCamera.transform.position, bowCamera.transform.forward, out hit, distance, AreaOfEffectMask);
+        Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, distance, AreaOfEffectMask);
         if (hit.collider != null)
         {
             return hit.point;
