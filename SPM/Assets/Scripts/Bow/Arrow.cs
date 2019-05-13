@@ -16,7 +16,7 @@ public class Arrow : MonoBehaviour
     private Vector3 velocity;
     private bool hasCollided;
     private bool isTerminating;
-
+    private bool isAoeHitEnabled;
     void Awake()
     {
         capCollider = GetComponentInChildren<CapsuleCollider>();
@@ -57,6 +57,12 @@ public class Arrow : MonoBehaviour
     {
         velocity += v;
     }
+
+    public void EnableAoeOnHit()
+    {
+        isAoeHitEnabled = true;
+    }
+
     protected virtual void ApplyGravity()
     {
         velocity += Vector3.down * gravityForce * Time.deltaTime;
@@ -82,7 +88,14 @@ public class Arrow : MonoBehaviour
             if (EventHandler.Instance != null)
             {
                 EventHandler.Instance.FireEvent(EventHandler.EventType.RevitalizeEvent, new ArrowHitEventInfo(gameObject));
+                if (isAoeHitEnabled)
+                {
+                    Debug.Log("fired");
+                    EventHandler.Instance.FireEvent(EventHandler.EventType.ArrowAoeHitEvent, new ArrowHitEventInfo(gameObject));
+                }
             }
+          
         }
     }
+
 }

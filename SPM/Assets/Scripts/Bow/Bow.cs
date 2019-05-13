@@ -20,9 +20,12 @@ public class Bow : MonoBehaviour
     public float GravityForce;
     public LayerMask AreaOfEffectMask;
     public LayerMask ArrowLayerMask;
-    public int RainOfArrowCount;
     public int ArrowCount;
     public float Speed;
+
+    [Header("SpecialAttacks")]
+    public SpecialArrowType SpecialAttack;
+    public int RainOfArrowCount;
 
     private float chargeTime = 0.1f;
     private ThirdPersonCrosshair thirdPersonCrosshair;
@@ -32,6 +35,8 @@ public class Bow : MonoBehaviour
     private bool isDoingSpecialAttack;
     private Vector3 rayPos;
     private bool foundTarget;
+    [HideInInspector]
+    public enum SpecialArrowType { RainOfArrows, ShotgunArrows, AoeHitArrow }
 
     void Awake()
     {
@@ -40,11 +45,6 @@ public class Bow : MonoBehaviour
         Parent = Instantiate<GameObject>(Parent);
         ArrowCountText.text = ArrowCount.ToString();
     }
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (coolDownCounter <= 0 && ArrowCount > 0)
@@ -74,20 +74,21 @@ public class Bow : MonoBehaviour
                 //if (isDoingSpecialAttack && AreaOfEffectObject.activeSelf) // special attack
                 if (isDoingSpecialAttack) // special attack
                 {
-                    // OLD ArrowRain
-                    //CoolDownManager.Instance.StartArrowRainCoolDown(ArrowRainCoolDown); 
-                    //var arrowPoints = Manager.Instance.GetRandomPointsInAreaXZ(AreaOfEffectObject.transform.position, RainOfArrowCount, 
-                    //    AreaOfEffectObject.GetComponent<SphereCollider>().radius * (
-                    //    ((AreaOfEffectObject.transform.localScale.x + AreaOfEffectObject.transform.localScale.z)/2)));
-                    //foreach (var item in arrowPoints)
-                    //{
-                    //    ShootArrowWithCalculatedArc(item);
-                    //}
-
-                    var arrowPoints = Manager.Instance.GetRandomPointsInAreaXYZ(playerCamera.transform.forward, 50, RainOfArrowCount, 2);
-                    foreach (var item in arrowPoints)
+                    CoolDownManager.Instance.StartArrowRainCoolDown(ArrowRainCoolDown);
+                    switch (SpecialAttack)
                     {
-                        ShootArrowShotgun(item.normalized);
+                        case SpecialArrowType.RainOfArrows:
+                            ShootRainOfArrows();
+                            break;
+                        case SpecialArrowType.ShotgunArrows:
+                            ShootShotgunArrows();
+                            break;
+                        case SpecialArrowType.AoeHitArrow:
+                            ShootAoeHitArrow();
+                            break;
+                        default:
+                            ShootArrow();
+                            break;
                     }
                 }
                 else // default arrow shot
@@ -121,6 +122,28 @@ public class Bow : MonoBehaviour
         ArrowCountText.text = ArrowCount.ToString();
     }
 
+    private void ShootRainOfArrows()
+    {
+        var arrowPoints = Manager.Instance.GetRandomPointsInAreaXZ(AreaOfEffectObject.transform.position, RainOfArrowCount,
+            AreaOfEffectObject.GetComponent<SphereCollider>().radius * (
+            ((AreaOfEffectObject.transform.localScale.x + AreaOfEffectObject.transform.localScale.z) / 2)));
+        foreach (var item in arrowPoints)
+        {
+            ShootArrowWithCalculatedArc(item);
+        }
+    }
+    private void ShootShotgunArrows()
+    {
+        var arrowPoints = Manager.Instance.GetRandomPointsInAreaXYZ(playerCamera.transform.forward, 50, RainOfArrowCount, 2);
+        foreach (var item in arrowPoints)
+        {
+            ShootArrowShotgun(item.normalized);
+        }
+    }
+    private void ShootAoeHitArrow()
+    {
+        ShootArrowExplosion(playerCamera.transform.forward);
+    }
     private void ShootArrow()
     {
         Vector3 direction = playerCamera.transform.forward;
@@ -128,28 +151,34 @@ public class Bow : MonoBehaviour
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         SetArrowProperties(arrowScript, direction * Speed, chargeTime);
     }
+    // Rain of arrow 
     private void ShootArrowWithCalculatedArc(Vector3 direction)
     {
-        var velocity = Manager.Instance.GetInitialVelocity2(transform.position, direction, -GravityForce);
+        float gravityModifier = 2.4f; // Only parameter to alter time to impact
+        var velocity = Manager.Instance.GetInitialVelocity2(transform.position, direction, -GravityForce * gravityModifier);
         var arrow = Instantiate(Arrow, transform.position, Quaternion.LookRotation(playerCamera.transform.forward), Parent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         SetArrowProperties(arrowScript, velocity, 1);
+        arrowScript.SetGravity(GravityForce * gravityModifier);
     }
+    // Shoots an array of arrows where aiming
     private void ShootArrowShotgun(Vector3 direction)
     {
         var arrow = Instantiate(Arrow, playerCamera.transform.position, Quaternion.LookRotation(playerCamera.transform.forward), Parent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         SetArrowProperties(arrowScript, direction * Speed, 1);
     }
+    // aoe around the arrow hit
     private void ShootArrowExplosion(Vector3 direction)
     {
         var arrow = Instantiate(Arrow, playerCamera.transform.position, Quaternion.LookRotation(playerCamera.transform.forward), Parent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         SetArrowProperties(arrowScript, direction * Speed, 1);
+        arrowScript.EnableAoeOnHit();
     }
     private void SetArrowProperties(Arrow arrow , Vector3 initialVelocity, float damageMultiplier)
     {
-        arrow.SetGravity(GravityForce);
+        arrow.SetGravity(GravityForce * 3);
         arrow.SetDamage(damageMultiplier);
         arrow.ApplyInitialVelocity(initialVelocity);
     }
