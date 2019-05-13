@@ -56,12 +56,21 @@ public class Manager
         return velocityXZ + velocityY;
     }
 
-    public List<Vector3> GetRandomPointsInArea(Vector3 position,int count, float radius)
+    public List<Vector3> GetRandomPointsInAreaXZ(Vector3 position,int count, float radius)
     {
         List<Vector3> listOfRandomPoints = new List<Vector3>();
         for (int i = 0; i < count-1; i++)
         {
             listOfRandomPoints.Add(new Vector3(Random.Range(-radius, +radius),0, Random.Range(-radius, +radius)) + position);
+        }
+        return listOfRandomPoints;
+    }
+    public List<Vector3> GetRandomPointsInAreaXYZ(Vector3 position, int aimingOffset , int count, float radius)
+    {
+        List<Vector3> listOfRandomPoints = new List<Vector3>();
+        for (int i = 0; i < count - 1; i++)
+        {
+            listOfRandomPoints.Add(new Vector3(Random.Range(-radius, +radius), Random.Range(-radius, +radius), Random.Range(-radius, +radius)) + (position * aimingOffset));
         }
         return listOfRandomPoints;
     }
