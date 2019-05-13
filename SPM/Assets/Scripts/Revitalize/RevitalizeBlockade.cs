@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class RevitalizeBlockade : RevitalizeGeometry
 {
-    public ParticleSystem[] FireObjects;
-    public GameObject[] BlockadeObjects;
+    public Collider BlockCollider;
+    public Collider ObjectCollider;
 
     public override void Revitalize(float offset = 0)
     {
-        foreach (var fire in FireObjects)
+        GetComponent<Animator>().SetBool("Revitalized", true);
+        Destroy(gameObject, 10f);
+    }
+
+    public void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
+
+    public void DisableCollider()
+    {
+        if(BlockCollider != null && BlockCollider.enabled)
         {
-            fire.GetComponent<Fire>().PutOut();
+            BlockCollider.enabled = false;
         }
-        foreach (var blockadeObject in BlockadeObjects)
-        {
-            blockadeObject.GetComponent<Animator>().SetBool("Revitalized", true);
-        }
+        ObjectCollider.enabled = false;
     }
 }

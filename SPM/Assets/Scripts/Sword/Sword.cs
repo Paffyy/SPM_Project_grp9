@@ -15,7 +15,7 @@ public class Sword : MonoBehaviour
     public GameObject PlayerObject;
     public Camera playerCamera;
     public int Damage = 50;
-    public int BladeStormDamage = 20;
+    public int BladeStormDamage = 1;
     public GameObject BladeStormEffect;
     public bool IsBladeStorming;
     private float coolDownCounter;
@@ -92,7 +92,7 @@ public class Sword : MonoBehaviour
     { 
         while (true)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
             List<Collider> colliders = Manager.Instance.GetAoeHit(PlayerObject.transform.position, CollisionMask, 3.5f);
            // Gizmos.DrawSphere(PlayerObject.transform.position, BladeStormCollider.radius * ((transform.localScale.x + transform.localScale.z) / 2));
             foreach (Collider c in colliders)
