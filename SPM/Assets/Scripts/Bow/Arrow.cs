@@ -91,7 +91,6 @@ public class Arrow : MonoBehaviour
                 EventHandler.Instance.FireEvent(EventHandler.EventType.RevitalizeEvent, new ArrowHitEventInfo(gameObject));
                 if (isAoeHitEnabled)
                 {
-                    Debug.Log("fired");
                     EventHandler.Instance.FireEvent(EventHandler.EventType.ArrowAoeHitEvent, new ArrowHitEventInfo(gameObject));
                 }
             }
