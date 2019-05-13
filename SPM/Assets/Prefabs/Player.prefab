@@ -213,7 +213,9 @@ MonoBehaviour:
   ArrowCount: 15
   Speed: 35
   SpecialAttack: 2
-  RainOfArrowCount: 20
+  SpecialArrowCount: 25
+  SpecialAoeDamage: 50
+  SpecialAoeRadius: 6
 --- !u!114 &8314908191368525051
 MonoBehaviour:
   m_ObjectHideFlags: 0

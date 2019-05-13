@@ -25,7 +25,10 @@ public class Bow : MonoBehaviour
 
     [Header("SpecialAttacks")]
     public SpecialArrowType SpecialAttack;
-    public int RainOfArrowCount;
+    public int SpecialArrowCount;
+    public int SpecialAoeDamage;
+    public int SpecialAoeRadius;
+
 
     private float chargeTime = 0.1f;
     private ThirdPersonCrosshair thirdPersonCrosshair;
@@ -43,13 +46,16 @@ public class Bow : MonoBehaviour
         thirdPersonCrosshair = GetComponent<ThirdPersonCrosshair>();
         Parent = Instantiate<GameObject>(Parent);
         ArrowCountText.text = ArrowCount.ToString();
-        Player.GetComponent<Player>().FirstPersonView = true;
     }
     private void OnDisable()
     {
         Player.GetComponent<Player>().FirstPersonView = false;
-        thirdPersonCrosshair.ToggleCrosshair(false);
         AreaOfEffectObject.SetActive(false);
+    }
+    private void OnEnable() 
+    {
+        Player.GetComponent<Player>().FirstPersonView = true;
+        thirdPersonCrosshair.ToggleCrosshair(true);
     }
     private void Update()
     {
@@ -57,10 +63,6 @@ public class Bow : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                if (thirdPersonCrosshair != null)
-                {
-                    thirdPersonCrosshair.ToggleCrosshair(true);
-                }
                 if (chargeTime < 2f)
                 {
                     chargeTime += Time.deltaTime;
@@ -104,11 +106,6 @@ public class Bow : MonoBehaviour
                 ArrowCountText.text = ArrowCount.ToString();
                 chargeTime = 1f; // resets
                 coolDownCounter = 0.8f; // resets
-                if (thirdPersonCrosshair != null)
-                {
-                    //Player.GetComponent<Player>().FirstPersonView = false;
-                    thirdPersonCrosshair.ToggleCrosshair(false);
-                }
                 AreaOfEffectObject.SetActive(false);
                 isDoingSpecialAttack = false;
             }
@@ -129,7 +126,7 @@ public class Bow : MonoBehaviour
 
     private void ShootRainOfArrows()
     {
-        var arrowPoints = Manager.Instance.GetRandomPointsInAreaXZ(AreaOfEffectObject.transform.position, RainOfArrowCount,
+        var arrowPoints = Manager.Instance.GetRandomPointsInAreaXZ(AreaOfEffectObject.transform.position, SpecialArrowCount,
             AreaOfEffectObject.GetComponent<SphereCollider>().radius * (
             ((AreaOfEffectObject.transform.localScale.x + AreaOfEffectObject.transform.localScale.z) / 2)));
         foreach (var item in arrowPoints)
@@ -139,7 +136,7 @@ public class Bow : MonoBehaviour
     }
     private void ShootShotgunArrows()
     {
-        var arrowPoints = Manager.Instance.GetRandomPointsInAreaXYZ(playerCamera.transform.forward, 50, RainOfArrowCount, 2);
+        var arrowPoints = Manager.Instance.GetRandomPointsInAreaXYZ(playerCamera.transform.forward, 50, SpecialArrowCount, 2);
         foreach (var item in arrowPoints)
         {
             ShootArrowShotgun(item.normalized);
@@ -179,7 +176,7 @@ public class Bow : MonoBehaviour
         var arrow = Instantiate(Arrow, playerCamera.transform.position, Quaternion.LookRotation(playerCamera.transform.forward), Parent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         SetArrowProperties(arrowScript, direction * Speed, chargeTime);
-        arrowScript.EnableAoeOnHit();
+        arrowScript.EnableAoeOnHit(SpecialAoeDamage, SpecialAoeRadius);
     }
     private void SetArrowProperties(Arrow arrow , Vector3 initialVelocity, float damageMultiplier)
     {

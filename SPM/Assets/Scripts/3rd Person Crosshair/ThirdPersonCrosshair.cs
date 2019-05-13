@@ -7,21 +7,21 @@ public class ThirdPersonCrosshair : MonoBehaviour
 {
     public GameObject Crosshair;
     private bool isAiming;
-    void Start()
-    {
-        Crosshair.SetActive(false);
-    }
-    void LateUpdate()
-    {
-        if (isAiming)
-        {
-            Crosshair.SetActive(true);
-        }
-        else
-        {
-            Crosshair.SetActive(false);
-        }
-    }
+    //void Start()
+    //{
+    //    Crosshair.SetActive(false);
+    //}
+    //void LateUpdate()
+    //{
+    //    if (isAiming)
+    //    {
+    //        Crosshair.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        Crosshair.SetActive(false);
+    //    }
+    //}
 
     public void ToggleCrosshair(bool toggle)
     {

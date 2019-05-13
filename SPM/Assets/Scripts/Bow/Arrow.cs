@@ -7,7 +7,7 @@ public class Arrow : MonoBehaviour
 {
     public LayerMask CollisionMask;
     public GameObject ArrowObject;
-    public int Damage = 25;
+    public int Damage;
 
     private int baseDamage = 25;
     private CapsuleCollider capCollider;
@@ -17,6 +17,10 @@ public class Arrow : MonoBehaviour
     private bool hasCollided;
     private bool isTerminating;
     private bool isAoeHitEnabled;
+
+    [HideInInspector]
+    public int AoeDamage;
+    public int AoeRadius;
 
     private void Awake()
     {
@@ -59,9 +63,11 @@ public class Arrow : MonoBehaviour
         velocity += v;
     }
 
-    public void EnableAoeOnHit()
+    public void EnableAoeOnHit(int aoeDamage, int radius)
     {
         isAoeHitEnabled = true;
+        AoeDamage = aoeDamage;
+        AoeRadius = radius;
     }
 
     protected virtual void ApplyGravity()
