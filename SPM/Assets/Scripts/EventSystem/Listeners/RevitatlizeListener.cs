@@ -35,7 +35,7 @@ public class RevitatlizeListener : MonoBehaviour
             if (arrowHitEventInfo != null)
             {
                 var pos = arrowHitEventInfo.Arrow.transform.position;
-                if (arrowHitEventInfo.Arrow.GetComponent<Arrow>().isActiveAndEnabled)
+                if (arrowHitEventInfo.Arrow.GetComponent<Arrow>().IsAoeHitEnabled)
                 {
                     var closeRevObjects = Manager.Instance.GetAoeHit(pos, RevitalizeMask, RevitalizeRadius);
                     if (closeRevObjects != null)
