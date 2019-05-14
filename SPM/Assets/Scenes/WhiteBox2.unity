@@ -12883,6 +12883,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 666922720989924822, guid: fdec53392fa4e5e468ea172adbfc0ea1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 666922720989924827, guid: fdec53392fa4e5e468ea172adbfc0ea1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -57811,6 +57816,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small_Fire
       objectReference: {fileID: 0}
+    - target: {fileID: 920048580236380232, guid: 9c821ac261e55cc46ac7447f63c4b02c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 920048580236380245, guid: 9c821ac261e55cc46ac7447f63c4b02c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -58721,6 +58731,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3998603397027175124, guid: f6b851c321ca85d4383a91689fe3e32c,
+        type: 3}
+      propertyPath: RevitalizeMask.m_Bits
+      value: 98304
+      objectReference: {fileID: 0}
     - target: {fileID: 2093523449477133055, guid: f6b851c321ca85d4383a91689fe3e32c,
         type: 3}
       propertyPath: m_Name
@@ -88767,6 +88782,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Medium_Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 7442146085880688057, guid: f9bde8ac86b8a6a4ebacc6dfbd7202d1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7442146085880688036, guid: f9bde8ac86b8a6a4ebacc6dfbd7202d1,
         type: 3}
