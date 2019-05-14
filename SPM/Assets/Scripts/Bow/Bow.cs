@@ -51,6 +51,7 @@ public class Bow : MonoBehaviour
     {
         Player.GetComponent<Player>().FirstPersonView = false;
         AreaOfEffectObject.SetActive(false);
+        thirdPersonCrosshair.ToggleCrosshair(false);
     }
     private void OnEnable() 
     {
