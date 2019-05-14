@@ -59,18 +59,20 @@ public class RevitalizeZone : MonoBehaviour
         foreach (Transform child in transform)
         {
             var rev = child.GetComponent<RevitalizeGeometry>();
-            if (rev != null && !rev.IsRevitalized)
+            if (rev != null)
             {
-                rev.Revitalize(TransitionDelay);
+                if (!rev.IsRevitalized)
+                    rev.Revitalize(TransitionDelay);
             }
             else
             {
                 foreach (Transform grandchildren in child)
                 {
                     var rev2 = grandchildren.GetComponent<RevitalizeGeometry>();
-                    if (rev2 != null && !rev.IsRevitalized)
+                    if (rev2 != null)
                     {
-                        rev2.Revitalize(TransitionDelay);
+                        if (!rev.IsRevitalized)
+                            rev2.Revitalize(TransitionDelay);
                     }
                 }
             }
