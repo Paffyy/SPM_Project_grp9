@@ -71,7 +71,7 @@ public class RevitalizeZone : MonoBehaviour
                     var rev2 = grandchildren.GetComponent<RevitalizeGeometry>();
                     if (rev2 != null)
                     {
-                        if (!rev.IsRevitalized)
+                        if (!rev2.IsRevitalized)
                             rev2.Revitalize(TransitionDelay);
                     }
                 }
