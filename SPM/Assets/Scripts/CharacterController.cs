@@ -5,31 +5,33 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
     public LayerMask CollisionMask;
-    private Vector3 Velocity;
+    [HideInInspector]public Vector3 Velocity;
     private float RotationX;
     private float RotationY;
     private Quaternion Rotation;
     private Vector3 rotateDir;
     public float RotationSpeed;
-    //public float yAngle, zAngle;
 
-    public float Acceleration = 20.0f;
-    public float GravityForce = 15.0f;
-    public float StaticFriction = 0.1f;
-    public float DynamicFriction = 0.06f;
-    public float JumpDistance = 5.0f;
-    public float AirResistance = 0.9f;
-    public float MouseSensitivity = 3.0f;
+    public float Acceleration = 40.0f;
+    public float GravityForce = 30.0f;
+    public float StaticFriction = 0.9f;
+    public float DynamicFriction = 0.6f;
+    public float JumpDistance = 12;
+    public float AirResistance = 0.3f;
+    public float MouseSensitivity = 2.0f;
     public float skinWidth = 0.005f;
     public float groundCheckDistance = 0.5f;
-    public CapsuleCollider characterCollider;
+    private CapsuleCollider characterCollider;
     private int collisionLimit = 0;
+
+    private float turnSmoothVel = 1.0f;
+    private float turnSmoothTime = 0.07f;
 
 
     //private Vector3 Position { get { return transform.position; } set { transform.position = value; } }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 
         characterCollider = GetComponent<CapsuleCollider>();
@@ -42,13 +44,18 @@ public class CharacterController : MonoBehaviour
         IsColliding();
         Velocity *= Mathf.Pow(AirResistance, Time.deltaTime);
         transform.position += Velocity * Time.deltaTime;
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, rotateDir, Time.deltaTime * RotationSpeed, 0.0f);
-        transform.rotation = Quaternion.LookRotation(newDir);
+
+
+        //TODO rotationen funkar inte som den ska
+        //Vector3 newDir = Vector3.RotateTowards(transform.forward, rotateDir, Time.deltaTime * RotationSpeed, 0.0f);
+        //transform.rotation = Quaternion.LookRotation(newDir);
+        //float targetRotation = Mathf.Atan2(rotateDir.x, rotateDir.y) * Mathf.Rad2Deg + rotateDir.y;
+        //transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, turnSmoothTime);
+        //rotateDir = transform.eulerAngles;
     }
 
     public void MovePosition(Vector3 newPos)
     {
-        Debug.Log("boop");
         Vector3 direction = newPos;
         direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
         float distance = Acceleration * Time.deltaTime;
@@ -56,11 +63,12 @@ public class CharacterController : MonoBehaviour
 
     }
 
-    public void MoveRotation(Vector3 targetDir, float speed)
-    {
-        rotateDir = targetDir;
+    //TODO rotationen funkar inte som den ska
+    //public void MoveRotation(Vector3 targetDir, float speed)
+    //{
+    //    rotateDir = targetDir;
 
-    }
+    //}
 
     private void ApplyGravity()
     {
@@ -142,7 +150,6 @@ public class CharacterController : MonoBehaviour
 
     private Vector3 GetGroundNormal()
     {
-        Debug.Log(characterCollider.center + " char collider");
         Vector3 point1 = transform.position + characterCollider.center + Vector3.up * (characterCollider.height / 2 - characterCollider.radius);
         Vector3 point2 = transform.position + characterCollider.center + Vector3.down * (characterCollider.height / 2 - characterCollider.radius);
         RaycastHit hit;
