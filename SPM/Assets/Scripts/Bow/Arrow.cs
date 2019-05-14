@@ -16,11 +16,11 @@ public class Arrow : MonoBehaviour
     private Vector3 velocity;
     private bool hasCollided;
     private bool isTerminating;
-    private bool isAoeHitEnabled;
 
     [HideInInspector]
     public int AoeDamage;
     public int AoeRadius;
+    public bool IsAoeHitEnabled;
 
     private void Awake()
     {
@@ -65,7 +65,7 @@ public class Arrow : MonoBehaviour
 
     public void EnableAoeOnHit(int aoeDamage, int radius)
     {
-        isAoeHitEnabled = true;
+        IsAoeHitEnabled = true;
         AoeDamage = aoeDamage;
         AoeRadius = radius;
     }
@@ -87,17 +87,18 @@ public class Arrow : MonoBehaviour
                 ArrowObject.transform.SetParent(hit.collider.gameObject.transform);
                 hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
             }
-            if (hit.collider.gameObject.CompareTag("RevObject"))
-            {
-                hit.collider.gameObject.GetComponent<RevitalizeGeometry>().Revitalize();
-            }
+            //if (hit.collider.gameObject.CompareTag("RevObject"))
+            //{
+            //    hit.collider.gameObject.GetComponent<RevitalizeGeometry>().Revitalize();
+            //}
             hasCollided = true;
             if (EventHandler.Instance != null)
             {
-                EventHandler.Instance.FireEvent(EventHandler.EventType.RevitalizeEvent, new ArrowHitEventInfo(gameObject));
-                if (isAoeHitEnabled)
+                var e = new ArrowHitEventInfo(gameObject);
+                EventHandler.Instance.FireEvent(EventHandler.EventType.RevitalizeEvent, e);
+                if (IsAoeHitEnabled)
                 {
-                    EventHandler.Instance.FireEvent(EventHandler.EventType.ArrowAoeHitEvent, new ArrowHitEventInfo(gameObject));
+                    EventHandler.Instance.FireEvent(EventHandler.EventType.ArrowAoeHitEvent, e);
                 }
             }
           

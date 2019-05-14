@@ -28,17 +28,21 @@ public class ArrowHitListener : MonoBehaviour
             Transform arrowHitLocation = arrowEventInfo.Arrow.transform;
             Arrow arrowScript = arrowEventInfo.Arrow.GetComponent<Arrow>();
             var enemiesInArea = Manager.Instance.GetAoeHit(arrowHitLocation.position, CollidersToHit, arrowScript.AoeRadius);
-            if (enemiesInArea.Count > 0 && !partSystem.isPlaying)
+            if (!partSystem.isPlaying)
             {
                 transform.position = arrowHitLocation.position + verticalParticlesOffset;
                 partSystem.Play();
             }
+         
             foreach (var item in enemiesInArea)
             {
                 var enemyHealth = item.GetComponent<Health>();
-                enemyHealth.TakeDamage(arrowScript.AoeDamage, true);
-                var revEffect = Instantiate(RevParticleEffect, item.transform.position + yOffset, item.transform.rotation);
-                Destroy(revEffect, 2.5f);
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage(arrowScript.AoeDamage, true);
+                    var revEffect = Instantiate(RevParticleEffect, item.transform.position + yOffset, item.transform.rotation);
+                    Destroy(revEffect, 2.5f);
+                }
             }
         }
     }

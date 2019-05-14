@@ -35,21 +35,24 @@ public class RevitatlizeListener : MonoBehaviour
             if (arrowHitEventInfo != null)
             {
                 var pos = arrowHitEventInfo.Arrow.transform.position;
-                var closeRevObjects = Manager.Instance.GetAoeHit(pos, RevitalizeMask, RevitalizeRadius);
-                if (closeRevObjects != null)
+                if (arrowHitEventInfo.Arrow.GetComponent<Arrow>().isActiveAndEnabled)
                 {
-                    revitalizeCooldown = 1;
-                    foreach (var item in closeRevObjects)
+                    var closeRevObjects = Manager.Instance.GetAoeHit(pos, RevitalizeMask, RevitalizeRadius);
+                    if (closeRevObjects != null)
                     {
-                        var revScript = item.GetComponent<RevitalizeGeometry>();
-                        var distanceMod = Vector3.Distance(pos, item.transform.position) / distanceModifier;
-                        if (revScript.IsRevitalized)
+                        revitalizeCooldown = 1;
+                        foreach (var item in closeRevObjects)
                         {
-                            //revScript.DullMaterial(distanceMod);
-                        }
-                        else
-                        {
-                            revScript.Revitalize(distanceMod);
+                            var revScript = item.GetComponent<RevitalizeGeometry>();
+                            var distanceMod = Vector3.Distance(pos, item.transform.position) / distanceModifier;
+                            if (revScript.IsRevitalized)
+                            {
+                                //revScript.DullMaterial(distanceMod);
+                            }
+                            else
+                            {
+                                revScript.Revitalize(distanceMod);
+                            }
                         }
                     }
                 }
