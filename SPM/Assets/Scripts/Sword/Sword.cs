@@ -24,8 +24,9 @@ public class Sword : MonoBehaviour
     private float swingValue = 70f;
     private float bladeStormCoolDown = 10.0f;
     private float BladeStormTimer = 3f;
+    public Animator anim;
 
- 
+
 
     void Start()
     {
@@ -67,6 +68,7 @@ public class Sword : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
+                    
                     coolDownCounter = CoolDownValue;
                     CheckCollision();
                 }
@@ -125,6 +127,7 @@ public class Sword : MonoBehaviour
 
     void CheckCollision()
     {
+        anim.SetTrigger("SwordAttack");
         var enemyInRange = Manager.Instance.GetFrontConeHit(playerCamera.transform.forward, PlayerObject.transform, CollisionMask, Radius, Angle);
         foreach (var item in enemyInRange)
         {
@@ -135,9 +138,10 @@ public class Sword : MonoBehaviour
     private void DealDamage(Collider item)
     {
         //testing
-        Vector3 pushBack = (PlayerObject.transform.position - item.transform.position).normalized + (Vector3.up * 6) * 10;
-        //item.gameObject.GetComponent<Health>().TakeDamage(Damage, pushBack, PlayerObject.transform.position);
-        item.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+        Vector3 pushBack = ((item.gameObject.transform.position - PlayerObject.transform.position).normalized + Vector3.up * 4) * 5;
+        item.gameObject.GetComponent<Health>().TakeDamage(Damage, pushBack, PlayerObject.transform.position);
+
+        //item.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
 
         Color c = item.GetComponent<Renderer>().material.color;
         item.GetComponent<Renderer>().material.color = Color.red;

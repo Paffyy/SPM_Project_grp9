@@ -7,12 +7,6 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 {
 
     private float currentCooldown;
-    private bool backOff = false;
-    private bool toPlayer = false;
-    private float backTimer = 5.0f;
-    private float timer;
-
-    private float circleDistance = 1.5f;
 
     public override void Enter()
     {
@@ -21,7 +15,6 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         owner.MeshRen.material.color = Color.red;
         currentCooldown = cooldown;
         owner.currectState = this;
-        timer = 0;
         //hitta hur många andra fiender som är i AttackState
     }
 

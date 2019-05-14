@@ -9,7 +9,7 @@ public class EnemyHealth : Health
     //public float DamageCooldown;
     //private float currentCooldown;
     private float StunTimer;
-    private float currenTimer;
+    private float navMeshAgentOffTime;
     public Slider EnemyHealthSlider;
     private CharacterController controller;
     private NavMeshAgent navAgent;
@@ -27,24 +27,18 @@ public class EnemyHealth : Health
     {
         CurrentHealth = StartingHealth;
         EnemyHealthSlider.maxValue = StartingHealth;
-        //currentCooldown = DamageCooldown;
     }
-
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    //currentCooldown -= Time.deltaTime;
-    //}
 
     public override void Update()
     {
         base.Update();
-        currenTimer -= Time.deltaTime;
+        navMeshAgentOffTime += Time.deltaTime;
         if(navAgent != null && controller != null)
         {
-            if (currenTimer < 0 && navAgent.isStopped == true)
+            //måste vänta en stund för att kolla om isGrounded för annars kommer inte fienden upp från marken
+            if (navAgent.enabled == false && navMeshAgentOffTime > 0.1f && controller.IsGrounded())
             {
-                navAgent.isStopped = false;
+                navAgent.enabled = true;
                 controller.enabled = false;
             }
         }
@@ -75,12 +69,14 @@ public class EnemyHealth : Health
         EnemyHealthSlider.value = CurrentHealth;
         if(navAgent != null && controller != null)
         {
-            navAgent.isStopped = true;
-
-            //controller.Velocity += pushBack;
-            controller.enabled = true;
-            controller.MovePosition(pushBack);
+            TakeDamage(damage);
+            Debug.Log("Fiende \"" + gameObject.name + "\" hade ingen controller men någon försökte göra pushback på den");
         }
+            navAgent.enabled = false;
+            controller.enabled = true;
+            //controller.MovePosition(pushBack);
+            controller.Velocity += pushBack;
+            navMeshAgentOffTime = 0.0f;
         if (CurrentHealth <= 0)
             EnemyDead();
     }
