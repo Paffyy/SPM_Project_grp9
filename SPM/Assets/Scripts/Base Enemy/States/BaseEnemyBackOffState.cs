@@ -25,7 +25,7 @@ public class BaseEnemyBackOffState : BaseEnemyBaseState
         //Quaternion direction = (owner.player.transform.position - owner.transform.position).normalized;
         //owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, owner.player.transform.position, Time.deltaTime * 10);
         owner.transform.LookAt(owner.transform.position);
-        owner.UpdateDestination(owner.player.transform.position - owner.transform.forward * Speed, 2f);
+        owner.UpdateDestination(owner.player.transform.position - owner.transform.forward * Speed);
         if(Vector3.Distance(owner.player.transform.position, owner.transform.position) > MaxDistance)
         {
             owner.Transition<BaseEnemyCircleState>();
