@@ -63566,20 +63566,20 @@ PrefabInstance:
       propertyPath: HealthSlider
       value: 
       objectReference: {fileID: 62734824}
-    - target: {fileID: 5421823845990970223, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: ArrowCountText
-      value: 
-      objectReference: {fileID: 62734827}
-    - target: {fileID: 1022608877, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6453448438386392476, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1022608877, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421823845990970223, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: ArrowCountText
+      value: 
+      objectReference: {fileID: 62734827}
     - target: {fileID: 281200835009377691, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_Enabled
