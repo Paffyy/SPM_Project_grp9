@@ -15,6 +15,7 @@ public class RevitalizeFire : RevitalizeGeometry
         //}
         GetComponent<Animator>().SetBool("Revitalized", true);
         GetComponent<AreaOfEffect>().enabled = false;
+        IsRevitalized = true;
         Destroy(gameObject, 3f);
     }
 }

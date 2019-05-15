@@ -20,6 +20,7 @@ public class RevitalizeBlockade : RevitalizeGeometry
         mat.EnableKeyword("_ALPHAPREMULTIPLY_ON");
         mat.renderQueue = 3000;
         GetComponent<Animator>().SetBool("Revitalized", true);
+        IsRevitalized = true;
         Destroy(gameObject, 10f);
     }
 
