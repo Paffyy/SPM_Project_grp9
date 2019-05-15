@@ -34,7 +34,7 @@ public class Shield : MonoBehaviour
 
     public void UpdateTransformation()
     {
-        var direction = playerCamera.transform.forward;
+        var direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
         transform.rotation = Quaternion.LookRotation(direction);
         Vector3 update = transform.rotation * shieldPos.normalized;
         transform.position = update * shieldPos.magnitude + Player.transform.position;
