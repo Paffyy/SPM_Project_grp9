@@ -2,13 +2,13 @@
 {
     Properties
     {
-        _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
-		//_Position ("Position", Vector) = (0,0,0,0)
-		//_Radius ("Radius", Range(0,100)) = 0
-		//_Falloff("Falloff", Range(0,100)) = 0
+
+		_RevitalizeColor ("RevColor", Color) = (1,1,1,1)
+        _RevitalizeTexture ("RevAlbedo (RGB)", 2D) = "white" {}
+		_ScorchedColor ("ScorchedColor", Color) = (1,1,1,1)
+        _ScorchedTexture ("ScorchedAlbedo (RGB)", 2D) = "white" {}
     }
     SubShader
     {
@@ -22,17 +22,18 @@
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
 
-        sampler2D _MainTex;
-
         struct Input
         {
-            float2 uv_MainTex;
+			float2 uv_ScorchedTexture;
+            float2 uv_RevitalizeTexture;
 			float3 worldPos;
         };
-
+		sampler2D _ScorchedTexture;
+		fixed4 _ScorchedColor;
+		sampler2D _RevitalizeTexture;
+		fixed4 _RevitalizeColor;
         half _Glossiness;
         half _Metallic;
-        fixed4 _Color;
 		
 		//custom
 		uniform float4 _Position;
@@ -50,21 +51,18 @@
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-
-			//grayScale
-			float grayScale = (c.r + c.g + c.b) * 0.333;
-			fixed3 gray = fixed3(grayScale, grayScale, grayScale);
+            fixed4 revColor = tex2D (_RevitalizeTexture, IN.uv_RevitalizeTexture) * _RevitalizeColor;
+            fixed4 scorchedColor = tex2D (_ScorchedTexture, IN.uv_ScorchedTexture) * _ScorchedColor;
 
 			half d = distance(_Position, IN.worldPos);
 			half sum = saturate((d - _Radius) / - _Falloff);
-			fixed4 lerpColor = lerp(fixed4(gray,1),c,sum);
+			fixed4 lerpColor = lerp(fixed4(scorchedColor),revColor,sum);
 
             o.Albedo = lerpColor.rgb;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = c.a;
+            //o.Alpha = c.a;
         }
         ENDCG
     }
