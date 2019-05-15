@@ -24,13 +24,12 @@ public class Sword : MonoBehaviour
     private float swingValue = 70f;
     private float bladeStormCoolDown = 10.0f;
     private float BladeStormTimer = 3f;
-    public Animator anim;
-
-
+    public Animator Anim;
+    public ParticleSystem Trails;
 
     void Start()
     {
-        swordOffset = new Vector3(0.5f, 0, 0f);
+        swordOffset = new Vector3(0.5f, 0.2f, 0.55f);
     }
 
     // Update is called once per frame
@@ -70,7 +69,7 @@ public class Sword : MonoBehaviour
                 {
                     
                     coolDownCounter = CoolDownValue;
-                    CheckCollision();
+                    Attack();
                 }
                 UpdateRotation();
             }
@@ -108,6 +107,25 @@ public class Sword : MonoBehaviour
         }
     }
 
+    public void GoToIdle()
+    {
+        Anim.SetBool("Attack", false);
+    }
+
+    public void SpawnTrail()
+    {
+        var em = Trails.emission;
+        em.enabled = true;
+        Debug.Log("Start trails");
+    }
+
+    public void StopTrail()
+    {
+        var em = Trails.emission;
+        em.enabled = false;
+        Debug.Log("Stop trails");
+    }
+
     private void BladeStorm()
     {
         StartCoroutine(InflictBladeStormDamage());
@@ -116,7 +134,8 @@ public class Sword : MonoBehaviour
     private void UpdateRotation(float swing = 0)
     {
         var direction = playerCamera.transform.forward;
-        transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
+      //  transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
+        transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-15, 90, 0);
     }
 
     private void UpdatePosition()
@@ -125,9 +144,13 @@ public class Sword : MonoBehaviour
         transform.position = update * swordOffset.magnitude + PlayerObject.transform.position;
     }
 
+    void Attack()
+    {
+        Anim.SetBool("Attack", true);
+    }
+
     void CheckCollision()
     {
-        anim.SetTrigger("SwordAttack");
         var enemyInRange = Manager.Instance.GetFrontConeHit(playerCamera.transform.forward, PlayerObject.transform, CollisionMask, Radius, Angle);
         foreach (var item in enemyInRange)
         {
