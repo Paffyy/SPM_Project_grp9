@@ -15,7 +15,7 @@ public class Sword : MonoBehaviour
     public GameObject PlayerObject;
     public Camera playerCamera;
     public int Damage = 50;
-    public int BladeStormDamage = 1;
+    public int BladeStormDamage = 5;
     public GameObject BladeStormEffect;
     public bool IsBladeStorming;
     private float coolDownCounter;
@@ -100,8 +100,7 @@ public class Sword : MonoBehaviour
             {
                 if (c.gameObject.CompareTag("Enemy"))
                 {
-                    Debug.Log("Hit");
-                    c.gameObject.GetComponent<EnemyHealth>().TakeDamage(BladeStormDamage);
+                    c.gameObject.GetComponent<EnemyHealth>().TakeDamage(BladeStormDamage, true);
                 }
             }
         }
