@@ -308,21 +308,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Arrow: {fileID: 1167609288385800612, guid: db29058702a81ea4587d597535503c87, type: 3}
-  Parent: {fileID: 1619492876517980935, guid: 35cffac5c5d941d419afdc31fe36a882, type: 3}
   Player: {fileID: 7651501562885396188}
-  playerCamera: {fileID: 7651501562274134278}
-  AreaOfEffectObject: {fileID: 2949503713932833679}
+  PlayerCamera: {fileID: 7651501562274134278}
   ArrowCountText: {fileID: 0}
-  MaxArrowDistance: 40
   GravityForce: 5
-  AreaOfEffectMask:
+  ArrowHitMask:
     serializedVersion: 2
-    m_Bits: 52224
-  ArrowLayerMask:
-    serializedVersion: 2
-    m_Bits: 52224
+    m_Bits: 50176
   ArrowCount: 15
-  Speed: 35
+  ArrowSpeed: 35
   SpecialAttack: 2
   SpecialArrowCount: 25
   SpecialAoeDamage: 50
