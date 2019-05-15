@@ -1,14 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RevitalizeZone : MonoBehaviour
 {
-    public List<GameObject> Objectives;
-    public float TransitionDelay;
-    private float timer;
+    [SerializeField]
+    private List<GameObject> objectives;
+
     private bool shouldRevitalize;
     private bool hasRevitalized;
+    private float transitionDelay = 0.5f;
+    private List<RevitalizeGeometry> revitalizeObjects;
     public void Register()
     {
         if (EventHandler.Instance != null)
@@ -20,11 +23,33 @@ public class RevitalizeZone : MonoBehaviour
     private void Start()
     {
         Register();
-        if (Objectives.Count == 0 )
+        if (objectives.Count == 0 )
         {
             hasRevitalized = true; // if objectives count == 0, don't revitalize immediately;
         }
-        timer = 1;
+        revitalizeObjects = GetRevitalizeObjects();
+    }
+
+    private List<RevitalizeGeometry> GetRevitalizeObjects()
+    {
+        List<RevitalizeGeometry> revObjects = new List<RevitalizeGeometry>();
+        foreach (Transform child in transform)
+        {
+            RevitalizeGeometry rev = child.GetComponent<RevitalizeGeometry>();
+            if (rev != null)
+            {
+                revObjects.Add(rev);
+            }
+            foreach (Transform grandchildren in child)
+            {
+                var rev2 = grandchildren.GetComponent<RevitalizeGeometry>();
+                if (rev2 != null)
+                {
+                    revObjects.Add(rev2);
+                }
+            }
+        }
+        return revObjects;
     }
 
     private void Update()
@@ -36,7 +61,7 @@ public class RevitalizeZone : MonoBehaviour
                 RevitalizeTheZone();
                 hasRevitalized = true;
             }
-            else if (Objectives != null && Objectives.Count == 0)
+            else if (objectives != null && objectives.Count == 0)
             {
                 shouldRevitalize = true;
             }
@@ -47,34 +72,20 @@ public class RevitalizeZone : MonoBehaviour
         var deathEventInfo = e as DeathEventInfo;
         if (deathEventInfo != null)
         {
-            if (Objectives.Contains(deathEventInfo.GameObject))
+            if (objectives.Contains(deathEventInfo.GameObject))
             {
-                Objectives.Remove(deathEventInfo.GameObject);
+                objectives.Remove(deathEventInfo.GameObject);
             }
         }
     }
 
     private void RevitalizeTheZone()
     {
-        foreach (Transform child in transform)
+        foreach (var item in revitalizeObjects)
         {
-            var rev = child.GetComponent<RevitalizeGeometry>();
-            if (rev != null)
+            if (!item.IsRevitalized)
             {
-                if (!rev.IsRevitalized)
-                    rev.Revitalize(TransitionDelay);
-            }
-            else
-            {
-                foreach (Transform grandchildren in child)
-                {
-                    var rev2 = grandchildren.GetComponent<RevitalizeGeometry>();
-                    if (rev2 != null)
-                    {
-                        if (!rev2.IsRevitalized)
-                            rev2.Revitalize(TransitionDelay);
-                    }
-                }
+                item.Revitalize(transitionDelay);
             }
         }
     }
