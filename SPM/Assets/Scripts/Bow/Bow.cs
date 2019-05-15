@@ -38,13 +38,13 @@ public class Bow : MonoBehaviour
     private int SpecialAoeRadius;
 
     private GameObject arrowsParent;
-    private float chargeTime = 0.1f;
+    private float chargeTime;
     private ThirdPersonCrosshair crosshair;
     private Vector3 bowOffset;
     private float coolDownCounter = 0f;
     private float ArrowRainCoolDown = 10.0f;
     private bool isDoingSpecialAttack;
-
+    private Player playerScript;
     [HideInInspector]
     public enum SpecialArrowType { RainOfArrows, ShotgunArrows, AoeHitArrow }
 
@@ -52,19 +52,21 @@ public class Bow : MonoBehaviour
     {
         bowOffset = new Vector3(0.55f, 0.1f, 0f);
         crosshair = GetComponent<ThirdPersonCrosshair>();
-        arrowsParent = Instantiate<GameObject>(new GameObject());
+        arrowsParent = new GameObject("ArrowContainer");
         ArrowCountText.text = ArrowCount.ToString();
+        playerScript = Player.GetComponent<Player>();
     }
     private void OnDisable()
     {
-        Player.GetComponent<Player>().FirstPersonView = false;
-        crosshair.ToggleCrosshair(false);
+        ToggleCrosshair(false);
     }
-    private void OnEnable() 
+
+    private void ToggleCrosshair(bool toggle)
     {
-        Player.GetComponent<Player>().FirstPersonView = true;
-        crosshair.ToggleCrosshair(true);
+        playerScript.FirstPersonView = toggle;
+        crosshair.ToggleCrosshair(toggle);
     }
+
     private void Update()
     {
         if (coolDownCounter <= 0 && ArrowCount > 0)
@@ -79,6 +81,7 @@ public class Bow : MonoBehaviour
                 {
                     chargeTime += Time.deltaTime;
                 }
+                ToggleCrosshair(true);
             }
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
@@ -107,9 +110,7 @@ public class Bow : MonoBehaviour
                 }
                 ArrowCount--;
                 ArrowCountText.text = ArrowCount.ToString();
-                chargeTime = 1f;
-                coolDownCounter = 0.8f;
-                isDoingSpecialAttack = false;
+                ResetBow();
             }
         }
         else
@@ -118,6 +119,14 @@ public class Bow : MonoBehaviour
         }
         UpdatePosition();
         UpdateRotation();
+    }
+
+    private void ResetBow()
+    {
+        chargeTime = 1f;
+        coolDownCounter = 0.8f;
+        isDoingSpecialAttack = false;
+        ToggleCrosshair(false);
     }
 
     public void AddArrows(int arrows)
