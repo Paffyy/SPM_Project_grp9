@@ -32,22 +32,22 @@ public class BossBaseState : State
     public override void Initialize(StateMachine owner)
     {
         this.owner = (Boss)owner;
-        chaseDistance = this.owner.chaseDistance;
-        cooldown = this.owner.cooldown;
-        attackDistance = this.owner.attackDistance;
-        lostTargetDistance = this.owner.lostTargetDistance;
-        moveSpeed = this.owner.moveSpeed;
-        hearRadius = this.owner.hearRadius;
-        waitAtPatrolPoints = this.owner.waitAtPatrolPoints;
-        //måste vara högre än navAgent stopping distance
-        PlacmentDistance = this.owner.AttackPlacmentDistance;
+        //chaseDistance = this.owner.chaseDistance;
+        //cooldown = this.owner.cooldown;
+        //attackDistance = this.owner.attackDistance;
+        //lostTargetDistance = this.owner.lostTargetDistance;
+        //moveSpeed = this.owner.moveSpeed;
+        //hearRadius = this.owner.hearRadius;
+        //waitAtPatrolPoints = this.owner.waitAtPatrolPoints;
+        ////måste vara högre än navAgent stopping distance
+        //PlacmentDistance = this.owner.AttackPlacmentDistance;
     }
 
     public override void HandleUpdate()
     {
         base.HandleUpdate();
 
-        owner.IFrameCoolDown -= Time.deltaTime;
+        //owner.IFrameCoolDown -= Time.deltaTime;
 
     }
 

@@ -47,7 +47,7 @@ public class BaseEnemyBaseState : State
     {
         base.HandleUpdate();
 
-        owner.IFrameCoolDown -= Time.deltaTime;
+        //owner.IFrameCoolDown -= Time.deltaTime;
 
     }
 

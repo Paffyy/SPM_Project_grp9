@@ -60,7 +60,8 @@ public class PlayerHealth : MonoBehaviour
             if (dotProduct > shield.FacingOffset) // shieldblocked
             {
                 shield.TakeDamage(damage);
-                player.Velocity += pushBack;
+                //skölden tar bort 50% av pushBack effekten
+                player.Velocity += pushBack * 0.5f;
                 return;
             }
         }

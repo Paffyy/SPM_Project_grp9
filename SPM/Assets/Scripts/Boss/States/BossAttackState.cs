@@ -40,7 +40,7 @@ public class BossAttackState : BossBaseState
     public override void HandleUpdate()
     {
         timeSinceShockwave -= Time.deltaTime;
-        owner.UpdateDestination(owner.player.transform.position, 0.5f);
+        owner.UpdateDestination(owner.player.transform.position);
 
         //tittar på spelaren
         LookAtTarget(owner.player.transform);
