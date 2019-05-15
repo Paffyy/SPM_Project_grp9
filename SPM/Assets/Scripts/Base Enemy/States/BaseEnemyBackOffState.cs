@@ -27,15 +27,17 @@ public class BaseEnemyBackOffState : BaseEnemyBaseState
         owner.transform.LookAt(owner.transform.position);
         owner.UpdateDestination(owner.player.transform.position - owner.transform.forward * Speed, 2f);
         if(Vector3.Distance(owner.player.transform.position, owner.transform.position) > MaxDistance)
-            owner.Transition<BaseEnemyAttackState>();
-            //owner.Transition<BaseEnemyCircleState>();
+        {
+            owner.Transition<BaseEnemyCircleState>();
+            //owner.Transition<BaseEnemyAttackState>();
+        }
     }
 
     private IEnumerator BackOff()
     {
         yield return new WaitForSeconds(BackTime);
-        owner.Transition<BaseEnemyAttackState>();
-        //owner.Transition<BaseEnemyCircleState>();
+        //owner.Transition<BaseEnemyAttackState>();
+        owner.Transition<BaseEnemyCircleState>();
     }
 
     public override void Exit()
