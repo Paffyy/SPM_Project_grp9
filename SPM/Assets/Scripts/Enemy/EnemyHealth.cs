@@ -71,11 +71,15 @@ public class EnemyHealth : Health
         {
             TakeDamage(damage);
             Debug.Log("Fiende \"" + gameObject.name + "\" hade ingen controller men någon försökte göra pushback på den");
-        }
             navAgent.enabled = false;
             controller.enabled = true;
             //controller.MovePosition(pushBack);
             controller.Velocity += pushBack;
+        }
+            //navAgent.enabled = false;
+            //controller.enabled = true;
+            ////controller.MovePosition(pushBack);
+            //controller.Velocity += pushBack;
             navMeshAgentOffTime = 0.0f;
         if (CurrentHealth <= 0)
             EnemyDead();
