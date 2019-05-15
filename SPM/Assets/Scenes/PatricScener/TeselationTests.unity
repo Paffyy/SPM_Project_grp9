@@ -355,8 +355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c570a228f6109274f8d9d190bc11d441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brushSize: 73
-  brushIntensity: 10
+  brushSize: 34
+  brushIntensity: 3
   shader: {fileID: 4800000, guid: 174ccaeb58da1d3458d8c8efe85726fe, type: 3}
   revitalizeObject: {fileID: 2132658455}
 --- !u!1 &2132658455
@@ -368,7 +368,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2132658456}
-  - component: {fileID: 2132658457}
   m_Layer: 0
   m_Name: RevitalizePoint
   m_TagString: Untagged
@@ -390,19 +389,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2132658457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132658455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c570a228f6109274f8d9d190bc11d441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brushSize: 81
-  brushIntensity: 4
-  shader: {fileID: 4800000, guid: 174ccaeb58da1d3458d8c8efe85726fe, type: 3}
-  revitalizeObject: {fileID: 2132658455}
