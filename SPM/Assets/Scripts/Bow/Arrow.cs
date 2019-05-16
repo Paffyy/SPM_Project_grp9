@@ -6,7 +6,6 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     public LayerMask CollisionMask;
-    public GameObject ArrowObject;
     public int Damage;
 
     private int baseDamage = 25;
@@ -48,7 +47,7 @@ public class Arrow : MonoBehaviour
     {
         isTerminating = true;
         yield return new WaitForSeconds(5);
-        Destroy(ArrowObject);
+        Destroy(gameObject);
     }
     public void SetGravity(float gravForce)
     {
@@ -86,8 +85,8 @@ public class Arrow : MonoBehaviour
             {
                 //TODO fixa
                 //transform.forward är inte den riktningen som pilen färdas i
-                Vector3 pushBack = (ArrowObject.transform.forward - hit.transform.position).normalized * 2 + (Vector3.up * 2) * 3;
-                ArrowObject.transform.SetParent(hit.collider.gameObject.transform);
+                Vector3 pushBack = gameObject.transform.forward * 2 + (Vector3.up * 2) * 3;
+                gameObject.transform.SetParent(hit.collider.gameObject.transform);
                 hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage, pushBack, Vector3.zero);
             }
             //if (hit.collider.gameObject.CompareTag("RevObject"))
