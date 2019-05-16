@@ -23,7 +23,7 @@ public class BowAimState : WeaponBaseState
             owner.BowIcon.GetComponent<Image>().color = Color.white;
             owner.Transition<SwordState>();
         }
-        if (Input.GetKeyUp(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
+        if (Input.GetKeyDown(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
         {
             owner.Transition<BowState>();
         }
