@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c570a228f6109274f8d9d190bc11d441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brushSize: 1
+  brushSize: 954
   brushIntensity: 1
   shader: {fileID: 4800000, guid: 174ccaeb58da1d3458d8c8efe85726fe, type: 3}
   layerMask:
@@ -562,5 +562,20 @@ PrefabInstance:
       propertyPath: ArrowCountText
       value: 
       objectReference: {fileID: 1691422049}
+    - target: {fileID: 4109160641314828011, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196250674778059619, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: ArrowCountText
+      value: 
+      objectReference: {fileID: 1691422049}
+    - target: {fileID: 6573053008636740957, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
