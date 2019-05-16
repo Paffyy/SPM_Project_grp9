@@ -6,6 +6,7 @@ public class WeaponBaseState : State
 {
     protected Weapon owner;
 
+
     public override void Enter() { }
     public override void HandleUpdate() { }
     public override void Initialize(StateMachine owner) {

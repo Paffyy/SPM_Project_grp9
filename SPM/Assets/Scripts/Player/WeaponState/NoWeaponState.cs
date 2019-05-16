@@ -17,8 +17,8 @@ public class NoWeaponState : WeaponBaseState
             owner.Transition<SwordState>();
         else if (Input.GetKeyDown(KeyCode.Alpha2))
             owner.Transition<BowState>();
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-            owner.Transition<ShieldState>();
+        //else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //    owner.Transition<ShieldState>();
 
         // lägg till kommandon för att växla till andra vapen
     }

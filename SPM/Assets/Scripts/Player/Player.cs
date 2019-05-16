@@ -6,9 +6,10 @@ public class Player : StateMachine
 {
 
     public LayerMask CollisionMask;
-    [HideInInspector] public Vector3 Velocity;
+     public Vector3 Velocity;
     [HideInInspector] public float RotationX;
     [HideInInspector] public float RotationY;
+
     public float yAngle, zAngle;
     //public GameObject Shield;
     public bool FirstPersonView = false;

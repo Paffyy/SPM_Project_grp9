@@ -9,9 +9,11 @@ public class KeybindManager
         // Declare here (probably move to keybinds menu l8er)
         SpecialAttack = new Keybind(KeyCode.E, "Perform a special attack with equiped weapon");
         ShootAndAttack = new Keybind(KeyCode.Mouse0, "Perform a regular attack with equiped weapon");
+        BlockAndAim = new Keybind(KeyCode.Mouse1, "Block with shield or aim bow");
         EquipmentSlot1 = new Keybind(KeyCode.Alpha1);
         EquipmentSlot2 = new Keybind(KeyCode.Alpha2);
         EquipmentSlot3 = new Keybind(KeyCode.Alpha3);
+        Jump = new Keybind(KeyCode.Space);
     }
     private static KeybindManager instance;
     public static KeybindManager Instance
@@ -29,6 +31,8 @@ public class KeybindManager
     public Keybind EquipmentSlot1 { get; set; }
     public Keybind EquipmentSlot2 { get; set; }
     public Keybind EquipmentSlot3 { get; set; }
+    public Keybind BlockAndAim { get; set; }
+    public Keybind Jump { get; set; }
 }
 
 public class Keybind
@@ -44,4 +48,10 @@ public class Keybind
         KeybindCode = code;
         Description = desc;
     }
+
+    public KeyCode GetKeyCode()
+    {
+        return KeybindCode;
+    }
+
 }
