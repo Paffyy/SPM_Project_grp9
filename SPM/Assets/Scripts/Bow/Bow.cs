@@ -38,6 +38,8 @@ public class Bow : MonoBehaviour
     private int SpecialAoeRadius;
     [SerializeField]
     private Vector3 bowOffset;
+    [SerializeField]
+    private GameObject specialAttackGlow;
 
     private GameObject arrowsParent;
     private float chargeTime = 1;
@@ -45,9 +47,8 @@ public class Bow : MonoBehaviour
     private float coolDownCounter = 0f;
     private float ArrowRainCoolDown = 10.0f;
     private bool isDoingSpecialAttack;
-
+    private Animator animator;
     private bool isAming = false;
-
     private Player playerScript;
     [HideInInspector]
     public enum SpecialArrowType { RainOfArrows, ShotgunArrows, AoeHitArrow }
@@ -60,11 +61,13 @@ public class Bow : MonoBehaviour
         ArrowCountText.text = ArrowCount.ToString();
         playerScript = Player.GetComponent<Player>();
         chargeTime = Mathf.Clamp(chargeTime, 1, 2);
+        animator = GetComponent<Animator>();
     }
 
     private void OnDisable()
     {
         ToggleCrosshair(false);
+        specialAttackGlow.SetActive(false);
     }
 
     private void ToggleCrosshair(bool toggle)
@@ -81,13 +84,15 @@ public class Bow : MonoBehaviour
             if (Input.GetKeyDown(KeybindManager.Instance.SpecialAttack.GetKeyCode()) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
             {
                 isDoingSpecialAttack = !isDoingSpecialAttack;
+                specialAttackGlow.SetActive(!specialAttackGlow.activeSelf);
+
             }
             if (Input.GetKey(KeybindManager.Instance.ShootAndAttack.GetKeyCode()))
             {
+                animator.SetBool("IsChargingBow", true);
                 if (chargeTime < 2f)
                 {
                     chargeTime += Time.deltaTime;
-
                 }
             }
 
@@ -133,6 +138,8 @@ public class Bow : MonoBehaviour
         chargeTime = 1f;
         coolDownCounter = 0.8f;
         isDoingSpecialAttack = false;
+        animator.SetBool("IsChargingBow", false);
+        specialAttackGlow.SetActive(false);
     }
 
     public void AddArrows(int arrows)

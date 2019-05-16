@@ -7,7 +7,7 @@ public class RevitalizeGround : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    [Range(1,100)]
+    [Range(1,1000)]
     private int brushSize;
     [SerializeField]
     [Range(1, 10)]
