@@ -28,7 +28,7 @@ public class BaseEnemy : StateMachine
     public float waitAtPatrolPoints = 0.0f;
 
     private EnemyHealth healthSystem;
-    private CharacterController controller;
+    [HideInInspector]public CharacterController controller;
 
     private float timeBetweenSetDestination = 0.1f;
     private float timer;
