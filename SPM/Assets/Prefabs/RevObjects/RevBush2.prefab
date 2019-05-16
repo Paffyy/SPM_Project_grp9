@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 6702570627387540990}
   - component: {fileID: 6702570627386213848}
   - component: {fileID: 6702570627385247512}
-  - component: {fileID: 4276987916354800162}
+  - component: {fileID: 6333166125890146623}
   m_Layer: 15
   m_Name: pCube3
   m_TagString: Untagged
@@ -89,7 +89,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1e9d53434638de24283056823900f7ca, type: 2}
+  - {fileID: 2100000, guid: 77d091a34a5d7974391a658426d0d1d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,7 +109,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4276987916354800162
+--- !u!114 &6333166125890146623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,10 +118,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6702570627387185630}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aace796205fcf224d87af6812a368c4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f65fcda15ecb224aa165c639770c873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RevitalizedMaterial: {fileID: 2100000, guid: 337c168d52747e046b0723974dcdf7fc, type: 2}
-  Interval: 0.1
-  AlphaFading: 0
   IsRevitalized: 0
+  timeToRevitalize: 2
+  lerpLevels: 25

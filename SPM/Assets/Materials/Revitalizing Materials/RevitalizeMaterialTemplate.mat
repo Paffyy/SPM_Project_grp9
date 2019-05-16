@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RevitalizeMaterial
+  m_Name: RevitalizeMaterialTemplate
   m_Shader: {fileID: 4800000, guid: 1ab5b8c003203f34b8a917ce610ac6ff, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,25 +20,34 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _RevitalizeNormal:
-        m_Texture: {fileID: 2800000, guid: e9dbcddf9cfbd9e429fa317f9da15781, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RevitalizeOcclusion:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RevitalizeTexture:
-        m_Texture: {fileID: 2800000, guid: fc61d730052564e4ab1b82dde57524d5, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ScorchedNormal:
-        m_Texture: {fileID: 2800000, guid: fb6566c21f717904f83743a5a76dd0b0, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ScorchedOcclusion:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ScorchedTexture:
-        m_Texture: {fileID: 2800000, guid: df8babf667ff23846a3b5808b0c9f69c, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Glossiness: 0.5
     - _Metallic: 0
-    - _RevitalizeFactor: 1
+    - _OcclusionScale: 1
+    - _RevitalizeFactor: 0
     m_Colors:
     - _RevitalizeColor: {r: 1, g: 1, b: 1, a: 1}
     - _ScorchedColor: {r: 1, g: 1, b: 1, a: 1}
