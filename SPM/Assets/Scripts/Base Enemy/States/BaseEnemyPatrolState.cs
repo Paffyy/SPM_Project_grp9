@@ -23,7 +23,8 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
-        owner.NavAgent.SetDestination(owner.Path.PathObjects[currentPoint].position);
+        //owner.NavAgent.SetDestination(owner.Path.PathObjects[currentPoint].position);
+        owner.UpdateDestination(owner.Path.PathObjects[currentPoint].position);
         if (Vector3.Distance(owner.transform.position, owner.Path.PathObjects[currentPoint].position) < pointSize )
         {
             owner.WaitAtPosition(waitAtPatrolPoints);
