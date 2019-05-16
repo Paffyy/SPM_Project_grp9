@@ -26,18 +26,20 @@ public class Sword : MonoBehaviour
     private float swingValue = 70f;
     private float bladeStormCoolDown = 10.0f;
     private float BladeStormTimer = 3f;
-    private ParticleSystem.EmissionModule TrailsEmissionModule;
+    private ParticleSystem.EmissionModule trailsEmissionModule;
+    private bool isAttacking;
 
     void Start()
     {
         swordOffset = new Vector3(0.5f, 0.2f, 0.55f);
-        TrailsEmissionModule = Trails.emission;
+        trailsEmissionModule = Trails.emission;
+        isAttacking = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
+        if (Input.GetKeyDown(KeyCode.E) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
         {
             BladeStorm();
             IsBladeStorming = true;
@@ -66,9 +68,9 @@ public class Sword : MonoBehaviour
             if (coolDownCounter < 0)
             {
 
-                if (Input.GetKeyDown(KeyCode.Mouse0) && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
+                if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
                 {
-                    
+                   
                     coolDownCounter = CoolDownValue;
                     Attack();
                 }
@@ -107,19 +109,31 @@ public class Sword : MonoBehaviour
         }
     }
 
+
+    void Attack()
+    {
+        Anim.SetBool("Attack", true);
+        isAttacking = true;
+    }
+
     public void GoToIdle()
     {
         Anim.SetBool("Attack", false);
     }
 
+    public void SetIsAttacking()
+    {
+        isAttacking = false;
+    }
+
     public void SpawnTrail()
     {
-        TrailsEmissionModule.enabled = true;
+        trailsEmissionModule.enabled = true;
     }
 
     public void StopTrail()
     {
-        TrailsEmissionModule.enabled = false;
+        trailsEmissionModule.enabled = false;
     }
 
     private void BladeStorm()
@@ -138,11 +152,6 @@ public class Sword : MonoBehaviour
     {
         Vector3 update = transform.rotation * swordOffset.normalized;
         transform.position = update * swordOffset.magnitude + PlayerObject.transform.position;
-    }
-
-    void Attack()
-    {
-        Anim.SetBool("Attack", true);
     }
 
     void CheckCollision()
