@@ -15,6 +15,8 @@ public class RevitalizeGround : MonoBehaviour
     [SerializeField]
     private Shader shader;
     [SerializeField]
+    private LayerMask layerMask;
+    [SerializeField]
     private GameObject revitalizeObject;
     private RenderTexture splatMap;
     private Material scorchedMaterial, revitalizeMaterial;
@@ -22,9 +24,9 @@ public class RevitalizeGround : MonoBehaviour
     {
         revitalizeMaterial = new Material(shader);
         revitalizeMaterial.SetVector("_Color", Color.red);
-        revitalizeMaterial.SetInt("_BrushSize", 99 - brushSize);
+        revitalizeMaterial.SetInt("_BrushSize", 1001 - brushSize);
         scorchedMaterial = GetComponent<Terrain>().materialTemplate;
-        splatMap = new RenderTexture(1024, 1024, 0, RenderTextureFormat.ARGBFloat);
+        splatMap = new RenderTexture(512, 512, 0, RenderTextureFormat.ARGBFloat);
         scorchedMaterial.SetTexture("_Splat", splatMap);
         for (int i = 0; i < brushIntensity; i++)
         {
@@ -36,7 +38,7 @@ public class RevitalizeGround : MonoBehaviour
     {
         RaycastHit hit;
         Debug.DrawRay(revitalizeObject.transform.position, Vector3.down);
-        if (Physics.Raycast(revitalizeObject.transform.position, Vector3.down, out hit))
+        if (Physics.Raycast(revitalizeObject.transform.position, Vector3.down, out hit, layerMask))
         {
             revitalizeMaterial.SetVector("_Coordinates", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
             RenderTexture tempTexture = RenderTexture.GetTemporary(splatMap.width, splatMap.height, 0, RenderTextureFormat.ARGBFloat);

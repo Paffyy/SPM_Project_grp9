@@ -5,7 +5,7 @@
         _MainTex ("Texture", 2D) = "white" {}
 		_Coordinates("Coordinates", Vector) = (0,0,0,0)
 		_Color ("DrawColor", Color) = (1,0,0,0) 
-		_BrushSize ("BrushSize", Range(1,100)) = 10
+		_BrushSize ("BrushSize", Range(1,1000)) = 250
     }
     SubShader
     {
