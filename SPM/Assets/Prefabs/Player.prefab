@@ -346,8 +346,6 @@ GameObject:
   - component: {fileID: 1215151315416506257}
   - component: {fileID: 8517181388354164775}
   - component: {fileID: 4351345174098023979}
-  - component: {fileID: 5421823845990970223}
-  - component: {fileID: 8314908191368525051}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -427,45 +425,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5421823845990970223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4554163494105810409}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58a463c50e88b354a8493615090345f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Arrow: {fileID: 1167609288385800612, guid: db29058702a81ea4587d597535503c87, type: 3}
-  Player: {fileID: 7651501562885396188}
-  PlayerCamera: {fileID: 7651501562274134278}
-  ArrowCountText: {fileID: 0}
-  GravityForce: 5
-  ArrowHitMask:
-    serializedVersion: 2
-    m_Bits: 50176
-  ArrowCount: 15
-  ArrowSpeed: 35
-  SpecialAttack: 2
-  SpecialArrowCount: 25
-  SpecialAoeDamage: 50
-  SpecialAoeRadius: 6
---- !u!114 &8314908191368525051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4554163494105810409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d84fc89b2287e4e40b2b6694048a08cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Crosshair: {fileID: 7486069670875497267}
 --- !u!114 &2052356793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1543,12 +1502,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43428addf63169d499c3811de094f91e, type: 3}
---- !u!1 &5738035986175220915 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2706102015894810966, guid: 43428addf63169d499c3811de094f91e,
-    type: 3}
-  m_PrefabInstance: {fileID: 7651501563168501221}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &721226239138098749 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6930432142967391192, guid: 43428addf63169d499c3811de094f91e,
@@ -1558,6 +1511,12 @@ GameObject:
 --- !u!4 &5738035986175220916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2706102015894810961, guid: 43428addf63169d499c3811de094f91e,
+    type: 3}
+  m_PrefabInstance: {fileID: 7651501563168501221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5738035986175220915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2706102015894810966, guid: 43428addf63169d499c3811de094f91e,
     type: 3}
   m_PrefabInstance: {fileID: 7651501563168501221}
   m_PrefabAsset: {fileID: 0}
