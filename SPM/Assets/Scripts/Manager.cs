@@ -33,6 +33,30 @@ public class Manager
         }
         return colliders;
     }
+
+    public List<Vector3> GetFlankingPoints(Transform transform, float radius, bool isFlankingLeft)
+    {
+        List<Vector3> listOfFlankingPoints = new List<Vector3>();
+        if (isFlankingLeft)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                var direction = Quaternion.Euler(0, -15 * i, 0 ) * - transform.right;
+                var flankingPoint = transform.position + (direction * radius);
+                listOfFlankingPoints.Add(flankingPoint);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                var direction = Quaternion.Euler(0, 15 * i, 0) * transform.right;
+                var flankingPoint = transform.position + (direction * radius);
+                listOfFlankingPoints.Add(flankingPoint);
+            }
+        }
+        return listOfFlankingPoints;
+    }
     public List<Collider> GetAoeHit(Vector3 pos, LayerMask layerMask, float radius)
     {
         var colliders = Physics.OverlapSphere(pos, radius, layerMask).ToList() ?? new List<Collider>();

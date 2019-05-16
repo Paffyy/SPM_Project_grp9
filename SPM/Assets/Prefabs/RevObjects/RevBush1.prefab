@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2553328062434159659}
   m_Layer: 15
-  m_Name: RevBush (39)
+  m_Name: RevBush1
   m_TagString: RevObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 2553328062434159675}
   - component: {fileID: 2553328062432865291}
   - component: {fileID: 2553328062431866571}
-  - component: {fileID: 5175131341390772042}
+  - component: {fileID: 5094864478382501711}
   m_Layer: 15
   m_Name: pCube2
   m_TagString: Untagged
@@ -89,7 +89,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1e9d53434638de24283056823900f7ca, type: 2}
+  - {fileID: 2100000, guid: 77d091a34a5d7974391a658426d0d1d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,7 +109,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5175131341390772042
+--- !u!114 &5094864478382501711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,10 +118,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2553328062434062363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aace796205fcf224d87af6812a368c4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f65fcda15ecb224aa165c639770c873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RevitalizedMaterial: {fileID: 2100000, guid: 337c168d52747e046b0723974dcdf7fc, type: 2}
-  Interval: 0.1
-  AlphaFading: 0
   IsRevitalized: 0
+  timeToRevitalize: 2
+  lerpLevels: 25

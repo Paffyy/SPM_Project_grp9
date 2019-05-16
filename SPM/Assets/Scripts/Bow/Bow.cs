@@ -25,7 +25,7 @@ public class Bow : MonoBehaviour
     [SerializeField]
     private int ArrowCount;
     [SerializeField]
-    private float ArrowSpeed;
+    private float arrowSpeed;
 
     [Header("SpecialAttacks")]
     [SerializeField]
@@ -36,11 +36,12 @@ public class Bow : MonoBehaviour
     private int SpecialAoeDamage;
     [SerializeField]
     private int SpecialAoeRadius;
+    [SerializeField]
+    private Vector3 bowOffset;
 
     private GameObject arrowsParent;
-    private float chargeTime;
+    private float chargeTime = 1;
     private ThirdPersonCrosshair crosshair;
-    private Vector3 bowOffset;
     private float coolDownCounter = 0f;
     private float ArrowRainCoolDown = 10.0f;
     private bool isDoingSpecialAttack;
@@ -53,11 +54,12 @@ public class Bow : MonoBehaviour
 
     private void Awake()
     {
-        bowOffset = new Vector3(0.55f, 0.1f, 0f);
+        // bowOffset = new Vector3(0.55f, 0.1f, 0f);
         crosshair = GetComponent<ThirdPersonCrosshair>();
         arrowsParent = new GameObject("ArrowContainer");
         ArrowCountText.text = ArrowCount.ToString();
         playerScript = Player.GetComponent<Player>();
+        chargeTime = Mathf.Clamp(chargeTime, 1, 2);
     }
 
     private void OnDisable()
@@ -85,8 +87,8 @@ public class Bow : MonoBehaviour
                 if (chargeTime < 2f)
                 {
                     chargeTime += Time.deltaTime;
+
                 }
-                //ToggleCrosshair(true);
             }
 
             if (Input.GetKeyUp(KeybindManager.Instance.ShootAndAttack.GetKeyCode()))
@@ -123,16 +125,14 @@ public class Bow : MonoBehaviour
         {
             coolDownCounter -= Time.deltaTime;
         }
-        UpdatePosition();
         UpdateRotation();
+        UpdatePosition();
     }
-
     private void ResetBow()
     {
         chargeTime = 1f;
         coolDownCounter = 0.8f;
         isDoingSpecialAttack = false;
-        //ToggleCrosshair(false);
     }
 
     public void AddArrows(int arrows)
@@ -166,13 +166,14 @@ public class Bow : MonoBehaviour
         Vector3 direction = PlayerCamera.transform.forward;
         var arrow = Instantiate(Arrow, PlayerCamera.transform.position, Quaternion.LookRotation(direction), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        SetArrowProperties(arrowScript, direction * ArrowSpeed, chargeTime);
+        float speed = arrowSpeed * chargeTime;
+        SetArrowProperties(arrowScript, direction * speed, chargeTime);
     }
     // Rain of arrow 
     private void ShootArrowWithCalculatedArc(Vector3 direction)
     {
-        float gravityModifier = 2.4f; // Only parameter to alter time to impact
-        var velocity = Manager.Instance.GetInitialVelocity2(transform.position, direction, -GravityForce * gravityModifier);
+        float gravityModifier = 2.4f; // Only parameter to alter time to impact with calculated arc
+        Vector3 velocity = Manager.Instance.GetInitialVelocity2(transform.position, direction, -GravityForce * gravityModifier);
         var arrow = Instantiate(Arrow, transform.position, Quaternion.LookRotation(PlayerCamera.transform.forward), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         SetArrowProperties(arrowScript, velocity, 1);
@@ -183,14 +184,15 @@ public class Bow : MonoBehaviour
     {
         var arrow = Instantiate(Arrow, PlayerCamera.transform.position, Quaternion.LookRotation(PlayerCamera.transform.forward), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        SetArrowProperties(arrowScript, direction * ArrowSpeed, 1);
+        SetArrowProperties(arrowScript, direction * arrowSpeed, 1);
     }
     // aoe around the arrow hit
     private void ShootArrowExplosion(Vector3 direction)
     {
         var arrow = Instantiate(Arrow, PlayerCamera.transform.position, Quaternion.LookRotation(PlayerCamera.transform.forward), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        SetArrowProperties(arrowScript, direction * ArrowSpeed, chargeTime);
+        float speed = arrowSpeed * chargeTime;
+        SetArrowProperties(arrowScript, direction * speed, chargeTime);
         arrowScript.EnableAoeOnHit(SpecialAoeDamage, SpecialAoeRadius);
     }
 
