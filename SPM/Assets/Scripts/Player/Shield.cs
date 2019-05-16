@@ -51,7 +51,8 @@ public class Shield : MonoBehaviour
     {
 
         //Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
-        Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
+        //Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
+        Vector3 direction = playerCamera.transform.forward;
         transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-15, 90, 0);
         Vector3 update = transform.rotation * shieldPos.normalized;
         transform.position = update * shieldPos.magnitude + Player.transform.position;
