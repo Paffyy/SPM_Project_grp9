@@ -38,7 +38,7 @@ public class Bow : MonoBehaviour
     private int SpecialAoeRadius;
 
     private GameObject arrowsParent;
-    private float chargeTime;
+    private float chargeTime = 1;
     private ThirdPersonCrosshair crosshair;
     private Vector3 bowOffset;
     private float coolDownCounter = 0f;
@@ -86,7 +86,6 @@ public class Bow : MonoBehaviour
                 {
                     chargeTime += Time.deltaTime;
                 }
-                //ToggleCrosshair(true);
             }
 
             if (Input.GetKeyUp(KeybindManager.Instance.ShootAndAttack.GetKeyCode()))
@@ -132,7 +131,6 @@ public class Bow : MonoBehaviour
         chargeTime = 1f;
         coolDownCounter = 0.8f;
         isDoingSpecialAttack = false;
-        //ToggleCrosshair(false);
     }
 
     public void AddArrows(int arrows)
@@ -166,13 +164,14 @@ public class Bow : MonoBehaviour
         Vector3 direction = PlayerCamera.transform.forward;
         var arrow = Instantiate(Arrow, PlayerCamera.transform.position, Quaternion.LookRotation(direction), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        SetArrowProperties(arrowScript, direction * ArrowSpeed, chargeTime);
+        float speed = ArrowSpeed * chargeTime;
+        SetArrowProperties(arrowScript, direction * speed, chargeTime);
     }
     // Rain of arrow 
     private void ShootArrowWithCalculatedArc(Vector3 direction)
     {
-        float gravityModifier = 2.4f; // Only parameter to alter time to impact
-        var velocity = Manager.Instance.GetInitialVelocity2(transform.position, direction, -GravityForce * gravityModifier);
+        float gravityModifier = 2.4f; // Only parameter to alter time to impact with calculated arc
+        Vector3 velocity = Manager.Instance.GetInitialVelocity2(transform.position, direction, -GravityForce * gravityModifier);
         var arrow = Instantiate(Arrow, transform.position, Quaternion.LookRotation(PlayerCamera.transform.forward), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         SetArrowProperties(arrowScript, velocity, 1);
@@ -190,7 +189,8 @@ public class Bow : MonoBehaviour
     {
         var arrow = Instantiate(Arrow, PlayerCamera.transform.position, Quaternion.LookRotation(PlayerCamera.transform.forward), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        SetArrowProperties(arrowScript, direction * ArrowSpeed, chargeTime);
+        float speed = ArrowSpeed * chargeTime;
+        SetArrowProperties(arrowScript, direction * speed, chargeTime);
         arrowScript.EnableAoeOnHit(SpecialAoeDamage, SpecialAoeRadius);
     }
 
