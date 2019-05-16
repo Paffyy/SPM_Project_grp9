@@ -28,7 +28,6 @@ public class SoundListener : MonoBehaviour
         {
             if (!audioSource.isPlaying)
             {
-                //audioSource.clip = deathEventInfo.GameObject.GetComponent<DestroyableGameObject>().DeathSound;
                 audioSource.Play();
             }
         }
@@ -36,7 +35,6 @@ public class SoundListener : MonoBehaviour
 
     private void PlayPickUpSound(BaseEventInfo e)
     {
-        Debug.Log("PlayingPickupSound");
         var pickUpEventInfo = e as PickupEventInfo;
         if(pickUpEventInfo != null)
         {
