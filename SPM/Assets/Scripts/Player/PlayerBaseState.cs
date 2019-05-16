@@ -48,28 +48,28 @@ public class PlayerBaseState : State
     protected virtual void HandleInput()
     {
 
-        yaw += Input.GetAxis("Mouse X") * MouseSensitivity;
+        //yaw += Input.GetAxis("Mouse X") * MouseSensitivity;
 
         // X-axeln
         //Ändra pitchen till += om du vill ha den inverterad
-        pitch -= Input.GetAxis("Mouse Y") * MouseSensitivity;
-        pitch = Mathf.Clamp(pitch, minCameraAngle, maxCameraAngle);
+        //pitch -= Input.GetAxis("Mouse Y") * MouseSensitivity;
+        //pitch = Mathf.Clamp(pitch, minCameraAngle, maxCameraAngle);
 
-        currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw), ref rotationSmoothVel, rotationSmoothTime);
+        //currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw), ref rotationSmoothVel, rotationSmoothTime);
 
-        playerCamera.transform.eulerAngles = currentRotation;
+        //playerCamera.transform.eulerAngles = currentRotation;
 
-        playerCamera.transform.position = owner.transform.position - playerCamera.transform.forward; //* distanceFromTarget;
+        //playerCamera.transform.position = owner.transform.position - playerCamera.transform.forward; //* distanceFromTarget;
 
-        if (owner.Velocity != Vector3.zero)
-        {
-            owner.RotationX = playerCamera.transform.rotation.x;
-            owner.RotationY = playerCamera.transform.rotation.y;
-        }
-        //owner.RotationX -= Input.GetAxisRaw("Mouse Y") * MouseSensitivity;
-        //owner.RotationX = Mathf.Clamp(owner.RotationX, minCameraAngle, maxCameraAngle);
-        //owner.RotationY += Input.GetAxisRaw("Mouse X") * MouseSensitivity;
-        //playerCamera.transform.rotation = Quaternion.Euler(owner.RotationX, owner.RotationY, 0.0f);
+        //if (owner.Velocity != Vector3.zero)
+        //{
+        //    owner.RotationX = playerCamera.transform.rotation.x;
+        //    owner.RotationY = playerCamera.transform.rotation.y;
+        //}
+        owner.RotationX -= Input.GetAxisRaw("Mouse Y") * MouseSensitivity;
+        owner.RotationX = Mathf.Clamp(owner.RotationX, minCameraAngle, maxCameraAngle);
+        owner.RotationY += Input.GetAxisRaw("Mouse X") * MouseSensitivity;
+        playerCamera.transform.rotation = Quaternion.Euler(owner.RotationX, owner.RotationY, 0.0f);
         if (Input.GetKeyDown(KeyCode.V))
             owner.FirstPersonView = !owner.FirstPersonView;
         if (owner.FirstPersonView)

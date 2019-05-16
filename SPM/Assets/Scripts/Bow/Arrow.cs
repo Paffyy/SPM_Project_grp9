@@ -84,8 +84,11 @@ public class Arrow : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
+                //TODO fixa
+                //transform.forward är inte den riktningen som pilen färdas i
+                Vector3 pushBack = (ArrowObject.transform.forward - hit.transform.position).normalized * 2 + (Vector3.up * 2) * 3;
                 ArrowObject.transform.SetParent(hit.collider.gameObject.transform);
-                hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+                hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage, pushBack, Vector3.zero);
             }
             //if (hit.collider.gameObject.CompareTag("RevObject"))
             //{
