@@ -118,15 +118,15 @@ void Update()
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !isReflected)
         {
             other.gameObject.GetComponent<PlayerHealth>().TakeDamage(Damage);
             Destroy(ProjectileObject);
         } else if (other.gameObject.CompareTag("Shield"))
         {
             isReflected = true;
-            Velocity = Velocity.magnitude * -other.gameObject.transform.right;
-            transform.rotation = Quaternion.LookRotation(-other.gameObject.transform.right);
+            Velocity = Velocity.magnitude * other.gameObject.transform.forward;
+            transform.rotation = Quaternion.LookRotation(other.gameObject.transform.forward);
             other.gameObject.GetComponentInParent<Shield>().TakeDamage(Damage);
         } else if(other.gameObject.CompareTag("Enemy") && isReflected)
         {

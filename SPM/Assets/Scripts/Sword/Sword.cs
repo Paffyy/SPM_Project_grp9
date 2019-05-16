@@ -18,24 +18,26 @@ public class Sword : MonoBehaviour
     public int BladeStormDamage = 5;
     public GameObject BladeStormEffect;
     public bool IsBladeStorming;
+    public Animator Anim;
+    public ParticleSystem Trails;
     private float coolDownCounter;
     private bool onCooldown;
     private Vector3 swordOffset;
     private float swingValue = 70f;
     private float bladeStormCoolDown = 10.0f;
     private float BladeStormTimer = 3f;
-    public Animator Anim;
-    public ParticleSystem Trails;
+    private ParticleSystem.EmissionModule TrailsEmissionModule;
 
     void Start()
     {
         swordOffset = new Vector3(0.5f, 0.2f, 0.55f);
+        TrailsEmissionModule = Trails.emission;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming)
+        if (Input.GetKeyDown(KeyCode.E) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
         {
             BladeStorm();
             IsBladeStorming = true;
@@ -54,7 +56,6 @@ public class Sword : MonoBehaviour
             if (BladeStormTimer <= 0)
             {
                 BladeStormEffect.SetActive(false);
-                Debug.Log("Stop BS!");
                 IsBladeStorming = false;
                 BladeStormTimer = 3f;
                 StopAllCoroutines();
@@ -65,7 +66,7 @@ public class Sword : MonoBehaviour
             if (coolDownCounter < 0)
             {
 
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+                if (Input.GetKeyDown(KeyCode.Mouse0) && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
                 {
                     
                     coolDownCounter = CoolDownValue;
@@ -113,16 +114,12 @@ public class Sword : MonoBehaviour
 
     public void SpawnTrail()
     {
-        var em = Trails.emission;
-        em.enabled = true;
-        Debug.Log("Start trails");
+        TrailsEmissionModule.enabled = true;
     }
 
     public void StopTrail()
     {
-        var em = Trails.emission;
-        em.enabled = false;
-        Debug.Log("Stop trails");
+        TrailsEmissionModule.enabled = false;
     }
 
     private void BladeStorm()

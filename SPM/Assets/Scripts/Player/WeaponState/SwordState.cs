@@ -11,13 +11,16 @@ public class SwordState : WeaponBaseState
     {
         owner.SwordIcon.GetComponent<Image>().color = Color.green;
         owner.Sword.SetActive(true);
+        owner.Shield.SetActive(true);
         base.Enter();
     }
 
     public override void Exit()
     {
         owner.SwordIcon.GetComponent<Image>().color = Color.white;
+        owner.Shield.GetComponent<Shield>().IsBlocking = false;
         owner.Sword.SetActive(false);
+        owner.Shield.SetActive(false);
     }
 
     public override void HandleUpdate()
@@ -28,8 +31,8 @@ public class SwordState : WeaponBaseState
                 owner.Transition<NoWeaponState>();
             else if (Input.GetKeyDown(KeyCode.Alpha2))
                 owner.Transition<BowState>();
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-                owner.Transition<ShieldState>();
+            //else if (Input.GetKeyDown(KeyCode.Alpha3))
+            //    owner.Transition<ShieldState>();
         }
 
         //kolla ev. om karaktären har tillgång till dessa vapen innan byte av state

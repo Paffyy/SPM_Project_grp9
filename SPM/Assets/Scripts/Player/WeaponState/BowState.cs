@@ -26,8 +26,8 @@ public class BowState : WeaponBaseState
             owner.Transition<NoWeaponState>();
         else if (Input.GetKeyDown(KeyCode.Alpha1))
             owner.Transition<SwordState>();
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-            owner.Transition<ShieldState>();
+        //else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //    owner.Transition<ShieldState>();
     }
 
 }
