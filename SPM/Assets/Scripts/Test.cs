@@ -5,9 +5,6 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject Arrow;
-    public GameObject Parent;
-    public GameObject Player;
     void Start()
     {
         
@@ -18,13 +15,12 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            ShootArrow();
+            var flankList = Manager.Instance.GetFlankingPoints(transform, 5, true);
+            foreach (var item in flankList)
+            {
+                Instantiate<GameObject>(gameObject, item, Quaternion.identity);
+            }
         }
-        //transform.position = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
     }
-    private void ShootArrow()
-    {
-        var arrow = Instantiate(Arrow, transform.position, Quaternion.LookRotation(Player.transform.position), Parent.transform);
-        arrow.GetComponent<Arrow>().ApplyInitialVelocity(Manager.Instance.GetInitialVelocity2(transform.position,Player.transform.position,-15));
-    }
+
 }
