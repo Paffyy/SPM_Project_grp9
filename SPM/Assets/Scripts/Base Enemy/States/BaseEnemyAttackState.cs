@@ -20,7 +20,8 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
-        owner.NavAgent.SetDestination(owner.player.transform.position);
+        //owner.NavAgent.SetDestination(owner.player.transform.position);
+        owner.UpdateDestination(owner.player.transform.position);
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
         {
@@ -47,6 +48,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
 
     private void Attack()
     {
+        Debug.Log("attack");
         currentCooldown -= Time.deltaTime;
         if (currentCooldown > 0)
             return;
@@ -64,6 +66,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
             }
 
         }
+        Debug.Log(arr[0]);
         //arr[0].GetComponent<Player>.Hit();
         currentCooldown = cooldown;
 

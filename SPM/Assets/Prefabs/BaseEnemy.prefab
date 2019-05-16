@@ -739,9 +739,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 375bcd30a0be5bb46874f5d425d336e0, type: 2}
   MeshRen: {fileID: 0}
   Path: {fileID: 0}
-  Damage: 5
-  IFrameTime: 1
-  IFrameCoolDown: 0
+  Damage: 8
   NavAgent: {fileID: 0}
   Fow: {fileID: 0}
   currectState: {fileID: 0}
@@ -752,8 +750,8 @@ MonoBehaviour:
   moveSpeed: 3
   hearRadius: 7
   AttackPlacmentDistance: 2
+  IsWaitAtPosition: 0
   waitAtPatrolPoints: 0
-  healthSystem: {fileID: 0}
   controller: {fileID: 0}
   visionMask:
     serializedVersion: 2
@@ -810,6 +808,7 @@ MonoBehaviour:
   CollisionMask:
     serializedVersion: 2
     m_Bits: 19968
+  Velocity: {x: 0, y: 0, z: 0}
   RotationSpeed: 0
   Acceleration: 40
   GravityForce: 30
@@ -820,7 +819,6 @@ MonoBehaviour:
   MouseSensitivity: 3
   skinWidth: 0.005
   groundCheckDistance: 0.5
-  characterCollider: {fileID: 2796968206420594169}
 --- !u!114 &542565461
 MonoBehaviour:
   m_ObjectHideFlags: 0
