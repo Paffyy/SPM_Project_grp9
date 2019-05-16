@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RevMaterial
+  m_Name: RevMaterial 1
   m_Shader: {fileID: 4800000, guid: 666d859291f675f49a547ae6f0be4f5a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -24,11 +24,11 @@ Material:
         m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _RevitalizeTexture:
-        m_Texture: {fileID: 2800000, guid: fc61d730052564e4ab1b82dde57524d5, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0962dc73dae2d274db9bd95da08eae62, type: 3}
         m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - _ScorchedTexture:
-        m_Texture: {fileID: 2800000, guid: d8c1850c6f743d247bd63a754d58a2ec, type: 3}
+        m_Texture: {fileID: 2800000, guid: df8babf667ff23846a3b5808b0c9f69c, type: 3}
         m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     m_Floats:
