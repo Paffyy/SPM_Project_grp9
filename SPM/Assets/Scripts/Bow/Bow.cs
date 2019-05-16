@@ -25,7 +25,7 @@ public class Bow : MonoBehaviour
     [SerializeField]
     private int ArrowCount;
     [SerializeField]
-    private float ArrowSpeed;
+    private float arrowSpeed;
 
     [Header("SpecialAttacks")]
     [SerializeField]
@@ -36,11 +36,12 @@ public class Bow : MonoBehaviour
     private int SpecialAoeDamage;
     [SerializeField]
     private int SpecialAoeRadius;
+    [SerializeField]
+    private Vector3 bowOffset;
 
     private GameObject arrowsParent;
     private float chargeTime = 1;
     private ThirdPersonCrosshair crosshair;
-    private Vector3 bowOffset;
     private float coolDownCounter = 0f;
     private float ArrowRainCoolDown = 10.0f;
     private bool isDoingSpecialAttack;
@@ -53,11 +54,12 @@ public class Bow : MonoBehaviour
 
     private void Awake()
     {
-        bowOffset = new Vector3(0.55f, 0.1f, 0f);
+        // bowOffset = new Vector3(0.55f, 0.1f, 0f);
         crosshair = GetComponent<ThirdPersonCrosshair>();
         arrowsParent = new GameObject("ArrowContainer");
         ArrowCountText.text = ArrowCount.ToString();
         playerScript = Player.GetComponent<Player>();
+        chargeTime = Mathf.Clamp(chargeTime, 1, 2);
     }
 
     private void OnDisable()
@@ -85,6 +87,7 @@ public class Bow : MonoBehaviour
                 if (chargeTime < 2f)
                 {
                     chargeTime += Time.deltaTime;
+
                 }
             }
 
@@ -122,10 +125,9 @@ public class Bow : MonoBehaviour
         {
             coolDownCounter -= Time.deltaTime;
         }
-        UpdatePosition();
         UpdateRotation();
+        UpdatePosition();
     }
-
     private void ResetBow()
     {
         chargeTime = 1f;
@@ -164,7 +166,7 @@ public class Bow : MonoBehaviour
         Vector3 direction = PlayerCamera.transform.forward;
         var arrow = Instantiate(Arrow, PlayerCamera.transform.position, Quaternion.LookRotation(direction), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        float speed = ArrowSpeed * chargeTime;
+        float speed = arrowSpeed * chargeTime;
         SetArrowProperties(arrowScript, direction * speed, chargeTime);
     }
     // Rain of arrow 
@@ -182,14 +184,14 @@ public class Bow : MonoBehaviour
     {
         var arrow = Instantiate(Arrow, PlayerCamera.transform.position, Quaternion.LookRotation(PlayerCamera.transform.forward), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        SetArrowProperties(arrowScript, direction * ArrowSpeed, 1);
+        SetArrowProperties(arrowScript, direction * arrowSpeed, 1);
     }
     // aoe around the arrow hit
     private void ShootArrowExplosion(Vector3 direction)
     {
         var arrow = Instantiate(Arrow, PlayerCamera.transform.position, Quaternion.LookRotation(PlayerCamera.transform.forward), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
-        float speed = ArrowSpeed * chargeTime;
+        float speed = arrowSpeed * chargeTime;
         SetArrowProperties(arrowScript, direction * speed, chargeTime);
         arrowScript.EnableAoeOnHit(SpecialAoeDamage, SpecialAoeRadius);
     }

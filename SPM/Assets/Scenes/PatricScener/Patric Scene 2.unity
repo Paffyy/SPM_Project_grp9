@@ -6384,9 +6384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0e89c77b758b74da1e770d17402131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Arrow: {fileID: 1167609288385800612, guid: db29058702a81ea4587d597535503c87, type: 3}
-  Parent: {fileID: 381712771}
-  Player: {fileID: 784922744}
 --- !u!4 &1807883470
 Transform:
   m_ObjectHideFlags: 0
@@ -8098,5 +8095,9 @@ PrefabInstance:
       propertyPath: ArrowCountText
       value: 
       objectReference: {fileID: 2612415}
+    - target: {fileID: 156662274, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
