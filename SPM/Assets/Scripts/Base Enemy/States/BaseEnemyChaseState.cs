@@ -17,7 +17,7 @@ public class BaseEnemyChaseState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
-        owner.NavAgent.SetDestination(owner.player.transform.position);
+        owner.UpdateDestination(owner.player.transform.position);
         //Debug.Log("chaseState");
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > lostTargetDistance)
