@@ -5,11 +5,12 @@ using UnityEngine;
 public class CheckPointListener : MonoBehaviour
 {
     public GameObject FirstCheckPoint;
-    private GameObject CurrentCheckPoint;
+    public Camera PlayerCamera;
+    private Transform CurrentRespawnPosition;
 
     void Start()
     {
-        CurrentCheckPoint = FirstCheckPoint;
+        CurrentRespawnPosition = FirstCheckPoint.GetComponent<CheckPoint>().RespawnPosition;
         Register();
     }
 
@@ -24,18 +25,22 @@ public class CheckPointListener : MonoBehaviour
         var checkPointEventInfo = e as CheckPointEventInfo;
         if (checkPointEventInfo != null)
         {
-            CurrentCheckPoint = checkPointEventInfo.CheckPoint;
+            CurrentRespawnPosition = checkPointEventInfo.CheckPoint.GetComponent<CheckPoint>().RespawnPosition;
         }
     }
 
     private void RespawnPlayer(BaseEventInfo e)
     {
         var deathEventInfo = e as DeathEventInfo;
-        if(deathEventInfo != null)
+        if (deathEventInfo != null)
         {
             if (deathEventInfo.GameObject.CompareTag("Player"))
             {
-                deathEventInfo.GameObject.transform.position = CurrentCheckPoint.transform.position;
+                deathEventInfo.GameObject.transform.position = CurrentRespawnPosition.transform.position;
+                deathEventInfo.GameObject.GetComponent<Player>().RotationY = CurrentRespawnPosition.rotation.y + 90;
+
+                //PlayerCamera.transform.rotation = Quaternion.Euler(PlayerCamera.transform.rotation.x, CurrentRespawnPosition.rotation.y, PlayerCamera.transform.rotation.z);
+
             }
         }
     }
