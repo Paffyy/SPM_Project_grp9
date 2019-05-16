@@ -28,10 +28,6 @@ public class RevitalizeGround : MonoBehaviour
         scorchedMaterial = GetComponent<Terrain>().materialTemplate;
         splatMap = new RenderTexture(512, 512, 0, RenderTextureFormat.ARGBFloat);
         scorchedMaterial.SetTexture("_Splat", splatMap);
-        for (int i = 0; i < brushIntensity; i++)
-        {
-            RevitalizeArea();
-        }
     }
 
     private void RevitalizeArea()
