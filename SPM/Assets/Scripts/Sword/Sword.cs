@@ -144,7 +144,7 @@ public class Sword : MonoBehaviour
     private void UpdateRotation(float swing = 0)
     {
         var direction = playerCamera.transform.forward;
-      //  transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
+        //  transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
         transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-15, 90, 0);
     }
 
