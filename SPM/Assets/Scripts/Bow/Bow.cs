@@ -44,6 +44,9 @@ public class Bow : MonoBehaviour
     private float coolDownCounter = 0f;
     private float ArrowRainCoolDown = 10.0f;
     private bool isDoingSpecialAttack;
+
+    private bool isAming = false;
+
     private Player playerScript;
     [HideInInspector]
     public enum SpecialArrowType { RainOfArrows, ShotgunArrows, AoeHitArrow }
@@ -69,53 +72,62 @@ public class Bow : MonoBehaviour
 
     private void Update()
     {
-        if (coolDownCounter <= 0 && ArrowCount > 0)
+        if (Input.GetKeyDown(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
         {
-            if (Input.GetKeyDown(KeyCode.E) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
-            {
-                isDoingSpecialAttack = !isDoingSpecialAttack;
-            }
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-                if (chargeTime < 2f)
+            isAming = !isAming;
+            ToggleCrosshair(isAming);
+        }
+            if(isAming == true) {
+
+                if (coolDownCounter <= 0 && ArrowCount > 0)
                 {
-                    chargeTime += Time.deltaTime;
-                }
-                ToggleCrosshair(true);
-            }
-            if (Input.GetKeyUp(KeyCode.Mouse0))
-            {
-                if (isDoingSpecialAttack) // special attack
-                {
-                    CoolDownManager.Instance.StartArrowRainCoolDown(ArrowRainCoolDown);
-                    switch (SpecialAttack)
+                    if (Input.GetKeyDown(KeybindManager.Instance.SpecialAttack.GetKeyCode()) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
                     {
-                        case SpecialArrowType.RainOfArrows:
-                            ShootRainOfArrows();
-                            break;
-                        case SpecialArrowType.ShotgunArrows:
-                            ShootShotgunArrows();
-                            break;
-                        case SpecialArrowType.AoeHitArrow:
-                            ShootAoeHitArrow();
-                            break;
-                        default:
+                        isDoingSpecialAttack = !isDoingSpecialAttack;
+                    }
+                    if (Input.GetKey(KeybindManager.Instance.ShootAndAttack.GetKeyCode()))
+                    {
+                        if (chargeTime < 2f)
+                        {
+                            chargeTime += Time.deltaTime;
+                        }
+                        //ToggleCrosshair(true);
+                    }
+
+                    if (Input.GetKeyUp(KeybindManager.Instance.ShootAndAttack.GetKeyCode()))
+                    {
+                        if (isDoingSpecialAttack) // special attack
+                        {
+                            CoolDownManager.Instance.StartArrowRainCoolDown(ArrowRainCoolDown);
+                            switch (SpecialAttack)
+                            {
+                                case SpecialArrowType.RainOfArrows:
+                                    ShootRainOfArrows();
+                                    break;
+                                case SpecialArrowType.ShotgunArrows:
+                                    ShootShotgunArrows();
+                                    break;
+                                case SpecialArrowType.AoeHitArrow:
+                                    ShootAoeHitArrow();
+                                    break;
+                                default:
+                                    ShootArrow();
+                                    break;
+                            }
+                        }
+                        else // default arrow shot
+                        {
                             ShootArrow();
-                            break;
+                        }
+                        ArrowCount--;
+                        ArrowCountText.text = ArrowCount.ToString();
+                        ResetBow();
                     }
                 }
-                else // default arrow shot
+                else
                 {
-                    ShootArrow();
+                    coolDownCounter -= Time.deltaTime;
                 }
-                ArrowCount--;
-                ArrowCountText.text = ArrowCount.ToString();
-                ResetBow();
-            }
-        }
-        else
-        {
-            coolDownCounter -= Time.deltaTime;
         }
         UpdatePosition();
         UpdateRotation();
@@ -126,7 +138,7 @@ public class Bow : MonoBehaviour
         chargeTime = 1f;
         coolDownCounter = 0.8f;
         isDoingSpecialAttack = false;
-        ToggleCrosshair(false);
+        //ToggleCrosshair(false);
     }
 
     public void AddArrows(int arrows)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Player/PlayerBaseState")]
 public class PlayerBaseState : State
 {
 
@@ -19,10 +20,18 @@ public class PlayerBaseState : State
     protected int limit = 0;
     protected Camera playerCamera;
     protected float minCameraAngle = -30;
-    protected float maxCameraAngle = 40;
+    protected float maxCameraAngle = 80;
     protected Vector3 cameraPosition;
     protected SphereCollider sphere;
     protected Player owner;
+
+    private float yaw;
+    private float pitch;
+    private Vector3 currentRotation;
+    private Vector3 rotationSmoothVel;
+    private float rotationSmoothTime = 0.1f;
+
+    private float fallMultiplier = 2.5f;
 
     protected Vector3 Position { get { return owner.transform.position; } set { owner.transform.position = value; } }
 
@@ -38,10 +47,29 @@ public class PlayerBaseState : State
 
     protected virtual void HandleInput()
     {
-        owner.RotationX -= Input.GetAxisRaw("Mouse Y") * MouseSensitivity;
-        owner.RotationX = Mathf.Clamp(owner.RotationX, minCameraAngle, maxCameraAngle);
-        owner.RotationY += Input.GetAxisRaw("Mouse X") * MouseSensitivity;
-        playerCamera.transform.rotation = Quaternion.Euler(owner.RotationX, owner.RotationY, 0.0f);
+
+        yaw += Input.GetAxis("Mouse X") * MouseSensitivity;
+
+        // X-axeln
+        //Ändra pitchen till += om du vill ha den inverterad
+        pitch -= Input.GetAxis("Mouse Y") * MouseSensitivity;
+        pitch = Mathf.Clamp(pitch, minCameraAngle, maxCameraAngle);
+
+        currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw), ref rotationSmoothVel, rotationSmoothTime);
+
+        playerCamera.transform.eulerAngles = currentRotation;
+
+        playerCamera.transform.position = owner.transform.position - playerCamera.transform.forward; //* distanceFromTarget;
+
+        if (owner.Velocity != Vector3.zero)
+        {
+            owner.RotationX = playerCamera.transform.rotation.x;
+            owner.RotationY = playerCamera.transform.rotation.y;
+        }
+        //owner.RotationX -= Input.GetAxisRaw("Mouse Y") * MouseSensitivity;
+        //owner.RotationX = Mathf.Clamp(owner.RotationX, minCameraAngle, maxCameraAngle);
+        //owner.RotationY += Input.GetAxisRaw("Mouse X") * MouseSensitivity;
+        //playerCamera.transform.rotation = Quaternion.Euler(owner.RotationX, owner.RotationY, 0.0f);
         if (Input.GetKeyDown(KeyCode.V))
             owner.FirstPersonView = !owner.FirstPersonView;
         if (owner.FirstPersonView)
@@ -61,7 +89,17 @@ public class PlayerBaseState : State
 
     protected virtual void ApplyGravity()
     {
-        Vector3 gravity = Vector3.down * GravityForce * Time.deltaTime;
+        Vector3 gravity;
+        //om spelaren faller
+        if (owner.Velocity.y < 0)
+        {
+             gravity = Vector3.down * GravityForce * (fallMultiplier -1) * Time.deltaTime;
+        }
+        else
+        {
+            gravity = Vector3.down * GravityForce * Time.deltaTime;
+
+        }
         owner.Velocity += gravity;
     }
 

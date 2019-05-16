@@ -29,9 +29,9 @@ public class Shield : MonoBehaviour
     void Update()
     {
         UpdateTransformation();
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
         {
-            if (!Anim.GetBool("IsBlocking") && !Player.GetComponent<Weapon>().Sword.GetComponent<Sword>().IsBladeStorming)
+            if (IsBlocking  == false && Player.GetComponent<Weapon>().Sword.GetComponent<Sword>().IsBladeStorming == false)
             {
                 Block();
             }
@@ -40,13 +40,17 @@ public class Shield : MonoBehaviour
                 GoToIdle();
             }
         }
+        if (IsBlocking == true && Input.GetKeyUp(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
+        {
+            GoToIdle();
+        }
         //  ExtDebug.DrawBoxCastBox(transform.position, Quaternion.Euler(0, 90, 0) * boxCollider.size / 2, transform.rotation, transform.forward, 0.5f, Color.white);
     }
 
     public void UpdateTransformation()
     {
-        //direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
-        Vector3 direction = playerCamera.transform.forward;
+        
+        Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
         transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-15, 90, 0);
         Vector3 update = transform.rotation * shieldPos.normalized;
         transform.position = update * shieldPos.magnitude + Player.transform.position;
