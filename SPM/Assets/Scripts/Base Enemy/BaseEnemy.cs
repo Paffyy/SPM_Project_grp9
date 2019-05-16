@@ -24,6 +24,7 @@ public class BaseEnemy : StateMachine
     public float moveSpeed;
     public float hearRadius;
     public float AttackPlacmentDistance;
+    public bool IsWaitAtPosition = false;
     public float waitAtPatrolPoints = 0.0f;
 
     private EnemyHealth healthSystem;
@@ -61,11 +62,11 @@ public class BaseEnemy : StateMachine
         //ser till så att fiendens navagent är på asså att den inte är i luften
         if(NavAgent.enabled == true)
         {
-            if(timer < 0)
-            {
+            //if(timer < 0)
+            //{
                 NavAgent.SetDestination(destination);
-                timer = timeBetweenSetDestination;
-            }
+                //timer = timeBetweenSetDestination;
+            //}
         }
     }
 

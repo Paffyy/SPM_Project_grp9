@@ -15,6 +15,8 @@ public class BaseEnemyBaseState : State
     protected float hearRadius;
     protected float PlacmentDistance;
     protected float waitAtPatrolPoints;
+
+    protected bool isWaitAtPosition;
     //public LayerMask PlayerLayer;
 
     //för debug
@@ -41,7 +43,9 @@ public class BaseEnemyBaseState : State
         waitAtPatrolPoints = this.owner.waitAtPatrolPoints;
         //måste vara högre än navAgent stopping distance
         PlacmentDistance = this.owner.AttackPlacmentDistance;
-    }
+        isWaitAtPosition = this.owner.IsWaitAtPosition;
+
+}
 
     public override void HandleUpdate()
     {

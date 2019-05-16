@@ -91,15 +91,15 @@ public class PlayerBaseState : State
     {
         Vector3 gravity;
         //om spelaren faller
-        if (owner.Velocity.y < 0)
-        {
-             gravity = Vector3.down * GravityForce * (fallMultiplier -1) * Time.deltaTime;
-        }
-        else
-        {
+        //if (owner.Velocity.y < 0)
+        //{
+        //     gravity = Vector3.down * GravityForce * (fallMultiplier -1) * Time.deltaTime;
+        //}
+        //else
+        //{
             gravity = Vector3.down * GravityForce * Time.deltaTime;
 
-        }
+        //}
         owner.Velocity += gravity;
     }
 
