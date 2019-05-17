@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerBaseState : State
 {
 
-    public LayerMask CollisionMask;
     [SerializeField] protected float Acceleration = 20.0f;
     [SerializeField] protected float GravityForce = 15.0f;
     [SerializeField] protected float StaticFriction = 0.1f;
@@ -25,6 +24,8 @@ public class PlayerBaseState : State
     protected SphereCollider sphere;
     protected Player owner;
 
+    [SerializeField] private LayerMask CollisionMask;
+    [SerializeField] private LayerMask CameraCollisionMask;
     private float yaw;
     private float pitch;
     private Vector3 currentRotation;
