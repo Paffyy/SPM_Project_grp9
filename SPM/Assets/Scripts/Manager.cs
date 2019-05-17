@@ -37,6 +37,7 @@ public class Manager
     public List<Vector3> GetFlankingPoints(Transform ownersTransform, Transform targetTransform, float radius, float maxAngle, bool isFlankingLeft)
     {
         List<Vector3> listOfFlankingPoints = new List<Vector3>();
+
         float startingAngle = Vector3.Angle(ownersTransform.position, targetTransform.position);
         float targetAngle = isFlankingLeft ? -maxAngle : maxAngle;
         Debug.Log("targetAngle " + targetAngle + " isFlankingLeft " + isFlankingLeft);
@@ -47,7 +48,7 @@ public class Manager
             for (int i = 0; i < 7; i++)
             {
             Vector3 direction = Quaternion.Euler(0, targetAngle * i, 0) *  - targetTransform.right;
-                Vector3 flankingPoint = targetTransform.position + (direction * radius);
+                Vector3 flankingPoint = ownersTransform.position + (direction * radius);
                 listOfFlankingPoints.Add(flankingPoint);
             }
         //}
