@@ -61,8 +61,8 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
                 PlayerHealth player = arr[0].GetComponent<PlayerHealth>();
             if(Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner.attackDistance)
             {
-                Vector3 push = (((player.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * 6;
-                player.TakeDamage(owner.Damage, push, owner.transform.position);
+                Vector3 push = (((owner.player.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * 4;
+                owner.player.GetComponent<PlayerHealth>().TakeDamage(owner.Damage, push, owner.transform.position);
             }
 
         }

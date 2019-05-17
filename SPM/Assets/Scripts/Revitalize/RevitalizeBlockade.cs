@@ -21,7 +21,7 @@ public class RevitalizeBlockade : RevitalizeGeometry
         mat.renderQueue = 3000;
         GetComponent<Animator>().SetBool("Revitalized", true);
         IsRevitalized = true;
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 4f);
     }
 
     public void DestroyObject()

@@ -167,7 +167,7 @@ public class Sword : MonoBehaviour
     private void DealDamage(Collider item)
     {
         //testing
-        Vector3 pushBack = ((item.gameObject.transform.position - PlayerObject.transform.position).normalized + Vector3.up * 4) * 5;
+        Vector3 pushBack = (Vector3.ProjectOnPlane((item.gameObject.transform.position - PlayerObject.transform.position), Vector3.up) + Vector3.up * 5) * 3;
         item.gameObject.GetComponent<Health>().TakeDamage(Damage, pushBack, PlayerObject.transform.position);
 
         //item.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
