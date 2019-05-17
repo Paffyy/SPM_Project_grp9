@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245ea0e188056b24983addcb8f5a2008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terminationDelay: 3.5
+  terminationDelay: 5
   TutorialText: {fileID: 2516399492283379568}
 --- !u!1 &2516399491144436913
 GameObject:
@@ -200,7 +200,7 @@ MonoBehaviour:
 
     LMB : Attack
 
-    RMG : Aim / Block
+    RMB : Aim / Block
 
     E : Special attack'
 --- !u!1 &2516399492283379568
