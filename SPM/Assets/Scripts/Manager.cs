@@ -34,27 +34,32 @@ public class Manager
         return colliders;
     }
 
-    public List<Vector3> GetFlankingPoints(Transform transform, float radius, bool isFlankingLeft)
+    public List<Vector3> GetFlankingPoints(Transform ownersTransform, Transform targetTransform, float radius, float maxAngle, bool isFlankingLeft)
     {
         List<Vector3> listOfFlankingPoints = new List<Vector3>();
-        if (isFlankingLeft)
-        {
+        float startingAngle = Vector3.Angle(ownersTransform.position, targetTransform.position);
+        float targetAngle = isFlankingLeft ? -maxAngle : maxAngle;
+        Debug.Log("targetAngle " + targetAngle + " isFlankingLeft " + isFlankingLeft);
+        //if (isFlankingLeft)
+        //{
+            
+        //}
             for (int i = 0; i < 7; i++)
             {
-                var direction = Quaternion.Euler(0, -15 * i, 0 ) * - transform.right;
-                var flankingPoint = transform.position + (direction * radius);
+            Vector3 direction = Quaternion.Euler(0, targetAngle * i, 0) *  - targetTransform.right;
+                Vector3 flankingPoint = targetTransform.position + (direction * radius);
                 listOfFlankingPoints.Add(flankingPoint);
             }
-        }
-        else
-        {
-            for (int i = 0; i < 7; i++)
-            {
-                var direction = Quaternion.Euler(0, 15 * i, 0) * transform.right;
-                var flankingPoint = transform.position + (direction * radius);
-                listOfFlankingPoints.Add(flankingPoint);
-            }
-        }
+        //}
+        //else
+        //{
+        //    for (int i = 0; i < 7; i++)
+        //    {
+        //        var direction = Quaternion.Euler(0, 15 + startingAngle * i, 0) * targetTransform.right;
+        //        var flankingPoint = targetTransform.position + (direction * radius);
+        //        listOfFlankingPoints.Add(flankingPoint);
+        //    }
+        //}
         return listOfFlankingPoints;
     }
     public List<Collider> GetAoeHit(Vector3 pos, LayerMask layerMask, float radius)

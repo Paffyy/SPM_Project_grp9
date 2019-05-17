@@ -23,7 +23,7 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
-        owner.UpdateDestination(owner.Path.PathObjects[currentPoint].position);
+        UpdateDestination(owner.Path.PathObjects[currentPoint].position);
         if (Vector3.Distance(owner.transform.position, owner.Path.PathObjects[currentPoint].position) < pointSize )
         {
             if(isWaitAtPosition == true)

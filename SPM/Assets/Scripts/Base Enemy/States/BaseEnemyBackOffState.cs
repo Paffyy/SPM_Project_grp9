@@ -26,27 +26,19 @@ public class BaseEnemyBackOffState : BaseEnemyBaseState
     {
         timer -= Time.deltaTime;
 
-        //owner.transform.RotateAround(Vector3.zero, Vector3.up, 10 * Time.deltaTime);
-        //Quaternion direction = (owner.player.transform.position - owner.transform.position).normalized;
-        //owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, owner.player.transform.position, Time.deltaTime * 10);
         owner.transform.LookAt(owner.transform.position);
-        owner.UpdateDestination(owner.player.transform.position - owner.transform.forward * Speed);
+        UpdateDestination(owner.player.transform.position - owner.transform.forward * Speed);
         float dist = Vector3.Distance(owner.player.transform.position, owner.transform.position);
         if (  timer < 0 || dist > MaxDistance
             || dist < minDistance)
         {
-            //owner.Transition<BaseEnemyCircleState>();
-            owner.Transition<BaseEnemyAttackState>();
+            int rand = Random.Range(1, 4);
+            if (rand == 1);
+                owner.Transition<BaseEnemyCircleState>();
+            //owner.Transition<BaseEnemyAttackState>();
         }
         base.HandleUpdate();
     }
-
-    //private IEnumerator BackOff()
-    //{
-    //    yield return new WaitForSeconds(BackTime);
-    //    owner.Transition<BaseEnemyAttackState>();
-    //    //owner.Transition<BaseEnemyCircleState>();
-    //}
 
     public override void Exit()
     {

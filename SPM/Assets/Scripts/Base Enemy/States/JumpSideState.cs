@@ -24,7 +24,7 @@ public class JumpSideState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
-        owner.UpdateDestination(owner.player.transform.position);
+        UpdateDestination(owner.player.transform.position);
         //Debug.Log("chaseState");
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > lostTargetDistance)

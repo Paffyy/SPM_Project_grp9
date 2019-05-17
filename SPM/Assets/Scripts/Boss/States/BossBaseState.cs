@@ -17,6 +17,10 @@ public class BossBaseState : State
     protected float waitAtPatrolPoints;
     //public LayerMask PlayerLayer;
 
+    private float timerSetDestination;
+    private float timeBetweenSetDestination = 0.1f;
+    private Vector3 currentDestination;
+
     //för debug
     [SerializeField] protected Material material;
 
@@ -24,6 +28,7 @@ public class BossBaseState : State
 
     public override void Enter()
     {
+        timerSetDestination = timeBetweenSetDestination;
         //Debug.Log("BaseState");
         owner.MeshRen.material = material;
         owner.NavAgent.speed = moveSpeed;
@@ -45,6 +50,17 @@ public class BossBaseState : State
 
     public override void HandleUpdate()
     {
+
+        timerSetDestination -= timeBetweenSetDestination;
+        if (timerSetDestination < 0)
+        {
+            if (owner.NavAgent.enabled == true)
+            {
+                owner.NavAgent.SetDestination(currentDestination);
+            }
+            timerSetDestination = timeBetweenSetDestination;
+        }
+
         base.HandleUpdate();
 
         //owner.IFrameCoolDown -= Time.deltaTime;
@@ -61,6 +77,11 @@ public class BossBaseState : State
     {
         //kolla först om spelaren springer
         return Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius;
+    }
+
+    public void UpdateDestination(Vector3 destination)
+    {
+         currentDestination = destination;
     }
 
 }
