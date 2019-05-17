@@ -6,7 +6,7 @@ public class Player : StateMachine
 {
 
     public LayerMask CollisionMask;
-     public Vector3 Velocity;
+    public Vector3 Velocity;
     [HideInInspector] public float RotationX;
     [HideInInspector] public float RotationY;
 
@@ -17,6 +17,7 @@ public class Player : StateMachine
 
     protected override void Awake()
     {
+        RotationY = 90;
         base.Awake();
     }
 
