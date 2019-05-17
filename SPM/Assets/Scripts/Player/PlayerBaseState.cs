@@ -112,7 +112,7 @@ public class PlayerBaseState : State
     {
         RaycastHit hit;
         Vector3 cameraUpdate = playerCamera.transform.rotation * cameraPosition.normalized;
-        if (Physics.SphereCast(owner.transform.position, sphere.radius, cameraUpdate, out hit, cameraPosition.magnitude, CollisionMask))
+        if (Physics.SphereCast(owner.transform.position, sphere.radius, cameraUpdate, out hit, cameraPosition.magnitude, CameraCollisionMask))
         {
             Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius);
             playerCamera.transform.position = newPosition + owner.transform.position;

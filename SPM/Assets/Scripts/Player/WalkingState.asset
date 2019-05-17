@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be62ae665ab8f014cbb1f5af48dd77cc, type: 3}
   m_Name: WalkingState
   m_EditorClassIdentifier: 
-  CollisionMask:
-    serializedVersion: 2
-    m_Bits: 50176
   Acceleration: 40
   GravityForce: 30
   StaticFriction: 0.9
@@ -24,3 +21,9 @@ MonoBehaviour:
   MouseSensitivity: 2
   skinWidth: 0.005
   groundCheckDistance: 0.5
+  CollisionMask:
+    serializedVersion: 2
+    m_Bits: 183296
+  CameraCollisionMask:
+    serializedVersion: 2
+    m_Bits: 35840
