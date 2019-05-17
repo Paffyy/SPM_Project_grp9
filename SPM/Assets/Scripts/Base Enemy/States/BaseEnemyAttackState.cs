@@ -51,6 +51,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         currentCooldown -= Time.deltaTime;
         if (currentCooldown > 0)
             return;
+        Debug.Log("attack");
 
         //Skadar spelarn
         GameObject[] arr = owner.Fow.TargetsInFieldOfView();

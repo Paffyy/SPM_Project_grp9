@@ -19,7 +19,7 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
     private float maxStandningStillTime = 1.0f;
     private float stillCount;
 
-    private float maxTimeInState = 5.0f;
+    private float maxTimeInState = 3f;
     private float timerInState;
 
     private float minDistance = 0.3f;
@@ -42,15 +42,24 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
         int rand = Random.Range(1, 3);
         bool goLeft = rand == 1 ? true : false;
         Debug.Log("goLeft " + goLeft + " rand " + rand);
-        listOfPoints = Manager.Instance.GetFlankingPoints(owner.transform, owner.player.transform, circleDistance, 15.0f, goLeft);
-    }
+        var flankList = Manager.Instance.GetFlankingPoints(owner.transform, owner.player.transform, 3, 15.0f, goLeft);
+        listOfPoints = new List<Vector3>();
+        foreach (var item in flankList)
+        {
+            listOfPoints.Add(item + owner.transform.forward * circleDistance);
+        }
+    }   
 
     public override void HandleUpdate()
     {
 
         timerInState -= Time.deltaTime;
-        if(timerInState >  0)
+        if(timerInState <  0)
+        {
+            Debug.Log("GoBack");
             owner.Transition<BaseEnemyAttackState>();
+            timerInState = maxTimeInState;
+        }
         //owner.transform.LookAt(owner.player.transform.position);
 
         Vector3 disVector = owner.player.transform.position - owner.transform.position;
@@ -89,6 +98,7 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
     {
         UpdateDestination(listOfPoints[curentCount]);
         //NextAnglePoint += NextAnglePoint;
+        Debug.Log(curentCount + " currentcount" );
         curentCount++;
         timer = timeBetweenAngels;
     }
