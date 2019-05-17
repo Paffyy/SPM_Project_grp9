@@ -85,7 +85,7 @@ public class Arrow : MonoBehaviour
             {
                 //TODO fixa
                 //transform.forward är inte den riktningen som pilen färdas i
-                Vector3 pushBack = gameObject.transform.forward * 2 + (Vector3.up * 2) * 3;
+                Vector3 pushBack = Vector3.ProjectOnPlane(transform.forward, Vector3.up) * 2 + (Vector3.up * 2) * 3;
                 gameObject.transform.SetParent(hit.collider.gameObject.transform);
                 hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage, pushBack, Vector3.zero);
             }
