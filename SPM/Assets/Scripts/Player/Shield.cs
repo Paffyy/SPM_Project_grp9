@@ -20,7 +20,7 @@ public class Shield : MonoBehaviour
     void Start()
     {
         //shieldPos = new Vector3(0.31f, 0.45f, -0.43f);
-        shieldPos = new Vector3(0.4f, 0.3f, -0.5f);
+        shieldPos = new Vector3(0.2f, 0.3f, -0.5f);
         boxCollider = GetComponentInChildren<BoxCollider>();
         CurrentHealth = ShieldHealth;
         IsBlocking = false;
@@ -51,8 +51,8 @@ public class Shield : MonoBehaviour
     public void UpdateTransformation()
     {
 
-        //Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
-        Vector3 direction = playerCamera.transform.forward;
+        Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
+       // Vector3 direction = playerCamera.transform.forward;
         transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 90, 0);
         Vector3 update = transform.rotation * shieldPos.normalized;
         transform.position = update * shieldPos.magnitude + Player.transform.position;

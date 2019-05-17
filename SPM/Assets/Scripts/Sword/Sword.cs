@@ -31,7 +31,7 @@ public class Sword : MonoBehaviour
 
     void Start()
     {
-        swordOffset = new Vector3(0.5f, 0.2f, 0.55f);
+        swordOffset = new Vector3(0.3f, 0.2f, 0.55f);
         trailsEmissionModule = Trails.emission;
         isAttacking = false;
     }
@@ -143,7 +143,8 @@ public class Sword : MonoBehaviour
 
     private void UpdateRotation(float swing = 0)
     {
-        var direction = playerCamera.transform.forward;
+        //var direction = playerCamera.transform.forward;
+        Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
         //  transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
         transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-15, 90, 0);
     }
