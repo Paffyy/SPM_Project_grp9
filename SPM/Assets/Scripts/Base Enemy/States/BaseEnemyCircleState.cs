@@ -13,18 +13,22 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
     private Vector3 targetPos;
     private List<Vector3> listOfPoints;
     private int curentCount;
-    private int maxSteps = 3;
+    private int maxSteps = 2;
 
     private bool isStandningStill;
-    private float maxStandningStillTime = 0.3f;
+    private float maxStandningStillTime = 1.0f;
     private float stillCount;
 
-    private float minDistance = 1.0f;
+    private float maxTimeInState = 5.0f;
+    private float timerInState;
+
+    private float minDistance = 0.3f;
 
     public override void Enter()
     {
         curentCount = 0;
         timer = timeBetweenAngels;
+        timerInState = maxTimeInState;
         //angle = Vector3.Angle(owner.player.transform.position, owner.transform.position);
         Debug.Log("CircleState");
         Vector3 dis = owner.player.transform.position - owner.transform.position;
@@ -41,33 +45,30 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
         listOfPoints = Manager.Instance.GetFlankingPoints(owner.transform, owner.player.transform, circleDistance, 15.0f, goLeft);
     }
 
-    private void standningStill()
-    {
-
-    }
-
     public override void HandleUpdate()
     {
 
-
-        timer -= Time.deltaTime;
+        timerInState -= Time.deltaTime;
+        if(timerInState >  0)
+            owner.Transition<BaseEnemyAttackState>();
         //owner.transform.LookAt(owner.player.transform.position);
 
         Vector3 disVector = owner.player.transform.position - owner.transform.position;
         float dis = Vector3.SqrMagnitude(disVector);
-        if (dis < minDistance)
+        if (dis < minDistance || isStandningStill == true)
         {
-            Debug.Log("mindis");
+            Debug.Log("mindis " + (dis < minDistance) + " isStandningStill " + isStandningStill);
             owner.Transition<BaseEnemyAttackState>();
         }
         if(owner.controller.Velocity == Vector3.zero)
         {
-            stillCount += Time.deltaTime;
+            stillCount -= Time.deltaTime;
             if(stillCount > 0)
             {
                 isStandningStill = true;
             }
         }
+
         if(owner.controller.Velocity != Vector3.zero)
         {
             stillCount = maxStandningStillTime;

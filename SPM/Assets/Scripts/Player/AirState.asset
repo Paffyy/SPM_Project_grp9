@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ff5d67a0c5dbd47bf6f488e09510d6, type: 3}
   m_Name: AirState
   m_EditorClassIdentifier: 
-  CollisionMask:
-    serializedVersion: 2
-    m_Bits: 35840
   Acceleration: 30
   GravityForce: 30
   StaticFriction: 0.6
@@ -24,3 +21,9 @@ MonoBehaviour:
   MouseSensitivity: 2
   skinWidth: 0.005
   groundCheckDistance: 0.5
+  CollisionMask:
+    serializedVersion: 2
+    m_Bits: 183296
+  CameraCollisionMask:
+    serializedVersion: 2
+    m_Bits: 35840
