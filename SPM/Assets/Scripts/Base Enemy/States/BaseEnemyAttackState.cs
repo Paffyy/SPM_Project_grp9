@@ -13,7 +13,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         //Debug.Log("AttackState");
         base.Enter();
         owner.MeshRen.material.color = Color.red;
-        currentCooldown = cooldown;
+        currentCooldown = 0.2f;
         owner.currectState = this;
         //hitta hur många andra fiender som är i AttackState
     }
