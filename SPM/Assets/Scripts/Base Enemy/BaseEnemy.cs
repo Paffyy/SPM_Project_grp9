@@ -30,8 +30,8 @@ public class BaseEnemy : StateMachine
     private EnemyHealth healthSystem;
     [HideInInspector]public CharacterController controller;
 
-    private float timeBetweenSetDestination = 0.1f;
-    private float timer;
+    //private float timeBetweenSetDestination = 0.1f;
+    //private float timer;
 
     //public float AttackRange;
 
@@ -43,7 +43,7 @@ public class BaseEnemy : StateMachine
         //för debug
         MeshRen = GetComponent<MeshRenderer>();
 
-        timer = timeBetweenSetDestination;
+        //timer = timeBetweenSetDestination;
         //BaseEnemyList.AddLast(this.gameObject);
         NavAgent = GetComponent<NavMeshAgent>();
         healthSystem = GetComponent<EnemyHealth>();
@@ -57,18 +57,18 @@ public class BaseEnemy : StateMachine
         base.Awake();
     }
 
-    public void UpdateDestination(Vector3 destination)
-    {
-        //ser till så att fiendens navagent är på asså att den inte är i luften
-        if(NavAgent.enabled == true)
-        {
-            //if(timer < 0)
-            //{
-                NavAgent.SetDestination(destination);
-                //timer = timeBetweenSetDestination;
-            //}
-        }
-    }
+    //public void UpdateDestination(Vector3 destination)
+    //{
+    //    //ser till så att fiendens navagent är på asså att den inte är i luften
+    //    if(NavAgent.enabled == true)
+    //    {
+    //        //if(timer < 0)
+    //        //{
+    //            NavAgent.SetDestination(destination);
+    //            //timer = timeBetweenSetDestination;
+    //        //}
+    //    }
+    //}
 
     public void WaitAtPosition(float seconds)
     {
