@@ -17,6 +17,11 @@ public class BaseEnemyBaseState : State
     protected float waitAtPatrolPoints;
     protected CharacterController controller;
     protected bool isWaitAtPosition;
+
+    private float timerSetDestination;
+    private float timeBetweenSetDestination = 0.1f;
+    private Vector3 currentDestination;
+
     //public LayerMask PlayerLayer;
 
     //för debug
@@ -26,6 +31,7 @@ public class BaseEnemyBaseState : State
 
     public override void Enter()
     {
+        timerSetDestination = timeBetweenSetDestination;
         //Debug.Log("BaseState");
         owner.MeshRen.material = material;
         owner.NavAgent.speed = moveSpeed;
@@ -47,13 +53,28 @@ public class BaseEnemyBaseState : State
 
         controller = this.owner.controller;
 
-}
+        timerSetDestination = timeBetweenSetDestination;
+
+    }
 
     public override void HandleUpdate()
     {
+        timerSetDestination -= timeBetweenSetDestination;
+
+            if (timerSetDestination < 0)
+            {
+                if (owner.NavAgent.enabled == true)
+                {
+                owner.NavAgent.SetDestination(currentDestination);
+                }
+                timerSetDestination = timeBetweenSetDestination;
+            }
+
+        //Debug Draw line ----- här!
+        Debug.DrawLine(owner.transform.position, currentDestination);
+        //Debug Draw line ----- här!
         base.HandleUpdate();
 
-        //owner.IFrameCoolDown -= Time.deltaTime;
 
     }
 
@@ -65,8 +86,12 @@ public class BaseEnemyBaseState : State
 
     protected bool CanHearPlayer()
     {
-        //kolla först om spelaren springer
         return Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius;
+    }
+
+    public void UpdateDestination(Vector3 destination)
+    {
+        currentDestination = destination;
     }
 
 }
