@@ -16,7 +16,7 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
     private int maxSteps = 3;
 
     private bool isStandningStill;
-    private float maxStandningStillTime = 0.3f;
+    private float maxStandningStillTime = 1.0f;
     private float stillCount;
 
     private float minDistance = 1.0f;
@@ -55,9 +55,9 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
 
         Vector3 disVector = owner.player.transform.position - owner.transform.position;
         float dis = Vector3.SqrMagnitude(disVector);
-        if (dis < minDistance)
+        if (dis < minDistance || isStandningStill == true)
         {
-            Debug.Log("mindis");
+            Debug.Log("mindis " + (dis < minDistance) + " isStandningStill " + isStandningStill);
             owner.Transition<BaseEnemyAttackState>();
         }
         if(owner.controller.Velocity == Vector3.zero)
@@ -68,6 +68,7 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
                 isStandningStill = true;
             }
         }
+
         if(owner.controller.Velocity != Vector3.zero)
         {
             stillCount = maxStandningStillTime;
