@@ -32,8 +32,13 @@ public class BaseEnemyBackOffState : BaseEnemyBaseState
         if (  timer < 0 || dist > MaxDistance
             || dist < minDistance)
         {
+<<<<<<< HEAD
+            int rand = Random.Range(1, 4);
+            if (rand == 1)
+=======
             int rand = Random.Range(1, 5);
             if (rand == 1);
+>>>>>>> 1af4d497c52acd64f5b7c72a48560dc622f7eaa9
                 owner.Transition<BaseEnemyCircleState>();
             //owner.Transition<BaseEnemyAttackState>();
         }

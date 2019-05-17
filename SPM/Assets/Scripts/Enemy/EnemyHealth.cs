@@ -74,7 +74,7 @@ public class EnemyHealth : Health
             navAgent.enabled = false;
             controller.enabled = true;
             //controller.MovePosition(pushBack);
-            controller.Velocity += pushBack;
+            controller.Velocity += Vector3.ProjectOnPlane(pushBack, Vector3.up);
         }
             //navAgent.enabled = false;
             //controller.enabled = true;
