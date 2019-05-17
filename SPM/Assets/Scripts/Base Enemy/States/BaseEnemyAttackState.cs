@@ -26,7 +26,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
         {
             Attack();
-            owner.Transition<BaseEnemyBackOffState>();
+           
         }
         currentCooldown -= Time.deltaTime;
         //tittar på spelaren
@@ -68,7 +68,10 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         }
         //arr[0].GetComponent<Player>.Hit();
         currentCooldown = cooldown;
-
+        if (Random.Range(0, 4) == 1)
+        {
+            owner.Transition<BaseEnemyBackOffState>();
+        }
     }
 
 }
