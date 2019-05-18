@@ -33,7 +33,7 @@
         // Physically based Standard lighting model, and enable shadows on all light types
         #pragma surface surf Standard fullforwardshadows vertex:disp tessellate:tessDistance nolightmap
         // Use shader model 3.0 target, to get nicer looking lighting
-       #pragma target 4.6
+        #pragma target 4.6
             #include "Tessellation.cginc"
 
 		   struct appdata {
