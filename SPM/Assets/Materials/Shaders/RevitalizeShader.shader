@@ -14,6 +14,10 @@
 
 		_RevitalizeFactor("RevitalizeFactor", Range(0,1)) = 0
 
+		_Parallax ("Height Scale", Range (0.005, 0.08)) = 0.02
+        _ScorchedParallaxMap ("ScorchedHeight", 2D) = "black" {}
+        _RevitalizeParallaxMap ("RevHeight", 2D) = "black" {}
+
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
 		_OcclusionScale("OcclusionFactor", Range(0,1)) = 1
