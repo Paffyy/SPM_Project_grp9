@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RevitalizeTexture:
-        m_Texture: {fileID: 2800000, guid: 873385e7e790bec4aad4b4a56a2a776b, type: 3}
+        m_Texture: {fileID: 2800000, guid: f6b9ee8f88d12b440a21b44d9a1bf593, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ScorchedNormal:
@@ -40,12 +40,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ScorchedTexture:
-        m_Texture: {fileID: 2800000, guid: 873385e7e790bec4aad4b4a56a2a776b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 10e6209b593f62a4abb543dcfdb01d1a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Cutoff: 0.5
     - _Glossiness: 0.25
-    - _Metallic: 0.25
+    - _Metallic: 0
     - _OcclusionScale: 1
     - _RevitalizeFactor: 0
     m_Colors:

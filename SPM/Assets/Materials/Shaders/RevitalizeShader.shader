@@ -6,23 +6,28 @@
         _RevitalizeTexture ("RevAlbedo (RGB)", 2D) = "white" {}
 		_RevitalizeNormal("RevNormal", 2D) = "bump" {}
 		_RevitalizeOcclusion ("RevOcclusion", 2D) = "white" {}
+
 		_ScorchedColor ("ScorchedColor", Color) = (1,1,1,1)
         _ScorchedTexture ("ScorchedAlbedo (RGB)", 2D) = "white" {}
 		_ScorchedNormal("ScorchedNormal", 2D) = "bump" {}
 		_ScorchedOcclusion ("ScorchedOcclusion", 2D) = "white" {}
+
 		_RevitalizeFactor("RevitalizeFactor", Range(0,1)) = 0
+
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
 		_OcclusionScale("OcclusionFactor", Range(0,1)) = 1
+		_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags {"Queue"="Transparent" "RenderType"="TransparentCutout" }
         LOD 200
-
+		Cull Off
+		Blend SrcAlpha OneMinusSrcAlpha
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows 
+        #pragma surface surf Standard fullforwardshadows
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
 
@@ -35,7 +40,6 @@
             float2 uv_RevitalizeTexture;
 			float2 uv_RevitalizeNormal;
 			float2 uv_RevitalizeOcclusion;
-
         };
 
 		sampler2D _ScorchedTexture;
@@ -52,7 +56,7 @@
 		half _OcclusionScale;
         half _Glossiness;
         half _Metallic;
-
+		fixed _Cutoff;
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
@@ -65,7 +69,9 @@
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = c.a;
+			o.Alpha = c.a;
+			clip(c.a - _Cutoff);
+		
         }
         ENDCG
     }
