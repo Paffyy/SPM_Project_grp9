@@ -88,6 +88,7 @@ public class EnemyHealth : Health
     public void EnemyDead()
     {
         EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, new DeathEventInfo(gameObject));
+        GameControl.GameController.DeadEnemies.Add(gameObject.GetComponent<Enemy>().EnemyID);
         Destroy(this.gameObject);
     }
 }
