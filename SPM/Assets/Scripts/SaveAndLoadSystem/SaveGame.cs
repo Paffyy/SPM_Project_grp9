@@ -43,7 +43,8 @@ public class SaveGame : MonoBehaviour
         foreach(float ID in EnemiesID)
         {
             GameObject enemy = GameControl.GameController.Enemies[ID];
-            enemy.SetActive(false);
+            if(enemy != null)
+                enemy.SetActive(false);
         }
         List<float> PickUpsID = data.PickedUpObjectsID;
         foreach (float ID in PickUpsID)
