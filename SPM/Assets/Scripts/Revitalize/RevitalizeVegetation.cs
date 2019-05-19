@@ -27,6 +27,11 @@ public class RevitalizeVegetation : RevitalizeGeometry
         IsRevitalized = true;
     }
 
+    public override void InstantRevitalize()
+    {
+        rend.material.color = RevitalizedMaterial.color;
+    }
+
     public void DullMaterial(float offset = 0)
     {
         if (colList.Count > 0)

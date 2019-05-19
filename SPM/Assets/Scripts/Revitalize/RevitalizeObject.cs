@@ -20,6 +20,10 @@ public class RevitalizeObject : RevitalizeGeometry
         StartCoroutine(LerpMaterialOverTime());
         IsRevitalized = true;
     }
+    public override void InstantRevitalize()
+    {
+        material.SetFloat("_RevitalizeFactor", 1);
+    }
     IEnumerator LerpMaterialOverTime()
     {
         for (int i = 1; i < lerpLevels+1; i++)
