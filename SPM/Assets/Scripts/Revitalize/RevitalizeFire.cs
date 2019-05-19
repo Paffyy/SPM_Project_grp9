@@ -18,4 +18,8 @@ public class RevitalizeFire : RevitalizeGeometry
         IsRevitalized = true;
         Destroy(gameObject, 3f);
     }
+    public override void InstantRevitalize()
+    {
+        gameObject.SetActive(false);
+    }
 }

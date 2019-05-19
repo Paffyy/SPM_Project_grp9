@@ -9,8 +9,10 @@ public class GameControl : MonoBehaviour
     public float[] PlayerPosition;
     public List<float> DeadEnemies;
     public List<float> PickedUpObjects;
+    public List<float> RevitalizedZones;
     public Dictionary<float, GameObject> Enemies;
     public Dictionary<float, GameObject> PickUps;
+    public Dictionary<float, GameObject> Zones;
 
     void Awake()
     {
@@ -27,6 +29,8 @@ public class GameControl : MonoBehaviour
         Enemies = new Dictionary<float, GameObject>();
         PickedUpObjects = new List<float>();
         PickUps = new Dictionary<float, GameObject>();
+        RevitalizedZones = new List<float>();
+        Zones = new Dictionary<float, GameObject>();
     }
 
     void Update()

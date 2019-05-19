@@ -51,5 +51,11 @@ public class SaveGame : MonoBehaviour
             GameObject pickUp = GameControl.GameController.PickUps[ID];
             pickUp.SetActive(false);
         }
+        List<float> ZonesID = data.RevitalizedZonesID;
+        foreach (float ID in ZonesID)
+        {
+            GameObject zone = GameControl.GameController.Zones[ID];
+            zone.GetComponent<RevitalizeZone>().RevitalizeTheZoneInstant();
+        }
     }
 }

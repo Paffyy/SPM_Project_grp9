@@ -11,7 +11,10 @@ public class RevitalizeZone : MonoBehaviour
     private bool shouldRevitalize;
     private bool hasRevitalized;
     private float transitionDelay = 0.5f;
+    private float zoneID;
     private List<RevitalizeGeometry> revitalizeObjects;
+
+
     public void Register()
     {
         if (EventHandler.Instance != null)
@@ -28,6 +31,8 @@ public class RevitalizeZone : MonoBehaviour
             hasRevitalized = true; // if objectives count == 0, don't revitalize immediately;
         }
         revitalizeObjects = GetRevitalizeObjects();
+        zoneID = transform.position.sqrMagnitude;
+        GameControl.GameController.Zones.Add(zoneID, gameObject);
     }
 
     private List<RevitalizeGeometry> GetRevitalizeObjects()
@@ -81,11 +86,23 @@ public class RevitalizeZone : MonoBehaviour
 
     private void RevitalizeTheZone()
     {
+        GameControl.GameController.RevitalizedZones.Add(zoneID);
         foreach (var item in revitalizeObjects)
         {
             if (!item.IsRevitalized)
             {
                 item.Revitalize(transitionDelay);
+            }
+        }
+    }
+
+    public void RevitalizeTheZoneInstant()
+    {
+        foreach (var item in revitalizeObjects)
+        {
+            if (!item.IsRevitalized)
+            {
+                item.InstantRevitalize();
             }
         }
     }

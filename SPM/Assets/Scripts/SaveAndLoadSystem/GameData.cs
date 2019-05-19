@@ -8,7 +8,7 @@ public class GameData
     public float[] PlayerPosition;
     public List<float> DeadEnemiesID;
     public List<float> PickedUpObjectsID;
-    public List<float> RevitalizedZones;
+    public List<float> RevitalizedZonesID;
 
     public GameData(GameObject player)
     {
@@ -18,6 +18,7 @@ public class GameData
         PlayerPosition[2] = player.transform.position.z;
         DeadEnemiesID = GameControl.GameController.DeadEnemies;
         PickedUpObjectsID = GameControl.GameController.PickedUpObjects;
+        RevitalizedZonesID = GameControl.GameController.RevitalizedZones;
 
     }
 }

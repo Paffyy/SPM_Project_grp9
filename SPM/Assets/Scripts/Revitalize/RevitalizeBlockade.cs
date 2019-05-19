@@ -24,6 +24,11 @@ public class RevitalizeBlockade : RevitalizeGeometry
         Destroy(gameObject, 4f);
     }
 
+    public override void InstantRevitalize()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
+
     public void DestroyObject()
     {
         Destroy(gameObject);
