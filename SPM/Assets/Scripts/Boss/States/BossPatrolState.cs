@@ -18,7 +18,6 @@ public class BossPatrolState : BossBaseState
         base.Enter();
         ClosestPoint();
         //Debug.Log("PatrolState");
-        owner.currectState = this;
     }
 
     public override void HandleUpdate()

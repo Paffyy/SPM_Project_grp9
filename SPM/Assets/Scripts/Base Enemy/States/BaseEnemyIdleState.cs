@@ -11,7 +11,6 @@ public class BaseEnemyIdleState : BaseEnemyBaseState
         //Debug.Log("IdleState");
         base.Enter();
         owner.MeshRen.material.color = Color.white;
-        owner.currectState = this;
     }
 
     public override void HandleUpdate()

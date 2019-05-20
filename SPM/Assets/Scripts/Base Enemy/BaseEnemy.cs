@@ -15,25 +15,40 @@ public class BaseEnemy : StateMachine
     [HideInInspector] public NavMeshAgent NavAgent;
     [HideInInspector] public FieldOfView Fow;
 
-    public State currectState;
+    public State CurrectState {
+        get {
+            return CurrentState;
+        }
+    }
 
     public float chaseDistance;
     public float cooldown;
+    //anvståndet där fienden går in i attackState
     public float attackDistance;
     public float lostTargetDistance;
     public float moveSpeed;
+    public float lookRotationSpeed;
     public float hearRadius;
     public float AttackPlacmentDistance;
     public bool IsWaitAtPosition = false;
     public float waitAtPatrolPoints = 0.0f;
+    //inte nav agents rotation utan 
+
 
     private EnemyHealth healthSystem;
     [HideInInspector]public CharacterController controller;
 
-    //private float timeBetweenSetDestination = 0.1f;
-    //private float timer;
+    private static int numberOfEnemiesInAttackState;
+    public static int NumberOfEnemiesInAttackState {
+        get {
+            return numberOfEnemiesInAttackState;
+        }
+        set {
+            numberOfEnemiesInAttackState = value;
+        }
+    }
 
-    //public float AttackRange;
+    public List<Vector3> DrawList;
 
     public LayerMask visionMask;
     public Player player;
@@ -57,19 +72,6 @@ public class BaseEnemy : StateMachine
         base.Awake();
     }
 
-    //public void UpdateDestination(Vector3 destination)
-    //{
-    //    //ser till så att fiendens navagent är på asså att den inte är i luften
-    //    if(NavAgent.enabled == true)
-    //    {
-    //        //if(timer < 0)
-    //        //{
-    //            NavAgent.SetDestination(destination);
-    //            //timer = timeBetweenSetDestination;
-    //        //}
-    //    }
-    //}
-
     public void WaitAtPosition(float seconds)
     {
         
@@ -84,6 +86,25 @@ public class BaseEnemy : StateMachine
         //idleState
         yield return new WaitForSeconds(seconds);
         NavAgent.isStopped = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(DrawList.Count > 0)
+        {
+
+            for(int i = 0; i < DrawList.Count; i++)
+            {
+                Gizmos.color = Color.red;
+                if (i == 0)
+                {
+                    Gizmos.color = Color.yellow;
+                }
+                Gizmos.DrawSphere(DrawList[i], 1f);
+
+            }
+                Debug.Log("Draw Speheres of flank");
+        }
     }
 
 }

@@ -24,6 +24,7 @@ public class Shield : MonoBehaviour
         boxCollider = GetComponentInChildren<BoxCollider>();
         CurrentHealth = ShieldHealth;
         IsBlocking = false;
+        Player.Transition<ShieldState>();
     }
 
     // Update is called once per frame

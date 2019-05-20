@@ -31,7 +31,6 @@ public class BossAttackState : BossBaseState
         base.Enter();
         //owner.MeshRen.material.color = Color.red;
         currentCooldown = cooldown;
-        owner.currectState = this;
         timeSinceShockwave = ShockWaveTimer;
         timeSinceFiresOfHeaven = FiresOfHeavenTimer;
         //hitta hur många andra fiender som är i AttackState

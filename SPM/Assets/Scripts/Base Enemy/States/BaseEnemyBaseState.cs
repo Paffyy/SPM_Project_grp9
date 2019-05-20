@@ -17,10 +17,13 @@ public class BaseEnemyBaseState : State
     protected float waitAtPatrolPoints;
     protected CharacterController controller;
     protected bool isWaitAtPosition;
+    protected float lookRotationSpeed;
 
     private float timerSetDestination;
     private float timeBetweenSetDestination = 0.1f;
     private Vector3 currentDestination;
+    private Transform currentRotationTarget;
+
 
     //public LayerMask PlayerLayer;
 
@@ -35,6 +38,8 @@ public class BaseEnemyBaseState : State
         //Debug.Log("BaseState");
         owner.MeshRen.material = material;
         owner.NavAgent.speed = moveSpeed;
+
+        owner.NavAgent.updateRotation = false;
     }
 
     public override void Initialize(StateMachine owner)
@@ -50,7 +55,7 @@ public class BaseEnemyBaseState : State
         //måste vara högre än navAgent stopping distance
         PlacmentDistance = this.owner.AttackPlacmentDistance;
         isWaitAtPosition = this.owner.IsWaitAtPosition;
-
+        lookRotationSpeed = this.owner.lookRotationSpeed;
         controller = this.owner.controller;
 
         timerSetDestination = timeBetweenSetDestination;
@@ -61,14 +66,14 @@ public class BaseEnemyBaseState : State
     {
         timerSetDestination -= timeBetweenSetDestination;
 
-            if (timerSetDestination < 0)
-            {
-                if (owner.NavAgent.enabled == true)
-                {
-                owner.NavAgent.SetDestination(currentDestination);
-                }
-                timerSetDestination = timeBetweenSetDestination;
-            }
+
+
+        //float step = lookRotationSpeed * Time.deltaTime;
+        //Vector3 targetDir = currentRotationTarget - owner.transform.position;
+        //Vector3 newDir = Vector3.RotateTowards(owner.transform.forward, targetDir, step, 0.0f);
+        //owner.transform.rotation = Quaternion.LookRotation(newDir);
+        SetDestination();
+        Rotate();
 
         //Debug Draw line ----- här!
         Debug.DrawLine(owner.transform.position, currentDestination);
@@ -77,6 +82,8 @@ public class BaseEnemyBaseState : State
 
 
     }
+
+
 
     protected bool CanSeePlayer()
     {
@@ -92,6 +99,38 @@ public class BaseEnemyBaseState : State
     public void UpdateDestination(Vector3 destination)
     {
         currentDestination = destination;
+    }
+
+    private void SetDestination()
+    {
+        if (timerSetDestination < 0)
+        {
+            if (owner.NavAgent.enabled == true)
+            {
+                owner.NavAgent.SetDestination(currentDestination);
+            }
+            timerSetDestination = timeBetweenSetDestination;
+        }
+    }
+
+    public void UpdateRotation(Transform target)
+    {
+        currentRotationTarget = target;
+    }
+
+    private void Rotate()
+    {
+        if(currentRotationTarget != null) {
+            Vector3 targetDir = currentRotationTarget.position - owner.transform.position;
+            Vector3 modifiedDir = new Vector3(targetDir.x, 0, targetDir.z);
+
+            float step = lookRotationSpeed * Time.deltaTime;
+
+            Vector3 newDir = Vector3.RotateTowards(owner.transform.forward, modifiedDir, step, 0.0f);
+            Debug.DrawRay(owner.transform.position, newDir, Color.red);
+
+            owner.transform.rotation = Quaternion.LookRotation(newDir);
+        }
     }
 
 }

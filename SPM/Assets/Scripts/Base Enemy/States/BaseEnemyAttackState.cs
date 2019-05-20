@@ -6,6 +6,8 @@ using UnityEngine;
 public class BaseEnemyAttackState : BaseEnemyBaseState
 {
 
+    
+
     private float currentCooldown;
 
     public override void Enter()
@@ -14,23 +16,38 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         base.Enter();
         owner.MeshRen.material.color = Color.red;
         currentCooldown = 0.2f;
-        owner.currectState = this;
         //hitta hur många andra fiender som är i AttackState
+        BaseEnemy.NumberOfEnemiesInAttackState++;
+        if (BaseEnemy.NumberOfEnemiesInAttackState > 2)
+        {
+            owner.Transition<BaseEnemyCircleState>();
+        }
+
     }
 
+    public override void Exit()
+    {
+        BaseEnemy.NumberOfEnemiesInAttackState--;
+        base.Exit();
+    }
     public override void HandleUpdate()
     {
         //owner.NavAgent.SetDestination(owner.player.transform.position);
         UpdateDestination(owner.player.transform.position);
+        UpdateRotation(owner.player.transform);
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < PlacmentDistance)
         {
             Attack();
-           
+            if (Random.Range(0, 3) == 0)
+            {
+                owner.Transition<BaseEnemyBackOffState>();
+            }
+
         }
         currentCooldown -= Time.deltaTime;
         //tittar på spelaren
-        LookAtTarget(owner.player.transform);
+
         //owner.transform.LookAt(owner.player.transform.position);
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > chaseDistance)
@@ -39,12 +56,12 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         base.HandleUpdate();
     }
 
-    void LookAtTarget(Transform target)
-    {
-        Vector3 dir = (target.position - owner.transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
-        owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, lookRotation, 5f);
-    }
+    //void LookAtTarget(Transform target)
+    //{
+    //    Vector3 dir = (target.position - owner.transform.position).normalized;
+    //    Quaternion lookRotation = Quaternion.LookRotation(new Vector3(dir.x, 0, dir.z));
+    //    owner.transform.rotation = Quaternion.Slerp(owner.transform.rotation, lookRotation, 5f);
+    //}
 
     private void Attack()
     {
@@ -59,19 +76,16 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         {
                 Debug.Log(arr[0]);
                 PlayerHealth player = arr[0].GetComponent<PlayerHealth>();
-            if(Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner.attackDistance)
-            {
+            //if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner.attackDistance)
+            //{
                 Vector3 push = (((owner.player.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * 4;
-                owner.player.GetComponent<PlayerHealth>().TakeDamage(owner.Damage, push, owner.transform.position);
-            }
+                player.TakeDamage(owner.Damage, push, owner.transform.position);
+            //}
 
         }
         //arr[0].GetComponent<Player>.Hit();
         currentCooldown = cooldown;
-        if (Random.Range(0, 4) == 1)
-        {
-            owner.Transition<BaseEnemyBackOffState>();
-        }
+
     }
 
 }

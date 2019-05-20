@@ -18,12 +18,12 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
         base.Enter();
         ClosestPoint();
         //Debug.Log("PatrolState");
-        owner.currectState = this;
     }
 
     public override void HandleUpdate()
     {
         UpdateDestination(owner.Path.PathObjects[currentPoint].position);
+        UpdateRotation(owner.Path.PathObjects[currentPoint]);
         if (Vector3.Distance(owner.transform.position, owner.Path.PathObjects[currentPoint].position) < pointSize )
         {
             if(isWaitAtPosition == true)

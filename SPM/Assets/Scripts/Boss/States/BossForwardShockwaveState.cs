@@ -12,7 +12,6 @@ public class BossForwardShockwaveState : BossBaseState
     public override void Enter()
     {
         base.Enter();
-        owner.currectState = this;
         owner.anim.SetTrigger("ShockWave");
         owner.NavAgent.isStopped = true;
 

@@ -715,8 +715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fed24f2d87fbc4b941a276b4692d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 11.13
-  viewAngle: 70
+  viewRadius: 15
+  viewAngle: 104
   TargetsToHit:
     serializedVersion: 2
     m_Bits: 512
@@ -749,7 +749,7 @@ MonoBehaviour:
   attackDistance: 2.5
   lostTargetDistance: 20
   moveSpeed: 3
-  hearRadius: 7
+  hearRadius: 6
   AttackPlacmentDistance: 2
   IsWaitAtPosition: 0
   waitAtPatrolPoints: 0
@@ -808,7 +808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollisionMask:
     serializedVersion: 2
-    m_Bits: 19968
+    m_Bits: 3072
   Velocity: {x: 0, y: 0, z: 0}
   RotationSpeed: 0
   Acceleration: 40
@@ -832,9 +832,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491e67703b4c44240a58dbda505cca3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingHealth: 200
+  StartingHealth: 150
   CurrentHealth: 0
-  DmgCoolDownTimer: 2
+  DmgCoolDownTimer: 1
   EnemyHealthSlider: {fileID: 551245279}
 --- !u!114 &5030238777447110604
 MonoBehaviour:

@@ -13,11 +13,14 @@ public class EnemyHealth : Health
     public Slider EnemyHealthSlider;
     private CharacterController controller;
     private NavMeshAgent navAgent;
+
+    private BaseEnemy thisEnemy;
     // Start is called before the first frame update
     public virtual void Start()
     {
         navAgent = GetComponent<NavMeshAgent>();
         controller = GetComponent<CharacterController>();
+        thisEnemy = GetComponent<BaseEnemy>();
         SetupHealthSlider();
         DmgCoolDownTimer = StunTimer;
         EnemyHealthSlider.value = EnemyHealthSlider.maxValue;
@@ -85,10 +88,22 @@ public class EnemyHealth : Health
             EnemyDead();
     }
 
+    private void ToAttackState()
+    {
+        if(thisEnemy != null)
+        {
+            thisEnemy.Transition<BaseEnemyAttackState>();
+        }
+    }
+
     public void EnemyDead()
     {
         EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, new DeathEventInfo(gameObject));
         GameControl.GameController.DeadEnemies.Add(gameObject.GetComponent<Enemy>().EnemyID);
+        if (thisEnemy != null)
+        {
+            thisEnemy.Transition<BaseEnemyDeathState>();
+        }
         Destroy(this.gameObject);
     }
 }

@@ -8,6 +8,12 @@ public abstract class StateMachine : MonoBehaviour
 
     [SerializeField] private State[] states;
     private State currentState;
+    public State CurrentState {
+        get
+        {
+            return currentState;
+        }
+    }
     private Dictionary<Type, State> stateDictionary = new Dictionary<Type, State>();
 
     protected virtual void Awake()
@@ -39,6 +45,7 @@ public abstract class StateMachine : MonoBehaviour
     private void Update()
     {
         if (states.Length > 0)
+            Debug.Log("name " + name + " currentState " + currentState.name);
             currentState.HandleUpdate();
     }
 }

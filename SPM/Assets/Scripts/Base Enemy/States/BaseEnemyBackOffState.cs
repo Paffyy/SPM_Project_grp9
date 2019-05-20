@@ -26,14 +26,16 @@ public class BaseEnemyBackOffState : BaseEnemyBaseState
     {
         timer -= Time.deltaTime;
 
-        owner.transform.LookAt(owner.transform.position);
+        UpdateRotation(owner.player.transform);
         UpdateDestination(owner.player.transform.position - owner.transform.forward * Speed);
         float dist = Vector3.Distance(owner.player.transform.position, owner.transform.position);
         if (timer < 0 || dist > MaxDistance
             || dist < minDistance)
         {
-            //int rand = Random.Range(1, 5);
-            //if (rand == 1)
+            if (Random.Range(1, 3) == 1)
+            {
+                owner.Transition<BaseEnemyCircleState>();
+            }
             owner.Transition<BaseEnemyAttackState>();
         }
         base.HandleUpdate();

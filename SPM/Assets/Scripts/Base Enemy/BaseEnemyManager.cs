@@ -21,7 +21,7 @@ public class BaseEnemyManager : MonoBehaviour
         int count = 0;
         foreach (BaseEnemy enemy in BaseEnemyArray)
         {
-            if (enemy.currectState.GetType() == typeof(BaseEnemyAttackState))
+            if (enemy.CurrectState.GetType() == typeof(BaseEnemyAttackState))
                 count++;
         }
         return count;

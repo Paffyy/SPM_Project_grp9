@@ -11,14 +11,15 @@ public class BaseEnemyChaseState : BaseEnemyBaseState
 
     public override void Enter()
     {
+        //Debug.Log("chaseState");
         base.Enter();
-        owner.currectState = this;
     }
 
     public override void HandleUpdate()
     {
         UpdateDestination(owner.player.transform.position);
-        //Debug.Log("chaseState");
+        UpdateRotation(owner.player.transform);
+
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > lostTargetDistance)
             owner.Transition<BaseEnemyPatrolState>();

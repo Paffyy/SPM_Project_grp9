@@ -10,7 +10,6 @@ public class JumpSideState : BaseEnemyBaseState
     public override void Enter()
     {
         jumpAngle = Random.Range(-90, 90);
-        owner.currectState = this;
         Debug.Log("JumpSideState");
         base.Enter();
     }

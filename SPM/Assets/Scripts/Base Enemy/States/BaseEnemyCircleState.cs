@@ -9,17 +9,16 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
     //private float angle;
     //[SerializeField] public float NextAnglePoint;
     [SerializeField] private float timeBetweenAngels;
-    private float timer;
+    private float timerSteps;
     private Vector3 targetPos;
     private List<Vector3> listOfPoints;
     private int curentCount;
-    private int maxSteps = 2;
+    private int maxSteps = 4;
 
-    private bool isStandningStill;
     private float maxStandningStillTime = 1.0f;
     private float stillCount;
 
-    private float maxTimeInState = 3f;
+    private float maxTimeInState = 10.0f;
     private float timerInState;
 
     private float minDistance = 0.3f;
@@ -27,79 +26,104 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
     public override void Enter()
     {
         curentCount = 0;
-        timer = timeBetweenAngels;
+        timerSteps = timeBetweenAngels;
         timerInState = maxTimeInState;
-        //angle = Vector3.Angle(owner.player.transform.position, owner.transform.position);
         Debug.Log("CircleState");
-        Vector3 dis = owner.player.transform.position - owner.transform.position;
-        circleDistance = Vector3.SqrMagnitude(dis);
+        Vector3 disVector = owner.player.transform.position - owner.transform.position;
+        circleDistance = disVector.magnitude;
+        if (circleDistance < 4.0f)
+            circleDistance = 4.0f;
+
         CreateListOfPoints();
         base.Enter();
+    }
+
+    public override void HandleUpdate()
+    {
+        Debug.Log("timeSteps " + timerSteps);
+        timerInState -= Time.deltaTime;
+        if (timerInState < 0)
+        {
+            Debug.Log("GoBack");
+            owner.Transition<BaseEnemyAttackState>();
+        }
+
+
+        UpdateRotation(owner.player.transform);
+        ToNextPoint();
+        CheckStandingStill();
+        CheckIfTooClose();
+        Debug.DrawLine(owner.player.transform.position, listOfPoints[curentCount]);
+        base.HandleUpdate();
     }
 
     private void CreateListOfPoints()
     {
         int rand = Random.Range(1, 3);
         bool goLeft = rand == 1 ? true : false;
-        Debug.Log("goLeft " + goLeft + " rand " + rand);
-        var flankList = Manager.Instance.GetFlankingPoints(owner.transform, owner.player.transform, 3, 15.0f, goLeft);
-        listOfPoints = new List<Vector3>();
-        foreach (var item in flankList)
-        {
-            listOfPoints.Add(item + owner.transform.forward * circleDistance);
-        }
-    }   
+        //Debug.Log("goLeft " + goLeft + " rand " + rand);
+        List<Vector3> flankList = Manager.Instance.GetFlankingPoints(owner.transform, owner.player.transform, circleDistance, 40.0f, goLeft);
+        listOfPoints = flankList;
 
-    public override void HandleUpdate()
+        //Debug ritar ut svärer med OnGizmoSeleced()
+        owner.DrawList.Clear();
+        owner.DrawList = listOfPoints;
+    }
+
+    private void ToNextPoint()
     {
+        timerSteps -= Time.deltaTime;
 
-        timerInState -= Time.deltaTime;
-        if(timerInState <  0)
+        if (timerSteps < 0)
         {
-            Debug.Log("GoBack");
-            owner.Transition<BaseEnemyAttackState>();
-            timerInState = maxTimeInState;
-        }
-        //owner.transform.LookAt(owner.player.transform.position);
 
-        Vector3 disVector = owner.player.transform.position - owner.transform.position;
-        float dis = Vector3.SqrMagnitude(disVector);
-        if (dis < minDistance || isStandningStill == true)
-        {
-            Debug.Log("mindis " + (dis < minDistance) + " isStandningStill " + isStandningStill);
-            owner.Transition<BaseEnemyAttackState>();
+            Circle();
+            timerSteps = timeBetweenAngels;
         }
-        if(owner.controller.Velocity == Vector3.zero)
+    }
+
+    private void CheckStandingStill()
+    {
+        if (owner.controller.Velocity == Vector3.zero)
         {
             stillCount -= Time.deltaTime;
-            if(stillCount > 0)
+            if (stillCount > 0)
             {
-                isStandningStill = true;
+                Debug.Log("is stadning still");
+                owner.Transition<BaseEnemyAttackState>();
             }
         }
-
-        if(owner.controller.Velocity != Vector3.zero)
+        else
         {
             stillCount = maxStandningStillTime;
         }
+    }
 
-        if (curentCount > maxSteps || curentCount > listOfPoints.Count)
-            owner.Transition<BaseEnemyAttackState>();
-
-        if (timer < 0)
+    private void CheckIfTooClose()
+    {
+        Vector3 disVector = owner.player.transform.position - owner.transform.position;
+        float dis = disVector.sqrMagnitude;
+        if (dis < minDistance * minDistance)
         {
-            Circle();
+            Debug.Log("mindis " + (dis < minDistance));
+            owner.Transition<BaseEnemyAttackState>();
         }
-        Debug.DrawLine(owner.player.transform.position, listOfPoints[curentCount]);
-        base.HandleUpdate();
     }
 
     private void Circle()
     {
+        if (curentCount > maxSteps || curentCount > listOfPoints.Count)
+        {
+            Debug.Log("out of points");
+            owner.Transition<BaseEnemyAttackState>();
+        }
+
         UpdateDestination(listOfPoints[curentCount]);
         //NextAnglePoint += NextAnglePoint;
         Debug.Log(curentCount + " currentcount" );
         curentCount++;
-        timer = timeBetweenAngels;
+
     }
+
+
 }

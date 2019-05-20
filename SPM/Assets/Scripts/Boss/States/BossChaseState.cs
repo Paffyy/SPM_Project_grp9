@@ -12,7 +12,6 @@ public class BossChaseState : BossBaseState
     public override void Enter()
     {
         base.Enter();
-        owner.currectState = this;
     }
 
     public override void HandleUpdate()

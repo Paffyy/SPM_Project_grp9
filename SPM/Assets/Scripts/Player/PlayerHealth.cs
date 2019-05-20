@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public int StartingHealth = 100;
     public int CurrentHealth;
     public Slider HealthSlider;
+    public GameObject ShieldObject;
     private Player player;
 
     public float DamageCooldown;
@@ -53,15 +54,21 @@ public class PlayerHealth : MonoBehaviour
         else
             currentCooldown = DamageCooldown;
 
-        var shield = GetComponentInChildren<Shield>();
-        if (shield != null)
+        //TODO fixa så att skölden fungerar på riktigt
+        //Okej den funkar fortfarande inte pallar inte fixa det just nu, det borde vara så att skölden har ett state där den blockar allt
+        //eller om man gör så skickar man bara ut en ray mellan fienden och spelaren och kollar om skölden kommer emellan
+        //men det kommer nog göra det svårt för animerade attacker så det är nog bättre med någon form av dot produkt
+
+        //var shield = GetComponentInChildren<Shield>();
+        if (ShieldObject != null)
         {
-            var dotProduct = Vector3.Dot(shield.transform.TransformDirection(transform.forward), position - transform.position);
-            if (dotProduct > shield.FacingOffset) // shieldblocked
+            var dotProduct = Vector3.Dot(ShieldObject.transform.TransformDirection(transform.forward), position - transform.position);
+            if (dotProduct > ShieldObject.transform.forward.x) // shieldblocked
             {
-                shield.TakeDamage(damage);
-                //skölden tar bort 50% av pushBack effekten
-                player.Velocity += pushBack * 0.5f;
+                //ShieldObject.TakeDamage(damage);
+                //skölden tar bort 90% av pushBack effekten
+                player.Velocity += pushBack * 0.1f;
+                Debug.Log("shield hit!");
                 return;
             }
         }
