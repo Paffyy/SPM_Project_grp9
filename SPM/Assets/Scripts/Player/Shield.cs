@@ -26,7 +26,10 @@ public class Shield : MonoBehaviour
         IsBlocking = false;
         Player.Transition<ShieldState>();
     }
-
+    void OnDisable()
+    {
+        Player.SpeedModifier = 1f;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -36,6 +39,7 @@ public class Shield : MonoBehaviour
             if (IsBlocking  == false && Player.GetComponent<Weapon>().Sword.GetComponent<Sword>().IsBladeStorming == false)
             {
                 Block();
+                Player.SpeedModifier = 0.75f;
             }
             else
             {
@@ -45,6 +49,7 @@ public class Shield : MonoBehaviour
         if (IsBlocking == true && Input.GetKeyUp(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
         {
             GoToIdle();
+            Player.SpeedModifier = 1f;
         }
         //  ExtDebug.DrawBoxCastBox(transform.position, Quaternion.Euler(0, 90, 0) * boxCollider.size / 2, transform.rotation, transform.forward, 0.5f, Color.white);
     }
