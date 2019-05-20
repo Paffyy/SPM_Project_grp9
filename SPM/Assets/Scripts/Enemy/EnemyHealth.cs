@@ -8,11 +8,12 @@ public class EnemyHealth : Health
 {
     //public float DamageCooldown;
     //private float currentCooldown;
-    private float StunTimer;
     private float navMeshAgentOffTime;
     public Slider EnemyHealthSlider;
     private CharacterController controller;
     private NavMeshAgent navAgent;
+
+    private bool isDead = false;
 
     private BaseEnemy thisEnemy;
     // Start is called before the first frame update
@@ -22,7 +23,6 @@ public class EnemyHealth : Health
         controller = GetComponent<CharacterController>();
         thisEnemy = GetComponent<BaseEnemy>();
         SetupHealthSlider();
-        DmgCoolDownTimer = StunTimer;
         EnemyHealthSlider.value = EnemyHealthSlider.maxValue;
     }
 
@@ -45,6 +45,12 @@ public class EnemyHealth : Health
                 controller.enabled = false;
             }
         }
+
+        if (CurrentHealth <= 0 && isDead == false)
+        {
+            isDead = true;
+            EnemyDead();
+        }
     }
 
     public override void TakeDamage(int damage, bool overrideCooldown = false)
@@ -58,8 +64,7 @@ public class EnemyHealth : Health
         }
         CurrentHealth -= damage;
         EnemyHealthSlider.value = CurrentHealth;
-        if (CurrentHealth <= 0)
-            EnemyDead();
+
     }
 
     public override void TakeDamage(int damage, Vector3 pushBack, Vector3 position)
@@ -84,8 +89,6 @@ public class EnemyHealth : Health
             ////controller.MovePosition(pushBack);
             //controller.Velocity += pushBack;
             navMeshAgentOffTime = 0.0f;
-        if (CurrentHealth <= 0)
-            EnemyDead();
     }
 
     private void ToAttackState()
@@ -104,6 +107,6 @@ public class EnemyHealth : Health
         {
             thisEnemy.Transition<BaseEnemyDeathState>();
         }
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 }
