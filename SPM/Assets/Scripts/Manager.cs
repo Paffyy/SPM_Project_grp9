@@ -38,7 +38,7 @@ public class Manager
     {
         List<Vector3> listOfFlankingPoints = new List<Vector3>();
 
-        float startingAngle = Vector3.Angle(ownerTransform.position, targetTransform.position);
+        float startingAngle = Vector3.Angle(ownerTransform.forward, targetTransform.position);
         float targetAngle = isFlankingLeft ? -maxAngle : maxAngle;
         //Debug.Log("targetAngle " + targetAngle + " isFlankingLeft " + isFlankingLeft);
         Vector3 rightOffset = new Vector3(90, 0, 0);
@@ -51,6 +51,20 @@ public class Manager
             }
         return listOfFlankingPoints;
     }
+    public List<Vector3> GetFlankingPoints(Transform ownerTransform, float radius, int angle, bool isFlankingLeft)
+    {
+        List<Vector3> listOfFlankingPoints = new List<Vector3>();
+        int leftModifier = isFlankingLeft ? -1 : 1;
+        Vector3 flankDestination = ownerTransform.forward * radius + ownerTransform.position;
+        for (int i = 1; i < 7; i++)
+        {
+            Vector3 direction = Quaternion.Euler(0,  leftModifier * angle * i, 0) * - ownerTransform.forward;
+            Vector3 flankingPoint = flankDestination + direction * radius;
+            listOfFlankingPoints.Add(flankingPoint);
+        }
+        return listOfFlankingPoints;
+    }
+
 
     public List<Collider> GetAoeHit(Vector3 pos, LayerMask layerMask, float radius)
     {

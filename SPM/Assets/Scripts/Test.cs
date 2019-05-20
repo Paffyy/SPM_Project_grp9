@@ -18,10 +18,10 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            var flankList = Manager.Instance.GetFlankingPoints(transform, otherObject.transform, radius , 15, true);
+            var flankList = Manager.Instance.GetFlankingPoints(transform, radius , 15, true);
             foreach (var item in flankList)
             {
-                Instantiate<GameObject>(otherObject, item + transform.forward * radius , Quaternion.identity);
+                Instantiate<GameObject>(otherObject, item, Quaternion.identity);
             }
         }
     }
