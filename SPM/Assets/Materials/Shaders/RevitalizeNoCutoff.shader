@@ -1,4 +1,4 @@
-﻿Shader "Revitalize/RevitalizeShader"
+﻿Shader "Revitalize/RevitalizeNoCutoff"
 {
     Properties
     {
@@ -14,18 +14,13 @@
 
 		_RevitalizeFactor("RevitalizeFactor", Range(0,1)) = 0
 
-
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
-		_OcclusionScale("OcclusionFactor", Range(0,1)) = 1
-		_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
     }
     SubShader
     {
-        Tags {"Queue"="Transparent" "RenderType"="TransparentCutout" }
+        Tags {"RenderType"="Opaque"}
         LOD 200
-		Cull Off
-		Blend SrcAlpha OneMinusSrcAlpha
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
         #pragma surface surf Standard fullforwardshadows
@@ -54,11 +49,8 @@
 		fixed4 _RevitalizeColor;
 
 		half _RevitalizeFactor;
-		half _OcclusionScale;
         half _Glossiness;
         half _Metallic;
-		fixed _Cutoff;
-
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
@@ -71,7 +63,6 @@
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
 			o.Alpha = c.a;
-			clip(c.a - _Cutoff);
 		
         }
         ENDCG
