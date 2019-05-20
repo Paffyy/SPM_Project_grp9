@@ -18,7 +18,7 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
     private float maxStandningStillTime = 1.0f;
     private float stillCount;
 
-    private float maxTimeInState = 10.0f;
+    private float maxTimeInState = 3.0f;
     private float timerInState;
 
     private float minDistance = 0.3f;
@@ -40,7 +40,6 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
-        Debug.Log("timeSteps " + timerSteps);
         timerInState -= Time.deltaTime;
         if (timerInState < 0)
         {

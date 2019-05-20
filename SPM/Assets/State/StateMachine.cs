@@ -38,6 +38,7 @@ public abstract class StateMachine : MonoBehaviour
     {
         currentState.Exit();
         currentState = stateDictionary[typeof(T)];
+        Debug.Log("name " + name +"currentState " + currentState);
         currentState.Enter();
     }
 
@@ -45,7 +46,6 @@ public abstract class StateMachine : MonoBehaviour
     private void Update()
     {
         if (states.Length > 0)
-            Debug.Log("name " + name + " currentState " + currentState.name);
             currentState.HandleUpdate();
     }
 }

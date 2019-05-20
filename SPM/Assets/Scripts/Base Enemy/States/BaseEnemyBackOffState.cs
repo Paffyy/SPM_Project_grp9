@@ -36,7 +36,11 @@ public class BaseEnemyBackOffState : BaseEnemyBaseState
             {
                 owner.Transition<BaseEnemyCircleState>();
             }
+            else
+            {
+
             owner.Transition<BaseEnemyAttackState>();
+            }
         }
         base.HandleUpdate();
     }
