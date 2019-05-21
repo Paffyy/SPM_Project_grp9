@@ -28,7 +28,7 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
         curentCount = 0;
         timerSteps = timeBetweenAngels;
         timerInState = maxTimeInState;
-        Debug.Log("CircleState");
+        //Debug.Log("CircleState");
         Vector3 disVector = owner.player.transform.position - owner.transform.position;
         circleDistance = disVector.magnitude;
         if (circleDistance < 4.0f)
@@ -43,7 +43,7 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
         timerInState -= Time.deltaTime;
         if (timerInState < 0)
         {
-            Debug.Log("GoBack");
+            //Debug.Log("GoBack");
             owner.Transition<BaseEnemyAttackState>();
         }
 
@@ -113,13 +113,13 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
     {
         if (curentCount > maxSteps || curentCount > listOfPoints.Count)
         {
-            Debug.Log("out of points");
+            //Debug.Log("out of points");
             owner.Transition<BaseEnemyAttackState>();
         }
 
         UpdateDestination(listOfPoints[curentCount]);
         //NextAnglePoint += NextAnglePoint;
-        Debug.Log(curentCount + " currentcount" );
+        //Debug.Log(curentCount + " currentcount" );
         curentCount++;
 
     }
