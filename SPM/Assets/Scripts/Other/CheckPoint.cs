@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     public Transform RespawnPosition;
+
     void Start()
     {
     }

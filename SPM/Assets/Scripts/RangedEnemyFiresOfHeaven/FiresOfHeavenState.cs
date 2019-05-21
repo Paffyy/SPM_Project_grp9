@@ -8,7 +8,7 @@ public class FiresOfHeavenState : RangedBaseState
     public int NumberOfFires;
     private BoxCollider fireArea;
     public float StartingHeight;
-    public GameObject FireBall;
+    public GameObject FireBallObject;
 
     //tid mellan eldbollar
     public float BetweenTime = 1f;
@@ -23,9 +23,10 @@ public class FiresOfHeavenState : RangedBaseState
     float minZ;
     float spawnCooldown = 2;
     private bool isRecharging;
-
+   
     public override void Enter()
     {
+        FireBallObject.GetComponent<FireBall>().parent = owner.firesOfHeavenContainer.transform;
         owner.anim.SetBool("FireRain", true);
         owner.NavAgent.isStopped = true;
         count = 0;
@@ -56,12 +57,18 @@ public class FiresOfHeavenState : RangedBaseState
         if (count < NumberOfFires)
         {
             Vector3 vec = SpawnNearPlayer(2.0f);
-            GameObject obj = Instantiate(FireBall, vec, Quaternion.identity, owner.firesOfHeavenContainer.transform);
+            GameObject obj = Instantiate(FireBallObject, vec, Quaternion.identity, owner.firesOfHeavenContainer.transform);
+
             Destroy(obj, 8f);
             count++;
         }
         else
         {
+            if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.lostTargetDistance)
+            {
+                owner.Transition<RangedEnemyPatrolState>();
+            }
+
             isRecharging = true;
             if (spawnCooldown < 0)
             {

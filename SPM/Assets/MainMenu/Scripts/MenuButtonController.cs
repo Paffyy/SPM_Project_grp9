@@ -18,9 +18,9 @@ public class MenuButtonController : MonoBehaviour
     void CheckInput()
     {
         if (Input.GetKey(KeyCode.W))
-            input = 1;
-        else if (Input.GetKey(KeyCode.S))
             input = -1;
+        else if (Input.GetKey(KeyCode.S))
+            input = 1;
         else
             input =  0;
     }

@@ -9,6 +9,9 @@ public class GameControl : MonoBehaviour
     public int CurrentSceneIndex { get { return SceneManager.GetActiveScene().buildIndex; } }
     public Player Player { get { return FindObjectOfType<Player>(); } }
     public int PlayerHealth { get { return FindObjectOfType<PlayerHealth>().CurrentHealth; } }
+    public int ArrowCount { get { return FindObjectOfType<Weapon>().ArrowCount; } }
+    public bool HasLoadedFromSaveFile { get; set; }
+    public bool HasReachedNewLevel { get; set; }
     public float[] PlayerPosition;
     public List<float> DeadEnemies;
     public List<float> PickedUpObjects;
@@ -16,7 +19,6 @@ public class GameControl : MonoBehaviour
     public Dictionary<float, GameObject> Enemies;
     public Dictionary<float, GameObject> PickUps;
     public Dictionary<float, GameObject> Zones;
-    public bool hasLoadedFromSaveFile;
 
     void Awake()
     {
@@ -61,7 +63,7 @@ public class GameControl : MonoBehaviour
         GameData data = SaveSystem.LoadGame();
         if(data != null)
         {
-            hasLoadedFromSaveFile = true;
+            HasLoadedFromSaveFile = true;
             ClearController();
             SceneManager.LoadScene(data.CurrentSceneIndex);
         } else

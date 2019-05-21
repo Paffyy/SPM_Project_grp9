@@ -41,6 +41,8 @@ public class Bow : MonoBehaviour
     [SerializeField]
     private GameObject specialAttackGlow;
 
+    [SerializeField]
+    private Weapon weapon;
     private GameObject arrowsParent;
     private float chargeTime = 1;
     private ThirdPersonCrosshair crosshair;
@@ -59,7 +61,7 @@ public class Bow : MonoBehaviour
         // bowOffset = new Vector3(0.55f, 0.1f, 0f);
         crosshair = GetComponent<ThirdPersonCrosshair>();
         arrowsParent = new GameObject("ArrowContainer");
-        ArrowCountText.text = arrowCount.ToString();
+        ArrowCountText.text = weapon.ArrowCount.ToString();
         playerScript = Player.GetComponent<Player>();
         chargeTime = Mathf.Clamp(chargeTime, 1, 2);
         animator = GetComponent<Animator>();
@@ -80,7 +82,7 @@ public class Bow : MonoBehaviour
     private void Update()
     {
         ToggleCrosshair(true);
-        if (coolDownCounter <= 0 && arrowCount > 0)
+        if (coolDownCounter <= 0 && weapon.ArrowCount > 0)
         {
             if (Input.GetKeyDown(KeybindManager.Instance.SpecialAttack.GetKeyCode()) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
             {
@@ -122,8 +124,8 @@ public class Bow : MonoBehaviour
                 {
                     ShootArrow();
                 }
-                arrowCount--;
-                ArrowCountText.text = arrowCount.ToString();
+                weapon.ArrowCount--;
+                ArrowCountText.text = weapon.ArrowCount.ToString();
                 ResetBow();
             }
         }
@@ -145,8 +147,8 @@ public class Bow : MonoBehaviour
 
     public void AddArrows(int arrows)
     {
-        arrowCount += arrows;
-        ArrowCountText.text = arrowCount.ToString();
+        weapon.ArrowCount += arrows;
+        ArrowCountText.text = weapon.ArrowCount.ToString();
     }
 
     private void ShootRainOfArrows()
