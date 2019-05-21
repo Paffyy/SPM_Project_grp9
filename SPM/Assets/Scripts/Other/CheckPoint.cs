@@ -5,13 +5,10 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     public Transform RespawnPosition;
-    // Start is called before the first frame update
     void Start()
     {
-       // Manager.Instance.SetCheckPoint(transform.position); // temp
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -21,6 +18,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            SaveSystem.SaveGame();
             CheckPointEventInfo checkPointEventInfo = new CheckPointEventInfo(gameObject);
             EventHandler.Instance.FireEvent(EventHandler.EventType.CheckPointEvent, checkPointEventInfo);
         }

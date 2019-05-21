@@ -6,28 +6,23 @@ using UnityEngine;
 public class SaveGame : MonoBehaviour
 {
     public GameObject Player;
-    // Start is called before the first frame update
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Save();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
+        if(GameControl.GameController.hasLoadedFromSaveFile == true)
         {
             Load();
         }
     }
 
+    void Update()
+    {
+
+    }
+
     private void Save()
     {
-        SaveSystem.SaveGame(Player);
+        SaveSystem.SaveGame();
     }
 
     private void Load()
@@ -42,19 +37,25 @@ public class SaveGame : MonoBehaviour
         List<float> EnemiesID = data.DeadEnemiesID;
         foreach(float ID in EnemiesID)
         {
+            GameControl.GameController.DeadEnemies.Add(ID);
             GameObject enemy = GameControl.GameController.Enemies[ID];
             if(enemy != null)
+            {
+                EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, new DeathEventInfo(enemy));
                 enemy.SetActive(false);
+            }
         }
         List<float> PickUpsID = data.PickedUpObjectsID;
         foreach (float ID in PickUpsID)
         {
+            GameControl.GameController.PickedUpObjects.Add(ID);
             GameObject pickUp = GameControl.GameController.PickUps[ID];
             pickUp.SetActive(false);
         }
         List<float> ZonesID = data.RevitalizedZonesID;
         foreach (float ID in ZonesID)
         {
+            GameControl.GameController.RevitalizedZones.Add(ID);
             GameObject zone = GameControl.GameController.Zones[ID];
             zone.GetComponent<RevitalizeZone>().RevitalizeTheZoneInstant();
         }

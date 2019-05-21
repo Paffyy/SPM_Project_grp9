@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
     public static GameControl GameController;
+    public int CurrentSceneIndex { get { return SceneManager.GetActiveScene().buildIndex; } }
+    public Player Player { get { return FindObjectOfType<Player>(); } }
     public int PlayerHealth;
     public float[] PlayerPosition;
     public List<float> DeadEnemies;
@@ -13,6 +16,7 @@ public class GameControl : MonoBehaviour
     public Dictionary<float, GameObject> Enemies;
     public Dictionary<float, GameObject> PickUps;
     public Dictionary<float, GameObject> Zones;
+    public bool hasLoadedFromSaveFile;
 
     void Awake()
     {
@@ -31,10 +35,41 @@ public class GameControl : MonoBehaviour
         PickUps = new Dictionary<float, GameObject>();
         RevitalizedZones = new List<float>();
         Zones = new Dictionary<float, GameObject>();
+        //Player = FindObjectOfType<Player>();
+    }
+
+    void Start()
+    {
+        
     }
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SaveSystem.SaveGame();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadScene();
+        }
+    }
+
+    void LoadScene()
+    {
+        GameData data = SaveSystem.LoadGame();
+        hasLoadedFromSaveFile = true;
+        ClearController();
+        SceneManager.LoadScene(data.CurrentSceneIndex);
+    }
+
+    private void ClearController()
+    {
+        DeadEnemies.Clear();
+        PickedUpObjects.Clear();
+        RevitalizedZones.Clear();
+        Enemies.Clear();
+        PickUps.Clear();
+        Zones.Clear();
     }
 }
