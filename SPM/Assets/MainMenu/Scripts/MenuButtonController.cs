@@ -8,20 +8,35 @@ public class MenuButtonController : MonoBehaviour
     public int MaxIndex;
     public bool KeyDown;
     public AudioSource AudioSource;
+    private int input;
     // Start is called before the first frame update
     void Start()
     {
         AudioSource = GetComponent<AudioSource>();
     }
 
+    void CheckInput()
+    {
+        if (Input.GetKey(KeyCode.W))
+            input = 1;
+        else if (Input.GetKey(KeyCode.S))
+            input = -1;
+        else
+            input =  0;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetAxis("Vertical") != 0)
+        CheckInput();
+        Debug.Log(input);
+        //if(Input.GetAxis("Vertical") != 0)
+        if(input != 0)
         {
             if (!KeyDown)
             {
-                if(Input.GetAxis("Vertical") < 0)
+                //if(Input.GetAxis("Vertical") < 0 || Input.GetKeyDown(KeybindManager.Instance.MenuUp.GetKeyCode()))
+                if(input == 1)
                 {
                     if(Index < MaxIndex)
                     {
@@ -30,7 +45,9 @@ public class MenuButtonController : MonoBehaviour
                     {
                         Index = 0;
                     }
-                } else if (Input.GetAxis("Vertical") > 0)
+                }
+                //else if (Input.GetAxis("Vertical") > 0 || Input.GetKeyDown(KeybindManager.Instance.MenuDown.GetKeyCode()))
+                else if (input == -1)
                 {
                     if(Index > 0)
                     {

@@ -61,7 +61,7 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
         int rand = Random.Range(1, 3);
         bool goLeft = rand == 1 ? true : false;
         //Debug.Log("goLeft " + goLeft + " rand " + rand);
-        List<Vector3> flankList = Manager.Instance.GetFlankingPoints(owner.transform, owner.player.transform, circleDistance, 30.0f, goLeft);
+        List<Vector3> flankList = Manager.Instance.GetFlankingPoints(owner.transform, circleDistance, 30, goLeft);
         listOfPoints = flankList;
 
         //Debug ritar ut svärer med OnGizmoSeleced()
