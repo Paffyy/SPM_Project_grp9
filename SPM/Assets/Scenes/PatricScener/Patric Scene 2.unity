@@ -9559,14 +9559,14 @@ MonoBehaviour:
   Damage: 10
   NavAgent: {fileID: 0}
   Fow: {fileID: 0}
-  chaseDistance: 10
+  chaseDistance: 22
   cooldown: 1
-  attackDistance: 14
-  lostTargetDistance: 19
-  moveSpeed: 3
+  attackDistance: 20
+  lostTargetDistance: 30
+  moveSpeed: 4
   lookRotationSpeed: 5
-  hearRadius: 10
-  AttackPlacmentDistance: 10
+  hearRadius: 8
+  AttackPlacmentDistance: 17
   IsWaitAtPosition: 0
   waitAtPatrolPoints: 0
   controller: {fileID: 0}

@@ -62,6 +62,11 @@ public class FiresOfHeavenState : RangedBaseState
         }
         else
         {
+            if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.lostTargetDistance)
+            {
+                owner.Transition<RangedEnemyPatrolState>();
+            }
+
             isRecharging = true;
             if (spawnCooldown < 0)
             {
