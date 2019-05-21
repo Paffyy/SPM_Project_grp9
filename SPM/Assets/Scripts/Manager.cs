@@ -9,6 +9,20 @@ public class Manager
     private static Manager instance;
     private Vector3 checkPoint;
 
+    private bool isPaused;
+    public bool IsPaused
+    {
+        get
+        {
+            return isPaused;
+        }
+
+        set
+        {
+            isPaused = value;
+        }
+    }
+
     public static Manager Instance
     {
         get
@@ -34,23 +48,6 @@ public class Manager
         return colliders;
     }
 
-    public List<Vector3> GetFlankingPoints(Transform ownerTransform, Transform targetTransform, float radius, float maxAngle, bool isFlankingLeft)
-    {
-        List<Vector3> listOfFlankingPoints = new List<Vector3>();
-
-        float startingAngle = Vector3.Angle(ownerTransform.forward, targetTransform.position);
-        float targetAngle = isFlankingLeft ? -maxAngle : maxAngle;
-        //Debug.Log("targetAngle " + targetAngle + " isFlankingLeft " + isFlankingLeft);
-        Vector3 rightOffset = new Vector3(90, 0, 0);
-        for (int i = 0; i < 7; i++)
-            {
-
-                Vector3 direction = Quaternion.Euler(0, targetAngle * i, 0) * -((targetTransform.position - ownerTransform.position).normalized + rightOffset.normalized);/*targetTransform.right;*/
-                Vector3 flankingPoint = ownerTransform.position + (direction * radius);
-                listOfFlankingPoints.Add(flankingPoint);
-            }
-        return listOfFlankingPoints;
-    }
     public List<Vector3> GetFlankingPoints(Transform ownerTransform, float radius, int angle, bool isFlankingLeft)
     {
         List<Vector3> listOfFlankingPoints = new List<Vector3>();

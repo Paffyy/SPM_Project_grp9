@@ -15,7 +15,7 @@ public class MenuButton : MonoBehaviour
         if(MenuButtonController.Index == ThisIndex)
         {
             Animator.SetBool("selected", true);
-            if(Input.GetAxis("Submit") == 1)
+            if(Input.GetKey(KeyCode.Space))
             {
                 Animator.SetBool("pressed", true);
             } else if (Animator.GetBool("pressed"))

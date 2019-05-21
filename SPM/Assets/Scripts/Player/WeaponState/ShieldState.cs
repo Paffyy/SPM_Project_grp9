@@ -30,11 +30,12 @@ public class ShieldState : WeaponBaseState
 
     public override void HandleUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-            owner.Transition<NoWeaponState>();
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-            owner.Transition<BowState>();
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
-            owner.Transition<SwordState>();
+        if(Manager.Instance.IsPaused == false)
+        {
+            if (Input.GetKeyDown(KeybindManager.Instance.EquipmentSlot2.GetKeyCode()))
+                owner.Transition<BowState>();
+            else if (Input.GetKeyDown(KeybindManager.Instance.EquipmentSlot1.GetKeyCode()))
+                owner.Transition<SwordState>();
+        }
     }
 }

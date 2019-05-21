@@ -32,7 +32,7 @@ public class WalkingState : PlayerBaseState
         //{
         //    owner.Shield.SetActive(false);
         //}
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (isActive == true && Input.GetKeyDown(KeybindManager.Instance.Jump.GetKeyCode()))
             owner.Transition<AirState>();
     }
 }
