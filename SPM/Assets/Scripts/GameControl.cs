@@ -46,6 +46,8 @@ public class GameControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
+            SaveEventInfo saveEventInfo = new SaveEventInfo("Saving...");
+            EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
             SaveSystem.SaveGame();
         }
         if (Input.GetKeyDown(KeyCode.L))
@@ -54,12 +56,18 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    void LoadScene()
+    public void LoadScene()
     {
         GameData data = SaveSystem.LoadGame();
-        hasLoadedFromSaveFile = true;
-        ClearController();
-        SceneManager.LoadScene(data.CurrentSceneIndex);
+        if(data != null)
+        {
+            hasLoadedFromSaveFile = true;
+            ClearController();
+            SceneManager.LoadScene(data.CurrentSceneIndex);
+        } else
+        {
+            Debug.Log("Error, no data file to load from");
+        }
     }
 
     private void ClearController()
