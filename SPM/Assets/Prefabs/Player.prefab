@@ -222,7 +222,7 @@ MonoBehaviour:
   ArrowHitMask:
     serializedVersion: 2
     m_Bits: 50176
-  ArrowCount: 15
+  arrowCount: 0
   arrowSpeed: 20
   SpecialAttack: 2
   SpecialArrowCount: 25
@@ -230,6 +230,7 @@ MonoBehaviour:
   SpecialAoeRadius: 6
   bowOffset: {x: 0.25, y: 0.4, z: 0.7}
   specialAttackGlow: {fileID: 6573053008636740957}
+  weapon: {fileID: 0}
 --- !u!114 &8346856360853841813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,6 +590,7 @@ MonoBehaviour:
   yAngle: 1
   zAngle: -9
   FirstPersonView: 0
+  SpeedModifier: 0
 --- !u!114 &784922750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,6 +615,7 @@ MonoBehaviour:
   ShieldIcon: {fileID: 0}
   BowIcon: {fileID: 0}
   SwordIcon: {fileID: 0}
+  arrowCount: 0
   player: {fileID: 0}
 --- !u!114 &520724104
 MonoBehaviour:
@@ -627,8 +630,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingHealth: 100
-  CurrentHealth: 0
   HealthSlider: {fileID: 0}
+  ShieldObject: {fileID: 0}
   DamageCooldown: 0.3
 --- !u!54 &950713624
 Rigidbody:
@@ -752,7 +755,7 @@ PrefabInstance:
     - target: {fileID: 1491642827446477486, guid: d0267600f679d9849b345429fa9ea622,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1491642827446477486, guid: d0267600f679d9849b345429fa9ea622,
         type: 3}
@@ -832,27 +835,27 @@ PrefabInstance:
     - target: {fileID: 1491642827459308808, guid: d0267600f679d9849b345429fa9ea622,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1491642826989284993, guid: d0267600f679d9849b345429fa9ea622,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1491642827971183751, guid: d0267600f679d9849b345429fa9ea622,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1491642828492642546, guid: d0267600f679d9849b345429fa9ea622,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1491642828201389577, guid: d0267600f679d9849b345429fa9ea622,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0267600f679d9849b345429fa9ea622, type: 3}
