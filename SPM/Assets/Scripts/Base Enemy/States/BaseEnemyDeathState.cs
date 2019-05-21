@@ -13,15 +13,19 @@ public class BaseEnemyDeathState : BaseEnemyBaseState
         owner.NavAgent.enabled = false;
         owner.controller.enabled = true;
         owner.GetComponent<Collider>().enabled = false;
-        owner.transform.rotation = new Quaternion(0,0, 0, 90);
         timer = timeToDespawn;
+
+        //bara för test ska göras med en animation sen
+        owner.transform.rotation = new Quaternion(180,0, 0, 0);
+
+        owner.controller.CollisionMask = LayerMask.NameToLayer("Enviroment");
         base.Enter();
     }
 
     public override void HandleUpdate()
     {
-        owner.NavAgent.enabled = false;
-        owner.controller.enabled = true;
+        //owner.NavAgent.enabled = false;
+        //owner.controller.enabled = true;
         //Debug.Log("navagent edabled " + owner.NavAgent.enabled + "\n controller enabled " + owner.controller.enabled);
 
         timer -= Time.deltaTime;
