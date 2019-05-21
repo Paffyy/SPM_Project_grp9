@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public int StartingHealth = 100;
-    public int CurrentHealth;
+   // public int CurrentHealth;
+    public int CurrentHealth { get {return CurrentHealth; } set { CurrentHealth = value; HealthSlider.value = CurrentHealth; } }
     public Slider HealthSlider;
     public GameObject ShieldObject;
     private Player player;
@@ -43,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
             currentCooldown = DamageCooldown;
 
         CurrentHealth -= damage;
-        HealthSlider.value = CurrentHealth;
+        //HealthSlider.value = CurrentHealth;
 
         if (CurrentHealth <= 0)
             PlayerDead();
@@ -78,7 +79,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         CurrentHealth -= damage;
-        HealthSlider.value = CurrentHealth;
+        //HealthSlider.value = CurrentHealth;
         player.Velocity += pushBack;
 
         if (CurrentHealth <= 0)
@@ -94,7 +95,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 CurrentHealth = 100;
             }
-            HealthSlider.value = CurrentHealth;
+            //HealthSlider.value = CurrentHealth;
         }
     }
 

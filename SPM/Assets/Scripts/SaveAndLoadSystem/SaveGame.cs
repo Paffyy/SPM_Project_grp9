@@ -28,7 +28,7 @@ public class SaveGame : MonoBehaviour
     private void Load()
     {
         GameData data = SaveSystem.LoadGame();
-
+        Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
         Vector3 position;
         position.x = data.PlayerPosition[0];
         position.y = data.PlayerPosition[1];
