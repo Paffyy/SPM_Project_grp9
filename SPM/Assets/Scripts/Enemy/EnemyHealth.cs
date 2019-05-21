@@ -107,7 +107,9 @@ public class EnemyHealth : Health
         if (thisEnemy != null)
         {
             thisEnemy.Transition<BaseEnemyDeathState>();
+        } else
+        {
+            Destroy(gameObject, 0.5f);
         }
-        //Destroy(this.gameObject);
     }
 }

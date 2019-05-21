@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameData
 {
     public int CurrentSceneIndex;
+    public int PlayerHealth;
     public float[] PlayerPosition;
     public List<float> DeadEnemiesID;
     public List<float> PickedUpObjectsID;
@@ -14,6 +15,7 @@ public class GameData
     public GameData()
     {
         CurrentSceneIndex = GameControl.GameController.CurrentSceneIndex;
+        PlayerHealth = GameControl.GameController.PlayerHealth;
         PlayerPosition = new float[3];
         PlayerPosition[0] = GameControl.GameController.Player.transform.position.x;
         PlayerPosition[1] = GameControl.GameController.Player.transform.position.y;

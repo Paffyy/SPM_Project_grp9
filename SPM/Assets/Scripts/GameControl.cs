@@ -8,7 +8,7 @@ public class GameControl : MonoBehaviour
     public static GameControl GameController;
     public int CurrentSceneIndex { get { return SceneManager.GetActiveScene().buildIndex; } }
     public Player Player { get { return FindObjectOfType<Player>(); } }
-    public int PlayerHealth;
+    public int PlayerHealth { get { return FindObjectOfType<PlayerHealth>().CurrentHealth; } }
     public float[] PlayerPosition;
     public List<float> DeadEnemies;
     public List<float> PickedUpObjects;
@@ -40,7 +40,7 @@ public class GameControl : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
