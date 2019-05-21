@@ -31,7 +31,6 @@ public class PlayerBaseState : State
     private Vector3 currentRotation;
     private Vector3 rotationSmoothVel;
     private float rotationSmoothTime = 0.1f;
-
     private float fallMultiplier = 2.5f;
 
     protected Vector3 Position { get { return owner.transform.position; } set { owner.transform.position = value; } }
@@ -84,7 +83,7 @@ public class PlayerBaseState : State
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
         direction = playerCamera.transform.rotation * direction;
         direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
-        float distance = Acceleration * Time.deltaTime;
+        float distance = Acceleration * Time.deltaTime * owner.SpeedModifier;
         owner.Velocity += direction.normalized * distance;
     }
 

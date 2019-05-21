@@ -13,11 +13,12 @@ public class Player : StateMachine
     public float yAngle, zAngle;
     //public GameObject Shield;
     public bool FirstPersonView = false;
-
+    public float SpeedModifier;
 
     protected override void Awake()
     {
         RotationY = 90;
+        SpeedModifier = 1f;
         base.Awake();
     }
 

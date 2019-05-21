@@ -19,22 +19,39 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _RevitalizeNormal:
+        m_Texture: {fileID: 2800000, guid: 374e73412fcd85b4381a04bbd36f5b53, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RevitalizeOcclusion:
+        m_Texture: {fileID: 2800000, guid: 9213906dab7c9ad44a0339c98b179eb9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _RevitalizeTexture:
-        m_Texture: {fileID: 2800000, guid: fc61d730052564e4ab1b82dde57524d5, type: 3}
+        m_Texture: {fileID: 2800000, guid: df8babf667ff23846a3b5808b0c9f69c, type: 3}
+        m_Scale: {x: 16, y: 16}
+        m_Offset: {x: 0, y: 0}
+    - _ScorchedNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 16, y: 16}
+        m_Offset: {x: 0, y: 0}
+    - _ScorchedOcclusion:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 16, y: 16}
         m_Offset: {x: 0, y: 0}
     - _ScorchedTexture:
-        m_Texture: {fileID: 2800000, guid: ebf0f19207e44a14aaa9a2108f87b904, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9562f37ddda48dc49a2438907f2cfbaa, type: 3}
         m_Scale: {x: 16, y: 16}
         m_Offset: {x: 0, y: 0}
     - _Splat:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 28970859865997968, guid: 13b0d067e532b4a4eaee346d9ff9c6fd,
+          type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BrushSize: 124
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _Metallic: 0
     m_Colors:
     - _RevitalizeColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ScorchedColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
+    - _ScorchedColor: {r: 1, g: 1, b: 1, a: 1}
