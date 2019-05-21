@@ -11,12 +11,17 @@ public class Enemy : StateMachine
 
     void Start()
     {
-        EnemyID = transform.position.sqrMagnitude;
-        GameControl.GameController.Enemies.Add(EnemyID, gameObject);
+        if (!GameControl.GameController.Enemies.ContainsKey(EnemyID))
+        {
+            GameControl.GameController.Enemies.Add(EnemyID, gameObject);
+        }
     }
+
 
     protected override void Awake()
     {
+        EnemyID = transform.position.sqrMagnitude;
+        //GameControl.GameController.Enemies.Add(EnemyID, gameObject);
         base.Awake();
     }
 }

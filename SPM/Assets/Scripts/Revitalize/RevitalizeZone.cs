@@ -98,6 +98,7 @@ public class RevitalizeZone : MonoBehaviour
 
     public void RevitalizeTheZoneInstant()
     {
+        hasRevitalized = true;
         foreach (var item in revitalizeObjects)
         {
             if (!item.IsRevitalized)
