@@ -8,6 +8,8 @@ public class RevitalizeGround : RevitalizeGeometry
     [SerializeField]
     private int brushSize;
     [SerializeField]
+    private bool shouldRevitalizeOnStart;
+    [SerializeField]
     private RevitalizeTerrain terrain;
     public override void Revitalize(float offset = 0)
     {
@@ -21,10 +23,13 @@ public class RevitalizeGround : RevitalizeGeometry
             terrain.RevitalizeArea(gameObject, brushSize, 0.2f);
         }
     }
-    //void Start() // debug för att se hur stor brushsize det måste vara
-    //{
-    //    Revitalize();
-    //}
+    void Start()
+    {
+        if (shouldRevitalizeOnStart)
+        {
+            Revitalize();
+        }
+    }
 
     public override void InstantRevitalize()
     {
