@@ -96,6 +96,7 @@ MonoBehaviour:
   CollisionMask:
     serializedVersion: 2
     m_Bits: 3072
+  Velocity: {x: 0, y: 0, z: 0}
   RotationSpeed: 0
   Acceleration: 20
   GravityForce: 15
@@ -106,7 +107,6 @@ MonoBehaviour:
   MouseSensitivity: 3
   skinWidth: 0.005
   groundCheckDistance: 0.5
-  characterCollider: {fileID: 0}
 --- !u!136 &4293070087990095872
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -136,6 +136,10 @@ MonoBehaviour:
   AOEEffect: {fileID: 1829086021566472450, guid: 1ffa2d939aab46847812f8fcd7671712,
     type: 3}
   LifeTimeOFFireEffect: 10
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  impactDamage: 10
 --- !u!1001 &1973463333178332445
 PrefabInstance:
   m_ObjectHideFlags: 0

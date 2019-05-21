@@ -8,7 +8,6 @@ public class Manager
     private Manager() {  }
     private static Manager instance;
     private Vector3 checkPoint;
-
     private bool isPaused;
     public bool IsPaused
     {
