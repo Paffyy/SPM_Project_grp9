@@ -1401,6 +1401,16 @@ PrefabInstance:
       propertyPath: BladeStormEffect
       value: 
       objectReference: {fileID: 3721958055867091756}
+    - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: Radius
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: Angle
+      value: 110
+      objectReference: {fileID: 0}
     - target: {fileID: 622652557805969924, guid: f3b0743748735a14b9bc4dd6549545e2,
         type: 3}
       propertyPath: looping
