@@ -62,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
         //var shield = GetComponentInChildren<Shield>();
         if (ShieldObject != null)
         {
+            Debug.Log("shield1!");
             var dotProduct = Vector3.Dot(ShieldObject.transform.TransformDirection(transform.forward), position - transform.position);
             if (dotProduct > ShieldObject.transform.forward.x) // shieldblocked
             {
