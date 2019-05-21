@@ -1979,11 +1979,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2796968206420594173, guid: 4b648d8a30adb72409de9a5d885d9707,
         type: 3}
-      propertyPath: states.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2796968206420594173, guid: 4b648d8a30adb72409de9a5d885d9707,
-        type: 3}
       propertyPath: Path
       value: 
       objectReference: {fileID: 1737575581}
@@ -1992,17 +1987,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 395612075}
-    - target: {fileID: 2796968206420594173, guid: 4b648d8a30adb72409de9a5d885d9707,
-        type: 3}
-      propertyPath: lookRotationSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2796968206420594173, guid: 4b648d8a30adb72409de9a5d885d9707,
-        type: 3}
-      propertyPath: states.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: 562481413668af3499b2102414ce214e,
-        type: 2}
     - target: {fileID: 89316340, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2010,20 +1994,6 @@ PrefabInstance:
     - target: {fileID: 89316340, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2796968206420594162, guid: 4b648d8a30adb72409de9a5d885d9707,
-        type: 3}
-      propertyPath: m_Speed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2796968206420594162, guid: 4b648d8a30adb72409de9a5d885d9707,
-        type: 3}
-      propertyPath: m_AngularSpeed
-      value: 140
-      objectReference: {fileID: 0}
-    - target: {fileID: 542565467, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
-      propertyPath: CollisionMask.m_Bits
-      value: 3584
       objectReference: {fileID: 0}
     - target: {fileID: 845687409, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
       propertyPath: target

@@ -39,10 +39,14 @@ public class EnemyHealth : Health
         if(navAgent != null && controller != null)
         {
             //måste vänta en stund för att kolla om isGrounded för annars kommer inte fienden upp från marken
-            if (navAgent.enabled == false && navMeshAgentOffTime > 0.1f && controller.IsGrounded())
+            if (isDead == false && navAgent.enabled == false && navMeshAgentOffTime > 0.1f && controller.IsGrounded())
             {
                 navAgent.enabled = true;
                 controller.enabled = false;
+            }
+            else if (isDead == true && navMeshAgentOffTime > 0.1f && controller.IsGrounded())
+            {
+                controller.enabled = true;
             }
         }
 
@@ -84,10 +88,7 @@ public class EnemyHealth : Health
             //controller.MovePosition(pushBack);
             controller.Velocity += pushBack;
         }
-            //navAgent.enabled = false;
-            //controller.enabled = true;
-            ////controller.MovePosition(pushBack);
-            //controller.Velocity += pushBack;
+
             navMeshAgentOffTime = 0.0f;
     }
 
@@ -102,7 +103,7 @@ public class EnemyHealth : Health
     public void EnemyDead()
     {
         EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, new DeathEventInfo(gameObject));
-        GameControl.GameController.DeadEnemies.Add(gameObject.GetComponent<Enemy>().EnemyID);
+        //GameControl.GameController.DeadEnemies.Add(gameObject.GetComponent<Enemy>().EnemyID);
         if (thisEnemy != null)
         {
             thisEnemy.Transition<BaseEnemyDeathState>();
