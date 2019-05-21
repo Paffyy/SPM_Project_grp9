@@ -68,13 +68,12 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         currentCooldown -= Time.deltaTime;
         if (currentCooldown > 0)
             return;
-        Debug.Log("attack");
 
         //Skadar spelarn
         GameObject[] arr = owner.Fow.TargetsInFieldOfView();
         if (arr != null)
         {
-                Debug.Log(arr[0]);
+                //Debug.Log(arr[0]);
                 PlayerHealth player = arr[0].GetComponent<PlayerHealth>();
             //if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < owner.attackDistance)
             //{

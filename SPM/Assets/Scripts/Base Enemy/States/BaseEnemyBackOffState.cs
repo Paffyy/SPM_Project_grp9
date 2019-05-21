@@ -15,7 +15,7 @@ public class BaseEnemyBackOffState : BaseEnemyBaseState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Back Off State");
+        //Debug.Log("Back Off State");
         owner.NavAgent.updateRotation = false;
         owner.NavAgent.speed += SpeedIncreas;
         //owner.StartCoroutine(BackOff());

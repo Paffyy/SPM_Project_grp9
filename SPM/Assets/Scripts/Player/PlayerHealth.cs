@@ -11,10 +11,15 @@ public class PlayerHealth : MonoBehaviour
     public Slider HealthSlider;
     public GameObject ShieldObject;
     private Player player;
-
+    private Shield shield;
     public float DamageCooldown;
     private float currentCooldown;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        player = GetComponent<Player>();
+        shield = player.GetComponent<Weapon>().Shield.GetComponent<Shield>();
+    }
     void Start()
     {
         CurrentHealth = StartingHealth;
@@ -23,7 +28,6 @@ public class PlayerHealth : MonoBehaviour
             HealthSlider.maxValue = StartingHealth;
         }
         currentCooldown = DamageCooldown;
-        player = GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -62,13 +66,12 @@ public class PlayerHealth : MonoBehaviour
         //var shield = GetComponentInChildren<Shield>();
         if (ShieldObject != null)
         {
-            Debug.Log("shield1!");
             var dotProduct = Vector3.Dot(ShieldObject.transform.TransformDirection(transform.forward), position - transform.position);
-            if (dotProduct > ShieldObject.transform.forward.x) // shieldblocked
+            if (dotProduct > ShieldObject.transform.forward.x && shield.IsBlocking) // shieldblocked
             {
                 //ShieldObject.TakeDamage(damage);
                 //skölden tar bort 90% av pushBack effekten
-                player.Velocity += pushBack * 0.1f;
+                player.Velocity += pushBack * 0.4f;
                 Debug.Log("shield hit!");
                 return;
             }

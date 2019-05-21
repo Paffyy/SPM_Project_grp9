@@ -24,16 +24,16 @@ Material:
         m_Scale: {x: 16, y: 16}
         m_Offset: {x: 0, y: 1}
     - _RevitalizeOcclusion:
-        m_Texture: {fileID: 2800000, guid: e097dd2e4c669ab4e95de0db6c7e396b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8ea79f21ea468704c9593d5db6a11cdd, type: 3}
         m_Scale: {x: 16, y: 16}
         m_Offset: {x: 0, y: 0}
     - _RevitalizeTexture:
         m_Texture: {fileID: 2800000, guid: 2ce89014a9ea7b1459c28076b7b92129, type: 3}
-        m_Scale: {x: 16, y: 16}
+        m_Scale: {x: 8, y: 16}
         m_Offset: {x: 0, y: 0}
     - _ScorchedNormal:
         m_Texture: {fileID: 2800000, guid: d3baadb47df3cdb4ea123ded2a9801c5, type: 3}
-        m_Scale: {x: 16, y: 16}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ScorchedOcclusion:
         m_Texture: {fileID: 2800000, guid: 8ea79f21ea468704c9593d5db6a11cdd, type: 3}
@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _ScorchedTexture:
         m_Texture: {fileID: 2800000, guid: afbac88bb86a40647adb859aa9c49afe, type: 3}
-        m_Scale: {x: 16, y: 16}
+        m_Scale: {x: 8, y: 16}
         m_Offset: {x: 0, y: 0}
     - _Splat:
         m_Texture: {fileID: 28970859865997968, guid: 13b0d067e532b4a4eaee346d9ff9c6fd,
