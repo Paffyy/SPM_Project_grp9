@@ -13,7 +13,10 @@ public class KeybindManager
         EquipmentSlot1 = new Keybind(KeyCode.Alpha1);
         EquipmentSlot2 = new Keybind(KeyCode.Alpha2);
         EquipmentSlot3 = new Keybind(KeyCode.Alpha3);
+        PauseMenuButton = new Keybind(KeyCode.Escape);
         Jump = new Keybind(KeyCode.Space);
+        MenuDown = new Keybind(KeyCode.W);
+        MenuDown = new Keybind(KeyCode.S);
     }
     private static KeybindManager instance;
     public static KeybindManager Instance
@@ -32,7 +35,10 @@ public class KeybindManager
     public Keybind EquipmentSlot2 { get; set; }
     public Keybind EquipmentSlot3 { get; set; }
     public Keybind BlockAndAim { get; set; }
+    public Keybind PauseMenuButton { get; set; }
     public Keybind Jump { get; set; }
+    public Keybind MenuUp { get; set; }
+    public Keybind MenuDown { get; set; }
 }
 
 public class Keybind

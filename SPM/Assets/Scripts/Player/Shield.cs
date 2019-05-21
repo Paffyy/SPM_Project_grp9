@@ -34,7 +34,7 @@ public class Shield : MonoBehaviour
     void Update()
     {
         UpdateTransformation();
-        if (Input.GetKeyDown(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
+        if (Manager.Instance.IsPaused == false && Input.GetKeyDown(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
         {
             if (IsBlocking  == false && Player.GetComponent<Weapon>().Sword.GetComponent<Sword>().IsBladeStorming == false)
             {
@@ -46,7 +46,7 @@ public class Shield : MonoBehaviour
                 GoToIdle();
             }
         }
-        if (IsBlocking == true && Input.GetKeyUp(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
+        if (Manager.Instance.IsPaused == false &&  IsBlocking == true && Input.GetKeyUp(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
         {
             GoToIdle();
             Player.SpeedModifier = 1f;
