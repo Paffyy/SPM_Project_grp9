@@ -16,7 +16,7 @@ public class RangedChaseState : RangedBaseState
     public override void HandleUpdate()
     {
         owner.NavAgent.SetDestination(owner.player.transform.position);
-
+        UpdateRotation(owner.player.transform);
 
 
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < attackDistance)

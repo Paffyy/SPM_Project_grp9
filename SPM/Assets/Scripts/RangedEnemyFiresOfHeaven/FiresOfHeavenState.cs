@@ -38,7 +38,6 @@ public class FiresOfHeavenState : RangedBaseState
             SpawnFire();
             cooldown = BetweenTime;
         }
-
         base.HandleUpdate();
             
     }
@@ -48,7 +47,7 @@ public class FiresOfHeavenState : RangedBaseState
         if (count < NumberOfFires)
         {
             Vector3 vec = SpawnNearPlayer(2.0f);
-            GameObject obj = GameObject.Instantiate(FireBall, vec, Quaternion.identity, owner.transform);
+            GameObject obj = Instantiate(FireBall, vec, Quaternion.identity, owner.firesOfHeavenContainer.transform);
             Destroy(obj, 10f);
             count++;
         }

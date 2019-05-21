@@ -23,7 +23,7 @@ public class RangedBaseState : State
     private float timeBetweenSetDestination = 0.1f;
     private Vector3 currentDestination;
     private Transform currentRotationTarget;
-
+    private GameObject firesOfHeavenContainer;
 
     //public LayerMask PlayerLayer;
 
@@ -34,6 +34,7 @@ public class RangedBaseState : State
 
     public override void Enter()
     {
+        firesOfHeavenContainer = owner.firesOfHeavenContainer;
         timerSetDestination = timeBetweenSetDestination;
         //Debug.Log("BaseState");
         owner.MeshRen.material = material;
