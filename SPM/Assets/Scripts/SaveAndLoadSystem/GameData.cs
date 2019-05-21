@@ -17,7 +17,7 @@ public class GameData
     {
         CurrentSceneIndex = GameControl.GameController.CurrentSceneIndex;
         PlayerHealth = GameControl.GameController.PlayerHealth;
-        //ArrowCount = GameControl.GameController.CurrentArrowCount;
+        ArrowCount = GameControl.GameController.ArrowCount;
         PlayerPosition = new float[3];
         PlayerPosition[0] = GameControl.GameController.Player.transform.position.x;
         PlayerPosition[1] = GameControl.GameController.Player.transform.position.y;

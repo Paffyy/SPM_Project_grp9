@@ -9,9 +9,14 @@ public class SaveGame : MonoBehaviour
 
     void Start()
     {
-        if(GameControl.GameController.hasLoadedFromSaveFile == true)
+        if(GameControl.GameController.HasLoadedFromSaveFile == true)
         {
             Load();
+            GameControl.GameController.HasLoadedFromSaveFile = false;
+        } else if(GameControl.GameController.HasReachedNewLevel == true)
+        {
+            LoadPlayerDataOnly();
+            GameControl.GameController.HasReachedNewLevel = false;
         }
     }
 
@@ -25,11 +30,18 @@ public class SaveGame : MonoBehaviour
         SaveSystem.SaveGame();
     }
 
+    private void LoadPlayerDataOnly()
+    {
+        GameData data = SaveSystem.LoadGame();
+        Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
+        Player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
+    }
+
     private void Load()
     {
         GameData data = SaveSystem.LoadGame();
         Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
-        //Player.GetComponent<Weapon>().Bow.GetComponent<Bow>().ArrowCount = data.ArrowCount;
+        Player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
         Vector3 position;
         position.x = data.PlayerPosition[0];
         position.y = data.PlayerPosition[1];

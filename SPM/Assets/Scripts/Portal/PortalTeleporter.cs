@@ -14,6 +14,8 @@ public class PortalTeleporter : MonoBehaviour
     {
         if (playerIsOverlapping)
         {
+            GameControl.GameController.HasReachedNewLevel = true;
+            SaveSystem.SaveGame();
             SceneManager.LoadScene(2);
             //Vector3 portalToPlayer = Player.position - transform.position;
             //float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
