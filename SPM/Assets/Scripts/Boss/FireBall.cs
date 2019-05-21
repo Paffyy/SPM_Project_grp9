@@ -15,6 +15,7 @@ public class FireBall : MonoBehaviour
     private LayerMask playerLayer;
     [SerializeField]
     private int impactDamage;
+    [HideInInspector] public Transform parent;
     //public GameObject Parent;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class FireBall : MonoBehaviour
         controller = GetComponent<CharacterController>();
         AOEEffect.LifeTimeBool = true;
         AOEEffect.LifeTime = LifeTimeOFFireEffect;
+
     }
 
     // Update is called once per frame
@@ -41,7 +43,7 @@ public class FireBall : MonoBehaviour
                     }
                 }
             }
-            GameObject obj = Instantiate(AOEEffect.gameObject, transform.position, Quaternion.identity);
+            GameObject obj = Instantiate(AOEEffect.gameObject, transform.position, Quaternion.identity, parent);
 
             //obj.transform.SetParent(Parent.transform);
             Destroy(gameObject);
