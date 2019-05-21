@@ -23,7 +23,7 @@ public class Bow : MonoBehaviour
     [SerializeField]
     private LayerMask ArrowHitMask;
     [SerializeField]
-    private int ArrowCount;
+    private int arrowCount;
     [SerializeField]
     private float arrowSpeed;
 
@@ -51,6 +51,7 @@ public class Bow : MonoBehaviour
     private bool isAming = false;
     private Player playerScript;
     [HideInInspector]
+    public int ArrowCount { get { return arrowCount; } set { arrowCount = value; ArrowCountText.text = arrowCount.ToString(); } }
     public enum SpecialArrowType { RainOfArrows, ShotgunArrows, AoeHitArrow }
 
     private void Awake()
@@ -58,7 +59,7 @@ public class Bow : MonoBehaviour
         // bowOffset = new Vector3(0.55f, 0.1f, 0f);
         crosshair = GetComponent<ThirdPersonCrosshair>();
         arrowsParent = new GameObject("ArrowContainer");
-        ArrowCountText.text = ArrowCount.ToString();
+        ArrowCountText.text = arrowCount.ToString();
         playerScript = Player.GetComponent<Player>();
         chargeTime = Mathf.Clamp(chargeTime, 1, 2);
         animator = GetComponent<Animator>();
@@ -79,7 +80,7 @@ public class Bow : MonoBehaviour
     private void Update()
     {
         ToggleCrosshair(true);
-        if (coolDownCounter <= 0 && ArrowCount > 0)
+        if (coolDownCounter <= 0 && arrowCount > 0)
         {
             if (Input.GetKeyDown(KeybindManager.Instance.SpecialAttack.GetKeyCode()) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
             {
@@ -121,8 +122,8 @@ public class Bow : MonoBehaviour
                 {
                     ShootArrow();
                 }
-                ArrowCount--;
-                ArrowCountText.text = ArrowCount.ToString();
+                arrowCount--;
+                ArrowCountText.text = arrowCount.ToString();
                 ResetBow();
             }
         }
@@ -144,8 +145,8 @@ public class Bow : MonoBehaviour
 
     public void AddArrows(int arrows)
     {
-        ArrowCount += arrows;
-        ArrowCountText.text = ArrowCount.ToString();
+        arrowCount += arrows;
+        ArrowCountText.text = arrowCount.ToString();
     }
 
     private void ShootRainOfArrows()

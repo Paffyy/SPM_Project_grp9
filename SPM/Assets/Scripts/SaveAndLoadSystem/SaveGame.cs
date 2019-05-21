@@ -29,6 +29,7 @@ public class SaveGame : MonoBehaviour
     {
         GameData data = SaveSystem.LoadGame();
         Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
+        Player.GetComponent<Weapon>().Bow.GetComponent<Bow>().ArrowCount = data.ArrowCount;
         Vector3 position;
         position.x = data.PlayerPosition[0];
         position.y = data.PlayerPosition[1];

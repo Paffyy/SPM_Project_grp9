@@ -7,6 +7,7 @@ public class GameData
 {
     public int CurrentSceneIndex;
     public int PlayerHealth;
+    public int ArrowCount;
     public float[] PlayerPosition;
     public List<float> DeadEnemiesID;
     public List<float> PickedUpObjectsID;
@@ -16,6 +17,7 @@ public class GameData
     {
         CurrentSceneIndex = GameControl.GameController.CurrentSceneIndex;
         PlayerHealth = GameControl.GameController.PlayerHealth;
+        //ArrowCount = GameControl.GameController.CurrentArrowCount;
         PlayerPosition = new float[3];
         PlayerPosition[0] = GameControl.GameController.Player.transform.position.x;
         PlayerPosition[1] = GameControl.GameController.Player.transform.position.y;

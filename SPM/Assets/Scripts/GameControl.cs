@@ -40,7 +40,6 @@ public class GameControl : MonoBehaviour
 
     void Start()
     {
-
     }
 
     void Update()
