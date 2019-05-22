@@ -32,9 +32,9 @@ public class ShieldState : WeaponBaseState
     {
         if(Manager.Instance.IsPaused == false)
         {
-            if (Input.GetKeyDown(KeybindManager.Instance.EquipmentSlot2.GetKeyCode()))
+            if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot2, InputManager.ControllMode.Play))
                 owner.Transition<BowState>();
-            else if (Input.GetKeyDown(KeybindManager.Instance.EquipmentSlot1.GetKeyCode()))
+            else if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot1, InputManager.ControllMode.Play))
                 owner.Transition<SwordState>();
         }
     }
