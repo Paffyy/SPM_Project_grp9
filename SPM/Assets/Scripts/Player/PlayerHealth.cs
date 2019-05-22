@@ -67,7 +67,7 @@ public class PlayerHealth : MonoBehaviour
         if (ShieldObject != null)
         {
             var dotProduct = Vector3.Dot(ShieldObject.transform.TransformDirection(transform.forward), position - transform.position);
-            if (dotProduct > ShieldObject.transform.forward.x && shield.IsBlocking) // shieldblocked
+            if (dotProduct < ShieldObject.transform.forward.x && shield.IsBlocking) // shieldblocked
             {
                 //ShieldObject.TakeDamage(damage);
                 //skölden tar bort 90% av pushBack effekten
