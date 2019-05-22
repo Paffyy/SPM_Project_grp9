@@ -7,20 +7,11 @@ public class PickUp : MonoBehaviour
     public AudioClip PickUpSound;
     public string UIAlertText;
     public float PickUpID;
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         PickUpID = transform.position.sqrMagnitude;
-        if (!GameControl.GameController.PickUps.ContainsKey(PickUpID))
-        {
-            GameControl.GameController.PickUps.Add(PickUpID, gameObject);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameController.GameControllerInstance.PickUps.Add(PickUpID, gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,9 +20,9 @@ public class PickUp : MonoBehaviour
         {
             PickupEventInfo pickUpEventInfo = new PickupEventInfo(gameObject);
             EventHandler.Instance.FireEvent(EventHandler.EventType.PickUpEvent, pickUpEventInfo);
-            if (!GameControl.GameController.PickedUpObjects.Contains(PickUpID))
+            if (!GameController.GameControllerInstance.PickedUpObjects.Contains(PickUpID))
             {
-                GameControl.GameController.PickedUpObjects.Add(PickUpID);
+                GameController.GameControllerInstance.PickedUpObjects.Add(PickUpID);
             }
             gameObject.SetActive(false);
         }
