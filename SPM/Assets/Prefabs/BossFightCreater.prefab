@@ -1845,21 +1845,20 @@ MonoBehaviour:
   MeshRen: {fileID: 0}
   Path: {fileID: 3801160273009431995}
   Damage: 10
-  IFrameTime: 2
-  IFrameCoolDown: 0
   NavAgent: {fileID: 0}
   Fow: {fileID: 0}
-  currectState: {fileID: 0}
   chaseDistance: 0
   cooldown: 2
   attackDistance: 10
   lostTargetDistance: 1000
   moveSpeed: 3
+  lookRotationSpeed: 0
   hearRadius: 50
   AttackPlacmentDistance: 2
+  IsWaitAtPosition: 0
   waitAtPatrolPoints: 3
-  healthSystem: {fileID: 0}
   controller: {fileID: 0}
+  DrawList: []
   visionMask:
     serializedVersion: 2
     m_Bits: 0
@@ -1952,6 +1951,7 @@ MonoBehaviour:
   CollisionMask:
     serializedVersion: 2
     m_Bits: 19968
+  Velocity: {x: 0, y: 0, z: 0}
   RotationSpeed: 0
   Acceleration: 40
   GravityForce: 30
@@ -1962,7 +1962,6 @@ MonoBehaviour:
   MouseSensitivity: 3
   skinWidth: 0.005
   groundCheckDistance: 0.5
-  characterCollider: {fileID: 0}
 --- !u!114 &55778845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,7 +1974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4f3d2586955874a8d4fdff96885601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingHealth: 700
+  StartingHealth: 1400
   CurrentHealth: 0
   DmgCoolDownTimer: 0
   EnemyHealthSlider: {fileID: 3801160272676634279}
