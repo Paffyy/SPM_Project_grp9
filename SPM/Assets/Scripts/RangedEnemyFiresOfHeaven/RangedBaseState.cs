@@ -66,22 +66,12 @@ public class RangedBaseState : State
     public override void HandleUpdate()
     {
         timerSetDestination -= timeBetweenSetDestination;
-
-
-
-        //float step = lookRotationSpeed * Time.deltaTime;
-        //Vector3 targetDir = currentRotationTarget - owner.transform.position;
-        //Vector3 newDir = Vector3.RotateTowards(owner.transform.forward, targetDir, step, 0.0f);
-        //owner.transform.rotation = Quaternion.LookRotation(newDir);
         SetDestination();
         Rotate();
-
         //Debug Draw line ----- här!
         Debug.DrawLine(owner.transform.position, currentDestination);
         //Debug Draw line ----- här!
         base.HandleUpdate();
-
-
     }
 
 
