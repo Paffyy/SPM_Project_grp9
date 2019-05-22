@@ -68,9 +68,8 @@ public class RangedBaseState : State
         timerSetDestination -= timeBetweenSetDestination;
         SetDestination();
         Rotate();
-        //Debug Draw line ----- här!
+        
         Debug.DrawLine(owner.transform.position, currentDestination);
-        //Debug Draw line ----- här!
         base.HandleUpdate();
     }
 
