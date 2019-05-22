@@ -17,10 +17,11 @@ public class MenuButtonController : MonoBehaviour
 
     void CheckInput()
     {
-        if (Input.GetKey(KeyCode.W))
-            input = -1;
-        else if (Input.GetKey(KeyCode.S))
+
+        if (InputManager.Instance.Getkey(KeybindManager.Instance.MenuUp, InputManager.ControllMode.Menu))
             input = 1;
+        else if(InputManager.Instance.Getkey(KeybindManager.Instance.MenuDown, InputManager.ControllMode.Menu))
+            input = -1;
         else
             input =  0;
     }

@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeybindManager.Instance.PauseMenuButton.GetKeyCode()))
+        if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.PauseMenuButton, InputManager.ControllMode.AllStates))
         {
             if (IsPaused)
             {

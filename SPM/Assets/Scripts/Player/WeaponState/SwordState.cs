@@ -29,7 +29,7 @@ public class SwordState : WeaponBaseState
         {
             //if (Input.GetKeyDown(KeyCode.Alpha0))
             //    owner.Transition<NoWeaponState>();
-            if (Manager.Instance.IsPaused == false && Input.GetKeyDown(KeybindManager.Instance.EquipmentSlot2.GetKeyCode()))
+            if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot2, InputManager.ControllMode.Play))
                 owner.Transition<BowState>();
             //else if (Input.GetKeyDown(KeyCode.Alpha3))
             //    owner.Transition<ShieldState>();

@@ -7,17 +7,31 @@ public class KeybindManager
     private KeybindManager()
     {
         // Declare here (probably move to keybinds menu l8er)
-        SpecialAttack = new Keybind(KeyCode.E, "Perform a special attack with equiped weapon");
-        ShootAndAttack = new Keybind(KeyCode.Mouse0, "Perform a regular attack with equiped weapon");
-        BlockAndAim = new Keybind(KeyCode.Mouse1, "Block with shield or aim bow");
-        EquipmentSlot1 = new Keybind(KeyCode.Alpha1);
-        EquipmentSlot2 = new Keybind(KeyCode.Alpha2);
-        EquipmentSlot3 = new Keybind(KeyCode.Alpha3);
-        PauseMenuButton = new Keybind(KeyCode.Escape);
-        Jump = new Keybind(KeyCode.Space);
-        MenuDown = new Keybind(KeyCode.W);
-        MenuDown = new Keybind(KeyCode.S);
+        //SpecialAttack = new Keybind(KeyCode.E, "Perform a special attack with equiped weapon");
+        //ShootAndAttack = new Keybind(KeyCode.Mouse0, "Perform a regular attack with equiped weapon");
+        //BlockAndAim = new Keybind(KeyCode.Mouse1, "Block with shield or aim bow");
+        //EquipmentSlot1 = new Keybind(KeyCode.Alpha1);
+        //EquipmentSlot2 = new Keybind(KeyCode.Alpha2);
+        //EquipmentSlot3 = new Keybind(KeyCode.Alpha3);
+        //PauseMenuButton = new Keybind(KeyCode.Escape);
+        //Jump = new Keybind(KeyCode.Space);
+        //MenuDown = new Keybind(KeyCode.W);
+        //MenuDown = new Keybind(KeyCode.S);
+
+        SpecialAttack = new Keybind(new KeyCode[] { KeyCode.E }, "Perform a special attack with equiped weapon");
+        ShootAndAttack = new Keybind(new KeyCode[] { KeyCode.Mouse1 }, "Perform a regular attack with equiped weapon");
+        BlockAndAim = new Keybind(new KeyCode[] { KeyCode.Mouse1 }, "Block with shield or aim bow");
+        EquipmentSlot1 = new Keybind(new KeyCode[] { KeyCode.Alpha1 });
+        EquipmentSlot2 = new Keybind(new KeyCode[] { KeyCode.Alpha2 });
+        EquipmentSlot3 = new Keybind(new KeyCode[] { KeyCode.Alpha3 });
+        PauseMenuButton = new Keybind(new KeyCode[] { KeyCode.Escape });
+        Jump = new Keybind(new KeyCode[] { KeyCode.Space });
+        MenuUp = new Keybind(new KeyCode[] { KeyCode.W, KeyCode.UpArrow });
+        MenuDown = new Keybind(new KeyCode[] { KeyCode.S, KeyCode.DownArrow });
+        MenuSelect = new Keybind(new KeyCode[] { KeyCode.Space, KeyCode.Return});
+
     }
+
     private static KeybindManager instance;
     public static KeybindManager Instance
     {
@@ -39,25 +53,51 @@ public class KeybindManager
     public Keybind Jump { get; set; }
     public Keybind MenuUp { get; set; }
     public Keybind MenuDown { get; set; }
+    public Keybind MenuSelect { get; set; }
 }
 
 public class Keybind
 {
     string Description;
-    KeyCode KeybindCode;
-    public Keybind(KeyCode code)
+    public KeyCode[] KeybindCodes { get; }
+    public Keybind(KeyCode[] code)
     {
-        KeybindCode = code;
+        KeybindCodes = code;
     }
-    public Keybind(KeyCode code, string desc)
+    public Keybind(KeyCode[] code, string desc)
     {
-        KeybindCode = code;
+        KeybindCodes = code;
         Description = desc;
     }
 
-    public KeyCode GetKeyCode()
-    {
-        return KeybindCode;
-    }
+    //public bool GetKeyDown()
+    //{
+    //    foreach(KeyCode code in KeybindCodes)
+    //    {
+    //        if (Input.GetKeyDown(code) == true)
+    //            return true;
+    //    }
+    //    return false;
+    //}
+
+    //public bool GetKeyUp()
+    //{
+    //    foreach (KeyCode code in KeybindCodes)
+    //    {
+    //        if (Input.GetKeyUp(code) == true)
+    //            return true;
+    //    }
+    //    return false;
+    //}
+
+    //public bool GetKey()
+    //{
+    //    foreach (KeyCode code in KeybindCodes)
+    //    {
+    //        if (Input.GetKey(code) == true)
+    //            return true;
+    //    }
+    //    return false;
+    //}
 
 }
