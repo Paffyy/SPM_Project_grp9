@@ -34,7 +34,7 @@ public class BossHealth : EnemyHealth
     override public bool CanTakeDamage()
     {
         //bossen kan inte ta skada i BossFiresOfHeavenState
-        return base.CanTakeDamage() && boss.CurrectState.GetType() != typeof(BossFiresOfHeavenState);
+        return base.CanTakeDamage();
     }
 
 
