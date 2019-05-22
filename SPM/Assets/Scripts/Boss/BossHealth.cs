@@ -31,11 +31,12 @@ public class BossHealth : EnemyHealth
     {
         base.TakeDamage(damage, Vector3.zero, position); // ingen pushback
     }
-    override public bool CanTakeDamage()
-    {
-        //bossen kan inte ta skada i BossFiresOfHeavenState
-        return base.CanTakeDamage();
-    }
+
+    //override public bool CanTakeDamage()
+    //{
+    //    //bossen kan inte ta skada i BossFiresOfHeavenState
+    //    return base.CanTakeDamage();
+    //}
 
 
 }
