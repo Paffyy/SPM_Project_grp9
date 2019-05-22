@@ -87,7 +87,6 @@ public class FiresOfHeavenState : RangedBaseState
     public override void Exit()
     {
         owner.anim.SetBool("FireRain", false);
-        owner.NavAgent.isStopped = false;
         base.Exit();
     }
 }
