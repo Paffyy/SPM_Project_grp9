@@ -10,5 +10,3 @@ public class DeathEventInfo : BaseEventInfo
         GameObject = gameObject;
     }
 }
-
-

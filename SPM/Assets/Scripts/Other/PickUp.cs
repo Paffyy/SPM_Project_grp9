@@ -11,7 +11,10 @@ public class PickUp : MonoBehaviour
     void Start()
     {
         PickUpID = transform.position.sqrMagnitude;
-        GameControl.GameController.PickUps.Add(PickUpID, gameObject);
+        if (!GameControl.GameController.PickUps.ContainsKey(PickUpID))
+        {
+            GameControl.GameController.PickUps.Add(PickUpID, gameObject);
+        }
     }
 
     // Update is called once per frame
@@ -26,7 +29,10 @@ public class PickUp : MonoBehaviour
         {
             PickupEventInfo pickUpEventInfo = new PickupEventInfo(gameObject);
             EventHandler.Instance.FireEvent(EventHandler.EventType.PickUpEvent, pickUpEventInfo);
-            GameControl.GameController.PickedUpObjects.Add(PickUpID);
+            if (!GameControl.GameController.PickedUpObjects.Contains(PickUpID))
+            {
+                GameControl.GameController.PickedUpObjects.Add(PickUpID);
+            }
             gameObject.SetActive(false);
         }
     }

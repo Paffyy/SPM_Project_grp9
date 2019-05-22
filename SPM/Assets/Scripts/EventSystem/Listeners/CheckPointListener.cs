@@ -36,7 +36,7 @@ public class CheckPointListener : MonoBehaviour
         {
             if (deathEventInfo.GameObject.CompareTag("Player"))
             {
-                GameControl.GameController.LoadScene();
+                //GameControl.GameController.LoadScene();
                 deathEventInfo.GameObject.transform.position = CurrentRespawnPosition.transform.position;
                 deathEventInfo.GameObject.GetComponent<Player>().RotationY = CurrentRespawnPosition.rotation.y + 90;
 

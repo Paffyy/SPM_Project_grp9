@@ -5,9 +5,11 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     public Transform RespawnPosition;
+    private BoxCollider triggerCollider;
 
     void Start()
     {
+        triggerCollider = GetComponent<BoxCollider>();
     }
 
     void Update()
@@ -19,12 +21,12 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SaveSystem.SaveGame();
-            SaveEventInfo saveEventInfo = new SaveEventInfo("Reached new checkpoint! auto saving...");
-            EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
+            //SaveSystem.SaveGame();
+            //SaveEventInfo saveEventInfo = new SaveEventInfo("Reached new checkpoint! auto saving...");
+            //EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
             CheckPointEventInfo checkPointEventInfo = new CheckPointEventInfo(gameObject);
             EventHandler.Instance.FireEvent(EventHandler.EventType.CheckPointEvent, checkPointEventInfo);
-            GetComponent<BoxCollider>().enabled = false;
+            triggerCollider.enabled = false;
         }
     }
 }

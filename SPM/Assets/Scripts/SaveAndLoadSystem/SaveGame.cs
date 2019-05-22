@@ -9,15 +9,15 @@ public class SaveGame : MonoBehaviour
 
     void Start()
     {
-        if(GameControl.GameController.HasLoadedFromSaveFile == true)
-        {
-            Load();
-            GameControl.GameController.HasLoadedFromSaveFile = false;
-        } else if(GameControl.GameController.HasReachedNewLevel == true)
-        {
-            LoadPlayerDataOnly();
-            GameControl.GameController.HasReachedNewLevel = false;
-        }
+        //if(GameControl.GameController.HasLoadedFromSaveFile == true)
+        //{
+        //    Load();
+        //    GameControl.GameController.HasLoadedFromSaveFile = false;
+        //} else if(GameControl.GameController.HasReachedNewLevel == true)
+        //{
+        //    LoadPlayerDataOnly();
+        //    GameControl.GameController.HasReachedNewLevel = false;
+        //}
     }
 
     void Update()
@@ -25,10 +25,10 @@ public class SaveGame : MonoBehaviour
 
     }
 
-    private void Save()
-    {
-        SaveSystem.SaveGame();
-    }
+    //private void Save()
+    //{
+    //    SaveSystem.SaveGame();
+    //}
 
     private void LoadPlayerDataOnly()
     {

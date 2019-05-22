@@ -32,7 +32,10 @@ public class RevitalizeZone : MonoBehaviour
         }
         revitalizeObjects = GetRevitalizeObjects();
         zoneID = transform.position.sqrMagnitude;
-        GameControl.GameController.Zones.Add(zoneID, gameObject);
+        if (!GameControl.GameController.Zones.ContainsKey(zoneID))
+        {
+            GameControl.GameController.Zones.Add(zoneID, gameObject);
+        }
     }
 
     private List<RevitalizeGeometry> GetRevitalizeObjects()
@@ -86,7 +89,10 @@ public class RevitalizeZone : MonoBehaviour
 
     private void RevitalizeTheZone()
     {
-        GameControl.GameController.RevitalizedZones.Add(zoneID);
+        if (!GameControl.GameController.RevitalizedZones.Contains(zoneID))
+        {
+            GameControl.GameController.RevitalizedZones.Add(zoneID);
+        }
         foreach (var item in revitalizeObjects)
         {
             if (!item.IsRevitalized)
