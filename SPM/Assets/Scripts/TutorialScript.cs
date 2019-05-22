@@ -32,10 +32,7 @@ public class TutorialScript : MonoBehaviour
         }
         else
         {
-            if (previousCoroutine != null)
-            {
-                StopCoroutine(previousCoroutine);
-            }
+            StopCoroutine(previousCoroutine);
         }
         previousCoroutine = coroutine;
     }
