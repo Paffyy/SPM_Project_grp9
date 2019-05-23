@@ -57,7 +57,6 @@
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
 			o.Alpha = pixelColor.a;
-		
         }
         ENDCG
     }

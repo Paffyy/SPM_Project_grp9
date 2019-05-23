@@ -12,9 +12,10 @@ public class RevitalizeZone : MonoBehaviour
     private bool hasRevitalized;
     private float transitionDelay = 0.5f;
     private float zoneID;
+
     private List<RevitalizeGeometry> revitalizeObjects;
 
-    private void Register()
+    public void Register()
     {
         if (EventHandler.Instance != null)
         {
@@ -40,24 +41,24 @@ public class RevitalizeZone : MonoBehaviour
 
     private List<RevitalizeGeometry> GetRevitalizeObjects()
     {
-        List<RevitalizeGeometry> revObjects = new List<RevitalizeGeometry>();
+        List<RevitalizeGeometry> revitalizeObjects = new List<RevitalizeGeometry>();
         foreach (Transform child in transform)
         {
             RevitalizeGeometry rev = child.GetComponent<RevitalizeGeometry>();
             if (rev != null)
             {
-                revObjects.Add(rev);
+                revitalizeObjects.Add(rev);
             }
             foreach (Transform grandchildren in child)
             {
                 var rev2 = grandchildren.GetComponent<RevitalizeGeometry>();
                 if (rev2 != null)
                 {
-                    revObjects.Add(rev2);
+                    revitalizeObjects.Add(rev2);
                 }
             }
         }
-        return revObjects;
+        return revitalizeObjects;
     }
 
     private void Update()
