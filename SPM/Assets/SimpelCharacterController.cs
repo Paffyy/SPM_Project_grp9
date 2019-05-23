@@ -127,29 +127,29 @@ public class SimpelCharacterController : MonoBehaviour
 
 
     //funkar inte riktigt kan kanske ta bort hela skiten!
-    public bool AdvancedIsGrounded()
-    {
-        RaycastHit hit;
-        Vector3 helper = Vector3.zero;
-        if(Velocity == Vector3.zero)
-        {
-            Debug.Log("bopo");
-            helper = Vector3.down;
-            //Debug.Log("vel " + (Velocity.normalized + helper) * groundCheckDistance + skinWidth).magnidute));
-        }
-        Debug.DrawRay(groundedObject.transform.position, (Velocity.normalized + helper) * (groundCheckDistance + skinWidth), Color.green);
-        if (Physics.SphereCast(groundedObject.transform.position, characterCollider.radius, Velocity.normalized, out hit, groundCheckDistance, CollisionMask))
-        {
-            Debug.DrawRay(groundedObject.transform.position, hit.normal, Color.green);
-            float angle = Vector3.Angle(Vector3.up, hit.normal);
+    //public bool AdvancedIsGrounded()
+    //{
+    //    RaycastHit hit;
+    //    Vector3 helper = Vector3.zero;
+    //    if(Velocity == Vector3.zero)
+    //    {
+    //        Debug.Log("bopo");
+    //        helper = Vector3.down;
+    //        //Debug.Log("vel " + (Velocity.normalized + helper) * groundCheckDistance + skinWidth).magnidute));
+    //    }
+    //    Debug.DrawRay(groundedObject.transform.position, (Velocity.normalized + helper) * (groundCheckDistance + skinWidth), Color.green);
+    //    if (Physics.SphereCast(groundedObject.transform.position, characterCollider.radius, Velocity.normalized, out hit, groundCheckDistance, CollisionMask))
+    //    {
+    //        Debug.DrawRay(groundedObject.transform.position, hit.normal, Color.green);
+    //        float angle = Vector3.Angle(Vector3.up, hit.normal);
 
-            if(angle > 60)
-            {
-                return false;
-            }
+    //        if(angle > 60)
+    //        {
+    //            return false;
+    //        }
             
-            return true;
-        }
-        return false;
-    }
+    //        return true;
+    //    }
+    //    return false;
+    //}
 }
