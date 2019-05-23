@@ -18,8 +18,8 @@ public class PlayerBaseState : State
     protected CapsuleCollider playerCollider;
     protected int limit = 0;
     protected Camera playerCamera;
-    protected float minCameraAngle = -20;
-    protected float maxCameraAngle = 80;
+    protected float minCameraAngle = -30;
+    protected float maxCameraAngle =80;
     protected Vector3 cameraPosition;
     protected SphereCollider sphere;
     protected Player owner;
@@ -34,8 +34,6 @@ public class PlayerBaseState : State
     private float fallMultiplier = 2.5f;
 
     protected Vector3 Position { get { return owner.transform.position; } set { owner.transform.position = value; } }
-
-    protected bool isActive;
 
     public override void Enter()
     {
@@ -68,13 +66,14 @@ public class PlayerBaseState : State
         //    owner.RotationX = playerCamera.transform.rotation.x;
         //    owner.RotationY = playerCamera.transform.rotation.y;
         //}
-        isActive = !Manager.Instance.IsPaused;
 
-        if(isActive)
+        if (Manager.Instance.IsPaused == false)
         {
             owner.RotationX -= Input.GetAxisRaw("Mouse Y") * MouseSensitivity;
+            //owner.RotationX -= InputManager.Instance.GetAxisRaw(InputManager.GetAxis.MouseY, InputManager.ControllMode.Play) * MouseSensitivity;
             owner.RotationX = Mathf.Clamp(owner.RotationX, minCameraAngle, maxCameraAngle);
             owner.RotationY += Input.GetAxisRaw("Mouse X") * MouseSensitivity;
+            //owner.RotationY += InputManager.Instance.GetAxisRaw(InputManager.GetAxis.MouseY, InputManager.ControllMode.Play) * MouseSensitivity;
             playerCamera.transform.rotation = Quaternion.Euler(owner.RotationX, owner.RotationY, 0.0f);
             if (Input.GetKeyDown(KeyCode.V))
                 owner.FirstPersonView = !owner.FirstPersonView;
@@ -86,8 +85,11 @@ public class PlayerBaseState : State
             {
                 HandleThirdPersonCamera();
             }
-            Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
-            direction = playerCamera.transform.rotation * direction;
+        //Vector3 direction = new Vector3(InputManager.Instance.GetAxisRaw(InputManager.GetAxis.Horizontal, InputManager.ControllMode.Play),
+        //    0.0f, InputManager.Instance.GetAxisRaw(InputManager.GetAxis.Vertical, InputManager.ControllMode.Play));
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"),
+            0.0f, Input.GetAxisRaw("Vertical"));
+        direction = playerCamera.transform.rotation * direction;
             direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
             float distance = Acceleration * Time.deltaTime * owner.SpeedModifier;
             owner.Velocity += direction.normalized * distance;

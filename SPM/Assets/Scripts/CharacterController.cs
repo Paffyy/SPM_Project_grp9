@@ -24,9 +24,6 @@ public class CharacterController : MonoBehaviour
     private CapsuleCollider characterCollider;
     private int collisionLimit = 0;
 
-    private float turnSmoothVel = 1.0f;
-    private float turnSmoothTime = 0.07f;
-
 
     //private Vector3 Position { get { return transform.position; } set { transform.position = value; } }
 

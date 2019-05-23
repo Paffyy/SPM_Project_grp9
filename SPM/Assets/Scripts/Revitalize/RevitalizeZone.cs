@@ -22,18 +22,19 @@ public class RevitalizeZone : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        zoneID = transform.position.sqrMagnitude;
+        GameController.GameControllerInstance.Zones.Add(zoneID, gameObject);
+        revitalizeObjects = GetRevitalizeObjects();
+    }
+
     private void Start()
     {
         Register();
         if (revitalizeObjectives.Count == 0 )
         {
             hasRevitalized = true; // if objectives count == 0, don't revitalize immediately;
-        }
-        revitalizeObjects = GetRevitalizeObjects();
-        zoneID = transform.position.sqrMagnitude;
-        if (!GameControl.GameController.Zones.ContainsKey(zoneID))
-        {
-            GameControl.GameController.Zones.Add(zoneID, gameObject);
         }
     }
 
@@ -88,10 +89,7 @@ public class RevitalizeZone : MonoBehaviour
 
     private void RevitalizeTheZone()
     {
-        if (!GameControl.GameController.RevitalizedZones.Contains(zoneID))
-        {
-            GameControl.GameController.RevitalizedZones.Add(zoneID);
-        }
+        GameController.GameControllerInstance.RevitalizedZones.Add(zoneID);
         foreach (var item in revitalizeObjects)
         {
             if (!item.IsRevitalized)

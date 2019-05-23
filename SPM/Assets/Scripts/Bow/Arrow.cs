@@ -113,7 +113,7 @@ public class Arrow : MonoBehaviour
                     EventHandler.Instance.FireEvent(EventHandler.EventType.ArrowAoeHitEvent, e);
                 }
             }
-          
+
         }
     }
 

@@ -27,11 +27,16 @@ public class BossHealth : EnemyHealth
             EnemyDead();
     }
 
-    override public bool CanTakeDamage()
+    public override void TakeDamage(int damage, Vector3 pushBack, Vector3 position)
     {
-        //bossen kan inte ta skada i BossFiresOfHeavenState
-        return base.CanTakeDamage() && boss.CurrectState.GetType() != typeof(BossFiresOfHeavenState);
+        base.TakeDamage(damage, Vector3.zero, position); // ingen pushback
     }
+
+    //override public bool CanTakeDamage()
+    //{
+    //    //bossen kan inte ta skada i BossFiresOfHeavenState
+    //    return base.CanTakeDamage();
+    //}
 
 
 }

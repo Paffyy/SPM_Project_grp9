@@ -32,7 +32,13 @@ public class WalkingState : PlayerBaseState
         //{
         //    owner.Shield.SetActive(false);
         //}
-        if (isActive == true && Input.GetKeyDown(KeybindManager.Instance.Jump.GetKeyCode()))
+
+        //TODO fixa det här
+        //Vet inte varför man är tvungen att kolla om spelet är pausat här
+        //annars hoppar man ändå
+        if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.Jump, InputManager.ControllMode.Play))
+        {
             owner.Transition<AirState>();
+        }
     }
 }

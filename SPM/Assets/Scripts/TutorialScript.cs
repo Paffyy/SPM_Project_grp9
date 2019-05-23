@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialScript : MonoBehaviour
 {
@@ -8,11 +9,16 @@ public class TutorialScript : MonoBehaviour
     private float terminationDelay;
     [SerializeField]
     private GameObject TutorialText;
+    [SerializeField]
+    private bool isShownOnStart;
 
     private IEnumerator previousCoroutine;
     void Awake()
     {
-        ShowAndRemove();
+        if (isShownOnStart)
+        {
+            ShowAndRemove();
+        }
     }
     void Update()
     {

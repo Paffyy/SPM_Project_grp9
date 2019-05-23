@@ -8,6 +8,8 @@ public class Manager
     private Manager() {  }
     private static Manager instance;
     private Vector3 checkPoint;
+    public bool HasLoadedFromCheckPoint { get; set; }
+    public bool HasLoadedFromPreviousLevel { get; set; }
     private bool isPaused;
     public bool IsPaused
     {

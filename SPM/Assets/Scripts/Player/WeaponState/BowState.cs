@@ -24,13 +24,13 @@ public class BowState : WeaponBaseState
     {
         //if (Input.GetKeyDown(KeyCode.Alpha0))
         //    owner.Transition<NoWeaponState>();
-        if (Manager.Instance.IsPaused == false &&  Input.GetKeyDown(KeybindManager.Instance.EquipmentSlot1.GetKeyCode()))
+        if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot1, InputManager.ControllMode.Play))
         {
             owner.BowIcon.GetComponent<Image>().color = Color.white;
             //owner.Bow.SetActive(false);
             owner.Transition<SwordState>();
         }
-        else if (Manager.Instance.IsPaused == false &&  Input.GetKeyDown(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
+        else if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
         {
             //owner.Bow.SetActive(false);
             owner.Transition<BowAimState>();

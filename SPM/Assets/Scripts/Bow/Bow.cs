@@ -80,13 +80,13 @@ public class Bow : MonoBehaviour
         ToggleCrosshair(true);
         if (coolDownCounter <= 0 && weapon.ArrowCount > 0)
         {
-            if (Input.GetKeyDown(KeybindManager.Instance.SpecialAttack.GetKeyCode()) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
+            if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.SpecialAttack, InputManager.ControllMode.Play) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
             {
                 isDoingSpecialAttack = !isDoingSpecialAttack;
                 specialAttackGlow.SetActive(!specialAttackGlow.activeSelf);
 
             }
-            if (Input.GetKey(KeybindManager.Instance.ShootAndAttack.GetKeyCode()))
+            if (InputManager.Instance.Getkey(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
             {
                 animator.SetBool("IsChargingBow", true);
                 if (chargeTime < 2f)
@@ -95,7 +95,7 @@ public class Bow : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyUp(KeybindManager.Instance.ShootAndAttack.GetKeyCode()))
+            if (InputManager.Instance.GetkeyUp(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
             {
                 if (isDoingSpecialAttack) // special attack
                 {

@@ -26,7 +26,7 @@
     SubShader
     {
         Tags {"Queue"="Transparent" "RenderType"="TransparentCutout" }
-        LOD 200
+        LOD 300
 		Cull Off
 		Blend SrcAlpha OneMinusSrcAlpha
         CGPROGRAM

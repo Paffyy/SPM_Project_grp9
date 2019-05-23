@@ -126,6 +126,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: pressed
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: selected
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102798668615038792}
   m_Solo: 0

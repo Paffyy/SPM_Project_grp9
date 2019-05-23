@@ -18,12 +18,12 @@ public class BowAimState : WeaponBaseState
 
     public override void HandleUpdate()
     {
-        if (Input.GetKeyDown(KeybindManager.Instance.EquipmentSlot1.GetKeyCode()))
+        if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot1, InputManager.ControllMode.Play))
         {
             owner.BowIcon.GetComponent<Image>().color = Color.white;
             owner.Transition<SwordState>();
         }
-        if (Input.GetKeyDown(KeybindManager.Instance.BlockAndAim.GetKeyCode()))
+        if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
         {
             owner.Transition<BowState>();
         }

@@ -15,16 +15,16 @@ public class GameData
 
     public GameData()
     {
-        CurrentSceneIndex = GameControl.GameController.CurrentSceneIndex;
-        PlayerHealth = GameControl.GameController.PlayerHealth;
-        ArrowCount = GameControl.GameController.ArrowCount;
+        CurrentSceneIndex = GameController.GameControllerInstance.CurrentSceneIndex;
+        PlayerHealth = GameController.GameControllerInstance.PlayerHealth;
+        ArrowCount = GameController.GameControllerInstance.ArrowCount;
         PlayerPosition = new float[3];
-        PlayerPosition[0] = GameControl.GameController.Player.transform.position.x;
-        PlayerPosition[1] = GameControl.GameController.Player.transform.position.y;
-        PlayerPosition[2] = GameControl.GameController.Player.transform.position.z;
-        DeadEnemiesID = GameControl.GameController.DeadEnemies;
-        PickedUpObjectsID = GameControl.GameController.PickedUpObjects;
-        RevitalizedZonesID = GameControl.GameController.RevitalizedZones;
+        PlayerPosition[0] = GameController.GameControllerInstance.Player.position.x;
+        PlayerPosition[1] = GameController.GameControllerInstance.Player.position.y;
+        PlayerPosition[2] = GameController.GameControllerInstance.Player.position.z;
+        DeadEnemiesID = GameController.GameControllerInstance.DeadEnemies;
+        PickedUpObjectsID = GameController.GameControllerInstance.PickedUpObjects;
+        RevitalizedZonesID = GameController.GameControllerInstance.RevitalizedZones;
 
     }
 }

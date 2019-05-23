@@ -52,10 +52,12 @@ public class GameControl : MonoBehaviour
         //    EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
         //    SaveSystem.SaveGame();
         //}
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    LoadScene();
-        //}
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log(Manager.Instance.HasLoadedFromCheckPoint);
+            Manager.Instance.HasLoadedFromCheckPoint = true;
+            SceneManager.LoadScene(2);
+        }
     }
 
     public void LoadScene()
