@@ -24,28 +24,28 @@ public class playerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 input = Vector3.zero;
-
-        if (controller.IsGrounded() == true) {
-            Debug.Log("isGrounded");
-            if (InputManager.Instance.GetkeyDown((KeybindManager.Instance.Jump), InputManager.ControllMode.Play))
-            {
-                Jump();
-            }
-        }
-        input = Move();
-
-
-
-
-
-        //om spelaren inte rör sig tillåt kameran att rotera runt den
-        if (input.x != 0 || input.z != 0)
+        if(Manager.Instance.IsPaused == false)
         {
-            //Om det blir något knas med spelarens rotation lägg till offsetHelper. Den ser till så att man inte kollar SignedAngle mot inputvector som skulle vara 0
-            //Vector3 offsetHelper = transform.forward * 0.001f;
-            //transform.rotation = Quaternion.AngleAxis(cameraCon.Yaw + Vector3.SignedAngle(Vector3.forward, input.normalized , Vector3.up), Vector3.up);
-            Rotate();
+
+            Vector3 input = Vector3.zero;
+            if (controller.IsGrounded() == true) {
+                Debug.Log("isGrounded");
+                if (InputManager.Instance.GetkeyDown((KeybindManager.Instance.Jump), InputManager.ControllMode.Play))
+                {
+                    Jump();
+                }
+            }
+            input = Move();
+
+            //om spelaren inte rör sig tillåt kameran att rotera runt den
+            if (input.x != 0 || input.z != 0)
+            {
+                //Om det blir något knas med spelarens rotation lägg till offsetHelper. Den ser till så att man inte kollar SignedAngle mot inputvector som skulle vara 0
+                //Vector3 offsetHelper = transform.forward * 0.001f;
+                //transform.rotation = Quaternion.AngleAxis(cameraCon.Yaw + Vector3.SignedAngle(Vector3.forward, input.normalized , Vector3.up), Vector3.up);
+                Rotate();
+            }
+
         }
 
 

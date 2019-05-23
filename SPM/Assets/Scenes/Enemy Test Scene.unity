@@ -1246,6 +1246,10 @@ PrefabInstance:
       propertyPath: ShieldObject
       value: 
       objectReference: {fileID: 1636868181}
+    - target: {fileID: 156662277, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
+      propertyPath: ArrowCountText
+      value: 
+      objectReference: {fileID: 682564857}
     - target: {fileID: 2279219361730397839, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_Layer
@@ -1256,10 +1260,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 156662277, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
-      propertyPath: ArrowCountText
-      value: 
-      objectReference: {fileID: 682564857}
     - target: {fileID: 2279219361760561449, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_Layer
@@ -1923,6 +1923,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1914881268}
     m_Modifications:
+    - target: {fileID: 2796968206420594168, guid: 4b648d8a30adb72409de9a5d885d9707,
+        type: 3}
+      propertyPath: m_Name
+      value: BaseEnemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2796968206420594172, guid: 4b648d8a30adb72409de9a5d885d9707,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1977,11 +1982,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2796968206420594168, guid: 4b648d8a30adb72409de9a5d885d9707,
-        type: 3}
-      propertyPath: m_Name
-      value: BaseEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 2796968206420594173, guid: 4b648d8a30adb72409de9a5d885d9707,
         type: 3}
