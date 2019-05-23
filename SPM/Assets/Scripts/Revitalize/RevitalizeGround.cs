@@ -11,6 +11,7 @@ public class RevitalizeGround : RevitalizeGeometry
     private bool shouldRevitalizeOnStart;
     [SerializeField]
     private RevitalizeTerrain terrain;
+
     public override void Revitalize(float offset = 0)
     {
         StartCoroutine(RevitalizeOverTime());
@@ -30,7 +31,6 @@ public class RevitalizeGround : RevitalizeGeometry
             Revitalize();
         }
     }
-
     public override void InstantRevitalize()
     {
         terrain.RevitalizeArea(gameObject, brushSize);

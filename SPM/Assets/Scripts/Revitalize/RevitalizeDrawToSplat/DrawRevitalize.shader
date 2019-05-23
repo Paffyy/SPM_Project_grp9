@@ -49,11 +49,10 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
-				float draw = pow(saturate(1 - distance(i.uv, _Coordinates.xy)), _BrushSize);
-				fixed4 drawColor = _Color * (draw * _Strength);
-                return saturate(col + drawColor);
+                fixed4 textureCoord = tex2D(_MainTex, i.uv);
+				float brush = pow(saturate(1 - distance(i.uv, _Coordinates.xy)), _BrushSize);
+				fixed4 drawColor = _Color * (brush * _Strength);
+                return saturate(textureCoord + drawColor);
             }
 
             ENDCG

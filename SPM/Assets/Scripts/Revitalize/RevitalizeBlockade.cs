@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class RevitalizeBlockade : RevitalizeGeometry
 {
-    public Collider BlockCollider;
-    public Collider ObjectCollider;
+    [SerializeField]
+    private Collider blockCollider;
+    [SerializeField]
+    private Collider objectCollider;
 
     public override void Revitalize(float offset = 0)
     {
@@ -29,17 +31,17 @@ public class RevitalizeBlockade : RevitalizeGeometry
         transform.parent.gameObject.SetActive(false);
     }
 
-    public void DestroyObject()
+    private void DestroyObject()
     {
         Destroy(gameObject);
     }
 
-    public void DisableCollider()
+    private void DisableCollider()
     {
-        if(BlockCollider != null && BlockCollider.enabled)
+        if(blockCollider != null && blockCollider.enabled)
         {
-            BlockCollider.enabled = false;
+            blockCollider.enabled = false;
         }
-        ObjectCollider.enabled = false;
+        objectCollider.enabled = false;
     }
 }

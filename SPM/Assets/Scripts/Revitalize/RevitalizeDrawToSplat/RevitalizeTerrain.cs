@@ -14,7 +14,15 @@ public class RevitalizeTerrain : MonoBehaviour
     private LayerMask layerMask;
     private RenderTexture splatMap;
     private Material scorchedMaterial, drawMaterial, eraseMaterial;
-    void Awake()
+    private void Awake()
+    {
+        drawMaterial = new Material(drawRevitalizeShader); 
+        eraseMaterial = new Material(eraseRevitalizeShader);
+        scorchedMaterial = GetComponent<MeshRenderer>().material;
+        splatMap = new RenderTexture(512, 512, 0, RenderTextureFormat.ARGBFloat);
+        scorchedMaterial.SetTexture("_Splat", splatMap);
+    }
+    private void InitializeMaps()
     {
         drawMaterial = new Material(drawRevitalizeShader);
         eraseMaterial = new Material(eraseRevitalizeShader);
@@ -22,21 +30,11 @@ public class RevitalizeTerrain : MonoBehaviour
         splatMap = new RenderTexture(512, 512, 0, RenderTextureFormat.ARGBFloat);
         scorchedMaterial.SetTexture("_Splat", splatMap);
     }
-    public void InitializeMaps()
-    {
-             drawMaterial = new Material(drawRevitalizeShader);
-        eraseMaterial = new Material(eraseRevitalizeShader);
-        scorchedMaterial = GetComponent<MeshRenderer>().material;
-        splatMap = new RenderTexture(512, 512, 0, RenderTextureFormat.ARGBFloat);
-        scorchedMaterial.SetTexture("_Splat", splatMap);
-    }
     public void RevitalizeArea(GameObject revitalizeObject, int brushSize, float strength = 1)
     {
-
+        RaycastHit hit;
         drawMaterial.SetFloat("_Strength", strength);
         drawMaterial.SetInt("_BrushSize", 100 / brushSize);
-        RaycastHit hit;
-        Debug.DrawRay(revitalizeObject.transform.position, Vector3.down);
         if (Physics.Raycast(revitalizeObject.transform.position, Vector3.down, out hit, layerMask))
         {
             drawMaterial.SetVector("_Coordinates", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
@@ -46,17 +44,14 @@ public class RevitalizeTerrain : MonoBehaviour
             RenderTexture.ReleaseTemporary(tempTexture);
         }
     }
-    public void EraseFromSplatMap(GameObject revitalizeObject, int brushSize)
+    [Obsolete("Testing Purposes")]
+    private void EraseFromSplatMap(GameObject revitalizeObject, int brushSize)
     {
-
         RaycastHit hit;
         eraseMaterial.SetFloat("_Strength", 0.1f);
         eraseMaterial.SetInt("_BrushSize", 100 / brushSize + 2);
-
-        Debug.DrawRay(revitalizeObject.transform.position, Vector3.down);
         if (Physics.Raycast(revitalizeObject.transform.position, Vector3.down, out hit, layerMask))
         {
-            
             eraseMaterial.SetVector("_Coordinates", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
             RenderTexture tempTexture = RenderTexture.GetTemporary(splatMap.width, splatMap.height, 0, RenderTextureFormat.ARGBFloat);
             Graphics.Blit(splatMap, tempTexture);

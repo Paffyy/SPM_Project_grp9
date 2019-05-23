@@ -5,32 +5,27 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Ranged/FiresOfHeavenState")]
 public class FiresOfHeavenState : RangedBaseState
 {
-    public int NumberOfFires;
-    private BoxCollider fireArea;
-    public float StartingHeight;
-    public GameObject FireBallObject;
-
-    //tid mellan eldbollar
-    public float BetweenTime = 1f;
-
-    private Vector3[] vecArr;
-    private int count;
+    [SerializeField]
+    private int numberOfCasts;
+    [SerializeField]
+    private float startingHeight;
+    [SerializeField]
+    private GameObject fireBallObject;
+    [SerializeField]
+    private float castTime = 1f;
+    private int currentCastCount;
     private float coolDown;
     private bool isTransitioning;
-    float minX;
-    float maxX;
-    float maxZ;
-    float minZ;
-    float spawnCooldown = 2;
+    private float reCastSpeed = 2;
     private bool isRecharging;
    
     public override void Enter()
     {
-        FireBallObject.GetComponent<FireBall>().parent = owner.firesOfHeavenContainer.transform;
+        fireBallObject.GetComponent<FireBall>().parent = owner.firesOfHeavenContainer.transform;
         owner.anim.SetBool("FireRain", true);
         owner.NavAgent.isStopped = true;
-        count = 0;
-        spawnCooldown = 2;
+        currentCastCount = 0;
+        reCastSpeed = 2;
         isRecharging = false;
         base.Enter();
 
@@ -42,11 +37,11 @@ public class FiresOfHeavenState : RangedBaseState
         if(cooldown < 0)
         {
             SpawnFire();
-            cooldown = BetweenTime;
+            cooldown = castTime;
         }
         if (isRecharging)
         {
-            spawnCooldown -= Time.deltaTime;
+            reCastSpeed -= Time.deltaTime;
         }
         base.HandleUpdate();
             
@@ -54,13 +49,13 @@ public class FiresOfHeavenState : RangedBaseState
 
     private void SpawnFire()
     {
-        if (count < NumberOfFires)
+        if (currentCastCount < numberOfCasts)
         {
             Vector3 vec = SpawnNearPlayer(2.0f);
-            GameObject obj = Instantiate(FireBallObject, vec, Quaternion.identity, owner.firesOfHeavenContainer.transform);
+            GameObject obj = Instantiate(fireBallObject, vec, Quaternion.identity, owner.firesOfHeavenContainer.transform);
 
             Destroy(obj, 8f);
-            count++;
+            currentCastCount++;
         }
         else
         {
@@ -70,7 +65,7 @@ public class FiresOfHeavenState : RangedBaseState
             }
 
             isRecharging = true;
-            if (spawnCooldown < 0)
+            if (reCastSpeed < 0)
             {
                 owner.Transition<RangedChaseState>();
             }
@@ -81,7 +76,7 @@ public class FiresOfHeavenState : RangedBaseState
     {
         float max = distance;
         float min = -distance;
-        return new Vector3(Random.Range(min, max) + owner.player.transform.position.x, owner.player.transform.position.y + StartingHeight, Random.Range(min, max) + owner.player.transform.position.z);
+        return new Vector3(Random.Range(min, max) + owner.player.transform.position.x, owner.player.transform.position.y + startingHeight, Random.Range(min, max) + owner.player.transform.position.z);
     }
 
     public override void Exit()

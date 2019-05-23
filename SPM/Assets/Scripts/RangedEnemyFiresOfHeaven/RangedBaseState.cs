@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class RangedBaseState : State
 {
-
-    //[SerializeField] protected float moveSpeed;
-    //[SerializeField] protected float hearRadius;
     protected float chaseDistance;
     protected float cooldown;
     protected float attackDistance;
@@ -25,9 +22,6 @@ public class RangedBaseState : State
     private Transform currentRotationTarget;
     private GameObject firesOfHeavenContainer;
 
-    //public LayerMask PlayerLayer;
-
-    //för debug
     [SerializeField] protected Material material;
 
     protected RangedEnemy owner;
@@ -36,10 +30,8 @@ public class RangedBaseState : State
     {
         firesOfHeavenContainer = owner.firesOfHeavenContainer;
         timerSetDestination = timeBetweenSetDestination;
-        //Debug.Log("BaseState");
         owner.MeshRen.material = material;
         owner.NavAgent.speed = moveSpeed;
-
         owner.NavAgent.updateRotation = false;
     }
 
@@ -53,14 +45,11 @@ public class RangedBaseState : State
         moveSpeed = this.owner.moveSpeed;
         hearRadius = this.owner.hearRadius;
         waitAtPatrolPoints = this.owner.waitAtPatrolPoints;
-        //måste vara högre än navAgent stopping distance
         PlacmentDistance = this.owner.AttackPlacmentDistance;
         isWaitAtPosition = this.owner.IsWaitAtPosition;
         lookRotationSpeed = this.owner.lookRotationSpeed;
         controller = this.owner.controller;
-
         timerSetDestination = timeBetweenSetDestination;
-
     }
 
     public override void HandleUpdate()
@@ -68,27 +57,18 @@ public class RangedBaseState : State
         timerSetDestination -= timeBetweenSetDestination;
         SetDestination();
         Rotate();
-        
-        Debug.DrawLine(owner.transform.position, currentDestination);
+        Debug.DrawLine(owner.transform.position, currentDestination); //debuggar vart den har target
         base.HandleUpdate();
     }
 
-
-
     protected bool CanSeePlayer()
     {
-        //return !Physics.Linecast(owner.transform.position, owner.player.transform.position, owner.visionMask);
         return owner.Fow.TargetsInFieldOfView() != null;
     }
 
     protected bool CanHearPlayer()
     {
         return Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius;
-    }
-
-    public void UpdateDestination(Vector3 destination)
-    {
-        currentDestination = destination;
     }
 
     private void SetDestination()
@@ -103,7 +83,12 @@ public class RangedBaseState : State
         }
     }
 
-    public void UpdateRotation(Transform target)
+    protected void UpdateDestination(Vector3 destination)
+    {
+        currentDestination = destination;
+    }
+
+    protected void UpdateRotation(Transform target)
     {
         currentRotationTarget = target;
     }

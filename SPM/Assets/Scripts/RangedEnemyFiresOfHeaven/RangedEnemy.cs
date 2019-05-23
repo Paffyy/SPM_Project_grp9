@@ -12,5 +12,4 @@ public class RangedEnemy : BaseEnemy
         firesOfHeavenContainer = new GameObject("fires");
         anim = GetComponent<Animator>();
     }
-
 }
