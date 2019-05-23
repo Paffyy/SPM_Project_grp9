@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -477,6 +477,11 @@ PrefabInstance:
       propertyPath: MenuButtonController
       value: 
       objectReference: {fileID: 1434245632}
+    - target: {fileID: 3069499102580183922, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f650ccbd9a4aeac48a829b6eb46bffaf, type: 3}
 --- !u!1 &1434245627
@@ -955,6 +960,11 @@ PrefabInstance:
       propertyPath: MenuButtonController
       value: 
       objectReference: {fileID: 1434245632}
+    - target: {fileID: 3069499102580183922, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
+        type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8952919462834514330, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
         type: 3}
       propertyPath: m_Color.a
@@ -1071,24 +1081,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8952919464015823023}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2287878006714953919 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3069499102580183922, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
-    type: 3}
-  m_PrefabInstance: {fileID: 8952919464015823023}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2287878006714953921 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6577903630661632342, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
-    type: 3}
-  m_PrefabInstance: {fileID: 8952919464015823023}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2997b22cb1569f743a2af0f9e8559b96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8952919464015823023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1206,35 +1198,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8952919462834514331, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2855223511115671828, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
         type: 3}
       propertyPath: MenuButtonController
       value: 
       objectReference: {fileID: 1434245632}
-    - target: {fileID: 2855223511115671828, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
-        type: 3}
-      propertyPath: Animator
-      value: 
-      objectReference: {fileID: 2287878006714953919}
-    - target: {fileID: 2855223511115671828, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
-        type: 3}
-      propertyPath: AnimatorFunctions
-      value: 
-      objectReference: {fileID: 2287878006714953921}
     - target: {fileID: 6577903630661632342, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
         type: 3}
       propertyPath: MenuButtonController
       value: 
       objectReference: {fileID: 1434245632}
-    - target: {fileID: 8952919462834514332, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f650ccbd9a4aeac48a829b6eb46bffaf, type: 3}
