@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuButton : MonoBehaviour
 {
@@ -17,15 +18,42 @@ public class MenuButton : MonoBehaviour
             Animator.SetBool("selected", true);
             if(InputManager.Instance.GetkeyDown(KeybindManager.Instance.MenuSelect, InputManager.ControllMode.Menu))
             {
-                Animator.SetBool("pressed", true);
+                Animator.SetTrigger("pressed");
+
             } else if (Animator.GetBool("pressed"))
             {
-                Animator.SetBool("pressed", false);
+                Animator.SetTrigger("pressed");
                 AnimatorFunctions.DisableOnce = true;
             }
         } else
         {
             Animator.SetBool("selected", false);
         }
+    }
+
+    void fireEvent()
+    {
+
+
+        UIButtonEventInfo.Menu menu;
+        UIButtonEventInfo.Buttons button;
+        //main menu
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            menu = UIButtonEventInfo.Menu.MainMenu;
+        }
+        //alla andra scener
+        else
+        {
+            menu = UIButtonEventInfo.Menu.PauseMenu;
+        }
+
+        button = (UIButtonEventInfo.Buttons)MenuButtonController.Index;
+
+        UIButtonEventInfo info = new UIButtonEventInfo(menu, button);
+
+        Debug.Log("fireEvent button " + menu.ToString() + " " + button.ToString() + " build index " + SceneManager.GetActiveScene().buildIndex);
+
+        EventHandler.Instance.FireEvent(EventHandler.EventType.UIButtonEvent, info);
     }
 }

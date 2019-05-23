@@ -29,15 +29,15 @@ public class AnimatorFunctions : MonoBehaviour
         }
     }
 
-    void LoadNewScene()
-    {
-        if(MenuButtonController.Index == 0)
-        {
-            SceneManager.LoadScene(1);
-        } else if(MenuButtonController.Index == MenuButtonController.MaxIndex)
-        {
-            Debug.Log("Quit");
-            Application.Quit();
-        }
-    }
+    //void LoadNewScene()
+    //{
+    //    if(MenuButtonController.Index == 0)
+    //    {
+    //        SceneManager.LoadScene(1);
+    //    } else if(MenuButtonController.Index == MenuButtonController.MaxIndex)
+    //    {
+    //        Debug.Log("Quit");
+    //        Application.Quit();
+    //    }
+    //}
 }

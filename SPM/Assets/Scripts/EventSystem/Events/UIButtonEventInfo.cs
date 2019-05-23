@@ -4,9 +4,24 @@ using UnityEngine;
 
 public class UIButtonEventInfo : BaseEventInfo
 {
-    string buttonName;
-    public UIButtonEventInfo(string buttonName)
+    public Buttons ButtonEnum;
+    public Menu MenuEnum;
+    public enum Buttons
     {
-        this.buttonName = buttonName;
+        Resume = 0,
+        Options = 1,
+        SaveAndQuit = 2,
+        NewGame = 3,
+    }
+
+    public enum Menu
+    {
+        MainMenu = 0,
+        PauseMenu = 1,
+    }
+
+    public UIButtonEventInfo(Menu menu, Buttons buttonEnum)
+    {
+        this.ButtonEnum = buttonEnum;
     }
 }

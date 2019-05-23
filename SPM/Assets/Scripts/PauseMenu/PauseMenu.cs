@@ -13,6 +13,10 @@ public class PauseMenu : MonoBehaviour
     private GameObject UIHud;
 
 
+    void Start()
+    {
+        Register();
+    }
     void Update()
     {
         if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.PauseMenuButton, InputManager.ControllMode.AllStates))
@@ -26,6 +30,12 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+    }
+
+    void Register()
+    {
+        Debug.Log("register");
+        EventHandler.Instance.Register(EventHandler.EventType.UIButtonEvent, CheckButtonClick);
     }
 
     private void Resume()
@@ -44,5 +54,49 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         IsPaused = true;
         Manager.Instance.IsPaused = true;
+    }
+
+    private void CheckButtonClick(BaseEventInfo e)
+    {
+        var buttonEventInfo = e as UIButtonEventInfo;
+        if (buttonEventInfo != null)
+        {
+            Debug.Log("boop ius " + buttonEventInfo.MenuEnum.ToString());
+            //if (buttonEventInfo.MenuEnum != UIButtonEventInfo.Menu.MainMenu)
+            //{
+                Debug.Log("boop " + (int)buttonEventInfo.ButtonEnum);
+                switch ((int)buttonEventInfo.ButtonEnum)
+                {
+                    case 0:
+                        ResumeGameButton();
+                        break;
+                    case 1:
+                        OptionsButton();
+                        break;
+                    case 2:
+                        SaveAndQuitButton();
+                        break;
+
+                }
+            //}
+
+        }
+    }
+
+
+    private void ResumeGameButton()
+    {
+
+        Resume();
+    }
+
+    private void OptionsButton()
+    {
+
+    }
+
+    private void SaveAndQuitButton()
+    {
+
     }
 }

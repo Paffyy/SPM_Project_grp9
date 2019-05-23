@@ -30,7 +30,6 @@ public class MenuButtonController : MonoBehaviour
     void Update()
     {
         CheckInput();
-        Debug.Log(input);
         //if(Input.GetAxis("Vertical") != 0)
         if(input != 0)
         {
