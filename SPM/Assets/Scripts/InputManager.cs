@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Main author: Niclas Älmeby
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,21 +14,7 @@ public class InputManager
         AllStates = 2,
     }
 
-    public enum GetAxis
-    {
-        Horizontal = 0,
-        Vertical = 1,
-        MouseY = 2,
-        MouseX = 3,
-    }
-    private string[] axisStrings = new string[] { "Horizontal", "Vertical", "Mouse Y", "Mouse X" };
 
-
-    string TranslateEnum(GetAxis axis)
-    {
-        return axisStrings[(int)axis];
-         
-    }
 
     public bool GetkeyDown(Keybind key, ControllMode mode)
     {
@@ -70,6 +58,23 @@ public class InputManager
         else
             return Input.GetAxisRaw(TranslateEnum(axis));
     }
+
+    public enum GetAxis
+    {
+        Horizontal = 0,
+        Vertical = 1,
+        MouseY = 2,
+        MouseX = 3,
+    }
+    private string[] axisStrings = new string[] { "Horizontal", "Vertical", "Mouse Y", "Mouse X" };
+
+
+    string TranslateEnum(GetAxis axis)
+    {
+        return axisStrings[(int)axis];
+
+    }
+    //-----------------------------------------------------------------------------------------------------------------
 
     private bool GetKeyUpFromKeyBind(Keybind key)
     {

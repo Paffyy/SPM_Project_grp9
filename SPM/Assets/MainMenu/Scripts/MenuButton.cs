@@ -18,11 +18,11 @@ public class MenuButton : MonoBehaviour
             Animator.SetBool("selected", true);
             if(InputManager.Instance.GetkeyDown(KeybindManager.Instance.MenuSelect, InputManager.ControllMode.Menu))
             {
-                Animator.SetTrigger("pressed");
+                Animator.SetBool("pressed", true);
 
             } else if (Animator.GetBool("pressed"))
             {
-                Animator.SetTrigger("pressed");
+                Animator.SetBool("pressed", false);
                 AnimatorFunctions.DisableOnce = true;
             }
         } else
