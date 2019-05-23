@@ -8,6 +8,7 @@ public class LoadGame : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(Manager.Instance.HasLoadedFromCheckPoint);
         if (Manager.Instance.HasLoadedFromCheckPoint)
         {
             LoadFromSave();
@@ -33,6 +34,7 @@ public class LoadGame : MonoBehaviour
         position.x = data.PlayerPosition[0];
         position.y = data.PlayerPosition[1];
         position.z = data.PlayerPosition[2];
+        Debug.Log(position);
         Player.transform.position = position;
         Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
         Player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
