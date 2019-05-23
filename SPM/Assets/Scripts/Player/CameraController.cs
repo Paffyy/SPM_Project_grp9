@@ -80,11 +80,8 @@ public class CameraController : MonoBehaviour
         //Vector3 cameraUpdate = transform.rotation * cameraPosition.normalized;
         Vector3 cameraUpdate = target.position - transform.forward * distanceFromTarget;
         bool intersect = Physics.SphereCast(transform.position, sphere.radius, cameraUpdate, out hit, cameraPosition.magnitude, CollisionMask);
-        Debug.Log("camera intersect " + intersect);
-        Debug.DrawLine(transform.position, hit.transform.position, Color.blue);
         if (intersect)
         {
-            Debug.Log("boop " + hit);
             Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius);
             transform.position = newPosition + target.transform.position;
         }
@@ -96,10 +93,10 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere((target.position - transform.forward * distanceFromTarget), sphere.radius);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawSphere((target.position - transform.forward * distanceFromTarget), sphere.radius);
+    //}
 
 }

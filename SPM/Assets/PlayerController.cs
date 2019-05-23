@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private PhysicsController controller;
+    private PhysicsController phyController;
     private CameraController cameraCon;
 
     [SerializeField] private float jumpHeight;
+    [SerializeField] private float fallingExtraSpeed = 2.0f;
     [SerializeField] private float rotationSpeed;
     public float MovementSpeed;
     private float currentSpeed;
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        controller = GetComponent<PhysicsController>();
+        phyController = GetComponent<PhysicsController>();
         cameraCon = GetComponentInChildren<CameraController>();
     }
 
@@ -28,12 +29,15 @@ public class PlayerController : MonoBehaviour
         {
 
             Vector3 input = Vector3.zero;
-            if (controller.IsGrounded() == true) {
-                Debug.Log("isGrounded");
+            if (phyController.IsGrounded() == true) {
                 if (InputManager.Instance.GetkeyDown((KeybindManager.Instance.Jump), InputManager.ControllMode.Play))
                 {
                     Jump();
                 }
+            }
+            else
+            {
+                Fall();
             }
             input = Move();
 
@@ -54,7 +58,12 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        controller.Velocity += Vector3.up * jumpHeight;
+        phyController.Velocity += Vector3.up * jumpHeight;
+    }
+
+    private void Fall()
+    {
+        phyController.Velocity += Vector3.down * fallingExtraSpeed;
     }
 
     private Vector3 Move()
@@ -64,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
         Debug.DrawRay(transform.position, currentVel, Color.red);
 
-        controller.Velocity = new Vector3(currentVel.x, controller.Velocity.y, currentVel.z);
+        phyController.Velocity = new Vector3(currentVel.x, phyController.Velocity.y, currentVel.z);
         return input;
     }
 

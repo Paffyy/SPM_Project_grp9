@@ -145,7 +145,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -159,7 +159,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 10
+  fallingExtraSpeed: 2
   rotationSpeed: 10
   MovementSpeed: 9
 --- !u!136 &518970502
@@ -403,7 +404,6 @@ MonoBehaviour:
   Acceleration: 20
   skinWidth: 0.005
   groundCheckDistance: 0.59
-  collisionLimit: 4
   staticFriction: 0.9
   dynamicFriction: 0.6
   maxClimbAngle: 60

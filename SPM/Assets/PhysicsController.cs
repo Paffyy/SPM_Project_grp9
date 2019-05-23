@@ -12,7 +12,7 @@ public class PhysicsController : MonoBehaviour
     [SerializeField] private float Acceleration = 20f;
     [SerializeField] private float skinWidth = 0.005f;
     [SerializeField] private float groundCheckDistance = 0.5f;
-    [SerializeField] private int collisionLimit = 10;
+    private int collisionLimit = 10;
     [SerializeField] private float staticFriction = 0.9f;
     [SerializeField] private float dynamicFriction = 0.6f;
     [SerializeField] private float maxClimbAngle = 60;
@@ -43,7 +43,8 @@ public class PhysicsController : MonoBehaviour
         RaycastHit hit;
         Vector3 point1 = transform.position + characterCollider.center + Vector3.up * (characterCollider.height / 2 - characterCollider.radius);
         Vector3 point2 = transform.position + characterCollider.center + Vector3.down * (characterCollider.height / 2 - characterCollider.radius);
-        if (Physics.CapsuleCast(point1, point2, characterCollider.radius, Velocity.normalized, out hit, Velocity.magnitude * Time.deltaTime + skinWidth, CollisionMask) && collisionLimit < 10)
+        int collisionCount = 0;
+        if (Physics.CapsuleCast(point1, point2, characterCollider.radius, Velocity.normalized, out hit, Velocity.magnitude * Time.deltaTime + skinWidth, CollisionMask) && collisionCount < collisionLimit)
         {
             RaycastHit normalHit;
             Physics.CapsuleCast(point1, point2, characterCollider.radius, -hit.normal, out normalHit, Velocity.magnitude * Time.deltaTime + skinWidth, CollisionMask);
@@ -52,10 +53,10 @@ public class PhysicsController : MonoBehaviour
             Vector3 projection = GetProjection(Velocity, hit.normal);
             Velocity += projection;
             ApplyFriction(projection.magnitude);
-            collisionLimit++;
+            collisionCount++;
             IsColliding();
         }
-        collisionLimit = 0;
+        collisionCount = 0;
     }
 
     private void ApplyFriction(float normalForce)
