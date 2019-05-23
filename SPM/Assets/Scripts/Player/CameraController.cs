@@ -9,7 +9,9 @@ public class CameraController : MonoBehaviour
     private float pitchMinAngle = -40;
     private float pitchMaxAngle = 85;
     private float yaw;
+    public float Yaw { get { return yaw;} }
     private float pitch;
+    public float Pitch { get { return pitch;} }
     private Vector3 rotationSmoothVel;
     private Vector3 currentRotation;
     public float MouseSensitivity;
@@ -33,7 +35,7 @@ public class CameraController : MonoBehaviour
     }
 
 
-    void  LateUpdate()
+    void LateUpdate()
     {
         UpdateCamera();
     }
@@ -78,7 +80,8 @@ public class CameraController : MonoBehaviour
         //Vector3 cameraUpdate = transform.rotation * cameraPosition.normalized;
         Vector3 cameraUpdate = target.position - transform.forward * distanceFromTarget;
         bool intersect = Physics.SphereCast(transform.position, sphere.radius, cameraUpdate, out hit, cameraPosition.magnitude, CollisionMask);
-        Debug.Log(intersect);
+        Debug.Log("camera intersect " + intersect);
+        Debug.DrawLine(transform.position, hit.transform.position, Color.blue);
         if (intersect)
         {
             Debug.Log("boop " + hit);
@@ -91,6 +94,12 @@ public class CameraController : MonoBehaviour
             transform.position = cameraUpdate;
 
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere((target.position - transform.forward * distanceFromTarget), sphere.radius);
     }
 
 }

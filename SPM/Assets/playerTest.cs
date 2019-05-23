@@ -7,19 +7,12 @@ public class playerTest : MonoBehaviour
     private SimpelCharacterController controller;
     private CameraController cameraCon;
 
-    float inputRotationX;
-    float inputRotationY;
-
-    Quaternion rotation;
-
-    //[SerializeField] private float turnSmoothVel;
-    //[SerializeField] private float turnSmoothTime;
-
-    private float rotationSpeed = 0.2f;
-    //[SerializeField] private float speedSmoothTime;
-    //[SerializeField] private float speedSmothVelocity;
+    [SerializeField] private float jumpHeight;
+    [SerializeField] private float rotationSpeed;
     public float MovementSpeed;
     private float currentSpeed;
+
+    private Vector3 currentVel;
 
     // Start is called before the first frame update
     void Awake()
@@ -31,45 +24,56 @@ public class playerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
+        Vector3 input = Vector3.zero;
 
-        //Vector3 input = direction.normalized;
-        //Debug.DrawRay(transform.position, input, Color.red);
-        //Debug.Log(input);
-
-        //float targetSpeed = MovementSpeed * input.magnitude;
-        //currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmothVelocity, speedSmoothTime);
-        //transform.Translate(Vector3.ProjectOnPlane(transform.forward,Vector3.up) * currentSpeed * Time.deltaTime, Space.World);
-
-        inputRotationX = (inputRotationX + Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime) % 360;
-        inputRotationY = Mathf.Clamp(inputRotationY - Input.GetAxisRaw("Vertical") * rotationSpeed * Time.deltaTime, -88, 88);
-
-
-        //rotation = Quaternion.AngleAxis(Vector3.SignedAngle(Vector3.forward, ))
+        if (controller.IsGrounded() == true) {
+            Debug.Log("isGrounded");
+            if (InputManager.Instance.GetkeyDown((KeybindManager.Instance.Jump), InputManager.ControllMode.Play))
+            {
+                Jump();
+            }
+        }
+        input = Move();
 
 
 
-        //Om spelaren rör på sig, ska spelaren rotera efter kamerans rotation
-        //if (input != Vector3.zero)
-        //{
-        //    //float targetRotation = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg + cameraCon.transform.eulerAngles.y;
-        //    //transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVel, turnSmoothTime);
-        //    Rotate();
 
-        //}
 
-        //transform.rotation = cameraCon.transform.rotation;
-
-        //camera.transform.rotation = Quaternion.Euler(RotationX, RotationY, 0.0f);
-        //if (input == Vector3.zero)
-        //controller.MoveRotation(cameraCon.transform.forward, 0.0f);
-
+        //om spelaren inte rör sig tillåt kameran att rotera runt den
+        if (input.x != 0 || input.z != 0)
+        {
+            //Om det blir något knas med spelarens rotation lägg till offsetHelper. Den ser till så att man inte kollar SignedAngle mot inputvector som skulle vara 0
+            //Vector3 offsetHelper = transform.forward * 0.001f;
+            //transform.rotation = Quaternion.AngleAxis(cameraCon.Yaw + Vector3.SignedAngle(Vector3.forward, input.normalized , Vector3.up), Vector3.up);
+            Rotate();
+        }
 
 
     }
 
+
+    private void Jump()
+    {
+        controller.Velocity += Vector3.up * jumpHeight;
+    }
+
+    private Vector3 Move()
+    {
+        Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
+        currentVel = Quaternion.AngleAxis(cameraCon.Yaw, Vector3.up) * input * MovementSpeed;
+
+        Debug.DrawRay(transform.position, currentVel, Color.red);
+
+        controller.Velocity = new Vector3(currentVel.x, controller.Velocity.y, currentVel.z);
+        return input;
+    }
+
     void Rotate()
     {
+        //spelaren roterar åt den riktning den går mot
+        //Vector3 targetDir = transform.forward - (-currentVel);
+
+        //Spelaren roterar åt kamerans håll
         Vector3 targetDir = transform.forward - (-cameraCon.transform.forward);
         Vector3 modifiedDir = new Vector3(targetDir.x, 0, targetDir.z);
 
