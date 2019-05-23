@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    public LayerMask CollisionMask;
-    public int Damage;
-
     private int baseDamage = 25;
     private CapsuleCollider capCollider;
     private float gravityForce;
@@ -16,10 +13,28 @@ public class Arrow : MonoBehaviour
     private bool hasCollided;
     private bool isTerminating;
 
-    [HideInInspector]
-    public int AoeDamage;
-    public int AoeRadius;
-    public bool IsAoeHitEnabled;
+    [SerializeField]
+    private LayerMask collisionMask;
+    [SerializeField]
+    private int damage;
+
+    [SerializeField]
+    private int aoeDamage;
+    [SerializeField]
+    private int aoeRadius;
+
+    public int AoeDamage
+    {
+        get { return aoeDamage; }
+        set { aoeDamage = value; }
+    }
+
+    public int AoeRadius
+    {
+        get { return aoeRadius; }
+        set { aoeRadius = value; }
+    }
+    public bool IsAoeHitEnabled { get; private set; }
 
     private void Awake()
     {
@@ -49,13 +64,14 @@ public class Arrow : MonoBehaviour
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
+
     public void SetGravity(float gravForce)
     {
         gravityForce = gravForce;
     }
     public void SetDamage(float chargeTime)
     {
-        Damage = (int)(baseDamage * chargeTime);
+        damage = (int)(baseDamage * chargeTime);
     }
     public void ApplyInitialVelocity(Vector3 v)
     {
@@ -79,20 +95,14 @@ public class Arrow : MonoBehaviour
         RaycastHit hit;
         Vector3 point1 = transform.position + capCollider.center + velocity.normalized * (capCollider.height / 2 - capCollider.radius);
         Vector3 point2 = transform.position + capCollider.center + -velocity.normalized * (capCollider.height / 2 - capCollider.radius);
-        if (Physics.Raycast(transform.position, velocity.normalized, out hit, velocity.magnitude * Time.deltaTime, CollisionMask))
+        if (Physics.Raycast(transform.position, velocity.normalized, out hit, velocity.magnitude * Time.deltaTime, collisionMask))
         {
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
-                //TODO fixa
-                //transform.forward är inte den riktningen som pilen färdas i
-                Vector3 pushBack = Vector3.ProjectOnPlane(transform.forward, Vector3.up) * 2 + (Vector3.up * 2) * 3;
+                Vector3 pushBack = Vector3.ProjectOnPlane(velocity.normalized, Vector3.up) * 2 + (Vector3.up * 2) * 3;
                 gameObject.transform.SetParent(hit.collider.gameObject.transform);
-                hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage, pushBack, Vector3.zero);
+                hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, pushBack, Vector3.zero);
             }
-            //if (hit.collider.gameObject.CompareTag("RevObject"))
-            //{
-            //    hit.collider.gameObject.GetComponent<RevitalizeGeometry>().Revitalize();
-            //}
             hasCollided = true;
             if (EventHandler.Instance != null)
             {
