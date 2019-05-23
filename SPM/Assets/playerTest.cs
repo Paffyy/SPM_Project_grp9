@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerTest : MonoBehaviour
 {
-    private SimpelCharacterController controller;
+    private PhysicsController controller;
     private CameraController cameraCon;
 
     [SerializeField] private float jumpHeight;
@@ -17,7 +17,7 @@ public class playerTest : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        controller = GetComponent<SimpelCharacterController>();
+        controller = GetComponent<PhysicsController>();
         cameraCon = GetComponentInChildren<CameraController>();
     }
 
