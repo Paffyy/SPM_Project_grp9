@@ -6,18 +6,13 @@ using UnityEngine;
 public class RangedEnemyPatrolState : RangedBaseState
 {
     [SerializeField] private Vector3[] patrolPoints;
-    //[SerializeField] private float chaseDistance;
-
-    //avståndet som fienden behöver vara från punkten för att gå till nästa
     private float pointSize = 1.1f;
-    //[SerializeField] private float hearingRange;
-    public int currentPoint = 0;
+    private int currentPoint = 0;
 
     public override void Enter()
     {
         base.Enter();
         ClosestPoint();
-        //Debug.Log("PatrolState");
     }
 
     public override void HandleUpdate()
@@ -28,17 +23,12 @@ public class RangedEnemyPatrolState : RangedBaseState
         {
             currentPoint = (currentPoint + 1) % owner.Path.PathObjects.Count;
         }
-
-        //if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < chaseDistance)
-        //if(owner.Fow.TargetsInFieldOfView() != null && Vector3.Distance(owner.player.transform.position, owner.transform.position) < chaseDistance)
         if (owner.Fow.TargetsInFieldOfView() != null
             || Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius)
         {
-            //Debug.Log(owner.Fow.TargetsInFieldOfView().ToString());
             owner.Transition<RangedChaseState>();
         }
         base.HandleUpdate();
-
     }
 
     private void ClosestPoint()

@@ -27,12 +27,6 @@ public class GameController : MonoBehaviour
         GameControllerInstance = this;
         weaponScript = player.GetComponent<Weapon>();
         playerHealthScript = player.GetComponent<PlayerHealth>();
-        DeadEnemies = new List<float>();
-        Enemies = new Dictionary<float, GameObject>();
-        PickedUpObjects = new List<float>();
-        PickUps = new Dictionary<float, GameObject>();
-        RevitalizedZones = new List<float>();
-        Zones = new Dictionary<float, GameObject>();
     }
 
     void Start()
@@ -49,9 +43,8 @@ public class GameController : MonoBehaviour
         //}
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Debug.Log(Manager.Instance.HasLoadedFromCheckPoint);
             Manager.Instance.HasLoadedFromCheckPoint = true;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(CurrentSceneIndex);
         }
     }
 }

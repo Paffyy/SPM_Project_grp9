@@ -9,7 +9,9 @@ public class RevitalizeObject : RevitalizeGeometry
     private float timeToRevitalize;
     [SerializeField]
     [Range(10,40)]
+    [Tooltip("Defines how many different levels of fading for the revitalize effect")]
     private int lerpLevels;
+
     private Material material;
     void Awake()
     {

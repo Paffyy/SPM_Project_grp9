@@ -6,14 +6,14 @@ using UnityEngine;
 public class RevitalizeZone : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> objectives;
+    private List<GameObject> revitalizeObjectives;
 
     private bool shouldRevitalize;
     private bool hasRevitalized;
     private float transitionDelay = 0.5f;
     private float zoneID;
-    private List<RevitalizeGeometry> revitalizeObjects;
 
+    private List<RevitalizeGeometry> revitalizeObjects;
 
     public void Register()
     {
@@ -33,7 +33,7 @@ public class RevitalizeZone : MonoBehaviour
     private void Start()
     {
         Register();
-        if (objectives.Count == 0)
+        if (revitalizeObjectives.Count == 0 )
         {
             hasRevitalized = true; // if objectives count == 0, don't revitalize immediately;
         }
@@ -41,24 +41,24 @@ public class RevitalizeZone : MonoBehaviour
 
     private List<RevitalizeGeometry> GetRevitalizeObjects()
     {
-        List<RevitalizeGeometry> revObjects = new List<RevitalizeGeometry>();
+        List<RevitalizeGeometry> revitalizeObjects = new List<RevitalizeGeometry>();
         foreach (Transform child in transform)
         {
             RevitalizeGeometry rev = child.GetComponent<RevitalizeGeometry>();
             if (rev != null)
             {
-                revObjects.Add(rev);
+                revitalizeObjects.Add(rev);
             }
             foreach (Transform grandchildren in child)
             {
                 var rev2 = grandchildren.GetComponent<RevitalizeGeometry>();
                 if (rev2 != null)
                 {
-                    revObjects.Add(rev2);
+                    revitalizeObjects.Add(rev2);
                 }
             }
         }
-        return revObjects;
+        return revitalizeObjects;
     }
 
     private void Update()
@@ -70,10 +70,15 @@ public class RevitalizeZone : MonoBehaviour
                 RevitalizeTheZone();
                 hasRevitalized = true;
             }
-            else if (objectives != null && objectives.Count == 0)
+            else if (revitalizeObjectives != null && revitalizeObjectives.Count == 0)
             {
                 shouldRevitalize = true;
             }
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RevitalizeTheZone();
+            hasRevitalized = true;
         }
     }
     private void CheckIfShouldRevitalize(BaseEventInfo e)
@@ -81,9 +86,9 @@ public class RevitalizeZone : MonoBehaviour
         var deathEventInfo = e as DeathEventInfo;
         if (deathEventInfo != null)
         {
-            if (objectives.Contains(deathEventInfo.GameObject))
+            if (revitalizeObjectives.Contains(deathEventInfo.GameObject))
             {
-                objectives.Remove(deathEventInfo.GameObject);
+                revitalizeObjectives.Remove(deathEventInfo.GameObject);
             }
         }
     }

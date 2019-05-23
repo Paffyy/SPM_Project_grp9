@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Bow : MonoBehaviour
 {
-    // Start is called before the first frame update
     [Header("References")]
     [SerializeField]
     private GameObject Arrow;
@@ -15,11 +14,11 @@ public class Bow : MonoBehaviour
     [SerializeField]
     private Camera PlayerCamera;
     [SerializeField]
-    private Text ArrowCountText; // move out
+    private Text ArrowCountText; // TODO move out
 
     [Header("Variables")]
     [SerializeField]
-    private float GravityForce; // move out
+    private float GravityForce; // TODO move out
     [SerializeField]
     private LayerMask ArrowHitMask;
     [SerializeField]
@@ -47,10 +46,8 @@ public class Bow : MonoBehaviour
     private float chargeTime = 1;
     private ThirdPersonCrosshair crosshair;
     private float coolDownCounter = 0f;
-    private float ArrowRainCoolDown = 10.0f;
     private bool isDoingSpecialAttack;
     private Animator animator;
-    private bool isAming = false;
     private Player playerScript;
     [HideInInspector]
     public int ArrowCount { get { return arrowCount; } set { arrowCount = value; ArrowCountText.text = arrowCount.ToString(); } }
@@ -58,7 +55,6 @@ public class Bow : MonoBehaviour
 
     private void Awake()
     {
-        // bowOffset = new Vector3(0.55f, 0.1f, 0f);
         crosshair = GetComponent<ThirdPersonCrosshair>();
         arrowsParent = new GameObject("ArrowContainer");
         ArrowCountText.text = weapon.ArrowCount.ToString();
@@ -85,12 +81,14 @@ public class Bow : MonoBehaviour
         if (coolDownCounter <= 0 && weapon.ArrowCount > 0)
         {
             if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.SpecialAttack, InputManager.ControllMode.Play) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
+                //if (Input.GetKeyDown(KeyCode.E))
             {
                 isDoingSpecialAttack = !isDoingSpecialAttack;
                 specialAttackGlow.SetActive(!specialAttackGlow.activeSelf);
 
             }
             if (InputManager.Instance.Getkey(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
+            //if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 animator.SetBool("IsChargingBow", true);
                 if (chargeTime < 2f)
@@ -100,10 +98,11 @@ public class Bow : MonoBehaviour
             }
 
             if (InputManager.Instance.GetkeyUp(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
+                //if (Input.GetKeyUp(KeyCode.Mouse0))
             {
                 if (isDoingSpecialAttack) // special attack
                 {
-                    CoolDownManager.Instance.StartArrowRainCoolDown(ArrowRainCoolDown);
+                    CoolDownManager.Instance.StartArrowRainCoolDown(10);
                     switch (SpecialAttack)
                     {
                         case SpecialArrowType.RainOfArrows:
@@ -150,7 +149,6 @@ public class Bow : MonoBehaviour
         weapon.ArrowCount += arrows;
         ArrowCountText.text = weapon.ArrowCount.ToString();
     }
-
     private void ShootRainOfArrows()
     {
         var arrowPoints = Manager.Instance.GetRandomPointsInAreaXYZ(PlayerCamera.transform.forward, 50, SpecialArrowCount, 2);
@@ -171,6 +169,7 @@ public class Bow : MonoBehaviour
     {
         ShootArrowExplosion(PlayerCamera.transform.forward);
     }
+
     private void ShootArrow()
     {
         Vector3 direction = PlayerCamera.transform.forward;

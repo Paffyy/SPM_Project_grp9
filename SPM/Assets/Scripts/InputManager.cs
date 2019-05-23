@@ -6,16 +6,12 @@ using UnityEngine;
 
 public class InputManager
 {
-
     public enum ControllMode
     {
         Play = 0,
         Menu = 1,
         AllStates = 2,
     }
-
-
-
     public bool GetkeyDown(Keybind key, ControllMode mode)
     {
         if (UseMenuControlls(mode) == true)
@@ -113,5 +109,4 @@ public class InputManager
             return instance;
         }
     }
-
 }
