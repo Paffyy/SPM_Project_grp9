@@ -18,9 +18,7 @@ public class RangedChaseState : RangedBaseState
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < owner.attackDistance)
             owner.Transition<FiresOfHeavenState>();
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.lostTargetDistance)
-        {
             owner.Transition<RangedEnemyPatrolState>();
-        }
         base.HandleUpdate();
     }
 }

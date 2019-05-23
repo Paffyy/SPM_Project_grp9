@@ -46,13 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591e68a27fe076d4a954fda73fa5a8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionMask:
+  collisionMask:
     serializedVersion: 2
     m_Bits: 50176
-  ArrowObject: {fileID: 1167609288385800612}
-  Damage: 25
-  AoeDamage: 0
-  AoeRadius: 0
+  damage: 30
+  aoeDamage: 80
+  aoeRadius: 6
 --- !u!198 &6814381543620732795
 ParticleSystem:
   m_ObjectHideFlags: 0

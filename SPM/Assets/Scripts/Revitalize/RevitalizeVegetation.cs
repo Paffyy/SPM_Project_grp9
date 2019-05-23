@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
+[Obsolete]
 public class RevitalizeVegetation : RevitalizeGeometry
 {
     public Material RevitalizedMaterial;
