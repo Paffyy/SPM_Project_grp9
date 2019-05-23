@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FirstCheckPoint: {fileID: 0}
+  PlayerCamera: {fileID: 0}
 --- !u!1 &2093523448998684416
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,11 +88,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f68b9991e858c42a4d0f909d153d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PickUpText: {fileID: 7862457721269997802, guid: 03a411e3e15e595498b7f8359b9dd464,
+  pickUpTextPrefab: {fileID: 7862457721269997802, guid: 03a411e3e15e595498b7f8359b9dd464,
     type: 3}
-  UICanvas: {fileID: 0}
-  SwordCoolDown: {fileID: 0}
-  BowCoolDown: {fileID: 0}
+  UICanvas: {fileID: 8614785410683084575, guid: 47d39f719808ba144ae109aee7a84d8d,
+    type: 3}
+  saveTextPrefab: {fileID: 1611037756056421105, guid: d76fb1beae735b8489d367297407b17f,
+    type: 3}
 --- !u!1 &2093523449477133055
 GameObject:
   m_ObjectHideFlags: 0
