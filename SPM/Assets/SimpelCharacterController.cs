@@ -6,7 +6,6 @@ public class SimpelCharacterController : MonoBehaviour
 {
     public LayerMask CollisionMask;
     [HideInInspector] public Vector3 Velocity;
-    [SerializeField] private GameObject groundedObject;
 
 
     public float GravityForce = 30.0f;

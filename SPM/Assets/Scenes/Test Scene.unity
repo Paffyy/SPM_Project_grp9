@@ -136,7 +136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234001075}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.51, z: 0}
+  m_LocalPosition: {x: 0, y: -0.544, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 518970505}
@@ -315,7 +315,6 @@ GameObject:
   - component: {fileID: 518970503}
   - component: {fileID: 518970502}
   - component: {fileID: 518970501}
-  - component: {fileID: 518970500}
   - component: {fileID: 518970506}
   m_Layer: 0
   m_Name: Player
@@ -324,32 +323,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &518970500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518970499}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acd4414f5436cc0458d038ba660fc230, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  Velocity: {x: 0, y: 0, z: 0}
-  RotationSpeed: 0
-  Acceleration: 40
-  GravityForce: 30
-  StaticFriction: 0.9
-  DynamicFriction: 0.6
-  JumpDistance: 12
-  AirResistance: 0.3
-  MouseSensitivity: 2
-  skinWidth: 0.005
-  groundCheckDistance: 0.5
 --- !u!114 &518970501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,12 +430,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   Velocity: {x: 0, y: 0, z: 0}
-  groundedObject: {fileID: 0}
+  groundedObject: {fileID: 234001075}
   GravityForce: 30
   JumpDistance: 12
   Acceleration: 20
   skinWidth: 0.005
-  groundCheckDistance: 0.5
+  groundCheckDistance: 0.59
+  StaticFriction: 0.9
+  DynamicFriction: 0.6
 --- !u!1 &527430657
 GameObject:
   m_ObjectHideFlags: 0
