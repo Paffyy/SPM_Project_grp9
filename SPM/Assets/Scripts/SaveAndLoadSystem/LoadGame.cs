@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Ska förmodligen göras om till lyssnare
-public class SaveGame : MonoBehaviour
+public class LoadGame : MonoBehaviour
 {
     public GameObject Player;
 
@@ -13,17 +12,11 @@ public class SaveGame : MonoBehaviour
         {
             LoadFromSave();
             Manager.Instance.HasLoadedFromCheckPoint = false;
-        } else if (Manager.Instance.HasLoadedFromScene)
+        } else if (Manager.Instance.HasLoadedFromPreviousLevel)
         {
             LoadPlayerDataOnly();
-            Manager.Instance.HasLoadedFromScene = false;
+            Manager.Instance.HasLoadedFromPreviousLevel = false;
         }
-        Debug.Log(Manager.Instance.HasLoadedFromCheckPoint);
-    }
-
-    void Update()
-    {
-
     }
 
     private void LoadPlayerDataOnly()

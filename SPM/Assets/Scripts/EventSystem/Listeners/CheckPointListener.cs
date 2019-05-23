@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CheckPointListener : MonoBehaviour
 {
@@ -36,12 +37,12 @@ public class CheckPointListener : MonoBehaviour
         {
             if (deathEventInfo.GameObject.CompareTag("Player"))
             {
-                //GameControl.GameController.LoadScene();
-                deathEventInfo.GameObject.transform.position = CurrentRespawnPosition.transform.position;
-                deathEventInfo.GameObject.GetComponent<Player>().RotationY = CurrentRespawnPosition.rotation.y + 90;
+                Manager.Instance.HasLoadedFromCheckPoint = true;
+                SceneManager.LoadScene(GameController.GameControllerInstance.CurrentSceneIndex);
 
+                //deathEventInfo.GameObject.transform.position = CurrentRespawnPosition.transform.position;
+                //deathEventInfo.GameObject.GetComponent<Player>().RotationY = CurrentRespawnPosition.rotation.y + 90;
                 //PlayerCamera.transform.rotation = Quaternion.Euler(PlayerCamera.transform.rotation.x, CurrentRespawnPosition.rotation.y, PlayerCamera.transform.rotation.z);
-
             }
         }
     }
