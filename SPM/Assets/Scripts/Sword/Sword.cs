@@ -67,10 +67,8 @@ public class Sword : MonoBehaviour
         {
             if (coolDownCounter < 0)
             {
-
                 if (Manager.Instance.IsPaused == false &&  Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
                 {
-                   
                     coolDownCounter = CoolDownValue;
                     Attack();
                 }

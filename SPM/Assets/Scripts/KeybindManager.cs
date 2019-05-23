@@ -10,7 +10,7 @@ public class KeybindManager
     {
         // Declare here (probably move to keybinds menu l8er)
         SpecialAttack = new Keybind(new KeyCode[] { KeyCode.E }, "Perform a special attack with equiped weapon");
-        ShootAndAttack = new Keybind(new KeyCode[] { KeyCode.Mouse1 }, "Perform a regular attack with equiped weapon");
+        ShootAndAttack = new Keybind(new KeyCode[] { KeyCode.Mouse0 }, "Perform a regular attack with equiped weapon");
         BlockAndAim = new Keybind(new KeyCode[] { KeyCode.Mouse1 }, "Block with shield or aim bow");
         EquipmentSlot1 = new Keybind(new KeyCode[] { KeyCode.Alpha1,  });
         EquipmentSlot2 = new Keybind(new KeyCode[] { KeyCode.Alpha2});

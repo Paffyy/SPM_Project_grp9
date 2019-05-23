@@ -81,12 +81,14 @@ public class Bow : MonoBehaviour
         if (coolDownCounter <= 0 && weapon.ArrowCount > 0)
         {
             if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.SpecialAttack, InputManager.ControllMode.Play) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
+                //if (Input.GetKeyDown(KeyCode.E))
             {
                 isDoingSpecialAttack = !isDoingSpecialAttack;
                 specialAttackGlow.SetActive(!specialAttackGlow.activeSelf);
 
             }
             if (InputManager.Instance.Getkey(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
+            //if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 animator.SetBool("IsChargingBow", true);
                 if (chargeTime < 2f)
@@ -96,6 +98,7 @@ public class Bow : MonoBehaviour
             }
 
             if (InputManager.Instance.GetkeyUp(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
+                //if (Input.GetKeyUp(KeyCode.Mouse0))
             {
                 if (isDoingSpecialAttack) // special attack
                 {
