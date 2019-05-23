@@ -13,8 +13,8 @@ public class PhysicsController : MonoBehaviour
     [SerializeField] private float skinWidth = 0.005f;
     [SerializeField] private float groundCheckDistance = 0.5f;
     private int collisionLimit = 10;
-    [SerializeField] private float staticFriction = 0.9f;
-    [SerializeField] private float dynamicFriction = 0.6f;
+    private float staticFriction = 0.9f;
+    private float dynamicFriction = 0.6f;
     [SerializeField] private float maxClimbAngle = 60;
     private CapsuleCollider characterCollider;
 
