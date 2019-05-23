@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerTest : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private PhysicsController controller;
     private CameraController cameraCon;
