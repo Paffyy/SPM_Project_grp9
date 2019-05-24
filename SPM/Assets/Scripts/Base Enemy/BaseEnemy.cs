@@ -103,7 +103,7 @@ public class BaseEnemy : StateMachine
                 Gizmos.DrawSphere(DrawList[i], 1f);
 
             }
-                Debug.Log("Draw Speheres of flank");
+                //Debug.Log("Draw Speheres of flank");
         }
     }
 

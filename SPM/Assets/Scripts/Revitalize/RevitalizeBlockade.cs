@@ -9,6 +9,12 @@ public class RevitalizeBlockade : RevitalizeGeometry
     [SerializeField]
     private Collider objectCollider;
 
+    private void Start()
+    {
+        blockCollider = transform.parent.gameObject.GetComponent<BoxCollider>();
+        objectCollider = GetComponent<CapsuleCollider>();
+    }
+
     public override void Revitalize(float offset = 0)
     {
         // Magi kod för att ändra renderMode i play

@@ -7,6 +7,7 @@ public class CoolDownManager : MonoBehaviour
 {
     public bool BladeStormOnCoolDown = false;
     public bool ArrowRainOnCoolDown = false;
+    public bool RangedEnemyAttackOnCoolDown { get; set; }
     public Image BladeStormCoolDownImage;
     public Image ArrowRainCoolDownImage;
     //public Text BladeStormCoolDownText;
@@ -15,6 +16,8 @@ public class CoolDownManager : MonoBehaviour
     private float arrowRainCoolDownTimer;
     private float bladeStormCoolDown;
     private float arrowRainCoolDown;
+    private float rangedEnemyAttackCoolDown;
+    private float rangedEnemyAttackCoolDownTimer;
     private static CoolDownManager instance;
 
     public static CoolDownManager Instance
@@ -55,6 +58,21 @@ public class CoolDownManager : MonoBehaviour
                 ArrowRainOnCoolDown = false;
             }
         }
+        if (RangedEnemyAttackOnCoolDown)
+        {
+            rangedEnemyAttackCoolDownTimer -= Time.deltaTime;
+            if(rangedEnemyAttackCoolDownTimer <= 0)
+            {
+                RangedEnemyAttackOnCoolDown = false;
+            }
+        }
+    }
+
+    public void StartRangedEnemyAttackCoolDown(float coolDown)
+    {
+        rangedEnemyAttackCoolDown = coolDown;
+        rangedEnemyAttackCoolDownTimer = coolDown;
+        RangedEnemyAttackOnCoolDown = true;
     }
     
    public void StartBladeStormCoolDown(float coolDown)
