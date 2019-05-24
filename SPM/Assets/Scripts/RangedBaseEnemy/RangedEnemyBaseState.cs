@@ -10,34 +10,64 @@ public class RangedEnemyBaseState : State
     protected float cooldown;
     protected float attackDistance;
     protected float lostTargetDistance;
+    protected float moveSpeed;
+    protected float hearRadius;
+
 
     [SerializeField] protected Material material;
 
     private Transform currentRotationTarget;
+    private Vector3 currentDestination;
+    private float timerSetDestination;
+    private float timeBetweenSetDestination = 0.1f;
 
     public override void Enter()
     {
+        timerSetDestination = timeBetweenSetDestination;
+        owner.MeshRen.material = material;
+        owner.NavAgent.speed = moveSpeed;
         owner.NavAgent.updateRotation = false;
     }
 
     public override void Initialize(StateMachine owner)
     {
         this.owner = (RangedBaseEnemy)owner;
+        timerSetDestination = timeBetweenSetDestination;
         cooldown = this.owner.cooldown;
         attackDistance = this.owner.attackDistance;
         lostTargetDistance = this.owner.lostTargetDistance;
         controller = this.owner.controller;
+        hearRadius = this.owner.hearRadius;
     }
 
     public override void HandleUpdate()
     {
+        timerSetDestination -= timeBetweenSetDestination;
+        SetDestination();
         Rotate();
         base.HandleUpdate();
+    }
+
+    private void SetDestination()
+    {
+        if (timerSetDestination < 0)
+        {
+            if (owner.NavAgent.enabled == true)
+            {
+                owner.NavAgent.SetDestination(currentDestination);
+            }
+            timerSetDestination = timeBetweenSetDestination;
+        }
     }
 
     protected void UpdateRotation(Transform target)
     {
         currentRotationTarget = target;
+    }
+
+    protected void UpdateDestination(Vector3 destination)
+    {
+        currentDestination = destination;
     }
 
     private void Rotate()

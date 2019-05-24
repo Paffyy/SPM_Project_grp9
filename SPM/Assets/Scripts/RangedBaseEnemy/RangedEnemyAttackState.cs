@@ -5,12 +5,22 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "RangedBaseEnemy/AttackState")]
 public class RangedEnemyAttackState : RangedEnemyBaseState
 {
+    [SerializeField]
+    private GameObject fireBall;
 
-    private bool hasUsedRightHand;
+    private bool isUsingRightHand;
 
     public override void Enter()
     {
+        owner.Anim.SetBool("IsAttacking", true);
+        owner.NavAgent.isStopped = true;
         base.Enter();
+    }
+
+    public override void Exit()
+    {
+        owner.Anim.SetBool("IsAttacking", false);
+        base.Exit();
     }
 
     public override void HandleUpdate()
@@ -29,17 +39,14 @@ public class RangedEnemyAttackState : RangedEnemyBaseState
 
     private void ShootFireBall()
     {
-        hasUsedRightHand = !hasUsedRightHand;
-        GameObject fireBallClone;
-        if (hasUsedRightHand == true)
+        if (isUsingRightHand)
         {
-            fireBallClone = Instantiate(owner.FireBall, owner.LeftHand.transform.position, owner.transform.rotation);
-        }
-        else
+            owner.Anim.SetBool("IsUsingRightHand", true);
+        } else
         {
-            fireBallClone = Instantiate(owner.FireBall, owner.RightHand.transform.position, owner.transform.rotation);
+            owner.Anim.SetBool("IsUsingRightHand", false);
         }
-        fireBallClone.GetComponent<Projectile>().Velocity = fireBallClone.GetComponent<Projectile>().Speed * (owner.player.transform.position - fireBallClone.transform.position).normalized;
         CoolDownManager.Instance.StartRangedEnemyAttackCoolDown(cooldown);
+        isUsingRightHand = !isUsingRightHand;
     }
 }
