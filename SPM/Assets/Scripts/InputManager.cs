@@ -12,13 +12,6 @@ public class InputManager
         Menu = 1,
         AllStates = 2,
     }
-    public bool GetkeyDown(Keybind key, ControllMode mode)
-    {
-        if (UseMenuControlls(mode) == true)
-            return false;
-        else
-            return GetKeyDownFromKeybind(key);
-    }
 
     public bool GetkeyUp(Keybind key, ControllMode mode)
     {
@@ -26,6 +19,14 @@ public class InputManager
             return false;
         else
             return GetKeyUpFromKeyBind(key);
+    }
+
+    public bool GetkeyDown(Keybind key, ControllMode mode)
+    {
+        if (UseMenuControlls(mode) == true)
+            return false;
+        else
+            return GetKeyDownFromKeybind(key);
     }
 
     public bool Getkey(Keybind key, ControllMode mode)
@@ -36,15 +37,7 @@ public class InputManager
             return GetKeyDownFromKeybind(key);
     }
 
-    private bool GetKeyDownFromKeybind(Keybind key)
-    {
-        foreach (KeyCode code in key.KeybindCodes)
-        {
-            if (Input.GetKeyDown(code) == true)
-                return true;
-        }
-        return false;
-    }
+
 
     //Denna metod verkar inte fungera, uniy verkar göra något speciellt med deras GetAxis så den beter sig lite kostigt
     public float GetAxisRaw(GetAxis axis, ControllMode mode)
@@ -77,6 +70,16 @@ public class InputManager
         foreach (KeyCode code in key.KeybindCodes)
         {
             if (Input.GetKeyUp(code) == true)
+                return true;
+        }
+        return false;
+    }
+
+    private bool GetKeyDownFromKeybind(Keybind key)
+    {
+        foreach (KeyCode code in key.KeybindCodes)
+        {
+            if (Input.GetKeyDown(code) == true)
                 return true;
         }
         return false;
