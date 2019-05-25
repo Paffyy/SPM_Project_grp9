@@ -32,13 +32,13 @@
 
         struct Input
         {
-            float2 uv_ScorchedTexture;
-			float2 uv_ScorchedNormal;
-			float2 uv_ScorchedOcclusion;
+            float2 uv_ScorchedTexture : TEXCOORD0;
+			float2 uv_ScorchedNormal : TEXCOORD1;
+			float2 uv_ScorchedOcclusion : TEXCOORD2;
 
-            float2 uv_RevitalizeTexture;
-			float2 uv_RevitalizeNormal;
-			float2 uv_RevitalizeOcclusion;
+            float2 uv_RevitalizeTexture : TEXCOORD3;
+			float2 uv_RevitalizeNormal : TEXCOORD4;
+			float2 uv_RevitalizeOcclusion : TEXCOORD5;
         };
 
 		sampler2D _ScorchedTexture;

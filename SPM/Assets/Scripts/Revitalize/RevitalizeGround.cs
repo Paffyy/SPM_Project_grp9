@@ -21,7 +21,8 @@ public class RevitalizeGround : RevitalizeGeometry
         for (int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(0.2f);
-            terrain.RevitalizeArea(gameObject, brushSize, 0.2f);
+            terrain.EraseFromSplatMap(gameObject, Color.green, brushSize, 0.2f);
+            terrain.RevitalizeArea(gameObject, Color.red, brushSize, 0.2f);
         }
     }
     void Start()
@@ -33,6 +34,6 @@ public class RevitalizeGround : RevitalizeGeometry
     }
     public override void InstantRevitalize()
     {
-        terrain.RevitalizeArea(gameObject, brushSize);
+        terrain.RevitalizeArea(gameObject, Color.red,  brushSize);
     }
 }

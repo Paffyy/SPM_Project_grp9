@@ -4,11 +4,13 @@
     {
         _RevitalizeColor ("RevColor", Color) = (1,1,1,1)
         _RevitalizeTexture ("RevAlbedo (RGB)", 2D) = "white" {}
+
 		_RevitalizeNormal("RevNormal", 2D) = "bump" {}
 		_RevitalizeOcclusion ("RevOcclusion", 2D) = "white" {}
 
 		_ScorchedColor ("ScorchedColor", Color) = (1,1,1,1)
         _ScorchedTexture ("ScorchedAlbedo (RGB)", 2D) = "white" {}
+
 		_ScorchedNormal("ScorchedNormal", 2D) = "bump" {}
 		_ScorchedOcclusion ("ScorchedOcclusion", 2D) = "white" {}
 

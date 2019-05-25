@@ -4,7 +4,7 @@
     {
         _MainTex ("Texture", 2D) = "white" {}
 		_Coordinates("Coordinates", Vector) = (0,0,0,0)
-		_Color ("DrawColor", Color) = (1,0,0,1) 
+		_Color ("DrawColor", Color) = (0,0,0,1) 
 		_BrushSize ("BrushSize", Range(1,1000)) = 250
 		_Strength ("Strength", Range(0,1)) = 1
     }
@@ -49,11 +49,10 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
-				float draw = pow(saturate(1 - distance(i.uv, _Coordinates.xy)), _BrushSize);
-				fixed4 drawColor = _Color * (draw * _Strength);
-                return saturate(col - drawColor);
+                fixed4 textureCoord = tex2D(_MainTex, i.uv);
+				float brush = pow(saturate(1 - distance(i.uv, _Coordinates.xy)), _BrushSize);
+				fixed4 drawColor = _Color * (brush * _Strength);
+                return saturate(textureCoord - drawColor);
             }
 
             ENDCG
