@@ -24,6 +24,9 @@
         {
 			float2 uv_Control : TEXCOORD0;
 			float2 uv_Normal : TEXCOORD1;
+			float2 uv_Splat0 : TEXCOORD2;
+			float2 uv_Splat1 : TEXCOORD3;
+			float2 uv_Splat2 : TEXCOORD4;
         };
 
 		fixed4 _Color;
@@ -39,9 +42,9 @@
 			half red = tex2D(_Control, float4(IN.uv_Control.xy,0,0)).r;
 			half green = tex2D(_Control, float4(IN.uv_Control.xy,0,0)).g;
 			fixed3 col;
-			col  = red * tex2D (_Splat0, IN.uv_Control);
-			col += green * tex2D (_Splat1, IN.uv_Control);
-		    fixed3 blueCol = tex2D (_Splat2, IN.uv_Control);
+			col  = red * tex2D (_Splat0, IN.uv_Splat0);
+			col += green * tex2D (_Splat1, IN.uv_Splat1);
+		    fixed3 blueCol = tex2D (_Splat2, IN.uv_Splat2);
 			o.Albedo = lerp(blueCol,col, green) + lerp(blueCol,col,red);
 			o.Normal = UnpackNormal(tex2D(_Normal,IN.uv_Normal));
         }

@@ -26,7 +26,7 @@ public class RevitalizeTerrain : MonoBehaviour
     {
         RaycastHit hit;
         drawMaterial.SetFloat("_Strength", strength);
-        eraseMaterial.SetColor("_Color", col);
+        drawMaterial.SetColor("_Color", col);
         drawMaterial.SetInt("_BrushSize", 100 / brushSize);
         if (Physics.Raycast(revitalizeObject.transform.position, Vector3.down, out hit, layerMask))
         {
@@ -48,9 +48,43 @@ public class RevitalizeTerrain : MonoBehaviour
         {
             eraseMaterial.SetVector("_Coordinates", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
             RenderTexture tempTexture = RenderTexture.GetTemporary(splatMap.width, splatMap.height, 0, RenderTextureFormat.ARGBFloat);
-            Graphics.Blit(tempTexture, splatMap, eraseMaterial);
-            Graphics.Blit(splatMap, tempTexture);
+            Graphics.Blit(splatMap, tempTexture, eraseMaterial);
+            Graphics.Blit(tempTexture, splatMap);
             RenderTexture.ReleaseTemporary(tempTexture);
+            scorchedMaterial.SetTexture("_Control", splatMap);
+        }
+    }
+
+    public void DrawWithMouse(Camera cam,Color col, int brushSize, float strength = 1)
+    {
+        RaycastHit hit;
+        eraseMaterial.SetFloat("_Strength", strength);
+        eraseMaterial.SetColor("_Color", col);
+        eraseMaterial.SetInt("_BrushSize", 100 / brushSize);
+        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 500, layerMask))
+        {
+            eraseMaterial.SetVector("_Coordinates", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
+            RenderTexture tempTexture = RenderTexture.GetTemporary(splatMap.width, splatMap.height, 0, RenderTextureFormat.ARGBFloat);
+            Graphics.Blit(splatMap, tempTexture, eraseMaterial);
+            Graphics.Blit(tempTexture, splatMap);
+            RenderTexture.ReleaseTemporary(tempTexture);
+            scorchedMaterial.SetTexture("_Control", splatMap);
+        }
+    }
+    public void DrawWithMouse2(Camera cam,Color col, int brushSize, float strength = 1)
+    {
+        RaycastHit hit;
+        drawMaterial.SetFloat("_Strength", strength);
+        drawMaterial.SetColor("_Color", col);
+        drawMaterial.SetInt("_BrushSize", 100 / brushSize);
+        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, 500, layerMask))
+        {
+            drawMaterial.SetVector("_Coordinates", new Vector4(hit.textureCoord.x, hit.textureCoord.y, 0, 0));
+            RenderTexture tempTexture = RenderTexture.GetTemporary(splatMap.width, splatMap.height, 0, RenderTextureFormat.ARGBFloat);
+            Graphics.Blit(splatMap, tempTexture, drawMaterial);
+            Graphics.Blit(tempTexture, splatMap);
+            RenderTexture.ReleaseTemporary(tempTexture);
+            scorchedMaterial.SetTexture("_Control", splatMap);
         }
     }
 }

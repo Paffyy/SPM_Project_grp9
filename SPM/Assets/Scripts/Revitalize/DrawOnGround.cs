@@ -10,7 +10,9 @@ public class DrawOnGround : RevitalizeGeometry
     [SerializeField]
     private bool shouldRevitalizeOnStart;
     [SerializeField]
-    private RevitalizeTerrainSplat terrain;
+    private Camera cam;
+    [SerializeField]
+    private RevitalizeTerrain terrain;
 
     public override void Revitalize(float offset = 0)
     {
@@ -21,7 +23,7 @@ public class DrawOnGround : RevitalizeGeometry
         for (int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(0.2f);
-            terrain.RevitalizeArea(gameObject, brushSize, Color.red, 0.2f);
+            terrain.RevitalizeArea(gameObject, Color.red, brushSize,  0.2f);
         }
     }
     void Start()
@@ -33,25 +35,25 @@ public class DrawOnGround : RevitalizeGeometry
     }
     public override void InstantRevitalize()
     {
-        terrain.RevitalizeArea(gameObject, brushSize, Color.red);
+        terrain.RevitalizeArea(gameObject, Color.red, brushSize);
     }
     void Update()
     {
         if (Input.GetKey(KeyCode.R))
         {
-            terrain.DrawWithMouse2(Color.red,1);
+            terrain.DrawWithMouse2(cam, Color.red, 1, 0.1f);
         }
         if (Input.GetKey(KeyCode.T))
         {
-            terrain.DrawWithMouse(Color.red, 1);
+            terrain.DrawWithMouse(cam, Color.red, 1, 0.1f);
         }
         if (Input.GetKey(KeyCode.G))
         {
-            terrain.DrawWithMouse2(Color.green,5,0.01f);
+            terrain.DrawWithMouse2(cam,Color.green,1, 0.1f);
         }
         if (Input.GetKey(KeyCode.H))
         {
-            terrain.DrawWithMouse(Color.white, 5, 1f);
+            terrain.DrawWithMouse(cam,Color.white, 1, 0.1f);
         }
     }
 }

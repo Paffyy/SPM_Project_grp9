@@ -16,14 +16,24 @@ public class RevitalizeGround : RevitalizeGeometry
     {
         StartCoroutine(RevitalizeOverTime());
     }
-    IEnumerator RevitalizeOverTime()
+    private IEnumerator RevitalizeOverTime()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            terrain.EraseFromSplatMap(gameObject, Color.green, brushSize + 2, 0.1f);
+            terrain.RevitalizeArea(gameObject, Color.red, brushSize, 0.2f);
+        }
+
+    }
+    private IEnumerator EraseAreaOverTime()
     {
         for (int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(0.2f);
             terrain.EraseFromSplatMap(gameObject, Color.green, brushSize, 0.2f);
-            terrain.RevitalizeArea(gameObject, Color.red, brushSize, 0.2f);
         }
+
     }
     void Start()
     {

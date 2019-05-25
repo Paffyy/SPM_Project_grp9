@@ -75,11 +75,7 @@ public class RevitalizeZone : MonoBehaviour
                 shouldRevitalize = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RevitalizeTheZone();
-            hasRevitalized = true;
-        }
+
     }
     private void CheckIfShouldRevitalize(BaseEventInfo e)
     {
