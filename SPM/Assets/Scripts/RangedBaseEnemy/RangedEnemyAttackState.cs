@@ -47,6 +47,7 @@ public class RangedEnemyAttackState : RangedEnemyBaseState
 
     private void ShootFireBall()
     {
+        isUsingRightHand = !isUsingRightHand;
         if (isUsingRightHand)
         {
             owner.Anim.SetBool("IsUsingRightHand", true);
@@ -55,6 +56,5 @@ public class RangedEnemyAttackState : RangedEnemyBaseState
             owner.Anim.SetBool("IsUsingRightHand", false);
         }
         coolDownTimer = attackCoolDown;
-        isUsingRightHand = !isUsingRightHand;
     }
 }
