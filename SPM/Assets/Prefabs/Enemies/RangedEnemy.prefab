@@ -134,8 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fed24f2d87fbc4b941a276b4692d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 360
-  viewAngle: 120
+  viewRadius: 40
+  viewAngle: 180
   TargetsToHit:
     serializedVersion: 2
     m_Bits: 512
@@ -373,6 +373,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1719473764917768238, guid: 6548a8a2ffee4c047824784473f995a8,
         type: 3}
+    - target: {fileID: 7243566105080365996, guid: e75b885024d69064e94e2745dbefde0d,
+        type: 3}
+      propertyPath: states.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2422ddf929dfb3243b85e78f883fc317,
+        type: 2}
     - target: {fileID: 7244770259146983530, guid: e75b885024d69064e94e2745dbefde0d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

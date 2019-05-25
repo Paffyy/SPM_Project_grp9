@@ -12,8 +12,9 @@ public class RangedEnemyIdleState : RangedEnemyBaseState
 
     public override void Enter()
     {
-        Debug.Log("Idle");
         base.Enter();
+        if (owner.NavAgent.enabled)
+            owner.NavAgent.isStopped = false;
         ClosestPoint();
     }
 
@@ -21,6 +22,7 @@ public class RangedEnemyIdleState : RangedEnemyBaseState
     {
         UpdateDestination(owner.Path.PathObjects[currentPoint].position);
         UpdateRotation(owner.Path.PathObjects[currentPoint]);
+        SetDestination();
         if (owner.Fow.TargetsInFieldOfView() != null || Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius)
         {
             owner.Transition<RangedEnemyAttackState>();

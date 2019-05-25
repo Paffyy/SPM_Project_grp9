@@ -38,17 +38,19 @@ public class RangedEnemyBaseState : State
         lostTargetDistance = this.owner.lostTargetDistance;
         controller = this.owner.controller;
         hearRadius = this.owner.hearRadius;
+        lookRotationSpeed = this.owner.lookRotationSpeed;
+        lostTargetDistance = this.owner.lostTargetDistance;
+        moveSpeed = this.owner.moveSpeed;
     }
 
     public override void HandleUpdate()
     {
         timerSetDestination -= timeBetweenSetDestination;
-        SetDestination();
         Rotate();
         base.HandleUpdate();
     }
 
-    private void SetDestination()
+    protected void SetDestination()
     {
         if (timerSetDestination < 0)
         {

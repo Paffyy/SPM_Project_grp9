@@ -102,14 +102,17 @@ public class EnemyHealth : Health
 
     public void EnemyDead()
     {
-        Debug.Log(thisEnemy);
         EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, new DeathEventInfo(gameObject));
         GameController.GameControllerInstance.DeadEnemies.Add(gameObject.GetComponent<Enemy>().EnemyID);
         if(thisEnemy != null)
         {
-            Debug.Log("death");
+            if(GetComponent<RangedBaseEnemy>() != null)
+            {
+                thisEnemy.Transition<RangedEnemyDeathState>();
+                return;
+            }
             thisEnemy.Transition<BaseEnemyDeathState>();
-        } else
+        } else 
         {
             Destroy(gameObject, 0.5f);
         }

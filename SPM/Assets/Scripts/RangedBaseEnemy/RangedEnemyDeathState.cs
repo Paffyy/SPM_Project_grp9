@@ -9,7 +9,6 @@ public class RangedEnemyDeathState : RangedEnemyBaseState
     private float timer;
     public override void Enter()
     {
-        Debug.Log("Dead");
         owner.NavAgent.enabled = false;
         owner.controller.enabled = true;
         owner.GetComponent<Collider>().enabled = false;

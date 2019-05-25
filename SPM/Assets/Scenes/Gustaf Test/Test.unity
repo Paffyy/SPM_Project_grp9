@@ -7801,6 +7801,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FohEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1411808279599628035, guid: bc7c6ff6eab68a44ba392778a89fd473,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1411808279599628034, guid: bc7c6ff6eab68a44ba392778a89fd473,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7869,12 +7874,12 @@ PrefabInstance:
     - target: {fileID: 1411808279486167828, guid: bc7c6ff6eab68a44ba392778a89fd473,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1411808279486167828, guid: bc7c6ff6eab68a44ba392778a89fd473,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1427857124315927296, guid: bc7c6ff6eab68a44ba392778a89fd473,
         type: 3}
@@ -7974,11 +7979,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4877964741923731659, guid: bd758cd7912933c47aa2c050e00620d3,
-        type: 3}
-      propertyPath: m_Name
-      value: Crosshair
-      objectReference: {fileID: 0}
     - target: {fileID: 4877964741923731671, guid: bd758cd7912933c47aa2c050e00620d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8084,6 +8084,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4877964741923731659, guid: bd758cd7912933c47aa2c050e00620d3,
+        type: 3}
+      propertyPath: m_Name
+      value: Crosshair
+      objectReference: {fileID: 0}
     - target: {fileID: 4877964741923731670, guid: bd758cd7912933c47aa2c050e00620d3,
         type: 3}
       propertyPath: m_Camera
@@ -8114,6 +8119,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651501562885396185, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: yAngle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651501562885396185, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: FirstPersonView
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651501562885396185, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: zAngle
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 7651501562885396184, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
@@ -8198,64 +8218,10 @@ PrefabInstance:
       propertyPath: DamageCooldown
       value: 0.21
       objectReference: {fileID: 0}
-    - target: {fileID: 156662277, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
-      propertyPath: ArrowCountText
-      value: 
-      objectReference: {fileID: 2612415}
-    - target: {fileID: 7196250674778059619, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: ArrowCountText
-      value: 
-      objectReference: {fileID: 2612415}
-    - target: {fileID: 7196250674778059619, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 784922749}
     - target: {fileID: 2279219361730397839, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_Layer
       value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2279219361760561449, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2279219362095319712, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2279219362255446182, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2279219362793979091, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2279219363022441000, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 7651501562885396185, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: yAngle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7651501562885396185, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: FirstPersonView
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7651501562885396185, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: zAngle
-      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 4109160641314828011, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
@@ -8327,6 +8293,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7196250674778059619, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: ArrowCountText
+      value: 
+      objectReference: {fileID: 2612415}
+    - target: {fileID: 7196250674778059619, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 784922749}
     - target: {fileID: 7486069670875497267, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_IsActive
@@ -8336,6 +8312,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279219361760561449, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279219362095319712, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279219362255446182, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279219362793979091, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279219363022441000, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6573053008636740957, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
@@ -8347,6 +8348,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 156662277, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
+      propertyPath: ArrowCountText
+      value: 
+      objectReference: {fileID: 2612415}
     - target: {fileID: 2848947106476337535, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: looping
@@ -8666,6 +8671,21 @@ PrefabInstance:
         type: 3}
       propertyPath: CollisionMask.m_Bits
       value: 19968
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348913922387389307, guid: aa3a6179eeb09924fa388ce04928941e,
+        type: 3}
+      propertyPath: RotationSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405512950873966707, guid: aa3a6179eeb09924fa388ce04928941e,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7405512950873966707, guid: aa3a6179eeb09924fa388ce04928941e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa3a6179eeb09924fa388ce04928941e, type: 3}

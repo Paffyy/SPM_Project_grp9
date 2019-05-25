@@ -7,7 +7,6 @@ public class RangedBaseEnemy : BaseEnemy
     [HideInInspector]
     public Animator Anim;
 
-
     public GameObject RightHand { get { return rightHand; } set { rightHand = value; } }
     public GameObject LeftHand { get { return leftHand; }set { leftHand = value; } }
 

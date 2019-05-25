@@ -13,7 +13,9 @@ public class RangedEnemyAttackState : RangedEnemyBaseState
     public override void Enter()
     {
         owner.Anim.SetBool("IsAttacking", true);
-        owner.NavAgent.isStopped = true;
+        if(owner.NavAgent.enabled)
+            owner.NavAgent.isStopped = true;
+        //owner.NavAgent.updatePosition = false;
         base.Enter();
     }
 
