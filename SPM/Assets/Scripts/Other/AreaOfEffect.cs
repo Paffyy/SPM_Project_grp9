@@ -52,7 +52,9 @@ public class AreaOfEffect : MonoBehaviour
             if (obj != null)
             {
                 //Player.GetComponent<PlayerHealth>().TakeDamage(Damage);
-                obj.GetComponent<PlayerHealth>().TakeDamage(Damage);
+                Vector3 direction = obj.transform.position - transform.position;
+                Vector3 pushBack = Vector3.ProjectOnPlane(direction, Vector3.up) * 2 + (Vector3.up * 2) * 3;
+                obj.GetComponent<PlayerHealth>().TakeDamage(Damage,pushBack,transform.position);
             }
         }
     }
