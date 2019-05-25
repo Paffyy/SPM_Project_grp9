@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class RangedBaseEnemy : BaseEnemy
 {
-    [HideInInspector]
-    public Animator Anim;
-
+    public Animator Anim { get { return animator; } }
     public GameObject RightHand { get { return rightHand; } set { rightHand = value; } }
     public GameObject LeftHand { get { return leftHand; }set { leftHand = value; } }
 
+    [SerializeField]
+    private Animator animator;
     [SerializeField]
     private GameObject rightHand;
     [SerializeField]
@@ -21,7 +21,7 @@ public class RangedBaseEnemy : BaseEnemy
     protected override void Awake()
     {
         base.Awake();
-        Anim = GetComponent<Animator>();
+       // Anim = GetComponent<Animator>();
     }
 
     public void InstantiateFireBall()

@@ -8,7 +8,6 @@ public class LoadGame : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(Manager.Instance.HasLoadedFromCheckPoint);
         if (Manager.Instance.HasLoadedFromCheckPoint)
         {
             LoadFromSave();

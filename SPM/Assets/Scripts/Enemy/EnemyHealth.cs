@@ -82,7 +82,6 @@ public class EnemyHealth : Health
         if(navAgent != null && controller != null)
         {
             TakeDamage(damage);
-            Debug.Log("Fiende \"" + gameObject.name + "\" hade ingen controller men någon försökte göra pushback på den");
             navAgent.enabled = false;
             controller.enabled = true;
             //controller.MovePosition(pushBack);

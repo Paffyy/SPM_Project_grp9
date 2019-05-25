@@ -7,7 +7,9 @@ public class RangedEnemyAttackState : RangedEnemyBaseState
 {
     [SerializeField]
     private GameObject fireBall;
-
+    [SerializeField]
+    private float attackCoolDown;
+    private float coolDownTimer;
     private bool isUsingRightHand;
 
     public override void Enter()
@@ -16,6 +18,7 @@ public class RangedEnemyAttackState : RangedEnemyBaseState
         if(owner.NavAgent.enabled)
             owner.NavAgent.isStopped = true;
         //owner.NavAgent.updatePosition = false;
+        coolDownTimer = attackCoolDown;
         base.Enter();
     }
 
@@ -28,9 +31,12 @@ public class RangedEnemyAttackState : RangedEnemyBaseState
     public override void HandleUpdate()
     {
         UpdateRotation(owner.player.transform);
-        if (CoolDownManager.Instance.RangedEnemyAttackOnCoolDown == false)
+        if (coolDownTimer <= 0)
         {
             ShootFireBall();
+        } else
+        {
+            coolDownTimer -= Time.deltaTime;
         }
         if (Vector3.Distance(owner.transform.position, owner.player.transform.position) > owner.lostTargetDistance)
         {
@@ -48,7 +54,7 @@ public class RangedEnemyAttackState : RangedEnemyBaseState
         {
             owner.Anim.SetBool("IsUsingRightHand", false);
         }
-        CoolDownManager.Instance.StartRangedEnemyAttackCoolDown(cooldown);
+        coolDownTimer = attackCoolDown;
         isUsingRightHand = !isUsingRightHand;
     }
 }
