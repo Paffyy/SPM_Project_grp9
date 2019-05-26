@@ -22,14 +22,8 @@ public class LoadGame : MonoBehaviour
     private void LoadPlayerDataOnly()
     {
         GameData data = SaveSystem.LoadGame();
-        //Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
-        if(data.ArrowCount < 5)
-        {
-            Player.GetComponent<Weapon>().ArrowCount = 5;
-        } else
-        {
-            Player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
-        }
+        Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
+        Player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
     }
 
     private void LoadFromSave()
