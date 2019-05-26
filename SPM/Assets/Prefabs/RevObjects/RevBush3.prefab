@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567240782166631340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.24, y: 3.66, z: 1.77}
+  m_LocalPosition: {x: 0.47000003, y: 3.03, z: 0.19000006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6457595829041620743}
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567240782166631340}
-  m_Mesh: {fileID: 4300002, guid: a8be2542c2ecce445993d1322040d669, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 8082bd86d16db284e94a9880c02d91c0, type: 3}
 --- !u!23 &5647618362726552227
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -120,7 +120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6457595829041920801}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.6600037, z: 3.8}
+  m_LocalPosition: {x: 2.71, y: 3.6600037, z: 2.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6457595829041620743}
@@ -133,7 +133,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6457595829041920801}
-  m_Mesh: {fileID: 4300000, guid: a8be2542c2ecce445993d1322040d669, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 8082bd86d16db284e94a9880c02d91c0, type: 3}
 --- !u!23 &6457595829043914215
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -195,6 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6457595829041620743}
+  - component: {fileID: 4703394890486804466}
   m_Layer: 15
   m_Name: RevBush3
   m_TagString: RevObject
@@ -218,3 +219,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &4703394890486804466
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6457595829041920807}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.44679928, y: 1.9042988, z: 0.19000101}
+  m_Size: 12.910143
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.08347183
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6457595829043914215}
+    - renderer: {fileID: 5647618362726552227}
+  m_Enabled: 1
