@@ -46,35 +46,13 @@ public class PlayerBaseState : State
         playerCamera = owner.GetComponentInChildren<Camera>();
     }
 
-    protected virtual void HandleInput()
+    protected virtual void HandleInput(bool isInAir = false)
     {
-
-        //yaw += Input.GetAxis("Mouse X") * MouseSensitivity;
-
-        // X-axeln
-        //Ändra pitchen till += om du vill ha den inverterad
-        //pitch -= Input.GetAxis("Mouse Y") * MouseSensitivity;
-        //pitch = Mathf.Clamp(pitch, minCameraAngle, maxCameraAngle);
-
-        //currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw), ref rotationSmoothVel, rotationSmoothTime);
-
-        //playerCamera.transform.eulerAngles = currentRotation;
-
-        //playerCamera.transform.position = owner.transform.position - playerCamera.transform.forward; //* distanceFromTarget;
-
-        //if (owner.Velocity != Vector3.zero)
-        //{
-        //    owner.RotationX = playerCamera.transform.rotation.x;
-        //    owner.RotationY = playerCamera.transform.rotation.y;
-        //}
-
         if (Manager.Instance.IsPaused == false)
         {
             owner.RotationX -= Input.GetAxisRaw("Mouse Y") * MouseSensitivity;
-            //owner.RotationX -= InputManager.Instance.GetAxisRaw(InputManager.GetAxis.MouseY, InputManager.ControllMode.Play) * MouseSensitivity;
             owner.RotationX = Mathf.Clamp(owner.RotationX, minCameraAngle, maxCameraAngle);
             owner.RotationY += Input.GetAxisRaw("Mouse X") * MouseSensitivity;
-            //owner.RotationY += InputManager.Instance.GetAxisRaw(InputManager.GetAxis.MouseY, InputManager.ControllMode.Play) * MouseSensitivity;
             playerCamera.transform.rotation = Quaternion.Euler(owner.RotationX, owner.RotationY, 0.0f);
             if (Input.GetKeyDown(KeyCode.V))
                 owner.FirstPersonView = !owner.FirstPersonView;
@@ -86,10 +64,9 @@ public class PlayerBaseState : State
             {
                 HandleThirdPersonCamera();
             }
-        //Vector3 direction = new Vector3(InputManager.Instance.GetAxisRaw(InputManager.GetAxis.Horizontal, InputManager.ControllMode.Play),
-        //    0.0f, InputManager.Instance.GetAxisRaw(InputManager.GetAxis.Vertical, InputManager.ControllMode.Play));
+   
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"),
-            0.0f, Input.GetAxisRaw("Vertical"));
+            0.0f, !isInAir ? Input.GetAxisRaw("Vertical") : 0);
         direction = playerCamera.transform.rotation * direction;
             direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
             float distance = Acceleration * Time.deltaTime * owner.SpeedModifier;

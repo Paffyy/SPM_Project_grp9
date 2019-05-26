@@ -8,12 +8,15 @@ public class BowAimState : WeaponBaseState
 {
     public override void Enter()
     {
+        owner.BowIcon.GetComponent<Image>().color = Color.green;
+        owner.Bow.SetActive(true);
         owner.BowFirstPerson.SetActive(true);
     }
 
     public override void Exit()
     {
         owner.BowFirstPerson.SetActive(false);
+        owner.Bow.SetActive(false);
     }
 
     public override void HandleUpdate()
@@ -23,10 +26,10 @@ public class BowAimState : WeaponBaseState
             owner.BowIcon.GetComponent<Image>().color = Color.white;
             owner.Transition<SwordState>();
         }
-        if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
-        {
-            owner.Transition<BowState>();
-        }
+        //if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
+        //{
+        //    owner.Transition<BowState>();
+        //}
         //else if (Input.GetKeyDown(KeyCode.Alpha3))
         //    owner.Transition<ShieldState>();
     }

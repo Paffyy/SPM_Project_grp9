@@ -5,19 +5,18 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
-    private int baseDamage = 25;
     private CapsuleCollider capCollider;
     private float gravityForce;
     private int limit;
     private Vector3 velocity;
     private bool hasCollided;
     private bool isTerminating;
+    private int damage;
 
     [SerializeField]
     private LayerMask collisionMask;
     [SerializeField]
-    private int damage;
-
+    private int baseDamage;
     [SerializeField]
     private int aoeDamage;
     [SerializeField]

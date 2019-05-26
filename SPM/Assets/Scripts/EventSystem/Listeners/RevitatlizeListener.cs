@@ -44,14 +44,17 @@ public class RevitatlizeListener : MonoBehaviour
                         foreach (var item in closeRevObjects)
                         {
                             var revScript = item.GetComponent<RevitalizeGeometry>();
-                            var distanceMod = Vector3.Distance(pos, item.transform.position) / distanceModifier;
-                            if (revScript.IsRevitalized)
+                            if (revScript != null)
                             {
-                                //revScript.DullMaterial(distanceMod);
-                            }
-                            else
-                            {
-                                revScript.Revitalize(distanceMod);
+                                var distanceMod = Vector3.Distance(pos, item.transform.position) / distanceModifier;
+                                if (revScript.IsRevitalized)
+                                {
+                                    //revScript.DullMaterial(distanceMod);
+                                }
+                                else
+                                {
+                                    revScript.Revitalize(distanceMod);
+                                }
                             }
                         }
                     }
