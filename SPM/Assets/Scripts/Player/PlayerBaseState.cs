@@ -98,7 +98,7 @@ public class PlayerBaseState : State
 
     }
 
-    protected virtual void ApplyGravity()
+    protected virtual void ApplyGravity(float gravitMultiplier = 1)
     {
         Vector3 gravity;
         //om spelaren faller
@@ -108,7 +108,7 @@ public class PlayerBaseState : State
         //}
         //else
         //{
-            gravity = Vector3.down * GravityForce * Time.deltaTime;
+            gravity = Vector3.down * GravityForce * gravitMultiplier * Time.deltaTime;
 
         //}
         owner.Velocity += gravity;
@@ -201,7 +201,6 @@ public class PlayerBaseState : State
         if (Physics.CapsuleCast(point1, point2, playerCollider.radius, Vector3.down, out hit, groundCheckDistance + skinWidth, CollisionMask))
         {
             float angle = Vector3.Angle(Vector3.up, hit.normal);
-
             if (angle > maxClimbAngle)
             {
                 return false;
