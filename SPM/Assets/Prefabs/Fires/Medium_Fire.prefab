@@ -18876,6 +18876,7 @@ GameObject:
   - component: {fileID: 6281807759307257910}
   - component: {fileID: 2600700835502376259}
   - component: {fileID: 7747171162852827554}
+  - component: {fileID: 6221292947557258022}
   m_Layer: 16
   m_Name: Medium_Fire
   m_TagString: Untagged
@@ -23581,11 +23582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsRevitalized: 0
-  ParticleSystems:
-  - {fileID: 7442146084797133630}
-  - {fileID: 7442146085724192211}
-  - {fileID: 7442146084719925232}
-  - {fileID: 7442146085029202372}
+  particleSystems: []
 --- !u!114 &6281807759307257910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23637,3 +23634,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!205 &6221292947557258022
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7442146085880688057}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.000005722046, y: -0.0057382584, z: 6.672863}
+  m_Size: 38.074295
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.07240629
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7442146085880688058}
+    - renderer: {fileID: 7442146084797133629}
+    - renderer: {fileID: 7442146085724192210}
+    - renderer: {fileID: 7442146084719925239}
+    - renderer: {fileID: 7442146085029202395}
+  m_Enabled: 1

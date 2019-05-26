@@ -14109,6 +14109,7 @@ GameObject:
   - component: {fileID: 7494302166717649116}
   - component: {fileID: 8293179968524137115}
   - component: {fileID: 363307249011321447}
+  - component: {fileID: 9218401343617320814}
   m_Layer: 16
   m_Name: Large_Fire
   m_TagString: Untagged
@@ -18865,6 +18866,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!205 &9218401343617320814
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666922720989924822}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.0060130307
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 666922720989924825}
+    - renderer: {fileID: 666922720078641265}
+    - renderer: {fileID: 666922719468901543}
+    - renderer: {fileID: 666922721047688505}
+    - renderer: {fileID: 666922719364314072}
+  m_Enabled: 1
 --- !u!1 &666922721047688503
 GameObject:
   m_ObjectHideFlags: 0

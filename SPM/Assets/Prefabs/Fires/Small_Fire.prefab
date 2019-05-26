@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4372447679752560071}
   - component: {fileID: 5734472662613401778}
   - component: {fileID: 5969667062271506788}
+  - component: {fileID: 3434609682364479580}
   m_Layer: 16
   m_Name: Small_Fire
   m_TagString: Untagged
@@ -4720,11 +4721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsRevitalized: 0
-  ParticleSystems:
-  - {fileID: 920048581300803279}
-  - {fileID: 920048580625668130}
-  - {fileID: 920048581361496577}
-  - {fileID: 920048581070957621}
+  particleSystems: []
 --- !u!114 &4372447679752560071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4776,6 +4773,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!205 &3434609682364479580
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920048580236380232}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.0056065666
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1 &920048580625668129
 GameObject:
   m_ObjectHideFlags: 0
