@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, currentVel, Color.red);
 
 
-        phyController.Velocity += new Vector3(currentVel.x, phyController.Velocity.y, currentVel.z); ;
+        phyController.Velocity = new Vector3(currentVel.x, phyController.Velocity.y, currentVel.z);
 
     }
 

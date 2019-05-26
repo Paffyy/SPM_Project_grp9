@@ -114,6 +114,8 @@ public class BossAttackState : BossBaseState
             return;
 
         //Skadar spelarn
+
+        Debug.Log("single attack");
         owner.anim.SetTrigger("AttackRight");
         //GameObject[] arr = owner.Fow.TargetsInFieldOfView();
         //    for (int i = 0; i < arr.Length; i++)
@@ -135,6 +137,7 @@ public class BossAttackState : BossBaseState
             return;
 
         //Skadar spelarn
+        Debug.Log("double attack");
         owner.anim.SetTrigger("AttackRight");
 
         owner.anim.SetTrigger("AttackLeft");
