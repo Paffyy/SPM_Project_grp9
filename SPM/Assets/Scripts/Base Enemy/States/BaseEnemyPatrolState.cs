@@ -22,9 +22,16 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
 
     public override void HandleUpdate()
     {
+        Vector3 dis = owner.player.transform.position - owner.transform.position;
+        float distance = dis.sqrMagnitude;
+
         UpdateDestination(owner.Path.PathObjects[currentPoint].position);
         UpdateRotation(owner.Path.PathObjects[currentPoint]);
-        if (Vector3.Distance(owner.transform.position, owner.Path.PathObjects[currentPoint].position) < pointSize )
+
+        Vector3 toPoint = owner.Path.PathObjects[currentPoint].position - owner.transform.position;
+        float distanceToPoint = toPoint.sqrMagnitude;
+
+        if (distanceToPoint < pointSize * pointSize)
         {
             if(isWaitAtPosition == true)
             {
@@ -34,14 +41,15 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
             currentPoint = (currentPoint + 1) % owner.Path.PathObjects.Count;
         }
 
-        //if (Vector3.Distance(owner.player.transform.position, owner.transform.position) < chaseDistance)
-        //if(owner.Fow.TargetsInFieldOfView() != null && Vector3.Distance(owner.player.transform.position, owner.transform.position) < chaseDistance)
-        if (owner.Fow.TargetsInFieldOfView() != null
-            || Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius)
+        if(distance < owner.Fow.viewRadius * owner.Fow.viewRadius)
         {
-            //Debug.Log(owner.Fow.TargetsInFieldOfView().ToString());
-            owner.Transition<BaseEnemyChaseState>();
+            if (distance < hearRadius * hearRadius || owner.Fow.TargetsInFieldOfView() != null)
+            {
+                //Debug.Log(owner.Fow.TargetsInFieldOfView().ToString());
+                owner.Transition<BaseEnemyChaseState>();
+            }
         }
+
 
 
         base.HandleUpdate();
@@ -54,8 +62,13 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
         int closest = 0;
         for (int i = 0; i < patrolPoints.Length; i++)
         {
-            float dist = Vector3.Distance(owner.transform.position, patrolPoints[i]);
-            if (dist < Vector3.Distance(owner.transform.position, patrolPoints[closest]))
+            Vector3 dis = owner.Path.PathObjects[i].position - owner.transform.position;
+            float distance = dis.sqrMagnitude;
+
+            Vector3 disClosest = owner.Path.PathObjects[closest].position - owner.transform.position;
+            float distanceClosest = disClosest.sqrMagnitude;
+
+            if (distance < distanceClosest)
                 closest = i;
         }
         currentPoint = closest;
