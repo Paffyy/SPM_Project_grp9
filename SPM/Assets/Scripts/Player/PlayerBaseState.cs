@@ -33,7 +33,7 @@ public class PlayerBaseState : State
     private Vector3 rotationSmoothVel;
     private float rotationSmoothTime = 0.1f;
     private float fallMultiplier = 2.5f;
-
+    private float oppositeDirectionMultiplier;
     protected Vector3 Position { get { return owner.transform.position; } set { owner.transform.position = value; } }
 
     public override void Enter()
@@ -93,7 +93,15 @@ public class PlayerBaseState : State
         direction = playerCamera.transform.rotation * direction;
             direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
             float distance = Acceleration * Time.deltaTime * owner.SpeedModifier;
-            owner.Velocity += direction.normalized * distance;
+            if (Vector3.Dot(direction.normalized,owner.Velocity.normalized) < -0.8f)
+            {
+                oppositeDirectionMultiplier = 1.5f;
+            }
+            else
+            {
+                oppositeDirectionMultiplier = 1f;
+            }
+            owner.Velocity += direction.normalized * distance * oppositeDirectionMultiplier;
         }
 
     }
