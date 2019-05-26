@@ -12,23 +12,27 @@ public class EnemyHealth : Health
     public Slider EnemyHealthSlider;
     private CharacterController controller;
     private NavMeshAgent navAgent;
-
     private bool isDead = false;
+    [SerializeField]
+    private GameObject enemyCanvas;
+    private bool isHealthBarVisible;
 
     private BaseEnemy thisEnemy;
     // Start is called before the first frame update
     public virtual void Start()
     {
+        isHealthBarVisible = false;
+      //  enemyCanvas.SetActive(false);
         navAgent = GetComponent<NavMeshAgent>();
         controller = GetComponent<CharacterController>();
         thisEnemy = GetComponent<BaseEnemy>();
-        SetupHealthSlider();
-        EnemyHealthSlider.value = EnemyHealthSlider.maxValue;
+        CurrentHealth = StartingHealth;
+        //EnemyHealthSlider.value = EnemyHealthSlider.maxValue;
     }
 
     public void SetupHealthSlider()
     {
-        CurrentHealth = StartingHealth;
+       // CurrentHealth = StartingHealth;
         EnemyHealthSlider.maxValue = StartingHealth;
     }
 
@@ -59,6 +63,12 @@ public class EnemyHealth : Health
 
     public override void TakeDamage(int damage, bool overrideCooldown = false)
     {
+        if (isHealthBarVisible == false)
+        {
+            SetupHealthSlider();
+            ActivateHealthBar();
+            isHealthBarVisible = true;
+        }
         if (!overrideCooldown)
         {
             if (!CanTakeDamage())
@@ -71,8 +81,20 @@ public class EnemyHealth : Health
 
     }
 
+    private void ActivateHealthBar()
+    {
+        enemyCanvas.SetActive(true);
+        enemyCanvas.GetComponent<Canvas>().enabled = true;
+    }
+
     public override void TakeDamage(int damage, Vector3 pushBack, Vector3 position)
     {
+        if (isHealthBarVisible == false)
+        {
+            SetupHealthSlider();
+            ActivateHealthBar();
+            isHealthBarVisible = true;
+        }
         if (!CanTakeDamage())
             return;
         else
