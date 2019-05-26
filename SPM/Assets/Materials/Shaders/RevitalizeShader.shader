@@ -4,13 +4,12 @@
     {
         _RevitalizeColor ("RevColor", Color) = (1,1,1,1)
         _RevitalizeTexture ("RevAlbedo (RGB)", 2D) = "white" {}
-		_RevitalizeNormal("RevNormal", 2D) = "bump" {}
-		_RevitalizeOcclusion ("RevOcclusion", 2D) = "white" {}
 
 		_ScorchedColor ("ScorchedColor", Color) = (1,1,1,1)
         _ScorchedTexture ("ScorchedAlbedo (RGB)", 2D) = "white" {}
-		_ScorchedNormal("ScorchedNormal", 2D) = "bump" {}
-		_ScorchedOcclusion ("ScorchedOcclusion", 2D) = "white" {}
+
+		_Normal("Normal", 2D) = "bump" {}
+		_Occlusion ("Occlusion", 2D) = "white" {}
 
 		_RevitalizeFactor("RevitalizeFactor", Range(0,1)) = 0
 
@@ -33,22 +32,18 @@
         struct Input
         {
             float2 uv_ScorchedTexture : TEXCOORD0;
-			float2 uv_ScorchedNormal : TEXCOORD1;
-			float2 uv_ScorchedOcclusion : TEXCOORD2;
+			float2 uv_Normal : TEXCOORD1;
+			float2 uv_Occlusion : TEXCOORD2;
 
             float2 uv_RevitalizeTexture : TEXCOORD3;
-			float2 uv_RevitalizeNormal : TEXCOORD4;
-			float2 uv_RevitalizeOcclusion : TEXCOORD5;
         };
 
 		sampler2D _ScorchedTexture;
-		sampler2D _ScorchedNormal;
-		sampler2D _ScorchedOcclusion;
+		sampler2D _Normal;
+		sampler2D _Occlusion;
 		fixed4 _ScorchedColor;
 
 		sampler2D _RevitalizeTexture;
-		sampler2D _RevitalizeNormal;
-		sampler2D _RevitalizeOcclusion;
 		fixed4 _RevitalizeColor;
 
 		half _RevitalizeFactor;
@@ -60,10 +55,11 @@
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
 			fixed4 pixelColor = lerp(tex2D (_ScorchedTexture, IN.uv_ScorchedTexture) * _ScorchedColor, tex2D (_RevitalizeTexture, IN.uv_RevitalizeTexture) * _RevitalizeColor, _RevitalizeFactor);
-			fixed4 ambientOcclusion = lerp(tex2D(_ScorchedOcclusion, IN.uv_ScorchedOcclusion), tex2D(_RevitalizeOcclusion, IN.uv_RevitalizeOcclusion), _RevitalizeFactor);
-			o.Normal = lerp(UnpackNormal(tex2D(_ScorchedNormal,IN.uv_ScorchedNormal)), UnpackNormal(tex2D(_RevitalizeNormal,IN.uv_RevitalizeNormal)), _RevitalizeFactor);
-            o.Albedo = pixelColor.rgb * ambientOcclusion.rgb;
+			fixed4 ambientOcclusion = tex2D(_Occlusion, IN.uv_Occlusion);
+			o.Normal = UnpackNormal(tex2D(_Normal,IN.uv_Normal));
+            o.Albedo = pixelColor.rgb;
             o.Metallic = _Metallic;
+			o.Occlusion = ambientOcclusion.rbg;
             o.Smoothness = _Glossiness;
 			o.Alpha = pixelColor.a;
 			clip(pixelColor.a - _Cutoff);
