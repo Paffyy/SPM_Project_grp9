@@ -18,7 +18,7 @@ public class EnemyHealth : Health
     private bool isHealthBarVisible;
 
     private BaseEnemy thisEnemy;
-    // Start is called before the first frame update
+
     public virtual void Start()
     {
         isHealthBarVisible = false;
@@ -27,13 +27,13 @@ public class EnemyHealth : Health
         controller = GetComponent<CharacterController>();
         thisEnemy = GetComponent<BaseEnemy>();
         CurrentHealth = StartingHealth;
-        //EnemyHealthSlider.value = EnemyHealthSlider.maxValue;
     }
 
     public void SetupHealthSlider()
     {
        // CurrentHealth = StartingHealth;
         EnemyHealthSlider.maxValue = StartingHealth;
+        EnemyHealthSlider.value = EnemyHealthSlider.maxValue;
     }
 
     public override void Update()
@@ -81,10 +81,11 @@ public class EnemyHealth : Health
 
     }
 
-    private void ActivateHealthBar()
+    public void ActivateHealthBar()
     {
         enemyCanvas.SetActive(true);
         enemyCanvas.GetComponent<Canvas>().enabled = true;
+        isHealthBarVisible = true;
     }
 
     public override void TakeDamage(int damage, Vector3 pushBack, Vector3 position)

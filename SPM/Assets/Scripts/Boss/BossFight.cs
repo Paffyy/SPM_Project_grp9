@@ -37,6 +37,7 @@ public class BossFight : MonoBehaviour
     public void TriggerFight(BaseEventInfo e)
     {
         health.SetupHealthSlider();
+        health.ActivateHealthBar();
         BossCanvas.SetActive(true);
         FightBorder.SetActive(true);
         Boss.Transition<BossAttackState>();

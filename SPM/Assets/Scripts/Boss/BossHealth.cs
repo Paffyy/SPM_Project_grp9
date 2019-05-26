@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossHealth : EnemyHealth
 {
+
     Boss boss;
     public override void Start()
     {
@@ -19,7 +20,6 @@ public class BossHealth : EnemyHealth
             if (!CanTakeDamage())
                 return;
         }
-        Debug.Log("boop");
         RestartCoolDown();
         CurrentHealth -= damage;
         EnemyHealthSlider.value = CurrentHealth;
