@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
         phyController.Velocity += Vector3.down * fallingExtraSpeed;
     }
 
-    private Vector3 Move()
+    private void Move(Vector3 input)
     {
         currentVel = Quaternion.AngleAxis(cameraCon.Yaw, Vector3.up) * input * MovementSpeed;
 
