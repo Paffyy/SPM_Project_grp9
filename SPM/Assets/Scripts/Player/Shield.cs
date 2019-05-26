@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    public Player Player;
+    public GameObject Player;
     public LayerMask ProjectileMask;
     public Camera playerCamera;
     public float FacingOffset;
@@ -28,18 +28,19 @@ public class Shield : MonoBehaviour
     }
     void OnDisable()
     {
-        Player.SpeedModifier = 1f;
+        //Player.SpeedModifier = 1f;
     }
     // Update is called once per frame
     void Update()
     {
-        UpdateTransformation();
+        Debug.Log("blocking " + IsBlocking);
+        //UpdateTransformation();
         if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
         {
             if (IsBlocking  == false && Player.GetComponent<Weapon>().Sword.GetComponent<Sword>().IsBladeStorming == false)
             {
                 Block();
-                Player.SpeedModifier = 0.75f;
+                //Player.SpeedModifier = 0.75f;
             }
             else
             {
@@ -49,20 +50,20 @@ public class Shield : MonoBehaviour
         if (InputManager.Instance.GetkeyUp(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
         {
             GoToIdle();
-            Player.SpeedModifier = 1f;
+            //Player.SpeedModifier = 1f;
         }
         //  ExtDebug.DrawBoxCastBox(transform.position, Quaternion.Euler(0, 90, 0) * boxCollider.size / 2, transform.rotation, transform.forward, 0.5f, Color.white);
     }
 
-    public void UpdateTransformation()
-    {
+    //public void UpdateTransformation()
+    //{
 
-        Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
-       // Vector3 direction = playerCamera.transform.forward;
-        transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 90, 0);
-        Vector3 update = transform.rotation * shieldPos.normalized;
-        transform.position = update * shieldPos.magnitude + Player.transform.position;
-    }
+    //    Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
+    //   // Vector3 direction = playerCamera.transform.forward;
+    //    transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 90, 0);
+    //    Vector3 update = transform.rotation * shieldPos.normalized;
+    //    transform.position = update * shieldPos.magnitude + Player.transform.position;
+    //}
     public void TakeDamage(int damage)
     {
         CurrentHealth -= damage;

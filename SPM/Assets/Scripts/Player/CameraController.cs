@@ -33,6 +33,8 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         cameraPosition = new Vector3(0, target.rotation.y, target.rotation.z);
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 

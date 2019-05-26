@@ -13,7 +13,7 @@ public class Sword : MonoBehaviour
     public LayerMask CollisionMask;
     public float CoolDownValue;
     public GameObject PlayerObject;
-    public Camera playerCamera;
+    //public Camera playerCamera;
     public int Damage = 50;
     public int BladeStormDamage = 5;
     public GameObject BladeStormEffect;
@@ -28,18 +28,20 @@ public class Sword : MonoBehaviour
     private float BladeStormTimer = 3f;
     private ParticleSystem.EmissionModule trailsEmissionModule;
     private bool isAttacking;
+    private Shield shield;
 
     void Start()
     {
         swordOffset = new Vector3(0.3f, 0.2f, 0.55f);
         trailsEmissionModule = Trails.emission;
         isAttacking = false;
+        shield = PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Manager.Instance.IsPaused == false && Input.GetKeyDown(KeyCode.E) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
+        if (Manager.Instance.IsPaused == false && Input.GetKeyDown(KeyCode.E) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming && !isAttacking && !shield.IsBlocking)
         {
             BladeStorm();
             IsBladeStorming = true;
@@ -50,10 +52,10 @@ public class Sword : MonoBehaviour
             if (BladeStormEffect.activeInHierarchy == false)
             {
                 BladeStormEffect.SetActive(true);
-                BladeStormEffect.transform.position = PlayerObject.transform.position;
+                BladeStormEffect.transform.position = transform.position;
             }
-            var direction = playerCamera.transform.forward;
-            transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swingValue, 0, 0);
+            //var direction = playerCamera.transform.forward;
+            //transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swingValue, 0, 0);
             BladeStormTimer -= Time.deltaTime;
             if (BladeStormTimer <= 0)
             {
@@ -67,28 +69,31 @@ public class Sword : MonoBehaviour
         {
             if (coolDownCounter < 0)
             {
-                if (Manager.Instance.IsPaused == false &&  Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
+                Debug.Log("cutt blocking = " + shield.IsBlocking);
+
+                if (Manager.Instance.IsPaused == false && Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && shield.IsBlocking == false)
                 {
+                    
                     coolDownCounter = CoolDownValue;
                     Attack();
                 }
-                UpdateRotation();
+                //UpdateRotation();
             }
             else
             {
                 coolDownCounter -= Time.deltaTime;
 
-                if (coolDownCounter < CoolDownValue)
-                {
-                    UpdateRotation(swingValue);
-                }
-                else
-                {
-                    UpdateRotation(swingValue);
-                }
+                //if (coolDownCounter < CoolDownValue)
+                //{
+                //    //UpdateRotation(swingValue);
+                //}
+                //else
+                //{
+                //    //UpdateRotation(swingValue);
+                //}
             }
         }
-        UpdatePosition();
+        //UpdatePosition();
     }
     IEnumerator InflictBladeStormDamage()
     { 
@@ -139,23 +144,23 @@ public class Sword : MonoBehaviour
         StartCoroutine(InflictBladeStormDamage());
     }
 
-    private void UpdateRotation(float swing = 0)
-    {
-        //var direction = playerCamera.transform.forward;
-        Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
-        //  transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
-        transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-15, 90, 0);
-    }
+    //private void UpdateRotation(float swing = 0)
+    //{
+    //    //var direction = playerCamera.transform.forward;
+    //    Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
+    //    //  transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
+    //    transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-15, 90, 0);
+    //}
 
-    private void UpdatePosition()
-    {
-        Vector3 update = transform.rotation * swordOffset.normalized;
-        transform.position = update * swordOffset.magnitude + PlayerObject.transform.position;
-    }
+    //private void UpdatePosition()
+    //{
+    //    Vector3 update = transform.rotation * swordOffset.normalized;
+    //    transform.position = update * swordOffset.magnitude + PlayerObject.transform.position;
+    //}
 
     void CheckCollision()
     {
-        var enemyInRange = Manager.Instance.GetFrontConeHit(playerCamera.transform.forward, PlayerObject.transform, CollisionMask, Radius, Angle);
+        var enemyInRange = Manager.Instance.GetFrontConeHit(transform.forward, transform, CollisionMask, Radius, Angle);
         foreach (var item in enemyInRange)
         {
             DealDamage(item);
@@ -165,8 +170,8 @@ public class Sword : MonoBehaviour
     private void DealDamage(Collider item)
     {
         //testing
-        Vector3 pushBack = (Vector3.ProjectOnPlane((item.gameObject.transform.position - PlayerObject.transform.position), Vector3.up) + Vector3.up * 5) * 3;
-        item.gameObject.GetComponent<Health>().TakeDamage(Damage, pushBack, PlayerObject.transform.position);
+        Vector3 pushBack = (Vector3.ProjectOnPlane((item.gameObject.transform.position - transform.position), Vector3.up) + Vector3.up * 5) * 3;
+        item.gameObject.GetComponent<Health>().TakeDamage(Damage, pushBack, transform.position);
 
         //item.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
 

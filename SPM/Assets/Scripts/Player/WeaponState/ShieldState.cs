@@ -8,11 +8,11 @@ public class ShieldState : WeaponBaseState
 {
     public override void Enter()
     {
-        owner.player.SpeedModifier = 0.7f;
+        //owner.player.SpeedModifier = 0.7f;
         owner.ShieldIcon.GetComponent<Image>().color = Color.green;
         if (owner.Shield != null)
         {
-            owner.Shield.GetComponent<Shield>().UpdateTransformation();
+            //owner.Shield.GetComponent<Shield>().UpdateTransformation();
             owner.Shield.SetActive(true);
         }
         base.Enter();
@@ -20,7 +20,7 @@ public class ShieldState : WeaponBaseState
 
     public override void Exit()
     {
-        owner.player.SpeedModifier = 1f;
+        //owner.player.SpeedModifier = 1f;
         owner.ShieldIcon.GetComponent<Image>().color = Color.white;
         if (owner.Shield != null)
         {

@@ -10,15 +10,16 @@ public class PlayerHealth : MonoBehaviour
     public int CurrentHealth { get { return currentHealth; } set { currentHealth = value; HealthSlider.value = currentHealth; } }
     public Slider HealthSlider;
     public GameObject ShieldObject;
-    private Player player;
+    private PhysicsController controller;
     private Shield shield;
     public float DamageCooldown;
     private float currentCooldown;
     // Start is called before the first frame update
     private void Awake()
     {
-        player = GetComponent<Player>();
-        shield = player.GetComponent<Weapon>().Shield.GetComponent<Shield>();
+        //player = GetComponent<Player>();
+        shield = GetComponent<Weapon>().Shield.GetComponent<Shield>();
+        controller = GetComponent<PhysicsController>();
     }
     void Start()
     {
@@ -71,14 +72,14 @@ public class PlayerHealth : MonoBehaviour
             {
                 //ShieldObject.TakeDamage(damage);
                 //skölden tar bort 90% av pushBack effekten
-                player.Velocity += pushBack * 0.4f;
+                controller.Velocity += pushBack * 0.4f;
                 Debug.Log("shield hit!");
                 return;
             }
         }
 
         CurrentHealth -= damage;
-        player.Velocity += pushBack;
+        controller.Velocity += pushBack;
 
         if (CurrentHealth <= 0)
             PlayerDead();

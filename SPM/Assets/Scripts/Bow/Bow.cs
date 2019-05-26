@@ -58,7 +58,7 @@ public class Bow : MonoBehaviour
         crosshair = GetComponent<ThirdPersonCrosshair>();
         arrowsParent = new GameObject("ArrowContainer");
         ArrowCountText.text = weapon.ArrowCount.ToString();
-        playerScript = Player.GetComponent<Player>();
+        //playerScript = Player.GetComponent<Player>();
         chargeTime = Mathf.Clamp(chargeTime, 1, 2);
         animator = GetComponent<Animator>();
     }
@@ -132,7 +132,7 @@ public class Bow : MonoBehaviour
         {
             coolDownCounter -= Time.deltaTime;
         }
-        UpdateRotation();
+        //UpdateRotation();
         UpdatePosition();
     }
     private void ResetBow()

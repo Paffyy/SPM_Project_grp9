@@ -18,11 +18,11 @@ public class Weapon : StateMachine
     private int arrowCount;
 
     [HideInInspector]
-    public Player player;
+    //public Player player;
 
     protected override void Awake()
     {
         base.Awake();
-        player = GetComponent<Player>();
+        //player = GetComponent<Player>();
     }
 }
