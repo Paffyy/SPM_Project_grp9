@@ -54,7 +54,7 @@ public class MainMenu : MonoBehaviour
 
     private void Resume() { 
 
-    }  
+    }
 
     private void OptionsButton()
     {
@@ -63,7 +63,8 @@ public class MainMenu : MonoBehaviour
 
     private void Quit()
     {
-
+        Debug.Log("quit");
+        Application.Quit();
     }
 
 }
