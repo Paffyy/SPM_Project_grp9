@@ -43,7 +43,6 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
             {
                 owner.Transition<BaseEnemyBackOffState>();
             }
-
         }
         currentCooldown -= Time.deltaTime;
         //tittar på spelaren
