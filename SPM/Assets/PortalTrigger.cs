@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PortalTrigger : MonoBehaviour
 {
-    public GameObject WorldB;
+   // public GameObject WorldB;
     public GameObject PortalSystem;
     // Start is called before the first frame update
 
@@ -12,7 +12,7 @@ public class PortalTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            WorldB.SetActive(true);
+           // WorldB.SetActive(true);
             PortalSystem.SetActive(true);
         }
     }
