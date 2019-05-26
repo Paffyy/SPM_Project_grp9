@@ -13,6 +13,7 @@ public class BaseEnemyChaseState : BaseEnemyBaseState
     {
         //Debug.Log("chaseState");
         base.Enter();
+        speedModifier = 1.5f;
     }
 
     public override void HandleUpdate()

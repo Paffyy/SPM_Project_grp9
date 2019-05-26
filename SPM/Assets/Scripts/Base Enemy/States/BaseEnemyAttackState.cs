@@ -22,6 +22,7 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
         {
             owner.Transition<BaseEnemyCircleState>();
         }
+        speedModifier = 1.25f;
 
     }
 

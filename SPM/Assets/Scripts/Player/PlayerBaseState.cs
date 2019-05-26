@@ -72,7 +72,7 @@ public class PlayerBaseState : State
             float distance = Acceleration * Time.deltaTime * owner.SpeedModifier;
             if (Vector3.Dot(direction.normalized,owner.Velocity.normalized) < -0.8f)
             {
-                oppositeDirectionMultiplier = 1.5f;
+                oppositeDirectionMultiplier = 1.25f;
             }
             else
             {

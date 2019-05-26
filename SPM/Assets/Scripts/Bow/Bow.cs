@@ -84,7 +84,8 @@ public class Bow : MonoBehaviour
                 isDoingSpecialAttack = !isDoingSpecialAttack;
                 specialAttackGlow.SetActive(!specialAttackGlow.activeSelf);
             }
-            if (InputManager.Instance.Getkey(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
+            //if (InputManager.Instance.Getkey(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
+            if (Input.GetKey(KeybindManager.Instance.ShootAndAttack.KeybindCodes[0]))
             {
                 animator.SetBool("IsChargingBow", true);
                 if (chargeTime < 2)

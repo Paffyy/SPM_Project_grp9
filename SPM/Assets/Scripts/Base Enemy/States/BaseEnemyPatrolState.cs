@@ -17,6 +17,7 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
     {
         base.Enter();
         ClosestPoint();
+        speedModifier = 1;
         //Debug.Log("PatrolState");
     }
 
@@ -24,7 +25,6 @@ public class BaseEnemyPatrolState : BaseEnemyBaseState
     {
         Vector3 dis = owner.player.transform.position - owner.transform.position;
         float distance = dis.sqrMagnitude;
-
         UpdateDestination(owner.Path.PathObjects[currentPoint].position);
         UpdateRotation(owner.Path.PathObjects[currentPoint]);
 

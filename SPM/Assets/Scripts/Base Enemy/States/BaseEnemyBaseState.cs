@@ -24,7 +24,7 @@ public class BaseEnemyBaseState : State
     private Vector3 currentDestination;
     private Transform currentRotationTarget;
 
-
+    protected float speedModifier = 1;
     //public LayerMask PlayerLayer;
 
     //för debug
@@ -37,8 +37,7 @@ public class BaseEnemyBaseState : State
         timerSetDestination = timeBetweenSetDestination;
         //Debug.Log("BaseState");
         owner.MeshRen.material = material;
-        owner.NavAgent.speed = moveSpeed;
-
+        owner.NavAgent.speed = moveSpeed * speedModifier;
         owner.NavAgent.updateRotation = false;
     }
 

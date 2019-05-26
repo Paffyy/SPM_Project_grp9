@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4e2d6a3c831a244b8db8cb736896eb, type: 3}
   m_Name: BaseState
   m_EditorClassIdentifier: 
-  Acceleration: 20
+  Acceleration: 1000
   GravityForce: 15
   StaticFriction: 0.6
   DynamicFriction: 0.5

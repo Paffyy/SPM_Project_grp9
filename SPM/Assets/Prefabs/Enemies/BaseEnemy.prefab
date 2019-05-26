@@ -741,17 +741,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 562481413668af3499b2102414ce214e, type: 2}
   MeshRen: {fileID: 0}
   Path: {fileID: 0}
-  Damage: 8
+  Damage: 10
   NavAgent: {fileID: 0}
   Fow: {fileID: 0}
   chaseDistance: 4
-  cooldown: 1.3
-  attackDistance: 2.5
+  cooldown: 1.1
+  attackDistance: 2.75
   lostTargetDistance: 20
-  moveSpeed: 3
+  moveSpeed: 4
   lookRotationSpeed: 5
-  hearRadius: 6
-  AttackPlacmentDistance: 2
+  hearRadius: 8
+  AttackPlacmentDistance: 1.5
   IsWaitAtPosition: 0
   waitAtPatrolPoints: 0
   controller: {fileID: 0}
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491e67703b4c44240a58dbda505cca3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingHealth: 60
+  StartingHealth: 75
   CurrentHealth: 0
   DmgCoolDownTimer: 1
   EnemyHealthSlider: {fileID: 551245279}
