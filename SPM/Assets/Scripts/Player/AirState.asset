@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ff5d67a0c5dbd47bf6f488e09510d6, type: 3}
   m_Name: AirState
   m_EditorClassIdentifier: 
-  Acceleration: 30
+  Acceleration: 15
   GravityForce: 30
   StaticFriction: 0.6
   DynamicFriction: 0.5
   JumpDistance: 12
-  AirResistance: 0.3
+  AirResistance: 0.9
   MouseSensitivity: 2
   skinWidth: 0.005
   groundCheckDistance: 0.5

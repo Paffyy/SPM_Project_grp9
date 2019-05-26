@@ -14,7 +14,7 @@ public class AirState : PlayerBaseState
 
     public override void HandleUpdate()
     {
-        HandleInput();
+        HandleInput(true);
         if (owner.Velocity.y < -0.5f)
         {
             ApplyGravity(1.5f);
