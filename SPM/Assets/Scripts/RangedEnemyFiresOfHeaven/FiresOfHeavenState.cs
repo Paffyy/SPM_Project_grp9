@@ -52,7 +52,7 @@ public class FiresOfHeavenState : RangedBaseState
     {
         if (currentCastCount < numberOfCasts)
         {
-            Vector3 vec = SpawnNearPlayer(2.0f);
+            Vector3 vec = SpawnNearPlayer(1.5f);
             GameObject obj = Instantiate(fireBallObject, vec, Quaternion.identity, owner.firesOfHeavenContainer.transform);
 
             Destroy(obj, 8f);

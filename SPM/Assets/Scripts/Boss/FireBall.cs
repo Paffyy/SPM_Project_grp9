@@ -39,11 +39,14 @@ public class FireBall : MonoBehaviour
                    var playerHealth =  item.GetComponent<PlayerHealth>();
                     if (playerHealth != null)
                     {
-                        playerHealth.TakeDamage(impactDamage);
+
+                        Vector3 direction = item.gameObject.transform.position - transform.position;
+                        Vector3 pushBack = Vector3.ProjectOnPlane(direction, Vector3.up) * 2 + (Vector3.up * 2) * 3;
+                        playerHealth.TakeDamage(impactDamage,pushBack,transform.position);
                     }
                 }
             }
-            GameObject obj = Instantiate(AOEEffect.gameObject, transform.position, Quaternion.identity, parent);
+            GameObject obj = Instantiate(AOEEffect.gameObject, transform.position - new Vector3(0, (AOEEffect.SphereCollider.radius * AOEEffect.transform.localScale.x) / 2, 0), Quaternion.identity, parent);
 
             //obj.transform.SetParent(Parent.transform);
             Destroy(gameObject);
