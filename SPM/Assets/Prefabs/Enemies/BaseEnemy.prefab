@@ -33,7 +33,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491e67703b4c44240a58dbda505cca3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingHealth: 150
+  StartingHealth: 60
   CurrentHealth: 0
   DmgCoolDownTimer: 1
   EnemyHealthSlider: {fileID: 551245279}

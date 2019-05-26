@@ -1246,10 +1246,16 @@ PrefabInstance:
       propertyPath: ShieldObject
       value: 
       objectReference: {fileID: 1636868181}
-    - target: {fileID: 156662277, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
-      propertyPath: ArrowCountText
-      value: 
-      objectReference: {fileID: 682564857}
+    - target: {fileID: 2279219363247032558, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279219363247032558, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2279219361730397839, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_Layer
@@ -1320,16 +1326,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2279219363247032558, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2279219363247032558, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2279219363247032568, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_Layer
@@ -1350,6 +1346,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 156662277, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
+      propertyPath: ArrowCountText
+      value: 
+      objectReference: {fileID: 682564857}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
 --- !u!1 &1422876933
@@ -2000,6 +2000,10 @@ PrefabInstance:
     - target: {fileID: 89316340, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 542565461, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
+      propertyPath: StartingHealth
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 845687409, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
       propertyPath: target
