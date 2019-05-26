@@ -8,9 +8,11 @@ public class RevitalizeBlockade : RevitalizeGeometry
     private Collider blockCollider;
     [SerializeField]
     private Collider objectCollider;
+    private Animator anim;
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         blockCollider = transform.parent.gameObject.GetComponent<BoxCollider>();
         objectCollider = GetComponent<CapsuleCollider>();
     }
@@ -27,7 +29,10 @@ public class RevitalizeBlockade : RevitalizeGeometry
         mat.DisableKeyword("_ALPHABLEND_ON");
         mat.EnableKeyword("_ALPHAPREMULTIPLY_ON");
         mat.renderQueue = 3000;
-        GetComponent<Animator>().SetBool("Revitalized", true);
+        if(anim != null)
+        {
+            GetComponent<Animator>().SetBool("Revitalized", true);
+        }
         IsRevitalized = true;
         Destroy(gameObject, 4f);
     }
