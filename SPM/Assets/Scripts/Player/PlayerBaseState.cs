@@ -15,6 +15,7 @@ public class PlayerBaseState : State
     [SerializeField] protected float MouseSensitivity = 3.0f;
     [SerializeField] protected float skinWidth = 0.005f;
     [SerializeField] protected float groundCheckDistance = 0.5f;
+    [SerializeField] private float maxClimbAngle = 60;
     protected CapsuleCollider playerCollider;
     protected int limit = 0;
     protected Camera playerCamera;
@@ -194,10 +195,18 @@ public class PlayerBaseState : State
 
     protected virtual bool IsGrounded()
     {
+        RaycastHit hit;
         Vector3 point1 = owner.transform.position + playerCollider.center + Vector3.up * (playerCollider.height / 2 - playerCollider.radius);
         Vector3 point2 = owner.transform.position + playerCollider.center + Vector3.down * (playerCollider.height / 2 - playerCollider.radius);
-        if (Physics.CapsuleCast(point1, point2, playerCollider.radius, Vector3.down, groundCheckDistance + skinWidth, CollisionMask))
+        if (Physics.CapsuleCast(point1, point2, playerCollider.radius, Vector3.down, out hit, groundCheckDistance + skinWidth, CollisionMask))
         {
+            float angle = Vector3.Angle(Vector3.up, hit.normal);
+
+            if (angle > maxClimbAngle)
+            {
+                return false;
+            }
+
             return true;
         }
         return false;

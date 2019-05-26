@@ -6,8 +6,9 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private float distanceFromTarget;
+    [SerializeField] private Vector3 offset;
     private float pitchMinAngle = -40;
-    private float pitchMaxAngle = 85;
+    private float pitchMaxAngle = 70;
     private float yaw;
     public float Yaw { get { return yaw;} }
     private float pitch;
@@ -54,7 +55,7 @@ public class CameraController : MonoBehaviour
 
         transform.eulerAngles = currentRotation;
 
-        transform.position = target.position - transform.forward * distanceFromTarget;
+        //transform.position = target.position - transform.forward * distanceFromTarget;
 
         if (Input.GetKeyDown(KeyCode.V))
             FirstPersonView = !FirstPersonView;
