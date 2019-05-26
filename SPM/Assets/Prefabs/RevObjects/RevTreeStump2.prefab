@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 105926078286548524}
   - component: {fileID: 1017431801146607662}
   - component: {fileID: 6706777836810893506}
+  - component: {fileID: 4868269189462953078}
   m_Layer: 15
   m_Name: RevTreeStump2
   m_TagString: Untagged
@@ -107,3 +108,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.9451017, y: 5.6802673, z: 3.7481923}
   m_Center: {x: 0.068742275, y: 2.7561984, z: 0.18453622}
+--- !u!205 &4868269189462953078
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198789029905664599}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.0007879734, y: 3.7668197, z: 0.034334064}
+  m_Size: 7.535402
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.04813975
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 105926078286548524}
+  m_Enabled: 1
