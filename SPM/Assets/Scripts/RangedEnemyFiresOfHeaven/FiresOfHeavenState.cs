@@ -23,7 +23,8 @@ public class FiresOfHeavenState : RangedBaseState
     {
         fireBallObject.GetComponent<FireBall>().parent = owner.firesOfHeavenContainer.transform;
         owner.anim.SetBool("FireRain", true);
-        owner.NavAgent.isStopped = true;
+        if (owner.NavAgent.isActiveAndEnabled)
+            owner.NavAgent.isStopped = true;
         currentCastCount = 0;
         reCastSpeed = 2;
         isRecharging = false;
