@@ -23,7 +23,9 @@ public class RangedEnemyIdleState : RangedEnemyBaseState
         UpdateDestination(owner.Path.PathObjects[currentPoint].position);
         UpdateRotation(owner.Path.PathObjects[currentPoint]);
         SetDestination();
-        if (owner.Fow.TargetsInFieldOfView() != null || Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius)
+        Vector3 dis = owner.player.transform.position - owner.transform.position;
+        float distance = dis.sqrMagnitude;
+        if (distance < owner.Fow.viewRadius * owner.Fow.viewRadius || distance < hearRadius * hearRadius)
         {
             owner.Transition<RangedEnemyAttackState>();
         }
