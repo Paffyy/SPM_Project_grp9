@@ -1033,12 +1033,11 @@ MonoBehaviour:
   AttackPlacmentDistance: 17
   IsWaitAtPosition: 0
   waitAtPatrolPoints: 0
-  controller: {fileID: 0}
-  DrawList: []
   visionMask:
     serializedVersion: 2
     m_Bits: 1024
   player: {fileID: 0}
+  controller: {fileID: 0}
   anim: {fileID: 0}
   firesOfHeavenContainer: {fileID: 0}
 --- !u!195 &7589285550434072102
@@ -1124,7 +1123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollisionMask:
     serializedVersion: 2
-    m_Bits: 19968
+    m_Bits: 52736
   Velocity: {x: 0, y: 0, z: 0}
   RotationSpeed: 0
   Acceleration: 40

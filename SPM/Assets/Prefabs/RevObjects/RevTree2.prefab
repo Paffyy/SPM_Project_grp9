@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1469812154668698245}
   - component: {fileID: 8137041097077432662}
   - component: {fileID: 1776129854334929245}
-  - component: {fileID: 3208676301131290552}
   - component: {fileID: 6389406140043341671}
+  - component: {fileID: 3300977496872549138}
   m_Layer: 15
   m_Name: RevTree2
   m_TagString: Untagged
@@ -96,19 +96,6 @@ MonoBehaviour:
   IsRevitalized: 0
   timeToRevitalize: 2
   lerpLevels: 25
---- !u!65 &3208676301131290552
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8004983453743047981}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.4140553, y: 13.402252, z: 4.1818857}
-  m_Center: {x: -0.12623191, y: 6.7688904, z: -0.4952736}
 --- !u!205 &6389406140043341671
 LODGroup:
   m_ObjectHideFlags: 0
@@ -129,6 +116,20 @@ LODGroup:
     - renderer: {fileID: 8137041097077432662}
     - renderer: {fileID: 7863996772593100888}
   m_Enabled: 1
+--- !u!136 &3300977496872549138
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8004983453743047981}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.3157144
+  m_Height: 14.243867
+  m_Direction: 1
+  m_Center: {x: -0.0021119118, y: 5.0204644, z: -0.22740841}
 --- !u!1 &9005916605305909696
 GameObject:
   m_ObjectHideFlags: 0
