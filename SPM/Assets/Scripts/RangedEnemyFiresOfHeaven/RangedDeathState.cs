@@ -9,9 +9,9 @@ public class RangedDeathState : RangedBaseState
     private float timer;
     public override void Enter()
     {
-        Debug.Log("Dead");
         owner.NavAgent.enabled = false;
         owner.controller.enabled = true;
+        owner.controller.Velocity = Vector3.up * 15;
         owner.GetComponent<Collider>().enabled = false;
         timer = timeToDespawn;
 

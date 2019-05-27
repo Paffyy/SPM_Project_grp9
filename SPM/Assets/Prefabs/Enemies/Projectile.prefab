@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669255317753919366}
   m_LocalRotation: {x: -1, y: -0, z: -0, w: 0.000000014901161}
-  m_LocalPosition: {x: 0, y: 0, z: -0.559999}
-  m_LocalScale: {x: 0.30487576, y: 0.3048759, z: 0.3048759}
+  m_LocalPosition: {x: 0, y: 0, z: -0.98}
+  m_LocalScale: {x: 0.35392684, y: 0.35392702, z: 0.35392702}
   m_Children: []
   m_Father: {fileID: 1719473764917768234}
   m_RootOrder: 3
@@ -549,8 +549,8 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0
-      minScalar: 0
+      scalar: 0.7853981
+      minScalar: -0.7853981
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4725,7 +4725,7 @@ Transform:
   m_GameObject: {fileID: 1058649161149791402}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 3.4, y: 0, z: 0}
-  m_LocalScale: {x: 0.118815996, y: 0.118815996, z: 0.118815996}
+  m_LocalScale: {x: 0.15383108, y: 0.15383108, z: 0.15383108}
   m_Children: []
   m_Father: {fileID: 3922771989989982993}
   m_RootOrder: 0
@@ -5563,7 +5563,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -7275,7 +7275,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 0
@@ -9432,7 +9432,7 @@ Transform:
   m_GameObject: {fileID: 1423370517544789298}
   m_LocalRotation: {x: -1, y: -0, z: -0, w: 0.000000014901161}
   m_LocalPosition: {x: 0, y: 0, z: -0.559999}
-  m_LocalScale: {x: 0.30487576, y: 0.3048759, z: 0.3048759}
+  m_LocalScale: {x: 0.35392684, y: 0.35392702, z: 0.35392702}
   m_Children: []
   m_Father: {fileID: 1719473764917768234}
   m_RootOrder: 6
@@ -10270,7 +10270,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 25
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -11973,7 +11973,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 0
@@ -14216,14 +14216,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Velocity: {x: 0, y: 0, z: 0}
-  Speed: 7.5
+  Speed: 10
   Player: {fileID: 7651501562885396188, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
   ProjectileObject: {fileID: 1719473764917768238}
   ShieldLayer:
     serializedVersion: 2
     m_Bits: 8192
   coll: {fileID: 1719473764917768239}
-  Damage: 7
+  Damage: 8
 --- !u!54 &4075637109186820804
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14267,7 +14267,7 @@ Transform:
   m_GameObject: {fileID: 1953428050368307614}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.84, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.25894, y: 0.25894, z: 0.25894}
   m_Children: []
   m_Father: {fileID: 3922771989989982993}
   m_RootOrder: 1
@@ -14355,7 +14355,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
+      scalar: 1.5
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -18974,7 +18974,7 @@ Transform:
   m_GameObject: {fileID: 5715225241952721135}
   m_LocalRotation: {x: -1, y: -0, z: -0, w: 0.000000014901161}
   m_LocalPosition: {x: 0, y: 0, z: -0.559999}
-  m_LocalScale: {x: 0.30487576, y: 0.3048759, z: 0.3048759}
+  m_LocalScale: {x: 0.35392684, y: 0.35392702, z: 0.35392702}
   m_Children: []
   m_Father: {fileID: 1719473764917768234}
   m_RootOrder: 4
@@ -23672,7 +23672,7 @@ Transform:
   m_GameObject: {fileID: 6003246499512204432}
   m_LocalRotation: {x: -1, y: -0, z: -0, w: 0.000000014901161}
   m_LocalPosition: {x: 0, y: 0, z: -0.56}
-  m_LocalScale: {x: 0.30487576, y: 0.3048759, z: 0.3048759}
+  m_LocalScale: {x: 0.35392684, y: 0.35392702, z: 0.35392702}
   m_Children: []
   m_Father: {fileID: 1719473764917768234}
   m_RootOrder: 5
@@ -33908,7 +33908,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2

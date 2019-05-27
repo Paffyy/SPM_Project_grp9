@@ -120,17 +120,19 @@ void Update()
     {
         if (other.gameObject.CompareTag("Player") && !isReflected)
         {
-            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(Damage);
+            Vector3 pushBack = Vector3.ProjectOnPlane(Velocity.normalized, Vector3.up) * 2 + (Vector3.up * 2) * 3;
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(Damage,pushBack,transform.position);
             Destroy(ProjectileObject);
         } else if (other.gameObject.CompareTag("Shield"))
         {
             isReflected = true;
-            Velocity = Velocity.magnitude * other.gameObject.transform.forward;
+            Velocity = -Velocity;
             transform.rotation = Quaternion.LookRotation(other.gameObject.transform.forward);
+
            // other.gameObject.GetComponentInParent<Shield>().TakeDamage(Damage);
         } else if(other.gameObject.CompareTag("Enemy") && isReflected)
         {
-            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage * 2);
             Destroy(ProjectileObject);
         } else
         {

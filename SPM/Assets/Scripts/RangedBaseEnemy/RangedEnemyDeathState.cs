@@ -12,6 +12,7 @@ public class RangedEnemyDeathState : RangedEnemyBaseState
         owner.Anim.enabled = false;
         owner.NavAgent.enabled = false;
         owner.controller.enabled = true;
+        owner.controller.Velocity = Vector3.up * 15;
         owner.GetComponent<Collider>().enabled = false;
         timer = timeToDespawn;
 
