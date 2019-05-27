@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 3801160271886688438}
   - component: {fileID: 3801160271886688434}
   - component: {fileID: 3801160271886688433}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1238,7 +1238,7 @@ GameObject:
   - component: {fileID: 3801160272257591146}
   - component: {fileID: 3801160272257591142}
   - component: {fileID: 3801160272257591141}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1865,6 +1865,9 @@ MonoBehaviour:
   anim: {fileID: 0}
   FireEffectOnBoss: {fileID: 666922720989924822, guid: fdec53392fa4e5e468ea172adbfc0ea1,
     type: 3}
+  ShockWaveObject: {fileID: 5462230367423777423, guid: 2209ba1f494e4f243acdbb70ff613347,
+    type: 3}
+  ShockWaveObejctYOffset: 271.51
 --- !u!195 &5639111063107978644
 NavMeshAgent:
   m_ObjectHideFlags: 0
