@@ -127,9 +127,8 @@ void Update()
         {
             isReflected = true;
             Velocity = -Velocity;
-            transform.rotation = Quaternion.LookRotation(other.gameObject.transform.forward);
-
-           // other.gameObject.GetComponentInParent<Shield>().TakeDamage(Damage);
+            transform.rotation = Quaternion.LookRotation(-transform.forward);
+            // other.gameObject.GetComponentInParent<Shield>().TakeDamage(Damage);
         } else if(other.gameObject.CompareTag("Enemy") && isReflected)
         {
             other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage * 2);
