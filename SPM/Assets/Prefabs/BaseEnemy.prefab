@@ -754,12 +754,11 @@ MonoBehaviour:
   AttackPlacmentDistance: 1.5
   IsWaitAtPosition: 0
   waitAtPatrolPoints: 0
-  controller: {fileID: 0}
-  DrawList: []
   visionMask:
     serializedVersion: 2
     m_Bits: 1024
   player: {fileID: 0}
+  controller: {fileID: 0}
 --- !u!195 &2796968206420594162
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -810,7 +809,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CollisionMask:
     serializedVersion: 2
-    m_Bits: 3584
+    m_Bits: 36352
   Velocity: {x: 0, y: 0, z: 0}
   RotationSpeed: 0
   Acceleration: 40
