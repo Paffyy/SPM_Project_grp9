@@ -5,9 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Boss/ForwardShockwaveState")]
 public class BossForwardShockwaveState : BossBaseState
 {
-    private bool fired = false;
     public float YOfset;
-    public GameObject ShockWaveObject;
+    //public GameObject ShockWaveObject;
 
     public override void Enter()
     {
@@ -21,7 +20,7 @@ public class BossForwardShockwaveState : BossBaseState
     {
         
 
-        ShockWaveAttack();
+
         base.HandleUpdate();
 
         owner.Transition<BossAttackState>();
@@ -29,25 +28,19 @@ public class BossForwardShockwaveState : BossBaseState
 
     }
 
-
-    private void ShockWaveAttack()
+    public override void Exit()
     {
-        owner.StartCoroutine(ShockAndAwe());
-        
-    }
-
-    private IEnumerator ShockAndAwe()
-    {
-        owner.NavAgent.isStopped = true;
-        yield return new WaitForSeconds(1.2f);
-        //Y-värdet är så att shockvågen spawnar vid fötterna på bossen + några enheter under marken
-        GameObject.Instantiate(ShockWaveObject, new Vector3(owner.transform.position.x, YOfset, owner.transform.position.z),
-        owner.transform.rotation);
-        //GameObject.Instantiate(ShockWaveObject, new Vector3(owner.transform.position.x, (owner.transform.position.y / 2) - 1f, owner.transform.position.z),
-        //owner.transform.rotation);
-        yield return new WaitForSeconds(1);
         owner.NavAgent.isStopped = false;
-
+        base.Exit();
     }
+
+    //Är tvungen att göras i Boss scriptet så att animationen kan nå den
+    //public void SpawnShockWave()
+    //{
+    //    Debug.Log("spawn");
+    //    //Y-värdet är beroende på offseten på showwave
+    //    GameObject.Instantiate(ShockWaveObject, new Vector3(owner.transform.position.x, YOfset, owner.transform.position.z),
+    //    owner.transform.rotation);
+    //}
 
 }

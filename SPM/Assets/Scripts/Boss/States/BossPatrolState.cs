@@ -32,15 +32,6 @@ public class BossPatrolState : BossBaseState
             currentPoint = (currentPoint + 1) % owner.Path.PathObjects.Count;
         }
 
-
-        //if (Vector3.Distance(owner.transform.position, owner.player.transform.position) < hearRadius)
-        //{
-        //    //Debug.Log(owner.Fow.TargetsInFieldOfView().ToString());
-        //    owner.Transition<BossChaseState>();
-        //}
-        //Debug.Log("boop");
-
-
         base.HandleUpdate();
 
     }

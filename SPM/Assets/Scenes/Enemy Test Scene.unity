@@ -2073,41 +2073,16 @@ PrefabInstance:
       objectReference: {fileID: 395612075}
     - target: {fileID: 5639111063107978647, guid: 934b4553cfdef9246b8b62bf7b19782a,
         type: 3}
-      propertyPath: IsWaitAtPosition
-      value: 1
+      propertyPath: ShockWaveObejctYOffset
+      value: 271.51
       objectReference: {fileID: 0}
     - target: {fileID: 5639111063107978647, guid: 934b4553cfdef9246b8b62bf7b19782a,
         type: 3}
-      propertyPath: AttackPlacmentDistance
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3801160271395005028, guid: 934b4553cfdef9246b8b62bf7b19782a,
+      propertyPath: ShockWaveObject
+      value: 
+      objectReference: {fileID: 5462230367423777423, guid: 2209ba1f494e4f243acdbb70ff613347,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5639111063107978644, guid: 934b4553cfdef9246b8b62bf7b19782a,
-        type: 3}
-      propertyPath: m_StoppingDistance
-      value: 6.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5639111063107978644, guid: 934b4553cfdef9246b8b62bf7b19782a,
-        type: 3}
-      propertyPath: m_Speed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3801160272616955639, guid: 934b4553cfdef9246b8b62bf7b19782a,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3801160272616955639, guid: 934b4553cfdef9246b8b62bf7b19782a,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5639111063107978641, guid: 934b4553cfdef9246b8b62bf7b19782a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 934b4553cfdef9246b8b62bf7b19782a, type: 3}
 --- !u!1001 &4178578323250939681
 PrefabInstance:
