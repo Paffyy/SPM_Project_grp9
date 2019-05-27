@@ -28,6 +28,7 @@ public class BossAttackState : BossBaseState
 
     public override void Enter()
     {
+        Debug.Log("attack state");
         base.Enter();
         //owner.MeshRen.material.color = Color.red;
         currentCooldown = cooldown;
@@ -46,11 +47,15 @@ public class BossAttackState : BossBaseState
 
 
         //Vanlig attack
-        if(Vector3.Distance(owner.transform.position, owner.player.transform.position) < attackDistance && owner.Fow.TargetsInFieldOfView() != null)
+
+        Vector3 distanceVector = owner.player.transform.position - owner.transform.position;
+        float distance = distanceVector.sqrMagnitude;
+        if (distance < attackDistance * attackDistance && owner.Fow.TargetsInFieldOfView() != null)
         {
             if (doubleAttackAllowed)
                 DoubleAttack();
-            SingelAttack();
+            else
+                SingelAttack();
         }
 
         //debug shit

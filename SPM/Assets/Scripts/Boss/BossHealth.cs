@@ -29,7 +29,7 @@ public class BossHealth : EnemyHealth
 
     public override void TakeDamage(int damage, Vector3 pushBack, Vector3 position)
     {
-        base.TakeDamage(damage, Vector3.zero, position); // ingen pushback
+        TakeDamage(damage); // ingen pushback
     }
 
     //override public bool CanTakeDamage()

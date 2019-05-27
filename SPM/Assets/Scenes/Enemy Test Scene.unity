@@ -891,6 +891,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8614785411662860114, guid: 47d39f719808ba144ae109aee7a84d8d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 13.00415
+      objectReference: {fileID: 0}
     - target: {fileID: 8614785412298293880, guid: 47d39f719808ba144ae109aee7a84d8d,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -900,11 +905,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8614785411662860114, guid: 47d39f719808ba144ae109aee7a84d8d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 13.00415
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d39f719808ba144ae109aee7a84d8d, type: 3}
@@ -2071,7 +2071,43 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 395612075}
-    m_RemovedComponents: []
+    - target: {fileID: 5639111063107978647, guid: 934b4553cfdef9246b8b62bf7b19782a,
+        type: 3}
+      propertyPath: IsWaitAtPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639111063107978647, guid: 934b4553cfdef9246b8b62bf7b19782a,
+        type: 3}
+      propertyPath: AttackPlacmentDistance
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801160271395005028, guid: 934b4553cfdef9246b8b62bf7b19782a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639111063107978644, guid: 934b4553cfdef9246b8b62bf7b19782a,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 6.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5639111063107978644, guid: 934b4553cfdef9246b8b62bf7b19782a,
+        type: 3}
+      propertyPath: m_Speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801160272616955639, guid: 934b4553cfdef9246b8b62bf7b19782a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801160272616955639, guid: 934b4553cfdef9246b8b62bf7b19782a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5639111063107978641, guid: 934b4553cfdef9246b8b62bf7b19782a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 934b4553cfdef9246b8b62bf7b19782a, type: 3}
 --- !u!1001 &4178578323250939681
 PrefabInstance:

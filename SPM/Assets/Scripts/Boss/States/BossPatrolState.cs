@@ -25,7 +25,10 @@ public class BossPatrolState : BossBaseState
         owner.NavAgent.SetDestination(owner.Path.PathObjects[currentPoint].position);
         if (Vector3.Distance(owner.transform.position, owner.Path.PathObjects[currentPoint].position) < pointSize )
         {
-            owner.WaitAtPosition(waitAtPatrolPoints);
+            if(isWaitingAtPatrolPoints == true)
+            {
+                owner.WaitAtPosition(waitAtPatrolPointsTime);
+            }
             currentPoint = (currentPoint + 1) % owner.Path.PathObjects.Count;
         }
 

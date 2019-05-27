@@ -14,13 +14,11 @@ public class BaseEnemy : StateMachine
     public int Damage;
     [HideInInspector] public NavMeshAgent NavAgent;
     [HideInInspector] public FieldOfView Fow;
-
     public State CurrectState {
         get {
             return CurrentState;
         }
     }
-
     public float chaseDistance;
     public float cooldown;
     //anvståndet där fienden går in i attackState
@@ -32,9 +30,8 @@ public class BaseEnemy : StateMachine
     public float AttackPlacmentDistance;
     public bool IsWaitAtPosition = false;
     public float waitAtPatrolPoints = 0.0f;
-    //inte nav agents rotation utan 
-
-
+    public LayerMask visionMask;
+    public Player player;
     private EnemyHealth healthSystem;
     [HideInInspector]public CharacterController controller;
 
@@ -48,10 +45,6 @@ public class BaseEnemy : StateMachine
         }
     }
 
-    public List<Vector3> DrawList;
-
-    public LayerMask visionMask;
-    public Player player;
 
     protected override void Awake()
     {
@@ -86,25 +79,6 @@ public class BaseEnemy : StateMachine
         //idleState
         yield return new WaitForSeconds(seconds);
         NavAgent.isStopped = false;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if(DrawList.Count > 0)
-        {
-
-            for(int i = 0; i < DrawList.Count; i++)
-            {
-                Gizmos.color = Color.red;
-                if (i == 0)
-                {
-                    Gizmos.color = Color.yellow;
-                }
-                Gizmos.DrawSphere(DrawList[i], 1f);
-
-            }
-                //Debug.Log("Draw Speheres of flank");
-        }
     }
 
 }

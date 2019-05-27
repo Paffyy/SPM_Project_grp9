@@ -64,9 +64,6 @@ public class BaseEnemyCircleState : BaseEnemyBaseState
         List<Vector3> flankList = Manager.Instance.GetFlankingPoints(owner.transform, circleDistance, 30, goLeft);
         listOfPoints = flankList;
 
-        //Debug ritar ut svärer med OnGizmoSeleced()
-        owner.DrawList.Clear();
-        owner.DrawList = listOfPoints;
     }
 
     private void ToNextPoint()

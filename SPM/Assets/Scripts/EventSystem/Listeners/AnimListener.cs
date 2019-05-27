@@ -21,10 +21,7 @@ public class AnimListener : MonoBehaviour
         var animEvent = e as AnimEventInfo;
         if(animEvent != null)
         {
-        if (animEvent.AnimStateInfo.IsName("AttackRight"))
-            rightHand.ActivateHand(animEvent.AnimStateInfo.length);
-        else if(animEvent.AnimStateInfo.IsName("AttackLeft"))
-            leftHand.ActivateHand(animEvent.AnimStateInfo.length);
+            
         }
     }
 }
