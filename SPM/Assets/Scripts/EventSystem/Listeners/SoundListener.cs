@@ -38,8 +38,10 @@ public class SoundListener : MonoBehaviour
         var pickUpEventInfo = e as PickupEventInfo;
         if(pickUpEventInfo != null)
         {
-                audioSource.clip = pickUpEventInfo.PickUpObject.GetComponent<PickUp>().PickUpSound;
-                audioSource.Play();
+            audioSource.clip = pickUpEventInfo.PickUpObject.GetComponent<PickUp>().PickUpSound;
+            audioSource.Play();
         }
+    
     }
 }
+
