@@ -67,6 +67,7 @@ public class PlayerBaseState : State
    
         Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"),
             0.0f, !isInAir ? Input.GetAxisRaw("Vertical") : 0);
+       
         direction = playerCamera.transform.rotation * direction;
             direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
             float distance = Acceleration * Time.deltaTime * owner.SpeedModifier;
@@ -153,13 +154,20 @@ public class PlayerBaseState : State
 
     protected virtual void ApplyFriction(float normalForce)
     {
-        if (owner.Velocity.magnitude < (normalForce * StaticFriction))
+        float frictionMultiplier = 1;
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"),
+        0.0f, Input.GetAxisRaw("Vertical") );
+        if (direction == Vector3.zero)
+        {
+            frictionMultiplier = 1.6f;
+        }
+        if (owner.Velocity.magnitude < (normalForce * StaticFriction * frictionMultiplier))
         {
             owner.Velocity = Vector3.zero;
         }
         else
         {
-            owner.Velocity += -owner.Velocity.normalized * (normalForce * DynamicFriction);
+            owner.Velocity += -owner.Velocity.normalized * (normalForce * DynamicFriction * frictionMultiplier);
         }
     }
 

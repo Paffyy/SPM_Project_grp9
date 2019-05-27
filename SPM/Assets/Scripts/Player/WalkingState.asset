@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: WalkingState
   m_EditorClassIdentifier: 
   Acceleration: 30
-  GravityForce: 30
+  GravityForce: 20
   StaticFriction: 0.7
   DynamicFriction: 0.5
-  JumpDistance: 12
-  AirResistance: 0.5
+  JumpDistance: 4
+  AirResistance: 0.45
   MouseSensitivity: 2
   skinWidth: 0.005
   groundCheckDistance: 0.5

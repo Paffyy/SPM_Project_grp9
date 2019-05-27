@@ -17,11 +17,11 @@ public class AirState : PlayerBaseState
         HandleInput(true);
         if (owner.Velocity.y < -0.5f)
         {
-            ApplyGravity(1.5f);
+            ApplyGravity(3f);
         }
         else
         {
-            ApplyGravity();
+            ApplyGravity(2f);
         }
 
         Jump();
@@ -42,6 +42,10 @@ public class AirState : PlayerBaseState
             Vector3 jump = Vector3.up * JumpDistance;
             owner.Velocity += jump;
         }
+    }
+    public override void Exit()
+    {
+        base.Exit();
     }
 
 }
