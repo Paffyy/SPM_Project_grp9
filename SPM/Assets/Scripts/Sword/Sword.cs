@@ -8,7 +8,7 @@ public class Sword : MonoBehaviour
 {
     // Start is called before the first frame update
     public float Radius;
-    [Range(0,360)]
+    [Range(0, 360)]
     public float Angle;
     public LayerMask CollisionMask;
     public float CoolDownValue;
@@ -20,6 +20,7 @@ public class Sword : MonoBehaviour
     public bool IsBladeStorming;
     public Animator Anim;
     public ParticleSystem Trails;
+    public GameObject SlashParticleSystem;
     private float coolDownCounter;
     private bool onCooldown;
     private Vector3 swordOffset;
@@ -63,11 +64,11 @@ public class Sword : MonoBehaviour
                 StopAllCoroutines();
             }
         }
-        if(!IsBladeStorming)
+        if (!IsBladeStorming)
         {
             if (coolDownCounter < 0)
             {
-                if (Manager.Instance.IsPaused == false &&  Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
+                if (Manager.Instance.IsPaused == false && Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
                 {
                     coolDownCounter = CoolDownValue;
                     Attack();
@@ -91,12 +92,12 @@ public class Sword : MonoBehaviour
         UpdatePosition();
     }
     IEnumerator InflictBladeStormDamage()
-    { 
+    {
         while (true)
         {
             yield return new WaitForSeconds(0.2f);
-            List<Collider> colliders = Manager.Instance.GetAoeHit(PlayerObject.transform.position, CollisionMask, 3.5f);
-           // Gizmos.DrawSphere(PlayerObject.transform.position, BladeStormCollider.radius * ((transform.localScale.x + transform.localScale.z) / 2));
+            List<Collider> colliders = Manager.Instance.GetAoeHit(PlayerObject.transform.position, CollisionMask, 4.8f);
+            // Gizmos.DrawSphere(PlayerObject.transform.position, BladeStormCollider.radius * ((transform.localScale.x + transform.localScale.z) / 2));
             foreach (Collider c in colliders)
             {
                 if (c.gameObject.CompareTag("Enemy"))
@@ -112,6 +113,17 @@ public class Sword : MonoBehaviour
     {
         Anim.SetBool("Attack", true);
         isAttacking = true;
+    }
+
+    public void EnableSlashEffect()
+    {
+        //GameObject PSClone = Instantiate(SlashParticleSystem, transform.position, Quaternion.identity, Trails.gameObject.transform);
+        //Destroy(PSClone, 2f);
+
+    }
+
+    public void DisableSlashEffect()
+    {
     }
 
     public void GoToIdle()
@@ -178,7 +190,7 @@ public class Sword : MonoBehaviour
     IEnumerator RemoveRedColor(Collider item, Color c)
     {
         yield return new WaitForSeconds(0.2f);
-        if(item != null)
-             item.GetComponent<Renderer>().material.color = c;
+        if (item != null)
+            item.GetComponent<Renderer>().material.color = c;
     }
 }
