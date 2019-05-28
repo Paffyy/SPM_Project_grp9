@@ -117,9 +117,8 @@ public class Sword : MonoBehaviour
 
     public void EnableSlashEffect()
     {
-        //GameObject PSClone = Instantiate(SlashParticleSystem, transform.position, Quaternion.identity, Trails.gameObject.transform);
-        //Destroy(PSClone, 2f);
-
+        //GameObject PSClone = Instantiate(SlashParticleSystem, transform.position, Quaternion.identity, transform);
+        //Destroy(PSClone, 0.4f);
     }
 
     public void DisableSlashEffect()

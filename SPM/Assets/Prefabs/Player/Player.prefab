@@ -1565,6 +1565,21 @@ PrefabInstance:
       propertyPath: ColorModule.gradient.maxGradient.key1.b
       value: 0.5707547
       objectReference: {fileID: 0}
+    - target: {fileID: 622652557805969924, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 622652557805969924, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 622652557805969924, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b0743748735a14b9bc4dd6549545e2, type: 3}
 --- !u!4 &6453448438386392475 stripped
