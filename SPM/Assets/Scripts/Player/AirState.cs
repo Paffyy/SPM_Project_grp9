@@ -15,15 +15,7 @@ public class AirState : PlayerBaseState
     public override void HandleUpdate()
     {
         HandleInput(true);
-        if (owner.Velocity.y < -0.5f)
-        {
-            ApplyGravity(3f);
-        }
-        else
-        {
-            ApplyGravity(2f);
-        }
-
+        ApplyGravity();
         Jump();
         IsColliding();
         owner.Velocity *= Mathf.Pow(AirResistance, Time.deltaTime);
