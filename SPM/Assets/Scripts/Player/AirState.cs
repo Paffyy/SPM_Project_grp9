@@ -7,7 +7,6 @@ public class AirState : PlayerBaseState
 {
     public override void HandleUpdate()
     {
-
         HandleInput();
         ApplyGravity();
         IsColliding();

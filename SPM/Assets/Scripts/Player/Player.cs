@@ -79,12 +79,13 @@ public class Player : StateMachine
     //public GameObject Shield;
     public bool FirstPersonView = false;
     public float SpeedModifier;
-
+    public float DefaultDynamicFriction { get; set; }
     protected override void Awake()
     {
         RotationY = 90;
         SpeedModifier = 1f;
+        DefaultDynamicFriction = DynamicFriction;
         base.Awake();
     }
-
-}
+    
+}   

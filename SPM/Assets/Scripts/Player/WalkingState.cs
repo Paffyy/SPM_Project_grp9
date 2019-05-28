@@ -5,13 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player/WalkingState")]
 public class WalkingState : PlayerBaseState
 {
-
-   // private bool shieldActive = false;
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
     public override void HandleUpdate()
     {
         HandleInput();
