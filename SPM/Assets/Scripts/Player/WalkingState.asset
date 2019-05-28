@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Acceleration: 30
   GravityForce: 20
-  StaticFriction: 0.7
-  DynamicFriction: 0.5
+  StaticFriction: 0.4
+  DynamicFriction: 0.4
   JumpDistance: 4
-  AirResistance: 0.45
+  AirResistance: 0.2
   MouseSensitivity: 2
   skinWidth: 0.005
   groundCheckDistance: 0.5
