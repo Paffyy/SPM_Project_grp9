@@ -34,7 +34,7 @@ public class PlayerBaseState : State
         playerCamera = owner.GetComponentInChildren<Camera>();
     }
 
-    protected virtual void HandleInput(bool isInAir = false)
+    protected virtual void HandleInput()
     {
         if (Manager.Instance.IsPaused == false)
         {
@@ -53,12 +53,11 @@ public class PlayerBaseState : State
                 HandleThirdPersonCamera();
             }
    
-        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"),
-            0.0f, !isInAir ? Input.GetAxisRaw("Vertical") : 0);
+        Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             direction = playerCamera.transform.rotation * direction;
             direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
             float distance = owner.Acceleration * Time.deltaTime * owner.SpeedModifier;
-            if (owner.Velocity.magnitude < owner.TerminalVelocity)
+            if (Vector3.ProjectOnPlane(owner.Velocity + direction.normalized * distance, GetGroundNormal()).magnitude < owner.TerminalVelocity)
             {
                 owner.Velocity += direction.normalized * distance;
             }

@@ -7,10 +7,11 @@ public class AirState : PlayerBaseState
 {
     public override void HandleUpdate()
     {
-        HandleInput(true);
+
+        HandleInput();
         ApplyGravity();
         IsColliding();
-        //Position += owner.Velocity * Time.deltaTime;
+        owner.transform.position += owner.Velocity * Time.deltaTime;
         if (IsGrounded())
         {
             owner.Transition<WalkingState>();

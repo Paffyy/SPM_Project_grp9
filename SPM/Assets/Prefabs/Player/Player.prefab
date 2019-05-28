@@ -584,9 +584,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 289b443858ec8ed40a7d837a4d2aa850, type: 2}
   acceleration: 60
   gravityForce: 25
-  staticFriction: 0.8
-  dynamicFriction: 0.6
-  jumpDistance: 9
+  staticFriction: 1.2
+  dynamicFriction: 0.9
+  jumpHeight: 10
   terminalVelocity: 12
   mouseSensitivity: 2
   skinWidth: 0.02

@@ -2396,6 +2396,11 @@ PrefabInstance:
       propertyPath: zAngle
       value: -9
       objectReference: {fileID: 0}
+    - target: {fileID: 7651501562885396185, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: jumpDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 784922750, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
       propertyPath: WeaponPanel
       value: 

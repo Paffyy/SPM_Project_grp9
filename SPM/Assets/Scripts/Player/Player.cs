@@ -32,8 +32,8 @@ public class Player : StateMachine
     }
     public float JumpHeight
     {
-        get { return jumpDistance; }
-        set { jumpDistance = value; }
+        get { return jumpHeight; }
+        set { jumpHeight = value; }
     }
     public float MouseSensitivity
     {
@@ -62,7 +62,7 @@ public class Player : StateMachine
     [SerializeField] private float gravityForce;
     [SerializeField] private float staticFriction;
     [SerializeField] private float dynamicFriction;
-    [SerializeField] private float jumpDistance;
+    [SerializeField] private float jumpHeight;
     [SerializeField] private float terminalVelocity;
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private float skinWidth;
