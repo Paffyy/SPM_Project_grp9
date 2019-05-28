@@ -23,7 +23,6 @@ public class PlayerBaseState : State
     private float rotationSmoothTime = 0.1f;
     private float fallMultiplier = 2.5f;
     protected Vector3 Position { get { return owner.transform.position; } set { owner.transform.position = value; } }
-    private float defaultDynamicFriction;
     public override void Enter()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -55,7 +54,7 @@ public class PlayerBaseState : State
             Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             if (direction == Vector3.zero)
             {
-                owner.DynamicFriction = owner.DefaultDynamicFriction * 3;
+                owner.DynamicFriction = owner.DefaultDynamicFriction * 4;
             }
             else
             {
@@ -74,8 +73,15 @@ public class PlayerBaseState : State
 
     protected virtual void ApplyGravity(float gravitMultiplier = 1)
     {
-        Vector3 gravity = Vector3.down * owner.GravityForce * gravitMultiplier * Time.deltaTime;
-        owner.Velocity += gravity;
+        Vector3 groundNormal = GetGroundNormal();
+        if (Vector3.Angle(Vector3.up , groundNormal) > owner.MaxClimbAngle)
+        {
+            owner.Velocity += Vector3.down * owner.GravityForce * gravitMultiplier * Time.deltaTime;
+        }
+        else
+        {
+            owner.Velocity += -groundNormal * owner.GravityForce * gravitMultiplier * Time.deltaTime;
+        }
     }
 
     protected virtual void HandleFirstPersonCamera()
@@ -102,13 +108,14 @@ public class PlayerBaseState : State
         RaycastHit hit;
         Vector3 point1 = owner.transform.position + playerCollider.center + Vector3.up * (playerCollider.height / 2 - playerCollider.radius);
         Vector3 point2 = owner.transform.position + playerCollider.center + Vector3.down * (playerCollider.height / 2 - playerCollider.radius);
+        Vector3 projection = Vector3.zero;
         if (Physics.CapsuleCast(point1, point2, playerCollider.radius, owner.Velocity.normalized, out hit, owner.Velocity.magnitude * Time.deltaTime + owner.SkinWidth, CollisionMask) && limit < 25)
         {
             RaycastHit normalHit;
             Physics.CapsuleCast(point1, point2, playerCollider.radius, -hit.normal, out normalHit, owner.Velocity.magnitude * Time.deltaTime + owner.SkinWidth, CollisionMask);
             Vector3 moveDistance = owner.Velocity.normalized * (normalHit.distance - owner.SkinWidth);
             owner.transform.position += moveDistance;
-            Vector3 projection = GetProjection(owner.Velocity, hit.normal);
+            projection = GetProjection(owner.Velocity, hit.normal);
             owner.Velocity += projection;
             ApplyFriction(projection.magnitude);
             limit++;
