@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private PhysicsController phyController;
+    private CharacterController controller;
     private CameraController cameraCon;
 
     [SerializeField] private float jumpHeight;
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        phyController = GetComponent<PhysicsController>();
+        controller = GetComponent<CharacterController>();
         cameraCon = GetComponentInChildren<CameraController>();
     }
 
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         {
 
             Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
-            if (phyController.IsGrounded() == true) {
+            if (controller.IsGrounded() == true) {
                 if (InputManager.Instance.GetkeyDown((KeybindManager.Instance.Jump), InputManager.ControllMode.Play))
                 {
                     Jump();
@@ -60,22 +60,25 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        phyController.Velocity += Vector3.up * jumpHeight;
+        controller.Velocity += Vector3.up * jumpHeight;
     }
 
     private void Fall()
     {
-        phyController.Velocity += Vector3.down * fallingExtraSpeed;
+        controller.Velocity += Vector3.down * fallingExtraSpeed;
     }
 
     private void Move(Vector3 input)
     {
-        currentVel = Quaternion.AngleAxis(cameraCon.Yaw, Vector3.up) * input * MovementSpeed;
+        currentVel = Quaternion.AngleAxis(cameraCon.Yaw, Vector3.up).normalized * input * MovementSpeed;
 
         Debug.DrawRay(transform.position, currentVel, Color.red);
 
 
-        phyController.Velocity += new Vector3(currentVel.x, phyController.Velocity.y, currentVel.z); ;
+        //phyController.Velocity += new Vector3(currentVel.x, phyController.Velocity.y, currentVel.z);
+
+        controller.MovePosition(new Vector3(currentVel.x, 0, currentVel.z));
+        //transform.position += new Vector3(currentVel.x, 0, currentVel.z);
 
     }
 

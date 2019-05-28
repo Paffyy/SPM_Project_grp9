@@ -24,6 +24,8 @@ public class CharacterController : MonoBehaviour
     private CapsuleCollider characterCollider;
     private int collisionLimit = 0;
 
+    [SerializeField]private float maxVelocity;
+
 
     //private Vector3 Position { get { return transform.position; } set { transform.position = value; } }
 
@@ -55,8 +57,9 @@ public class CharacterController : MonoBehaviour
     {
         Vector3 direction = newPos;
         direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
-        float distance = Acceleration * Time.deltaTime;
-        Velocity += direction.normalized * distance;
+        //float distance = Mathf.Clamp(Acceleration * Time.deltaTime, 0 , maxVelocity);
+        Velocity += direction * 5 * Time.deltaTime;
+
 
     }
 
