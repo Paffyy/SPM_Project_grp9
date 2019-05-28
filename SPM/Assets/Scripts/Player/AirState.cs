@@ -5,39 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player/AirState")]
 public class AirState : PlayerBaseState
 {
-
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
     public override void HandleUpdate()
     {
         HandleInput(true);
         ApplyGravity();
-        Jump();
         IsColliding();
-        owner.Velocity *= Mathf.Pow(AirResistance, Time.deltaTime);
-        Position += owner.Velocity * Time.deltaTime;
+        //Position += owner.Velocity * Time.deltaTime;
         if (IsGrounded())
         {
             owner.Transition<WalkingState>();
         }
-
     }
-
-    private void Jump()
-    {
-        if (IsGrounded())
-        {
-            Vector3 jump = Vector3.up * JumpDistance;
-            owner.Velocity += jump;
-        }
-    }
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
 }

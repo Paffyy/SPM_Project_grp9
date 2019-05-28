@@ -582,6 +582,16 @@ MonoBehaviour:
   states:
   - {fileID: 11400000, guid: ed0a2fb23c6860b4fb6fa52964174eba, type: 2}
   - {fileID: 11400000, guid: 289b443858ec8ed40a7d837a4d2aa850, type: 2}
+  acceleration: 60
+  gravityForce: 25
+  staticFriction: 0.8
+  dynamicFriction: 0.6
+  jumpDistance: 9
+  terminalVelocity: 12
+  mouseSensitivity: 2
+  skinWidth: 0.02
+  groundCheckDistance: 0.04
+  maxClimbAngle: 60
   CollisionMask:
     serializedVersion: 2
     m_Bits: 35840
@@ -591,7 +601,7 @@ MonoBehaviour:
   yAngle: 1
   zAngle: -9
   FirstPersonView: 0
-  SpeedModifier: 0
+  SpeedModifier: 1
 --- !u!114 &784922750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,16 +758,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7651501562885396184}
     m_Modifications:
-    - target: {fileID: 1491642827446477486, guid: d0267600f679d9849b345429fa9ea622,
-        type: 3}
-      propertyPath: m_Name
-      value: LeftArm
-      objectReference: {fileID: 0}
-    - target: {fileID: 1491642827446477486, guid: d0267600f679d9849b345429fa9ea622,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1491642827446477483, guid: d0267600f679d9849b345429fa9ea622,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -811,6 +811,16 @@ PrefabInstance:
     - target: {fileID: 1491642827446477483, guid: d0267600f679d9849b345429fa9ea622,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491642827446477486, guid: d0267600f679d9849b345429fa9ea622,
+        type: 3}
+      propertyPath: m_Name
+      value: LeftArm
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491642827446477486, guid: d0267600f679d9849b345429fa9ea622,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1491642828141292749, guid: d0267600f679d9849b345429fa9ea622,
@@ -1018,11 +1028,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7651501562885396184}
     m_Modifications:
-    - target: {fileID: 4877964741923731659, guid: bd758cd7912933c47aa2c050e00620d3,
-        type: 3}
-      propertyPath: m_Name
-      value: Crosshair
-      objectReference: {fileID: 0}
     - target: {fileID: 4877964741923731671, guid: bd758cd7912933c47aa2c050e00620d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1143,6 +1148,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.005
       objectReference: {fileID: 0}
+    - target: {fileID: 4877964741923731659, guid: bd758cd7912933c47aa2c050e00620d3,
+        type: 3}
+      propertyPath: m_Name
+      value: Crosshair
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd758cd7912933c47aa2c050e00620d3, type: 3}
 --- !u!1 &7486069670875497267 stripped
@@ -1164,21 +1174,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7651501562885396184}
     m_Modifications:
-    - target: {fileID: 9136173843970777390, guid: 5b90179c585184e4abb38ac0909b5a46,
-        type: 3}
-      propertyPath: m_Name
-      value: ShieldPivot
-      objectReference: {fileID: 0}
-    - target: {fileID: 9136173843970777390, guid: 5b90179c585184e4abb38ac0909b5a46,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 9136173843970777390, guid: 5b90179c585184e4abb38ac0909b5a46,
-        type: 3}
-      propertyPath: m_TagString
-      value: Shield
-      objectReference: {fileID: 0}
     - target: {fileID: 9136173843970777391, guid: 5b90179c585184e4abb38ac0909b5a46,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1234,6 +1229,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9136173843970777390, guid: 5b90179c585184e4abb38ac0909b5a46,
+        type: 3}
+      propertyPath: m_Name
+      value: ShieldPivot
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136173843970777390, guid: 5b90179c585184e4abb38ac0909b5a46,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136173843970777390, guid: 5b90179c585184e4abb38ac0909b5a46,
+        type: 3}
+      propertyPath: m_TagString
+      value: Shield
+      objectReference: {fileID: 0}
     - target: {fileID: 9136173843718274696, guid: 5b90179c585184e4abb38ac0909b5a46,
         type: 3}
       propertyPath: m_Layer
@@ -1279,11 +1289,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7651501562885396184}
     m_Modifications:
-    - target: {fileID: 8973783150194872640, guid: cc96bc1c463ebce499782d4c73294e9d,
-        type: 3}
-      propertyPath: m_Name
-      value: BladeStormPivot
-      objectReference: {fileID: 0}
     - target: {fileID: 2985678606759904121, guid: cc96bc1c463ebce499782d4c73294e9d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1338,6 +1343,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180.01299
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973783150194872640, guid: cc96bc1c463ebce499782d4c73294e9d,
+        type: 3}
+      propertyPath: m_Name
+      value: BladeStormPivot
       objectReference: {fileID: 0}
     - target: {fileID: 8896782223090841556, guid: cc96bc1c463ebce499782d4c73294e9d,
         type: 3}
@@ -1400,11 +1410,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7651501562885396184}
     m_Modifications:
-    - target: {fileID: 622652556510898369, guid: f3b0743748735a14b9bc4dd6549545e2,
-        type: 3}
-      propertyPath: m_Name
-      value: Arm (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 622652556510898374, guid: f3b0743748735a14b9bc4dd6549545e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1459,6 +1464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 622652556510898369, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: m_Name
+      value: Arm (1)
       objectReference: {fileID: 0}
     - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
         type: 3}
@@ -1586,11 +1596,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7368179007297460501}
     m_Modifications:
-    - target: {fileID: 4541551407901521853, guid: d0842d28085ff45408576a11703e5437,
-        type: 3}
-      propertyPath: m_Name
-      value: BladeStormPS
-      objectReference: {fileID: 0}
     - target: {fileID: 4541551407901521842, guid: d0842d28085ff45408576a11703e5437,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1645,6 +1650,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541551407901521853, guid: d0842d28085ff45408576a11703e5437,
+        type: 3}
+      propertyPath: m_Name
+      value: BladeStormPS
       objectReference: {fileID: 0}
     - target: {fileID: 4541551407901521843, guid: d0842d28085ff45408576a11703e5437,
         type: 3}
@@ -1755,11 +1765,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7651501562885396184}
     m_Modifications:
-    - target: {fileID: 2706102015894810966, guid: 43428addf63169d499c3811de094f91e,
-        type: 3}
-      propertyPath: m_Name
-      value: SwordPivot
-      objectReference: {fileID: 0}
     - target: {fileID: 2706102015894810961, guid: 43428addf63169d499c3811de094f91e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1814,6 +1819,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.013
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706102015894810966, guid: 43428addf63169d499c3811de094f91e,
+        type: 3}
+      propertyPath: m_Name
+      value: SwordPivot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43428addf63169d499c3811de094f91e, type: 3}

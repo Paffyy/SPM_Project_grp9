@@ -5,17 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Player/PlayerBaseState")]
 public class PlayerBaseState : State
 {
-
-    [SerializeField] protected float Acceleration = 20.0f;
-    [SerializeField] protected float GravityForce = 15.0f;
-    [SerializeField] protected float StaticFriction = 0.1f;
-    [SerializeField] protected float DynamicFriction = 0.06f;
-    [SerializeField] protected float JumpDistance = 5.0f;
-    [SerializeField] protected float AirResistance = 0.9f;
-    [SerializeField] protected float MouseSensitivity = 3.0f;
-    [SerializeField] protected float skinWidth = 0.005f;
-    [SerializeField] protected float groundCheckDistance = 0.5f;
-    [SerializeField] private float maxClimbAngle = 60;
     protected CapsuleCollider playerCollider;
     protected int limit = 0;
     protected Camera playerCamera;
@@ -49,9 +38,9 @@ public class PlayerBaseState : State
     {
         if (Manager.Instance.IsPaused == false)
         {
-            owner.RotationX -= Input.GetAxisRaw("Mouse Y") * MouseSensitivity;
+            owner.RotationX -= Input.GetAxisRaw("Mouse Y") * owner.MouseSensitivity;
             owner.RotationX = Mathf.Clamp(owner.RotationX, minCameraAngle, maxCameraAngle);
-            owner.RotationY += Input.GetAxisRaw("Mouse X") * MouseSensitivity;
+            owner.RotationY += Input.GetAxisRaw("Mouse X") * owner.MouseSensitivity;
             playerCamera.transform.rotation = Quaternion.Euler(owner.RotationX, owner.RotationY, 0.0f);
             if (Input.GetKeyDown(KeyCode.V))
                 owner.FirstPersonView = !owner.FirstPersonView;
@@ -68,25 +57,18 @@ public class PlayerBaseState : State
             0.0f, !isInAir ? Input.GetAxisRaw("Vertical") : 0);
             direction = playerCamera.transform.rotation * direction;
             direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
-            float distance = Acceleration * Time.deltaTime * owner.SpeedModifier;
-            owner.Velocity += direction.normalized * distance ;
+            float distance = owner.Acceleration * Time.deltaTime * owner.SpeedModifier;
+            if (owner.Velocity.magnitude < owner.TerminalVelocity)
+            {
+                owner.Velocity += direction.normalized * distance;
+            }
         }
 
     }
 
     protected virtual void ApplyGravity(float gravitMultiplier = 1)
     {
-        Vector3 gravity;
-        //om spelaren faller
-        //if (owner.Velocity.y < 0)
-        //{
-        //     gravity = Vector3.down * GravityForce * (fallMultiplier -1) * Time.deltaTime;
-        //}
-        //else
-        //{
-            gravity = Vector3.down * GravityForce * gravitMultiplier * Time.deltaTime;
-
-        //}
+        Vector3 gravity = Vector3.down * owner.GravityForce * gravitMultiplier * Time.deltaTime;
         owner.Velocity += gravity;
     }
 
@@ -114,11 +96,11 @@ public class PlayerBaseState : State
         RaycastHit hit;
         Vector3 point1 = owner.transform.position + playerCollider.center + Vector3.up * (playerCollider.height / 2 - playerCollider.radius);
         Vector3 point2 = owner.transform.position + playerCollider.center + Vector3.down * (playerCollider.height / 2 - playerCollider.radius);
-        if (Physics.CapsuleCast(point1, point2, playerCollider.radius, owner.Velocity.normalized, out hit, owner.Velocity.magnitude * Time.deltaTime + skinWidth, CollisionMask) && limit < 10)
+        if (Physics.CapsuleCast(point1, point2, playerCollider.radius, owner.Velocity.normalized, out hit, owner.Velocity.magnitude * Time.deltaTime + owner.SkinWidth, CollisionMask) && limit < 10)
         {
             RaycastHit normalHit;
-            Physics.CapsuleCast(point1, point2, playerCollider.radius, -hit.normal, out normalHit, owner.Velocity.magnitude * Time.deltaTime + skinWidth, CollisionMask);
-            Vector3 moveDistance = owner.Velocity.normalized * (normalHit.distance - skinWidth);
+            Physics.CapsuleCast(point1, point2, playerCollider.radius, -hit.normal, out normalHit, owner.Velocity.magnitude * Time.deltaTime + owner.SkinWidth, CollisionMask);
+            Vector3 moveDistance = owner.Velocity.normalized * (normalHit.distance - owner.SkinWidth);
             owner.transform.position += moveDistance;
             Vector3 projection = GetProjection(owner.Velocity, hit.normal);
             owner.Velocity += projection;
@@ -129,19 +111,6 @@ public class PlayerBaseState : State
         limit = 0;
     }
 
-    //protected virtual void ApplyMovingFriction(float normalForce, RaycastHit hit)
-    //{
-    //    float difference = owner.Velocity.magnitude - hit.collider.GetComponent<MovingPlatform3D>().GetVelocity().magnitude;
-    //    if (difference < (normalForce * StaticFriction))
-    //    {
-    //        owner.Velocity = hit.collider.GetComponent<MovingPlatform3D>().GetVelocity();
-    //    }
-    //    else
-    //    {
-    //        owner.Velocity += -owner.Velocity.normalized * (normalForce * DynamicFriction);
-    //    }
-    //}
-
     protected virtual void ApplyFriction(float normalForce)
     {
         float frictionMultiplier = 1;
@@ -151,13 +120,13 @@ public class PlayerBaseState : State
         {
             frictionMultiplier = 1.6f;
         }
-        if (owner.Velocity.magnitude < (normalForce * StaticFriction * frictionMultiplier))
+        if (owner.Velocity.magnitude < (normalForce * owner.StaticFriction * frictionMultiplier))
         {
             owner.Velocity = Vector3.zero;
         }
         else
         {
-            owner.Velocity += -owner.Velocity.normalized * (normalForce * DynamicFriction * frictionMultiplier);
+            owner.Velocity += -owner.Velocity.normalized * (normalForce * owner.DynamicFriction * frictionMultiplier);
         }
     }
 
@@ -181,10 +150,10 @@ public class PlayerBaseState : State
         RaycastHit hit;
         Vector3 point1 = owner.transform.position + playerCollider.center + Vector3.up * (playerCollider.height / 2 - playerCollider.radius);
         Vector3 point2 = owner.transform.position + playerCollider.center + Vector3.down * (playerCollider.height / 2 - playerCollider.radius);
-        if (Physics.CapsuleCast(point1, point2, playerCollider.radius, Vector3.down, out hit, groundCheckDistance + skinWidth, CollisionMask))
+        if (Physics.CapsuleCast(point1, point2, playerCollider.radius, Vector3.down, out hit, owner.GroundCheckDistance + owner.SkinWidth, CollisionMask))
         {
             float angle = Vector3.Angle(Vector3.up, hit.normal);
-            if (angle > maxClimbAngle)
+            if (angle > owner.MaxClimbAngle)
             {
                 return false;
             }
@@ -199,7 +168,7 @@ public class PlayerBaseState : State
         Vector3 point1 = owner.transform.position + playerCollider.center + Vector3.up * (playerCollider.height / 2 - playerCollider.radius);
         Vector3 point2 = owner.transform.position + playerCollider.center + Vector3.down * (playerCollider.height / 2 - playerCollider.radius);
         RaycastHit hit;
-        if (Physics.CapsuleCast(point1, point2, playerCollider.radius, Vector3.down, out hit, groundCheckDistance + skinWidth, CollisionMask))
+        if (Physics.CapsuleCast(point1, point2, playerCollider.radius, Vector3.down, out hit, owner.GroundCheckDistance + owner.SkinWidth, CollisionMask))
         {
             return hit.normal;
         }

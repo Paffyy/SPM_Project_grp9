@@ -17,27 +17,18 @@ public class WalkingState : PlayerBaseState
         HandleInput();
         ApplyGravity();
         IsColliding();
-        owner.Velocity *= Mathf.Pow(AirResistance, Time.deltaTime);
         owner.transform.position += owner.Velocity * Time.deltaTime;
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        //    shieldActive = !shieldActive;
-        //}
-        //if (shieldActive)
-        //{
-        //    owner.Shield.SetActive(true);
-        //    owner.Shield.GetComponent<Shield>().Reflect();
-        //}
-        //else
-        //{
-        //    owner.Shield.SetActive(false);
-        //}
-
-        //TODO fixa det här
-        //Vet inte varför man är tvungen att kolla om spelet är pausat här
-        //annars hoppar man ändå
         if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.Jump, InputManager.ControllMode.Play))
         {
+            Jump();
+        }
+    }
+    private void Jump()
+    {
+        if (IsGrounded())
+        {
+            Vector3 jump = Vector3.up * owner.JumpHeight;
+            owner.Velocity += jump;
             owner.Transition<AirState>();
         }
     }
