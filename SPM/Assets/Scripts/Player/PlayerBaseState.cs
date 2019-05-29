@@ -9,7 +9,7 @@ public class PlayerBaseState : State
     protected int limit = 0;
     protected Camera playerCamera;
     protected float minCameraAngle = -30;
-    protected float maxCameraAngle =80;
+    protected float maxCameraAngle = 75;
     protected Vector3 cameraPosition;
     protected SphereCollider sphere;
     protected Player owner;
@@ -54,13 +54,14 @@ public class PlayerBaseState : State
             Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             if (direction == Vector3.zero)
             {
-                owner.DynamicFriction = owner.DefaultDynamicFriction * 4;
+                owner.DynamicFriction = owner.DefaultDynamicFriction * 3;
             }
             else
             {
-                owner.DynamicFriction = owner.DefaultDynamicFriction;
+                owner.DynamicFriction = owner.DefaultDynamicFriction / 3;
             }
-            direction = playerCamera.transform.rotation * direction;
+           
+            direction = Quaternion.LookRotation(Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up)) * direction;
             direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
             float distance = owner.Acceleration * Time.deltaTime * owner.SpeedModifier;
             if ((owner.Velocity + direction.normalized * distance).magnitude < owner.TerminalVelocity)
