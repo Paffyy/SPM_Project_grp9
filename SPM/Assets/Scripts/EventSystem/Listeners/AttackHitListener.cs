@@ -24,7 +24,6 @@ public class AttackHitListener : MonoBehaviour
         {
             Vector3 particlePos =  hitEvent.TargetHit.ClosestPointOnBounds(hitEvent.self.transform.position);
             ParticleSystem part = Instantiate(hitParticelsEffect, particlePos, Quaternion.identity, transform);
-            Debug.Log("time " + part.time);
             part.Play();
             
         }
