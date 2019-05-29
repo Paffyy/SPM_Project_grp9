@@ -10,6 +10,10 @@ public class WalkingState : PlayerBaseState
         HandleInput();
         ApplyGravity();
         IsColliding();
+        if (owner.Velocity.magnitude > owner.TerminalVelocity)
+        {
+            owner.Velocity = owner.Velocity.normalized * owner.TerminalVelocity;
+        }
         owner.transform.position += owner.Velocity * Time.deltaTime;
         if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.Jump, InputManager.ControllMode.Play))
         {

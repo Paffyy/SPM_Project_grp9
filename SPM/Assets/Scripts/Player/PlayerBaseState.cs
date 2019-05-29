@@ -64,10 +64,7 @@ public class PlayerBaseState : State
             direction = Quaternion.LookRotation(Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up)) * direction;
             direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
             float distance = owner.Acceleration * Time.deltaTime * owner.SpeedModifier;
-            if ((owner.Velocity + direction.normalized * distance).magnitude < owner.TerminalVelocity)
-            {
-                owner.Velocity += direction.normalized * distance;
-            }
+            owner.Velocity += direction.normalized * distance;
         }
 
     }
