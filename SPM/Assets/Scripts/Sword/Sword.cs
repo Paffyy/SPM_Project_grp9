@@ -102,6 +102,7 @@ public class Sword : MonoBehaviour
             {
                 if (c.gameObject.CompareTag("Enemy"))
                 {
+                    EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(PlayerObject.transform, c, AttackHitEventInfo.Weapon.Sword));
                     c.gameObject.GetComponent<EnemyHealth>().TakeDamage(BladeStormDamage, true);
                 }
             }
@@ -169,6 +170,7 @@ public class Sword : MonoBehaviour
         var enemyInRange = Manager.Instance.GetFrontConeHit(playerCamera.transform.forward, PlayerObject.transform, CollisionMask, Radius, Angle);
         foreach (var item in enemyInRange)
         {
+            EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(PlayerObject.transform ,item, AttackHitEventInfo.Weapon.Sword));
             DealDamage(item);
         }
     }

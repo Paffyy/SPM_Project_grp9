@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &697080507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 697080508}
+  - component: {fileID: 697080509}
+  m_Layer: 0
+  m_Name: AttackHitListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &697080508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697080507}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2093523449477133053}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &697080509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697080507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add455df40b3513489ba950cc7e5fb66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitParticelsEffect: {fileID: 3804509789712899685, guid: ad7ed7a01172ca241a6637e05ab1c8f9,
+    type: 3}
 --- !u!1 &2093523448594472255
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,10 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpTextPrefab: {fileID: 7862457721269997802, guid: 03a411e3e15e595498b7f8359b9dd464,
     type: 3}
-  UICanvas: {fileID: 8614785410683084575, guid: 47d39f719808ba144ae109aee7a84d8d,
-    type: 3}
-  saveTextPrefab: {fileID: 1611037756056421105, guid: d76fb1beae735b8489d367297407b17f,
-    type: 3}
+  UICanvas: {fileID: 0}
+  saveTextPrefab: {fileID: 0}
 --- !u!1 &2093523449477133055
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +161,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093523449477133055}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -127,6 +170,7 @@ Transform:
   - {fileID: 2093523448594472254}
   - {fileID: 6260009950017320902}
   - {fileID: 1634973968469568596}
+  - {fileID: 697080508}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
