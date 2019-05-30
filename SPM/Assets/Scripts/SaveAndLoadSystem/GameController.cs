@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
         {
             SaveEventInfo saveEventInfo = new SaveEventInfo("Saving...");
             EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
-            SaveSystem.SaveGame();
+            SaveSystem.SaveGame(new GameData());
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
