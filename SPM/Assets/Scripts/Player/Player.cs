@@ -56,6 +56,11 @@ public class Player : StateMachine
         get { return maxClimbAngle; }
         set { maxClimbAngle = value; }
     }
+    public Vector3 BowOffset
+    {
+        get { return bowOffset; }
+        set { bowOffset = value; }
+    }
     #endregion
 
     #region Fields
@@ -69,8 +74,10 @@ public class Player : StateMachine
     [SerializeField] private float skinWidth;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float maxClimbAngle;
+    [SerializeField] private Vector3 bowOffset;
+
     #endregion
-    
+
 
     public LayerMask CollisionMask;
     public Vector3 Velocity { get; set; }

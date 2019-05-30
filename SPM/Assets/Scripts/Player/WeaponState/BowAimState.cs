@@ -10,14 +10,13 @@ public class BowAimState : WeaponBaseState
     {
         owner.CurrentStateID = 1;
         owner.BowIcon.GetComponent<Image>().color = Color.green;
-        owner.Bow.SetActive(true);
+
         owner.BowFirstPerson.SetActive(true);
     }
 
     public override void Exit()
     {
         owner.BowFirstPerson.SetActive(false);
-        owner.Bow.SetActive(false);
     }
 
     public override void HandleUpdate()
