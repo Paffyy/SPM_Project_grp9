@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Manager.Instance.HasLoadedFromCheckPoint = true;
+            Manager.Instance.HasLoadedFromSave = true;
             SceneManager.LoadScene(CurrentSceneIndex);
         }
     }

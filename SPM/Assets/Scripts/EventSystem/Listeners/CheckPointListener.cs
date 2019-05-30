@@ -33,6 +33,8 @@ public class CheckPointListener : MonoBehaviour
             data.PlayerPosition[0] = CurrentRespawnPosition.position.x;
             data.PlayerPosition[1] = CurrentRespawnPosition.position.y;
             data.PlayerPosition[2] = CurrentRespawnPosition.position.z;
+            Debug.Log(CurrentRespawnPosition.rotation.y);
+            data.PlayerRotation = CurrentRespawnPosition.rotation.y + 90;
             data.PlayerHealth = Player.GetComponent<PlayerHealth>().StartingHealth;
             if (data.ArrowCount < 5)
                 data.ArrowCount = 5;
@@ -49,10 +51,9 @@ public class CheckPointListener : MonoBehaviour
         {
             if (deathEventInfo.GameObject.CompareTag("Player"))
             {
-                Manager.Instance.HasLoadedFromCheckPoint = true;
+                Manager.Instance.HasLoadedFromSave = true;
                 SceneManager.LoadScene(GameController.GameControllerInstance.CurrentSceneIndex);
 
-                //deathEventInfo.GameObject.transform.position = CurrentRespawnPosition.transform.position;
                 //deathEventInfo.GameObject.GetComponent<Player>().RotationY = CurrentRespawnPosition.rotation.y + 90;
                 //PlayerCamera.transform.rotation = Quaternion.Euler(PlayerCamera.transform.rotation.x, CurrentRespawnPosition.rotation.y, PlayerCamera.transform.rotation.z);
             }

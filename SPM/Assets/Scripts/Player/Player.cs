@@ -92,6 +92,7 @@ public class Player : StateMachine
     protected override void Awake()
     {
         RotationY = 90;
+        RotationX = 25;
         SpeedModifier = 1f;
         DefaultDynamicFriction = DynamicFriction;
         DefaultStaticFriction = StaticFriction;
