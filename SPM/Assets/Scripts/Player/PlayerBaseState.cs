@@ -55,12 +55,14 @@ public class PlayerBaseState : State
             if (direction == Vector3.zero)
             {
                 owner.DynamicFriction = owner.DefaultDynamicFriction * 3;
+                owner.StaticFriction = owner.DefaultStaticFriction * 1.5f;
             }
             else
             {
-                owner.DynamicFriction = owner.DefaultDynamicFriction / 3;
+                owner.DynamicFriction = owner.DefaultDynamicFriction / 1.25f;
+                owner.StaticFriction = owner.DefaultStaticFriction;
+
             }
-           
             direction = Quaternion.LookRotation(Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up)) * direction;
             direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
             float distance = owner.Acceleration * Time.deltaTime * owner.SpeedModifier;

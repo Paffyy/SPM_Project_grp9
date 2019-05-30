@@ -16,11 +16,6 @@ public class Player : StateMachine
         get { return gravityForce; }
         set { gravityForce = value; }
     }
-    public float TerminalVelocity
-    {
-        get { return terminalVelocity; }
-        set { terminalVelocity = value; }
-    }
     public float StaticFriction
     {
         get { return staticFriction; }
@@ -40,6 +35,11 @@ public class Player : StateMachine
     {
         get { return mouseSensitivity; }
         set { mouseSensitivity = value; }
+    }
+    public float AirResistance
+    {
+        get { return airResistance; }
+        set { airResistance = value; }
     }
     public float SkinWidth
     {
@@ -64,8 +64,8 @@ public class Player : StateMachine
     [SerializeField] private float staticFriction;
     [SerializeField] private float dynamicFriction;
     [SerializeField] private float jumpHeight;
-    [SerializeField] private float terminalVelocity;
     [SerializeField] private float mouseSensitivity;
+    [SerializeField] private float airResistance;
     [SerializeField] private float skinWidth;
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float maxClimbAngle;
@@ -73,20 +73,21 @@ public class Player : StateMachine
     
 
     public LayerMask CollisionMask;
-    public Vector3 Velocity;
+    public Vector3 Velocity { get; set; }
     [HideInInspector] public float RotationX;
     [HideInInspector] public float RotationY;
     public float yAngle, zAngle;
-    //public GameObject Shield;
     public bool FirstPersonView = false;
     public float SpeedModifier;
     public float DefaultDynamicFriction { get; set; }
+    public float DefaultStaticFriction { get; set; }
 
     protected override void Awake()
     {
         RotationY = 90;
         SpeedModifier = 1f;
         DefaultDynamicFriction = DynamicFriction;
+        DefaultStaticFriction = StaticFriction;
         base.Awake();
     }
     
