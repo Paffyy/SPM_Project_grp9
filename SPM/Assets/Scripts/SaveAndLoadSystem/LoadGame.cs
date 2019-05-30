@@ -24,6 +24,7 @@ public class LoadGame : MonoBehaviour
         GameData data = SaveSystem.LoadGame();
         Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
         Player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
+        Player.GetComponent<Weapon>().ChangeState(data.CurrentWeaponState);
     }
 
     private void LoadFromSave()
@@ -33,10 +34,10 @@ public class LoadGame : MonoBehaviour
         position.x = data.PlayerPosition[0];
         position.y = data.PlayerPosition[1];
         position.z = data.PlayerPosition[2];
-        Debug.Log(position);
         Player.transform.position = position;
         Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
         Player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
+        Player.GetComponent<Weapon>().ChangeState(data.CurrentWeaponState);
         List<float> ZonesID = data.RevitalizedZonesID;
         foreach (float ID in ZonesID)
         {
