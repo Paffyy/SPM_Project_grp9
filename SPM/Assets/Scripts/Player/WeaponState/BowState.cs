@@ -11,15 +11,8 @@ public class BowState : WeaponBaseState
     {
         owner.CurrentStateID = 1;
         owner.BowIcon.GetComponent<Image>().color = Color.green;
-        owner.Bow.SetActive(true);
         base.Enter();
     }
-
-    public override void Exit()
-    {
-        owner.Bow.SetActive(false);
-    }
-
     public override void HandleUpdate()
     {
         if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot1, InputManager.ControllMode.Play))

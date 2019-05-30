@@ -49,8 +49,8 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 50176
-  baseDamage: 50
-  aoeDamage: 81
+  baseDamage: 40
+  aoeDamage: 80
   aoeRadius: 6
 --- !u!198 &6814381543620732795
 ParticleSystem:
@@ -4791,11 +4791,6 @@ PrefabInstance:
       propertyPath: GravityForce
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4922832434141063200, guid: 9b96a398aa0f2ce4a8bbfd513f95b02b,
-        type: 3}
-      propertyPath: m_Name
-      value: Arrow
-      objectReference: {fileID: 0}
     - target: {fileID: 4922832434126727743, guid: 9b96a398aa0f2ce4a8bbfd513f95b02b,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -4845,6 +4840,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922832434141063200, guid: 9b96a398aa0f2ce4a8bbfd513f95b02b,
+        type: 3}
+      propertyPath: m_Name
+      value: Arrow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b96a398aa0f2ce4a8bbfd513f95b02b, type: 3}

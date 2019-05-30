@@ -86,7 +86,17 @@ public class PlayerBaseState : State
 
     protected virtual void HandleFirstPersonCamera()
     {
-        playerCamera.transform.position = owner.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
+        RaycastHit hit;
+        Vector3 cameraUpdate = playerCamera.transform.rotation * owner.BowOffset.normalized;
+        if (Physics.SphereCast(owner.transform.position, sphere.radius, cameraUpdate, out hit, owner.BowOffset.magnitude, CameraCollisionMask))
+        {
+            Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius);
+            playerCamera.transform.position = newPosition + owner.transform.position;
+        }
+        else
+        {
+            playerCamera.transform.position = cameraUpdate * owner.BowOffset.magnitude + owner.transform.position;
+        }
     }
     protected virtual void HandleThirdPersonCamera()
     {
