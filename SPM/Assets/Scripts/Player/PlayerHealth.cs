@@ -7,8 +7,9 @@ public class PlayerHealth : MonoBehaviour
 {
     public int StartingHealth = 100;
     private int currentHealth;
-    public int CurrentHealth { get { return currentHealth; } set { currentHealth = value; HealthSlider.value = currentHealth; } }
+    public int CurrentHealth { get { return currentHealth; } set { currentHealth = value; HealthSlider.value = currentHealth; hearts.CurrentHealth = currentHealth; } }
     public Slider HealthSlider;
+    public HeartsHandeler hearts;
     public GameObject ShieldObject;
     private Player player;
     private Shield shield;
@@ -20,12 +21,14 @@ public class PlayerHealth : MonoBehaviour
         player = GetComponent<Player>();
         shield = player.GetComponent<Weapon>().Shield.GetComponent<Shield>();
     }
+
     void Start()
     {
         CurrentHealth = StartingHealth;
         if (HealthSlider != null)
         {
             HealthSlider.maxValue = StartingHealth;
+            hearts.CurrentHealth = StartingHealth;
         }
         currentCooldown = DamageCooldown;
     }

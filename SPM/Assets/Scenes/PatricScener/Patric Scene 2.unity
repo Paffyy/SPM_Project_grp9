@@ -229,21 +229,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8614785412298293880, guid: 47d39f719808ba144ae109aee7a84d8d,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8614785412298293880, guid: 47d39f719808ba144ae109aee7a84d8d,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8614785411662860114, guid: 47d39f719808ba144ae109aee7a84d8d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 13.003906
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d39f719808ba144ae109aee7a84d8d, type: 3}
 --- !u!114 &2612414 stripped
@@ -4844,6 +4829,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2018313615}
+    - target: {fileID: 2796968206420594173, guid: 4b648d8a30adb72409de9a5d885d9707,
+        type: 3}
+      propertyPath: Damage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 89316340, guid: 4b648d8a30adb72409de9a5d885d9707, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -7501,6 +7491,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c00ffe5be3e00c442baebf4d07a1b69c, type: 3}
+--- !u!114 &2039870791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2039870791, guid: 47d39f719808ba144ae109aee7a84d8d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2612413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993e50c60a40abb4cab000c50a099229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2050637412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2553328062434159659, guid: 773d24340ee78a346b6c98ae30f27705,
@@ -7929,12 +7931,11 @@ MonoBehaviour:
   AttackPlacmentDistance: 0
   IsWaitAtPosition: 0
   waitAtPatrolPoints: 0
-  controller: {fileID: 0}
-  DrawList: []
   visionMask:
     serializedVersion: 2
     m_Bits: 1024
   player: {fileID: 2018313615}
+  controller: {fileID: 0}
 --- !u!23 &2140452108
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8725,10 +8726,10 @@ PrefabInstance:
       propertyPath: DamageCooldown
       value: 0.21
       objectReference: {fileID: 0}
-    - target: {fileID: 156662277, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
-      propertyPath: ArrowCountText
+    - target: {fileID: 520724104, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
+      propertyPath: hearts
       value: 
-      objectReference: {fileID: 2612415}
+      objectReference: {fileID: 2039870791}
     - target: {fileID: 7196250674778059619, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: ArrowCountText
@@ -8739,6 +8740,10 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 784922749}
+    - target: {fileID: 156662277, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
+      propertyPath: ArrowCountText
+      value: 
+      objectReference: {fileID: 2612415}
     - target: {fileID: 7651501562885396185, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: yAngle
