@@ -101,6 +101,8 @@ public class Arrow : MonoBehaviour
                 Vector3 pushBack = Vector3.ProjectOnPlane(velocity.normalized, Vector3.up) * 2 + (Vector3.up * 2) * 3;
                 gameObject.transform.SetParent(hit.collider.gameObject.transform);
                 hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, pushBack, Vector3.zero);
+
+                EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(transform, hit.collider, AttackHitEventInfo.Weapon.Bow));
             }
             hasCollided = true;
             if (EventHandler.Instance != null)
