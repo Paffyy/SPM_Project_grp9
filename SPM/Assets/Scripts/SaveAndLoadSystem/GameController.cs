@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public Transform Player { get { return player.transform; } }
     public int PlayerHealth { get { return playerHealthScript.CurrentHealth; } }
     public int ArrowCount { get { return weaponScript.ArrowCount; } }
+    public int CurrentWeaponState { get { return weaponScript.CurrentStateID; } }
     public List<float> DeadEnemies = new List<float>();
     public List<float> PickedUpObjects = new List<float>();
     public List<float> RevitalizedZones = new List<float>();
@@ -35,12 +36,12 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.M))
-        //{
-        //    SaveEventInfo saveEventInfo = new SaveEventInfo("Saving...");
-        //    EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
-        //    SaveSystem.SaveGame();
-        //}
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SaveEventInfo saveEventInfo = new SaveEventInfo("Saving...");
+            EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
+            SaveSystem.SaveGame();
+        }
         if (Input.GetKeyDown(KeyCode.L))
         {
             Manager.Instance.HasLoadedFromCheckPoint = true;

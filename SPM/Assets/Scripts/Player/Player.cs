@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : StateMachine
 {
     #region Properties
+
     public float Acceleration
     {
         get { return acceleration; }
@@ -69,17 +70,18 @@ public class Player : StateMachine
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float maxClimbAngle;
     #endregion
+    
 
     public LayerMask CollisionMask;
     public Vector3 Velocity;
     [HideInInspector] public float RotationX;
     [HideInInspector] public float RotationY;
-
     public float yAngle, zAngle;
     //public GameObject Shield;
     public bool FirstPersonView = false;
     public float SpeedModifier;
     public float DefaultDynamicFriction { get; set; }
+
     protected override void Awake()
     {
         RotationY = 90;

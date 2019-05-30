@@ -8,6 +8,7 @@ public class BowAimState : WeaponBaseState
 {
     public override void Enter()
     {
+        owner.CurrentStateID = 1;
         owner.BowIcon.GetComponent<Image>().color = Color.green;
         owner.Bow.SetActive(true);
         owner.BowFirstPerson.SetActive(true);

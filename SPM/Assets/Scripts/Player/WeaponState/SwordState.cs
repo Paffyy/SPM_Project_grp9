@@ -9,6 +9,7 @@ public class SwordState : WeaponBaseState
 
     public override void Enter()
     {
+        owner.CurrentStateID = 0;
         owner.SwordIcon.GetComponent<Image>().color = Color.green;
         owner.Sword.SetActive(true);
         owner.Shield.SetActive(true);
@@ -27,15 +28,9 @@ public class SwordState : WeaponBaseState
     {
         if (!owner.Sword.GetComponent<Sword>().IsBladeStorming)
         {
-            //if (Input.GetKeyDown(KeyCode.Alpha0))
-            //    owner.Transition<NoWeaponState>();
             if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot2, InputManager.ControllMode.Play))
                 owner.Transition<BowAimState>();
-            //else if (Input.GetKeyDown(KeyCode.Alpha3))
-            //    owner.Transition<ShieldState>();
         }
-
-        //kolla ev. om karaktären har tillgång till dessa vapen innan byte av state
     }
 
 }
