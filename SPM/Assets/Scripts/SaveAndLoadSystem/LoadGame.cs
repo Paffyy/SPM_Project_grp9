@@ -8,10 +8,10 @@ public class LoadGame : MonoBehaviour
 
     void Start()
     {
-        if (Manager.Instance.HasLoadedFromCheckPoint)
+        if (Manager.Instance.HasLoadedFromSave)
         {
             LoadFromSave();
-            Manager.Instance.HasLoadedFromCheckPoint = false;
+            Manager.Instance.HasLoadedFromSave = false;
         } else if (Manager.Instance.HasLoadedFromPreviousLevel)
         {
             LoadPlayerDataOnly();
@@ -35,6 +35,7 @@ public class LoadGame : MonoBehaviour
         position.y = data.PlayerPosition[1];
         position.z = data.PlayerPosition[2];
         Player.transform.position = position;
+        Player.GetComponent<Player>().RotationY = data.PlayerRotation;
         Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
         Player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
         Player.GetComponent<Weapon>().ChangeState(data.CurrentWeaponState);

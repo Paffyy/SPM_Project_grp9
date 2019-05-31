@@ -10,7 +10,7 @@ public class GameData
     public int ArrowCount;
     public int CurrentWeaponState;
     public float[] PlayerPosition;
-    public float[] PlayerRotation;
+    public float PlayerRotation;
     public List<float> DeadEnemiesID;
     public List<float> PickedUpObjectsID;
     public List<float> RevitalizedZonesID;
@@ -25,6 +25,7 @@ public class GameData
         PlayerPosition[0] = GameController.GameControllerInstance.Player.position.x;
         PlayerPosition[1] = GameController.GameControllerInstance.Player.position.y;
         PlayerPosition[2] = GameController.GameControllerInstance.Player.position.z;
+        PlayerRotation = GameController.GameControllerInstance.Player.gameObject.GetComponent<Player>().RotationY;
         DeadEnemiesID = GameController.GameControllerInstance.DeadEnemies;
         PickedUpObjectsID = GameController.GameControllerInstance.PickedUpObjects;
         RevitalizedZonesID = GameController.GameControllerInstance.RevitalizedZones;

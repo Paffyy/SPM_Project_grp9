@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fed24f2d87fbc4b941a276b4692d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 20
+  viewRadius: 30
   viewAngle: 180
   TargetsToHit:
     serializedVersion: 2
@@ -340,12 +340,12 @@ PrefabInstance:
     - target: {fileID: 7243566105080365996, guid: e75b885024d69064e94e2745dbefde0d,
         type: 3}
       propertyPath: attackDistance
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7243566105080365996, guid: e75b885024d69064e94e2745dbefde0d,
         type: 3}
       propertyPath: lostTargetDistance
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7243566105080365996, guid: e75b885024d69064e94e2745dbefde0d,
         type: 3}

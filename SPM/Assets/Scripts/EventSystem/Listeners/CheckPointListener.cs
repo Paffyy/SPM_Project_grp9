@@ -7,6 +7,8 @@ public class CheckPointListener : MonoBehaviour
 {
     public GameObject FirstCheckPoint;
     public Camera PlayerCamera;
+    public GameObject Player;
+
     private Transform CurrentRespawnPosition;
 
     void Start()
@@ -27,6 +29,17 @@ public class CheckPointListener : MonoBehaviour
         if (checkPointEventInfo != null)
         {
             CurrentRespawnPosition = checkPointEventInfo.CheckPoint.GetComponent<CheckPoint>().RespawnPosition;
+            GameData data = new GameData();
+            data.PlayerPosition[0] = CurrentRespawnPosition.position.x;
+            data.PlayerPosition[1] = CurrentRespawnPosition.position.y;
+            data.PlayerPosition[2] = CurrentRespawnPosition.position.z;
+            data.PlayerRotation = CurrentRespawnPosition.rotation.y + 90;
+            data.PlayerHealth = Player.GetComponent<PlayerHealth>().StartingHealth;
+            if (data.ArrowCount < 5)
+                data.ArrowCount = 5;
+            SaveSystem.SaveGame(data);
+            SaveEventInfo saveEventInfo = new SaveEventInfo("Reached new checkpoint! auto saving...");
+            EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
         }
     }
 
@@ -37,7 +50,7 @@ public class CheckPointListener : MonoBehaviour
         {
             if (deathEventInfo.GameObject.CompareTag("Player"))
             {
-                Manager.Instance.HasLoadedFromCheckPoint = true;
+                Manager.Instance.HasLoadedFromSave = true;
                 SceneManager.LoadScene(GameController.GameControllerInstance.CurrentSceneIndex);
 
                 //deathEventInfo.GameObject.transform.position = CurrentRespawnPosition.transform.position;

@@ -18,7 +18,7 @@ public class RangedEnemyAttackState : RangedEnemyBaseState
         if(owner.NavAgent.enabled)
             owner.NavAgent.isStopped = true;
         //owner.NavAgent.updatePosition = false;
-        coolDownTimer = attackCoolDown;
+        coolDownTimer = 0;
         base.Enter();
     }
 
