@@ -43,7 +43,7 @@ public class Bow : MonoBehaviour
     [SerializeField]
     private Weapon weapon;
     private GameObject arrowsParent;
-    private float chargeTime = 1;
+    private float chargeTime = 2; // deprecated
     private ThirdPersonCrosshair crosshair;
     private float coolDownCounter = 0f;
     private bool isDoingSpecialAttack;
@@ -60,6 +60,7 @@ public class Bow : MonoBehaviour
         ArrowCountText.text = weapon.ArrowCount.ToString();
         playerScript = Player.GetComponent<Player>();
         animator = GetComponent<Animator>();
+        animator.SetBool("IsChargingBow", true);
     }
 
     private void OnDisable()
@@ -77,24 +78,16 @@ public class Bow : MonoBehaviour
     private void Update()
     {
         ToggleCrosshair(true);
+        if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.SpecialAttack, InputManager.ControllMode.Play) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
+        {
+            isDoingSpecialAttack = !isDoingSpecialAttack;
+            specialAttackGlow.SetActive(!specialAttackGlow.activeSelf);
+        }
         if (coolDownCounter <= 0 && weapon.ArrowCount > 0)
         {
-            if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.SpecialAttack, InputManager.ControllMode.Play) && !CoolDownManager.Instance.ArrowRainOnCoolDown)
-            {
-                isDoingSpecialAttack = !isDoingSpecialAttack;
-                specialAttackGlow.SetActive(!specialAttackGlow.activeSelf);
-            }
-            //if (InputManager.Instance.Getkey(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
-            if (Input.GetKey(KeybindManager.Instance.ShootAndAttack.KeybindCodes[0]))
-            {
-                animator.SetBool("IsChargingBow", true);
-                if (chargeTime < 2)
-                {
-                    chargeTime += Time.deltaTime;
-                }
-            }
             if (InputManager.Instance.GetkeyUp(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
             {
+                animator.SetBool("IsChargingBow", false);
                 if (isDoingSpecialAttack) // special attack
                 {
                     CoolDownManager.Instance.StartArrowRainCoolDown(10);
@@ -126,16 +119,15 @@ public class Bow : MonoBehaviour
         else
         {
             coolDownCounter -= Time.deltaTime;
+            animator.SetBool("IsChargingBow", true);
         }
         UpdateRotation();
         UpdatePosition();
     }
     private void ResetBow()
     {
-        chargeTime = 1f;
-        coolDownCounter = 0.8f;
+        coolDownCounter = 0.5f;
         isDoingSpecialAttack = false;
-        animator.SetBool("IsChargingBow", false);
         specialAttackGlow.SetActive(false);
     }
 
@@ -168,7 +160,7 @@ public class Bow : MonoBehaviour
     private void ShootArrow()
     {
         Vector3 direction = PlayerCamera.transform.forward;
-        var arrow = Instantiate(Arrow, PlayerCamera.transform.position, Quaternion.LookRotation(direction), arrowsParent.transform);
+        var arrow = Instantiate(Arrow, PlayerCamera.transform.position + direction * arrowSpeed / 25f, Quaternion.LookRotation(direction), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         float speed = arrowSpeed * chargeTime;
         SetArrowProperties(arrowScript, direction * speed, chargeTime);
@@ -200,7 +192,7 @@ public class Bow : MonoBehaviour
         arrowScript.EnableAoeOnHit(SpecialAoeDamage, SpecialAoeRadius);
     }
 
-    private void SetArrowProperties(Arrow arrow , Vector3 initialVelocity, float damageMultiplier)
+    private void SetArrowProperties(Arrow arrow, Vector3 initialVelocity, float damageMultiplier)
     {
         arrow.SetGravity(GravityForce);
         arrow.SetDamage(damageMultiplier);

@@ -55,12 +55,14 @@ public class PlayerBaseState : State
             if (direction == Vector3.zero)
             {
                 owner.DynamicFriction = owner.DefaultDynamicFriction * 3;
+                owner.StaticFriction = owner.DefaultStaticFriction * 1.5f;
             }
             else
             {
-                owner.DynamicFriction = owner.DefaultDynamicFriction / 3;
+                owner.DynamicFriction = owner.DefaultDynamicFriction / 1.25f;
+                owner.StaticFriction = owner.DefaultStaticFriction;
+
             }
-           
             direction = Quaternion.LookRotation(Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up)) * direction;
             direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);
             float distance = owner.Acceleration * Time.deltaTime * owner.SpeedModifier;
@@ -72,7 +74,7 @@ public class PlayerBaseState : State
     protected virtual void ApplyGravity(float gravitMultiplier = 1)
     {
         Vector3 groundNormal = GetGroundNormal();
-        if (Vector3.Angle(Vector3.up , groundNormal) > owner.MaxClimbAngle)
+        if (Vector3.Angle(Vector3.up, groundNormal) > owner.MaxClimbAngle)
         {
             owner.Velocity += Vector3.down * owner.GravityForce * gravitMultiplier * Time.deltaTime;
         }
@@ -84,7 +86,17 @@ public class PlayerBaseState : State
 
     protected virtual void HandleFirstPersonCamera()
     {
-        playerCamera.transform.position = owner.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
+        RaycastHit hit;
+        Vector3 cameraUpdate = playerCamera.transform.rotation * owner.BowOffset.normalized;
+        if (Physics.SphereCast(owner.transform.position, sphere.radius, cameraUpdate, out hit, owner.BowOffset.magnitude, CameraCollisionMask))
+        {
+            Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius);
+            playerCamera.transform.position = newPosition + owner.transform.position;
+        }
+        else
+        {
+            playerCamera.transform.position = cameraUpdate * owner.BowOffset.magnitude + owner.transform.position;
+        }
     }
     protected virtual void HandleThirdPersonCamera()
     {
@@ -124,13 +136,13 @@ public class PlayerBaseState : State
 
     protected virtual void ApplyFriction(float normalForce)
     {
-        if (owner.Velocity.magnitude < (normalForce * owner.StaticFriction ))
+        if (owner.Velocity.magnitude < (normalForce * owner.StaticFriction))
         {
             owner.Velocity = Vector3.zero;
         }
         else
         {
-            owner.Velocity += -owner.Velocity.normalized * (normalForce * owner.DynamicFriction );
+            owner.Velocity += -owner.Velocity.normalized * (normalForce * owner.DynamicFriction);
         }
     }
 

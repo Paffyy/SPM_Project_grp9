@@ -12,7 +12,6 @@ public class Weapon : StateMachine
         set { currentStateID = value; }
     }
     public GameObject Shield;
-    public GameObject Bow;
     public GameObject BowFirstPerson;
     public GameObject Sword;
     public Image ShieldIcon;
