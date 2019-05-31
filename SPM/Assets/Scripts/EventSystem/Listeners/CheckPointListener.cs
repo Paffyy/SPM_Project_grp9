@@ -33,7 +33,6 @@ public class CheckPointListener : MonoBehaviour
             data.PlayerPosition[0] = CurrentRespawnPosition.position.x;
             data.PlayerPosition[1] = CurrentRespawnPosition.position.y;
             data.PlayerPosition[2] = CurrentRespawnPosition.position.z;
-            data.PlayerRotation = CurrentRespawnPosition.rotation.y + 90;
             data.PlayerHealth = Player.GetComponent<PlayerHealth>().StartingHealth;
             if (data.ArrowCount < 5)
                 data.ArrowCount = 5;
