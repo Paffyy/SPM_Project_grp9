@@ -131,13 +131,13 @@ MonoBehaviour:
   ArrowHitMask:
     serializedVersion: 2
     m_Bits: 50176
-  arrowCount: 0
-  arrowSpeed: 30
+  arrowCount: 15
+  arrowSpeed: 25
   SpecialAttack: 2
   SpecialArrowCount: 25
   SpecialAoeDamage: 75
   SpecialAoeRadius: 6
-  bowOffset: {x: 0.25, y: 0.4, z: 0.7}
+  bowOffset: {x: 0.5, y: 0.25, z: 0.3}
   specialAttackGlow: {fileID: 6573053008636740957}
   weapon: {fileID: 0}
 --- !u!114 &8346856360853841813
@@ -383,17 +383,17 @@ MonoBehaviour:
   states:
   - {fileID: 11400000, guid: ed0a2fb23c6860b4fb6fa52964174eba, type: 2}
   - {fileID: 11400000, guid: 289b443858ec8ed40a7d837a4d2aa850, type: 2}
-  acceleration: 50
-  gravityForce: 20
-  staticFriction: 1.6
+  acceleration: 32
+  gravityForce: 30
+  staticFriction: 0.9
   dynamicFriction: 0.5
-  jumpHeight: 10
+  jumpHeight: 15
   mouseSensitivity: 2
-  airResistance: 0
+  airResistance: 0.25
   skinWidth: 0.02
   groundCheckDistance: 0.04
-  maxClimbAngle: 60
-  bowOffset: {x: 0, y: 0, z: 0}
+  maxClimbAngle: 50
+  bowOffset: {x: 1.15, y: 0.5, z: -2}
   CollisionMask:
     serializedVersion: 2
     m_Bits: 35840
@@ -421,7 +421,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c4f9040cfffe64d4192bfe397c2b8281, type: 2}
   - {fileID: 11400000, guid: 7f22c245efd937a48a14f041a2535b38, type: 2}
   Shield: {fileID: 2279219361730397839}
-  Bow: {fileID: 0}
   BowFirstPerson: {fileID: 4109160641314828011}
   Sword: {fileID: 6453448438386392476}
   ShieldIcon: {fileID: 0}
@@ -1091,6 +1090,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7651501562885396184}
     m_Modifications:
+    - target: {fileID: 8973783150194872640, guid: cc96bc1c463ebce499782d4c73294e9d,
+        type: 3}
+      propertyPath: m_Name
+      value: BladeStormPivot
+      objectReference: {fileID: 0}
     - target: {fileID: 2985678606759904121, guid: cc96bc1c463ebce499782d4c73294e9d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1185,11 +1189,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8973783150194872640, guid: cc96bc1c463ebce499782d4c73294e9d,
-        type: 3}
-      propertyPath: m_Name
-      value: BladeStormPivot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc96bc1c463ebce499782d4c73294e9d, type: 3}
@@ -1582,6 +1581,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7651501562885396184}
     m_Modifications:
+    - target: {fileID: 2706102015894810966, guid: 43428addf63169d499c3811de094f91e,
+        type: 3}
+      propertyPath: m_Name
+      value: SwordPivot
+      objectReference: {fileID: 0}
     - target: {fileID: 2706102015894810961, guid: 43428addf63169d499c3811de094f91e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1636,11 +1640,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.013
-      objectReference: {fileID: 0}
-    - target: {fileID: 2706102015894810966, guid: 43428addf63169d499c3811de094f91e,
-        type: 3}
-      propertyPath: m_Name
-      value: SwordPivot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43428addf63169d499c3811de094f91e, type: 3}
