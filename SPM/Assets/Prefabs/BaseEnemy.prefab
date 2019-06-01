@@ -632,7 +632,6 @@ GameObject:
   - component: {fileID: 2796968206420594169}
   - component: {fileID: 542565467}
   - component: {fileID: 542565461}
-  - component: {fileID: 5030238777447110604}
   m_Layer: 14
   m_Name: BaseEnemy
   m_TagString: Enemy
@@ -838,20 +837,3 @@ MonoBehaviour:
   DmgCoolDownTimer: 1
   EnemyHealthSlider: {fileID: 551245279}
   enemyCanvas: {fileID: 1168613640}
---- !u!114 &5030238777447110604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2796968206420594168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d243d19e60279514eb2156393e3b582e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  states: []
-  Player: {fileID: 0}
-  Projectile: {fileID: 0}
-  Health: 100
-  EnemyID: 0

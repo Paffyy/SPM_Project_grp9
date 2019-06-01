@@ -35,6 +35,9 @@ public class BaseEnemy : StateMachine
     private EnemyHealth healthSystem;
     [HideInInspector]public CharacterController controller;
 
+    public float EnemyID { get { return enemyID; } }
+    private float enemyID;
+
     private static int numberOfEnemiesInAttackState;
     public static int NumberOfEnemiesInAttackState {
         get {
@@ -50,7 +53,8 @@ public class BaseEnemy : StateMachine
     {
         //för debug
         MeshRen = GetComponent<MeshRenderer>();
-
+        enemyID = transform.position.sqrMagnitude;
+        GameController.GameControllerInstance.Enemies.Add(enemyID, gameObject);
         //timer = timeBetweenSetDestination;
         //BaseEnemyList.AddLast(this.gameObject);
         NavAgent = GetComponent<NavMeshAgent>();
