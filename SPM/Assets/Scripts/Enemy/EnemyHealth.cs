@@ -39,8 +39,7 @@ public class EnemyHealth : Health
     public override void Update()
     {
         base.Update();
-        navMeshAgentOffTime += Time.deltaTime;
-        if(navAgent != null && controller != null)
+        if (navAgent != null && controller != null)
         {
             //måste vänta en stund för att kolla om isGrounded för annars kommer inte fienden upp från marken
             if (isDead == false && navAgent.enabled == false && navMeshAgentOffTime > 0.1f && controller.IsGrounded())
@@ -53,7 +52,10 @@ public class EnemyHealth : Health
                 controller.enabled = true;
             }
         }
-
+        if (!navAgent.enabled)
+        {
+            navMeshAgentOffTime += Time.deltaTime;
+        }
         if (CurrentHealth <= 0 && isDead == false)
         {
             isDead = true;
@@ -104,17 +106,15 @@ public class EnemyHealth : Health
         CurrentHealth -= damage;
         EnemyHealthSlider.value = CurrentHealth;
         SpawnHeartParticles();
-
         if (navAgent != null && controller != null)
         {
             TakeDamage(damage);
             navAgent.enabled = false;
             controller.enabled = true;
-            //controller.MovePosition(pushBack);
+            navMeshAgentOffTime = 0.0f;
+            controller.Velocity = Vector3.zero;
             controller.Velocity += pushBack;
         }
-
-            navMeshAgentOffTime = 0.0f;
     }
 
     private void SpawnHeartParticles()
