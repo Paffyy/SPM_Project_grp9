@@ -21,11 +21,12 @@ public class BowState : WeaponBaseState
         {
             
             owner.Transition<SwordState>();
+            owner.player.TransitionTime = 0.5f;
         }
-        else if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
-        {
-            owner.Transition<BowAimState>();
-        }
+        //else if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
+        //{
+        //    owner.Transition<BowAimState>();
+        //}
     }
 
     public override void Exit()

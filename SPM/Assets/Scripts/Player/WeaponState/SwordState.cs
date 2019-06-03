@@ -6,7 +6,6 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "Weapon/SwordState")]
 public class SwordState : WeaponBaseState
 {
-
     public override void Enter()
     {
         owner.CurrentStateID = 0;
@@ -28,8 +27,11 @@ public class SwordState : WeaponBaseState
     {
         if (!owner.Sword.GetComponent<Sword>().IsBladeStorming)
         {
-            if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot2, InputManager.ControllMode.Play))
+            if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot2, InputManager.ControllMode.Play) && owner.player.TransitionTime <= 0)
+            {
                 owner.Transition<BowAimState>();
+                owner.player.TransitionTime = 0.1f;
+            }
         }
     }
 

@@ -3033,6 +3033,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1611037756056421105, guid: d76fb1beae735b8489d367297407b17f,
+        type: 3}
+      propertyPath: m_Name
+      value: SavingGameText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d76fb1beae735b8489d367297407b17f, type: 3}
 --- !u!224 &108184038099691781 stripped
@@ -3161,7 +3166,7 @@ PrefabInstance:
     - target: {fileID: 6874609714110528961, guid: db9f762888ffcd84db152871ee8c154b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db9f762888ffcd84db152871ee8c154b, type: 3}
