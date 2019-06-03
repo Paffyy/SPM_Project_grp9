@@ -64,12 +64,12 @@ public class IntroScene : MonoBehaviour
 
     public void LoadFirstLevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void ActivateBlackScreen()
     {
         blackScreen.SetActive(true);
-        Invoke("LoadFirstLevel", 5f);
+        Invoke("LoadFirstLevel", 1f);
     }
 }
