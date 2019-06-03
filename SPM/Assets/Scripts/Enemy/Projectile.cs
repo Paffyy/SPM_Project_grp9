@@ -131,7 +131,7 @@ void Update()
             // other.gameObject.GetComponentInParent<Shield>().TakeDamage(Damage);
         } else if(other.gameObject.CompareTag("Enemy") && isReflected)
         {
-            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage * 2);
+            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage * 4);
             Destroy(ProjectileObject);
         } else
         {

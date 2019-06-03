@@ -132,7 +132,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 50176
   arrowCount: 15
-  arrowSpeed: 25
+  arrowSpeed: 30
   SpecialAttack: 2
   SpecialArrowCount: 25
   SpecialAoeDamage: 75
@@ -425,8 +425,7 @@ MonoBehaviour:
   BowFirstPerson: {fileID: 4109160641314828011}
   Sword: {fileID: 6453448438386392476}
   ShieldIcon: {fileID: 0}
-  BowIcon: {fileID: 0}
-  SwordIcon: {fileID: 0}
+  WeponsPanel: {fileID: 0}
   arrowCount: 15
   player: {fileID: 0}
 --- !u!114 &520724104
@@ -442,7 +441,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartingHealth: 100
-  HealthSlider: {fileID: 0}
   hearts: {fileID: 0}
   ShieldObject: {fileID: 2279219363247032556}
   DamageCooldown: 0.2
