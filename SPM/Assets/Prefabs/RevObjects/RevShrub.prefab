@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6886693262388441554}
   - component: {fileID: 163534861096305735}
   - component: {fileID: 6886693262387344146}
+  - component: {fileID: 1396912745450102685}
   m_Layer: 0
   m_Name: RevShrub
   m_TagString: Untagged
@@ -93,3 +94,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!205 &1396912745450102685
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886693262385409490}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 1.3439794, z: 0}
+  m_Size: 2.6879587
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1222639
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6886693262387344146}
+  m_Enabled: 1

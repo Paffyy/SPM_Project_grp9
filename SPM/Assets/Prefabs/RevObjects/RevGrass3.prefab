@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3831417598231151385}
   - component: {fileID: 3831417598230053337}
   - component: {fileID: 3831417598227799832}
+  - component: {fileID: 3439635027527495707}
   m_Layer: 0
   m_Name: RevGrass3
   m_TagString: Untagged
@@ -93,3 +94,22 @@ MonoBehaviour:
   IsRevitalized: 0
   timeToRevitalize: 2
   lerpLevels: 20
+--- !u!205 &3439635027527495707
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3831417598227799833}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.00000011920929, y: 0.4102912, z: 0}
+  m_Size: 3.213525
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1490859
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3831417598230053337}
+  m_Enabled: 1
