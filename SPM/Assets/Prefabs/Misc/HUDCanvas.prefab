@@ -117,7 +117,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.836}
   m_AnchorMax: {x: 0.39164585, y: 1}
-  m_AnchoredPosition: {x: -61.119934, y: 11.247803}
+  m_AnchoredPosition: {x: -61.119873, y: 11.247803}
   m_SizeDelta: {x: 412.8, y: 39.099976}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2039870791
@@ -3033,11 +3033,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1611037756056421105, guid: d76fb1beae735b8489d367297407b17f,
-        type: 3}
-      propertyPath: m_Name
-      value: SavingGameText
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d76fb1beae735b8489d367297407b17f, type: 3}
 --- !u!224 &108184038099691781 stripped
@@ -3166,7 +3161,7 @@ PrefabInstance:
     - target: {fileID: 6874609714110528961, guid: db9f762888ffcd84db152871ee8c154b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db9f762888ffcd84db152871ee8c154b, type: 3}
