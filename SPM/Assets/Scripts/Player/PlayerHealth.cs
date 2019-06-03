@@ -7,8 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int StartingHealth = 100;
     private int currentHealth;
-    public int CurrentHealth { get { return currentHealth; } set { currentHealth = value; HealthSlider.value = currentHealth; hearts.CurrentHealth = currentHealth; } }
-    public Slider HealthSlider;
+    public int CurrentHealth { get { return currentHealth; } set { currentHealth = value; hearts.CurrentHealth = currentHealth; } }
     public HeartsHandeler hearts;
     public GameObject ShieldObject;
     private Player player;
@@ -25,11 +24,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         CurrentHealth = StartingHealth;
-        if (HealthSlider != null)
-        {
-            HealthSlider.maxValue = StartingHealth;
-            hearts.CurrentHealth = StartingHealth;
-        }
+        hearts.CurrentHealth = StartingHealth;
         currentCooldown = DamageCooldown;
     }
 
@@ -104,7 +99,6 @@ public class PlayerHealth : MonoBehaviour
         DeathEventInfo deathEventInfo = new DeathEventInfo(gameObject);
         EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, deathEventInfo);
         CurrentHealth = 100;
-        HealthSlider.value = CurrentHealth;
         //Destroy(this.gameObject);
     }
 }

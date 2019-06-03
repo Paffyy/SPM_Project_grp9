@@ -15,8 +15,9 @@ public class Weapon : StateMachine
     public GameObject BowFirstPerson;
     public GameObject Sword;
     public Image ShieldIcon;
-    public Image BowIcon;
-    public Image SwordIcon;
+    //public RawImage BowIcon;
+    //public RawImage SwordIcon;
+    public WeaponsPanel WeponsPanel;
     public int ArrowCount { get { return arrowCount; } set { arrowCount = value; } }
 
     [SerializeField]

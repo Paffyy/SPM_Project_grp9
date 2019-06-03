@@ -22,6 +22,7 @@ public class ParticleListener : MonoBehaviour
     {
         EventHandler.Instance.Register(EventHandler.EventType.ArrowAoeHitEvent, DoAoeArrowAttack);
         EventHandler.Instance.Register(EventHandler.EventType.WeapondHitEvent, HandleHit);
+        EventHandler.Instance.Register(EventHandler.EventType.ParticleEvent, HandleParticleSpawn);
     }
 
     private void DoAoeArrowAttack(BaseEventInfo e)
@@ -46,9 +47,6 @@ public class ParticleListener : MonoBehaviour
                     enemyHealth.TakeDamage(arrowScript.AoeDamage, true);
                     var revEffect = Instantiate(revParticleEffect, item.transform.position + aOEyOffset, item.transform.rotation);
                     revEffect.Play();
-                    PlayHeartParticles(item);
-                    //Debug.Log(revEffect.transform.position);
-                    //Destroy(revEffect, 2.5f);
                 }
             }
         }
@@ -59,27 +57,47 @@ public class ParticleListener : MonoBehaviour
         var hitEvent = e as AttackHitEventInfo;
         if (hitEvent != null)
         {
-            Vector3 particlePos;
-            if (hitEvent.WeapondsUsed == AttackHitEventInfo.Weapon.Sword)
+            switch (hitEvent.WeapondsUsed)
             {
-                particlePos = hitEvent.TargetHit.ClosestPointOnBounds(hitEvent.self.transform.position);
-                ParticleSystem part = Instantiate(hitParticelsEffect, particlePos, Quaternion.identity, transform);
-                part.Play();
-            }
-            else
-            {
-                
-                PlayHeartParticles(hitEvent.TargetHit);
+                case AttackHitEventInfo.Weapon.Sword:
+                    SpawnHitEffect(hitEvent);
+                    break;
+                //case AttackHitEventInfo.Weapon.Sword:
+
+                //    break;
+
             }
 
         }
     }
 
-    private void PlayHeartParticles(Collider hit)
+    private void SpawnHitEffect(AttackHitEventInfo hitEvent)
     {
-        //kanske lite för hackigt, den hämtar den högsta postionen på collidern
-        Vector3 particlePos = hit.ClosestPointOnBounds(Vector3.up * 100);
-        ParticleSystem partHeart = Instantiate(hitHeartParticelsEffect, particlePos, Quaternion.identity, transform);
+        Vector3 particlePos;
+        if (hitEvent.WeapondsUsed == AttackHitEventInfo.Weapon.Sword)
+        {
+            particlePos = hitEvent.TargetHit.ClosestPointOnBounds(hitEvent.self.transform.position);
+            ParticleSystem part = Instantiate(hitParticelsEffect, particlePos, Quaternion.identity, transform);
+            part.Play();
+        }
+    }
+
+    private void HandleParticleSpawn(BaseEventInfo e)
+    {
+        var spawnEvent = e as ParticleSpawnEventInfo;
+        if (spawnEvent != null)
+        {
+            switch (spawnEvent.ParticleTyp)
+            {
+                case ParticleSpawnEventInfo.Particle.Hearts:
+                    PlayHeartParticles(spawnEvent.SpawnPoint);
+                    break;
+            }
+        }
+    }
+    private void PlayHeartParticles(Vector3 hit)
+    {
+        ParticleSystem partHeart = Instantiate(hitHeartParticelsEffect, hit, Quaternion.identity, transform);
         partHeart.Play();
     }
 }

@@ -10,7 +10,8 @@ public class BowState : WeaponBaseState
     public override void Enter()
     {
         owner.CurrentStateID = 1;
-        owner.BowIcon.GetComponent<Image>().color = Color.green;
+        //owner.BowIcon.GetComponent<Image>().color = Color.green;
+        //owner.WeponsPanel.SelectWeapon(2);
         base.Enter();
     }
 
@@ -18,7 +19,7 @@ public class BowState : WeaponBaseState
     {
         if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot1, InputManager.ControllMode.Play))
         {
-            owner.BowIcon.GetComponent<Image>().color = Color.white;
+            
             owner.Transition<SwordState>();
             owner.player.TransitionTime = 0.5f;
         }
@@ -26,6 +27,12 @@ public class BowState : WeaponBaseState
         //{
         //    owner.Transition<BowAimState>();
         //}
+    }
+
+    public override void Exit()
+    {
+        //owner.WeponsPanel.SelectWeapon(2);
+        base.Exit();
     }
 
 }

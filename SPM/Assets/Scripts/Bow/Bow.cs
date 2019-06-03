@@ -1,5 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
 
 public class Bow : MonoBehaviour
 {
@@ -11,7 +14,7 @@ public class Bow : MonoBehaviour
     [SerializeField]
     private Camera PlayerCamera;
     [SerializeField]
-    private Text ArrowCountText; // TODO move out
+    private TextMeshProUGUI ArrowCountText; // TODO move out
 
     [Header("Variables")]
     [SerializeField]

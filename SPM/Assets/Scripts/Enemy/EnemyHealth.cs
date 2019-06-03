@@ -78,14 +78,15 @@ public class EnemyHealth : Health
         }
         CurrentHealth -= damage;
         EnemyHealthSlider.value = CurrentHealth;
+        SpawnHeartParticles();
 
     }
 
     public void ActivateHealthBar()
     {
-        enemyCanvas.SetActive(true);
-        enemyCanvas.GetComponent<Canvas>().enabled = true;
-        isHealthBarVisible = true;
+        //enemyCanvas.SetActive(true);
+        //enemyCanvas.GetComponent<Canvas>().enabled = true;
+        //isHealthBarVisible = true;
     }
 
     public override void TakeDamage(int damage, Vector3 pushBack, Vector3 position)
@@ -102,7 +103,9 @@ public class EnemyHealth : Health
             RestartCoolDown();
         CurrentHealth -= damage;
         EnemyHealthSlider.value = CurrentHealth;
-        if(navAgent != null && controller != null)
+        SpawnHeartParticles();
+
+        if (navAgent != null && controller != null)
         {
             TakeDamage(damage);
             navAgent.enabled = false;
@@ -112,6 +115,12 @@ public class EnemyHealth : Health
         }
 
             navMeshAgentOffTime = 0.0f;
+    }
+
+    private void SpawnHeartParticles()
+    {
+        EventHandler.Instance.FireEvent(EventHandler.EventType.ParticleEvent, 
+            new ParticleSpawnEventInfo(GetComponent<CapsuleCollider>().ClosestPoint(Vector3.up * 1000), ParticleSpawnEventInfo.Particle.Hearts));
     }
 
     private void ToAttackState()
