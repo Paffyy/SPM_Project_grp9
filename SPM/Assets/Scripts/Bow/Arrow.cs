@@ -102,7 +102,8 @@ public class Arrow : MonoBehaviour
                 gameObject.transform.SetParent(hit.collider.gameObject.transform);
                 hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, pushBack, Vector3.zero);
 
-                EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(transform, hit.collider, AttackHitEventInfo.Weapon.Bow));
+                EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(null, hit.collider, AttackHitEventInfo.Weapon.Bow));
+
             }
             hasCollided = true;
             if (EventHandler.Instance != null)

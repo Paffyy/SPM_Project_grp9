@@ -10,7 +10,7 @@ public class SwordState : WeaponBaseState
     public override void Enter()
     {
         owner.CurrentStateID = 0;
-        owner.SwordIcon.GetComponent<Image>().color = Color.green;
+        owner.WeponsPanel.SelectWeapon(1, true);
         owner.Sword.SetActive(true);
         owner.Shield.SetActive(true);
         base.Enter();
@@ -18,7 +18,7 @@ public class SwordState : WeaponBaseState
 
     public override void Exit()
     {
-        owner.SwordIcon.GetComponent<Image>().color = Color.white;
+        owner.WeponsPanel.SelectWeapon(1, false);
         owner.Shield.GetComponent<Shield>().IsBlocking = false;
         owner.Sword.SetActive(false);
         owner.Shield.SetActive(false);
