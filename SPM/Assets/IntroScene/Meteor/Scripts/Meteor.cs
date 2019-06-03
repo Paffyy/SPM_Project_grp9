@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
+
     [SerializeField]
     private GameObject vfx;
     [SerializeField]
