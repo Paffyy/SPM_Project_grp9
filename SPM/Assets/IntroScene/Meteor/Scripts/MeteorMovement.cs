@@ -12,8 +12,6 @@ public class MeteorMovement : MonoBehaviour
     private List<GameObject> trails;
     private Rigidbody rigidBody;
 
-    public Camera MeteorCamera;
-
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();

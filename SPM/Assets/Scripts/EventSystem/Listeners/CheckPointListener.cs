@@ -51,10 +51,6 @@ public class CheckPointListener : MonoBehaviour
             {
                 Manager.Instance.HasLoadedFromSave = true;
                 SceneManager.LoadScene(GameController.GameControllerInstance.CurrentSceneIndex);
-
-                //deathEventInfo.GameObject.transform.position = CurrentRespawnPosition.transform.position;
-                //deathEventInfo.GameObject.GetComponent<Player>().RotationY = CurrentRespawnPosition.rotation.y + 90;
-                //PlayerCamera.transform.rotation = Quaternion.Euler(PlayerCamera.transform.rotation.x, CurrentRespawnPosition.rotation.y, PlayerCamera.transform.rotation.z);
             }
         }
     }

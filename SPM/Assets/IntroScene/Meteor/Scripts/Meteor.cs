@@ -20,11 +20,6 @@ public class Meteor : MonoBehaviour
         RotateTowards(objVFX, endPos);
     }
 
-    void Update()
-    {
-        
-    }
-
     void RotateTowards(GameObject obj, Vector3 destination)
     {
         Vector3 direction = destination - obj.transform.position;
