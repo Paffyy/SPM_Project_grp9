@@ -12,6 +12,8 @@ public class MeteorMovement : MonoBehaviour
     private List<GameObject> trails;
     private Rigidbody rigidBody;
 
+    public Camera MeteorCamera;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -39,8 +41,13 @@ public class MeteorMovement : MonoBehaviour
             Vector3 pos = contact.point;
             if (impactPrefab != null)
             {
+                if (!IntroScene.IntroSceneInstance.FirstMeteorHit)
+                {
+                    IntroScene.IntroSceneInstance.ActivateCameraWalk();
+                    IntroScene.IntroSceneInstance.FirstMeteorHit = true;
+                }
                 GameObject impactVFX = Instantiate(impactPrefab, pos, rot) as GameObject;
-                Destroy(impactVFX, 20f);
+                Destroy(impactVFX, 60f);
             }
 
             if(trails.Count > 0)
