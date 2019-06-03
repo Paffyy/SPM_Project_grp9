@@ -22,4 +22,8 @@ public class AirState : PlayerBaseState
             owner.Transition<WalkingState>();
         }
     }
+    public override void HandleLateUpdate()
+    {
+        HandleCameras();
+    }
 }

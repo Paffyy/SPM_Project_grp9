@@ -20,11 +20,12 @@ public class BowState : WeaponBaseState
         {
             owner.BowIcon.GetComponent<Image>().color = Color.white;
             owner.Transition<SwordState>();
+            owner.player.TransitionTime = 0.5f;
         }
-        else if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
-        {
-            owner.Transition<BowAimState>();
-        }
+        //else if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
+        //{
+        //    owner.Transition<BowAimState>();
+        //}
     }
 
 }

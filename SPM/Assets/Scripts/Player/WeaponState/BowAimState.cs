@@ -20,10 +20,11 @@ public class BowAimState : WeaponBaseState
 
     public override void HandleUpdate()
     {
-        if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot1, InputManager.ControllMode.Play))
+        if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot1, InputManager.ControllMode.Play) && owner.player.TransitionTime <= 0)
         {
             owner.BowIcon.GetComponent<Image>().color = Color.white;
             owner.Transition<SwordState>();
+            owner.player.TransitionTime = 0.1f;
         }
         //if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
         //{
@@ -32,5 +33,4 @@ public class BowAimState : WeaponBaseState
         //else if (Input.GetKeyDown(KeyCode.Alpha3))
         //    owner.Transition<ShieldState>();
     }
-
 }

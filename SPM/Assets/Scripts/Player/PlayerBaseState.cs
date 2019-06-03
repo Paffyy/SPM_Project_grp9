@@ -13,7 +13,6 @@ public class PlayerBaseState : State
     protected Vector3 cameraPosition;
     protected SphereCollider sphere;
     protected Player owner;
-
     [SerializeField] private LayerMask CollisionMask;
     [SerializeField] private LayerMask CameraCollisionMask;
     private float yaw;
@@ -41,16 +40,10 @@ public class PlayerBaseState : State
             owner.RotationX = Mathf.Clamp(owner.RotationX, minCameraAngle, maxCameraAngle);
             owner.RotationY += Input.GetAxisRaw("Mouse X") * owner.MouseSensitivity;
             playerCamera.transform.rotation = Quaternion.Euler(owner.RotationX, owner.RotationY, 0.0f);
-            if (Input.GetKeyDown(KeyCode.V))
-                owner.FirstPersonView = !owner.FirstPersonView;
-            if (owner.FirstPersonView)
-            {
-                HandleFirstPersonCamera();
-            }
-            else
-            {
-                HandleThirdPersonCamera();
-            }
+            //if (Input.GetKeyDown(KeyCode.V))
+            //    owner.FirstPersonView = !owner.FirstPersonView;
+         
+        
             Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             if (direction == Vector3.zero)
             {
@@ -70,7 +63,35 @@ public class PlayerBaseState : State
         }
 
     }
-
+    protected virtual void HandleCameras()
+    {
+        if (owner.TransitionTime > 0)
+        {
+            owner.TransitionTime -= Time.deltaTime;
+        }
+        if (owner.FirstPersonView)
+        {
+            if (owner.TransitionTime > 0)
+            {
+                TransitionFirstPersonCamera();
+            }
+            else
+            {
+                HandleFirstPersonCamera();
+            }
+        }
+        else
+        {
+            if (owner.TransitionTime > 0)
+            {
+                TransitionThirdPersonCamera();
+            }
+            else
+            {
+                HandleThirdPersonCamera();
+            }
+        }
+    }
     protected virtual void ApplyGravity(float gravitMultiplier = 1)
     {
         Vector3 groundNormal = GetGroundNormal();
@@ -112,7 +133,38 @@ public class PlayerBaseState : State
             playerCamera.transform.position = cameraUpdate * cameraPosition.magnitude + owner.transform.position;
         }
     }
-
+    protected virtual void TransitionFirstPersonCamera()
+    {
+        RaycastHit hit;
+        Vector3 cameraUpdate = playerCamera.transform.rotation * owner.BowOffset.normalized;
+        if (Physics.SphereCast(owner.transform.position, sphere.radius, cameraUpdate, out hit, owner.BowOffset.magnitude, CameraCollisionMask))
+        {
+            Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius) + owner.transform.position;
+            Vector3 lerpPosition = Vector3.Lerp(playerCamera.transform.position, newPosition, owner.CameraLerpSpeed * Time.deltaTime);
+            playerCamera.transform.position = lerpPosition;
+        }
+        else
+        {
+            Vector3 lerpPosition = Vector3.Lerp(playerCamera.transform.position, cameraUpdate * owner.BowOffset.magnitude + owner.transform.position, owner.CameraLerpSpeed * Time.deltaTime);
+            playerCamera.transform.position = lerpPosition;
+        }
+    }
+    protected virtual void TransitionThirdPersonCamera()
+    {
+        RaycastHit hit;
+        Vector3 cameraUpdate = playerCamera.transform.rotation * cameraPosition.normalized;
+        if (Physics.SphereCast(owner.transform.position, sphere.radius, cameraUpdate, out hit, cameraPosition.magnitude, CameraCollisionMask))
+        {
+            Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius) + owner.transform.position;
+            Vector3 lerpPosition = Vector3.Lerp(playerCamera.transform.position, newPosition, owner.CameraLerpSpeed * Time.deltaTime);
+            playerCamera.transform.position = lerpPosition;
+        }
+        else
+        {
+            Vector3 lerpPosition = Vector3.Lerp(playerCamera.transform.position, cameraUpdate * cameraPosition.magnitude + owner.transform.position, owner.CameraLerpSpeed * Time.deltaTime);
+            playerCamera.transform.position = lerpPosition;
+        }
+    }
     protected virtual void IsColliding()
     {
         RaycastHit hit;

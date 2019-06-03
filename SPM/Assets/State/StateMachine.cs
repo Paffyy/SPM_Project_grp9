@@ -47,4 +47,9 @@ public abstract class StateMachine : MonoBehaviour
         if (states.Length > 0)
             currentState.HandleUpdate();
     }
+    private void LateUpdate()
+    {
+        if (states.Length > 0)
+            currentState.HandleLateUpdate();
+    }
 }

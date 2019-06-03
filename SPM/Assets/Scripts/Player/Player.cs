@@ -61,6 +61,11 @@ public class Player : StateMachine
         get { return bowOffset; }
         set { bowOffset = value; }
     }
+    public float CameraLerpSpeed
+    {
+        get { return cameraLerpSpeed; }
+        set { cameraLerpSpeed = value; }
+    }
     #endregion
 
     #region Fields
@@ -75,12 +80,14 @@ public class Player : StateMachine
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private float maxClimbAngle;
     [SerializeField] private Vector3 bowOffset;
+    [SerializeField] private float cameraLerpSpeed;
 
     #endregion
 
 
     public LayerMask CollisionMask;
     public Vector3 Velocity { get; set; }
+    public float TransitionTime { get; set; }
     [HideInInspector] public float RotationX;
     [HideInInspector] public float RotationY;
     public float yAngle, zAngle;
@@ -94,6 +101,7 @@ public class Player : StateMachine
         RotationY = 90;
         RotationX = 25;
         SpeedModifier = 1f;
+        TransitionTime = 0.0f;
         DefaultDynamicFriction = DynamicFriction;
         DefaultStaticFriction = StaticFriction;
         base.Awake();
