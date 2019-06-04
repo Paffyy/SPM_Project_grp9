@@ -14,6 +14,7 @@ public class SoundListener : MonoBehaviour
     {
         EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, PlayDeathSound);
         EventHandler.Instance.Register(EventHandler.EventType.PickUpEvent, PlayPickUpSound);
+        EventHandler.Instance.Register(EventHandler.EventType.AudioEvent, PlayAudioClip)
     }
 
     void Start()
@@ -42,6 +43,16 @@ public class SoundListener : MonoBehaviour
             audioSource.Play();
         }
     
+    }
+
+    private void PlayAudioClip(BaseEventInfo e)
+    {
+        var audio = e as AudioEventInfo;
+        if (audio != null)
+        {
+            audioSource.clip = audio.audioClip;
+            audioSource.Play();
+        }
     }
 }
 

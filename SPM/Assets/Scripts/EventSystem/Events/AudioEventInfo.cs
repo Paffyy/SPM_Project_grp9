@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioEventInfo : MonoBehaviour
+public class AudioEventInfo : BaseEventInfo
 {
 
-    public AudioClip audioclip;
+    public AudioClip audioClip;
 
     public AudioEventInfo(AudioClip audio)
     {
-        audioclip = audio;
+        audioClip = audio;
     }
 }
