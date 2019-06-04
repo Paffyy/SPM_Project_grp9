@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.L))
             {
                 Manager.Instance.HasLoadedFromSave = true;
-                SceneManager.LoadScene(CurrentSceneIndex);
+                SceneManager.LoadScene(SaveSystem.LoadGame().CurrentSceneIndex);
             }
         }
 

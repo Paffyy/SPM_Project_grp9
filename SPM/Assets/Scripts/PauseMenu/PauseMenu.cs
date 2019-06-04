@@ -99,7 +99,7 @@ public class PauseMenu : MonoBehaviour
         SaveEventInfo saveEventInfo = new SaveEventInfo("Saving...");
         EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
         SaveSystem.SaveGame(new GameData());
-
+        Resume();
         SceneManager.LoadScene(0);
 
     }
