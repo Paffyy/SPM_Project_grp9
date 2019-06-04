@@ -11,8 +11,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenu;
     [SerializeField]
-    private GameObject uIHud;
-    [SerializeField]
     private GameObject helpUIHud;
 
 
@@ -93,7 +91,6 @@ public class PauseMenu : MonoBehaviour
 
     private void SaveAndQuitButton()
     {
-        Debug.Log("Save and quit");
         SaveEventInfo saveEventInfo = new SaveEventInfo("Saving...");
         EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
         SaveSystem.SaveGame(new GameData());

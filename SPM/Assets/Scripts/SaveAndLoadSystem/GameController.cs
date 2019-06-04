@@ -36,20 +36,5 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if(Manager.Instance.IsPaused == false)
-        {
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                SaveEventInfo saveEventInfo = new SaveEventInfo("Saving...");
-                EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
-                SaveSystem.SaveGame(new GameData());
-            }
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                Manager.Instance.HasLoadedFromSave = true;
-                SceneManager.LoadScene(SaveSystem.LoadGame().CurrentSceneIndex);
-            }
-        }
-
     }
 }

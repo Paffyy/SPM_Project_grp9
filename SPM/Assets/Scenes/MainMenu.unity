@@ -869,6 +869,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2093523448594472255, guid: f6b851c321ca85d4383a91689fe3e32c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6b851c321ca85d4383a91689fe3e32c, type: 3}
 --- !u!1001 &1392324515
@@ -993,16 +998,6 @@ PrefabInstance:
       propertyPath: m_Text
       value: QUIT
       objectReference: {fileID: 0}
-    - target: {fileID: 8952919462834514331, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8952919462834514331, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 173.9
-      objectReference: {fileID: 0}
     - target: {fileID: 2855223511115671828, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
         type: 3}
       propertyPath: ThisIndex
@@ -1028,6 +1023,16 @@ PrefabInstance:
       propertyPath: MenuButtonController
       value: 
       objectReference: {fileID: 1434245632}
+    - target: {fileID: 8952919462834514331, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8952919462834514331, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 173.9
+      objectReference: {fileID: 0}
     - target: {fileID: 3069499102580183922, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
         type: 3}
       propertyPath: m_UpdateMode
@@ -1652,16 +1657,6 @@ PrefabInstance:
       propertyPath: m_Text
       value: OPTIONS
       objectReference: {fileID: 0}
-    - target: {fileID: 8952919462834514331, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8952919462834514331, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 293.4
-      objectReference: {fileID: 0}
     - target: {fileID: 2855223511115671828, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
         type: 3}
       propertyPath: ThisIndex
@@ -1687,6 +1682,16 @@ PrefabInstance:
       propertyPath: MenuButtonController
       value: 
       objectReference: {fileID: 1434245632}
+    - target: {fileID: 8952919462834514331, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8952919462834514331, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 293.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3069499102580183922, guid: f650ccbd9a4aeac48a829b6eb46bffaf,
         type: 3}
       propertyPath: m_UpdateMode
