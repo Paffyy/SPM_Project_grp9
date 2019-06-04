@@ -30,7 +30,7 @@ public class EnemySoundListener : MonoBehaviour
             if (soundDelayTime < 0 )
             {
                 audio.audioSource.clip = audio.audioClip;
-                soundDelayTime = 0.1f;
+                soundDelayTime = 0.25f;
                 audio.audioSource.Play();
             }
         }

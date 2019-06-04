@@ -262,11 +262,12 @@ MonoBehaviour:
     m_Bits: 0
   player: {fileID: 0}
   controller: {fileID: 0}
+  AttackClip: {fileID: 0}
   animator: {fileID: 0}
   rightHand: {fileID: 0}
   leftHand: {fileID: 0}
   fireBall: {fileID: 0}
-  attackSound: {fileID: 8300000, guid: 96fa2e03cd3315f469af9b47ea9209bc, type: 3}
+  attackClip: {fileID: 8300000, guid: 96fa2e03cd3315f469af9b47ea9209bc, type: 3}
 --- !u!195 &6953694510287780995
 NavMeshAgent:
   m_ObjectHideFlags: 0
