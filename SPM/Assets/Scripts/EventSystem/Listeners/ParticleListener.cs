@@ -10,7 +10,7 @@ public class ParticleListener : MonoBehaviour
     [SerializeField] private ParticleSystem hitParticelsEffect;
     [SerializeField] private ParticleSystem hitHeartParticelsEffect;
     private Vector3 aOEverticalParticlesOffset = new Vector3(0, 0.2f, 0);
-    private Vector3 aOEyOffset = new Vector3(0, 1, 0);
+    private Vector3 aOEyOffset = new Vector3(0, 0.5f, 0);
 
 
     private void Start()
@@ -36,7 +36,8 @@ public class ParticleListener : MonoBehaviour
             if (!arrowSpecialParticleEffect.isPlaying)
             {
                 transform.position = arrowHitLocation.position + aOEverticalParticlesOffset;
-                arrowSpecialParticleEffect.Play();
+                var revEffect = Instantiate(revParticleEffect, arrowHitLocation.transform.position + aOEyOffset, Quaternion.identity);
+                revEffect.Play();
             }
          
             foreach (var item in enemiesInArea)
@@ -45,8 +46,8 @@ public class ParticleListener : MonoBehaviour
                 if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(arrowScript.AoeDamage, true);
-                    var revEffect = Instantiate(revParticleEffect, item.transform.position + aOEyOffset, item.transform.rotation);
-                    revEffect.Play();
+                    var arrowParticleEffect = Instantiate(arrowSpecialParticleEffect, item.transform.position + aOEyOffset, item.transform.rotation);
+                    arrowParticleEffect.Play();
                 }
             }
         }
