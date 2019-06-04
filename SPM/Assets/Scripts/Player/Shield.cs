@@ -39,7 +39,7 @@ public class Shield : MonoBehaviour
             if (IsBlocking  == false && Player.GetComponent<Weapon>().Sword.GetComponent<Sword>().IsBladeStorming == false)
             {
                 Block();
-                Player.SpeedModifier = 0.75f;
+                Player.SpeedModifier = 0.85f;
             }
             else
             {

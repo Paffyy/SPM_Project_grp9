@@ -1,4 +1,4 @@
-﻿Shader "Revitalize/RevitalizeShader"
+﻿Shader "Revitalize/RevitalizeShaderTess"
 {
     Properties
     {

@@ -8,7 +8,7 @@ public class ShieldState : WeaponBaseState
 {
     public override void Enter()
     {
-        owner.player.SpeedModifier = 0.7f;
+        owner.player.SpeedModifier = 0.95f;
         owner.ShieldIcon.GetComponent<Image>().color = Color.green;
         if (owner.Shield != null)
         {

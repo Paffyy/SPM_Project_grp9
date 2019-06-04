@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SmallFoliage
-  m_Shader: {fileID: 4800000, guid: 702850b86ecbe4946b5259aea32b3e9a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1ab5b8c003203f34b8a917ce610ac6ff, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -51,6 +51,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Occlusion:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -64,7 +72,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ScorchedTexture:
-        m_Texture: {fileID: 2800000, guid: c06f37e0f0c87c346bd9a55cfaecafcb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 894eb1832627a604eaf747ef0db8f9f9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -76,8 +84,9 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _Metallic: 0.4
     - _Mode: 0
+    - _OcclusionScale: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RevitalizeFactor: 0
@@ -91,4 +100,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RevitalizeColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ScorchedColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ScorchedColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
