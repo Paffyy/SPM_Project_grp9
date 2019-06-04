@@ -16,6 +16,11 @@ public class RevitalizeGround : RevitalizeGeometry
     {
         StartCoroutine(RevitalizeOverTime());
     }
+    public override void Devitalize(float offset = 0)
+    {
+        StartCoroutine(EraseAreaOverTime(Color.red));
+
+    }
     private IEnumerator RevitalizeOverTime()
     {
         for (int i = 0; i < 10; i++)
@@ -26,12 +31,12 @@ public class RevitalizeGround : RevitalizeGeometry
         }
 
     }
-    private IEnumerator EraseAreaOverTime()
+    private IEnumerator EraseAreaOverTime(Color col)
     {
         for (int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(0.2f);
-            terrain.EraseFromSplatMap(gameObject, Color.green, brushSize, 0.2f);
+            terrain.EraseFromSplatMap(gameObject, col, brushSize, 0.2f);
         }
 
     }

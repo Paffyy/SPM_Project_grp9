@@ -35,6 +35,19 @@ public class RevitalizeObject : RevitalizeGeometry
             material.SetFloat("_RevitalizeFactor", revitalizeFactor);
         }
     }
+    public override void Devitalize(float offset = 0)
+    {
+        StartCoroutine(LerpMaterialOverTimeInverse(offset));
+    }
+    IEnumerator LerpMaterialOverTimeInverse(float revitalizeDuration)
+    {
+        for (int i = 1; i < lerpLevels + 1; i++)
+        {
+            float revitalizeFactor = 1 - i / (float)lerpLevels;
+            yield return new WaitForSeconds(revitalizeDuration / lerpLevels);
+            material.SetFloat("_RevitalizeFactor", revitalizeFactor);
+        }
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
