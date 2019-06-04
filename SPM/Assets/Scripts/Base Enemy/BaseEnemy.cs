@@ -47,6 +47,7 @@ public class BaseEnemy : StateMachine
             numberOfEnemiesInAttackState = value;
         }
     }
+
     public AudioClip AttackClip;
     public AudioSource EnemyAudioSource { get; set; }
 

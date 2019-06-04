@@ -79,11 +79,13 @@ public class RevitalizeZone : MonoBehaviour
     }
     private void CheckIfShouldRevitalize(BaseEventInfo e)
     {
+        Debug.Log("Hittade event");
         var deathEventInfo = e as DeathEventInfo;
         if (deathEventInfo != null)
         {
             if (revitalizeObjectives.Contains(deathEventInfo.GameObject))
             {
+                Debug.Log("Hittade objekt");
                 revitalizeObjectives.Remove(deathEventInfo.GameObject);
             }
         }

@@ -12,7 +12,8 @@ public class LoadGame : MonoBehaviour
         {
             LoadFromSave();
             Manager.Instance.HasLoadedFromSave = false;
-        } else if (Manager.Instance.HasLoadedFromPreviousLevel)
+        }
+        else if (Manager.Instance.HasLoadedFromPreviousLevel)
         {
             LoadPlayerDataOnly();
             Manager.Instance.HasLoadedFromPreviousLevel = false;
@@ -47,15 +48,12 @@ public class LoadGame : MonoBehaviour
             zone.GetComponent<RevitalizeZone>().RevitalizeTheZoneInstant();
         }
         List<float> EnemiesID = data.DeadEnemiesID;
-        foreach(float ID in EnemiesID)
+        foreach (float ID in EnemiesID)
         {
-           GameController.GameControllerInstance.DeadEnemies.Add(ID);
+            GameController.GameControllerInstance.DeadEnemies.Add(ID);
             GameObject enemy = GameController.GameControllerInstance.Enemies[ID];
-            if(enemy != null)
-            {
-                EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, new DeathEventInfo(enemy));
-                enemy.SetActive(false);
-            }
+            EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, new DeathEventInfo(enemy));
+            enemy.SetActive(false);
         }
         List<float> PickUpsID = data.PickedUpObjectsID;
         foreach (float ID in PickUpsID)
