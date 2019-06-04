@@ -91,6 +91,11 @@ public class RevitalizeZone : MonoBehaviour
 
     private void RevitalizeTheZone()
     {
+
+        RevSoundEventInfo revSoundEventInfo = new RevSoundEventInfo();
+        EventHandler.Instance.FireEvent(EventHandler.EventType.RevAudioEvent, revSoundEventInfo);
+       
+
         GameController.GameControllerInstance.RevitalizedZones.Add(zoneID);
         foreach (var item in revitalizeObjects)
         {

@@ -6,8 +6,14 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "Weapon/BowAimState")]
 public class BowAimState : WeaponBaseState
 {
+    [SerializeField]
+    public AudioClip clip;
+
     public override void Enter()
     {
+        AudioEventInfo audioEvent = new AudioEventInfo(clip);
+        EventHandler.Instance.FireEvent(EventHandler.EventType.AudioEvent, audioEvent);
+
         owner.CurrentStateID = 1;
         owner.WeponsPanel.SelectWeapon(2, true);
         owner.BowFirstPerson.SetActive(true);

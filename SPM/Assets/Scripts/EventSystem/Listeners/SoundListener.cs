@@ -6,6 +6,10 @@ using UnityEngine;
 public class SoundListener : MonoBehaviour
 {
     private AudioSource audioSource;
+
+    [SerializeField]
+    public AudioClip revSound;
+
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -15,6 +19,8 @@ public class SoundListener : MonoBehaviour
         EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, PlayDeathSound);
         EventHandler.Instance.Register(EventHandler.EventType.PickUpEvent, PlayPickUpSound);
         EventHandler.Instance.Register(EventHandler.EventType.AudioEvent, PlayAudioClip);
+        EventHandler.Instance.Register(EventHandler.EventType.RevAudioEvent, PlayRevZoneClip);
+
     }
 
     void Start()
@@ -54,5 +60,13 @@ public class SoundListener : MonoBehaviour
             audioSource.Play();
         }
     }
+
+    private void PlayRevZoneClip(BaseEventInfo e)
+    {
+        audioSource.clip = revSound;
+        audioSource.Play();
+       
+    }
+
 }
 
