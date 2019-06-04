@@ -63,9 +63,10 @@ public class ParticleListener : MonoBehaviour
                 case AttackHitEventInfo.Weapon.Sword:
                     SpawnHitEffect(hitEvent);
                     break;
-                //case AttackHitEventInfo.Weapon.Sword:
-
-                //    break;
+                case AttackHitEventInfo.Weapon.Bow:
+                    Debug.Log("boop");
+                    SpawnHitEffect(hitEvent);
+                    break;
 
             }
 
@@ -74,13 +75,10 @@ public class ParticleListener : MonoBehaviour
 
     private void SpawnHitEffect(AttackHitEventInfo hitEvent)
     {
-        Vector3 particlePos;
-        if (hitEvent.WeapondsUsed == AttackHitEventInfo.Weapon.Sword)
-        {
+            Vector3 particlePos;
             particlePos = hitEvent.TargetHit.ClosestPointOnBounds(hitEvent.self.transform.position);
             ParticleSystem part = Instantiate(hitParticelsEffect, particlePos, Quaternion.identity, transform);
             part.Play();
-        }
     }
 
     private void HandleParticleSpawn(BaseEventInfo e)
@@ -100,5 +98,10 @@ public class ParticleListener : MonoBehaviour
     {
         ParticleSystem partHeart = Instantiate(hitHeartParticelsEffect, hit, Quaternion.identity, transform);
         partHeart.Play();
+    }
+
+    private void OnDrawGizmos()
+    {
+        
     }
 }
