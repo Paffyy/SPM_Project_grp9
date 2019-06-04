@@ -37,7 +37,8 @@ public class Bow : MonoBehaviour
     private Vector3 bowOffset;
     [SerializeField]
     private GameObject specialAttackGlow;
-
+    [SerializeField]
+    private AudioClip soundClip;
     [SerializeField]
     private Weapon weapon;
     private GameObject arrowsParent;
@@ -47,9 +48,8 @@ public class Bow : MonoBehaviour
     private bool isDoingSpecialAttack;
     private Animator animator;
     private Player playerScript;
-
+    private AudioSource audioSource;
     public enum SpecialArrowType { RainOfArrows, ShotgunArrows, AoeHitArrow }
-
     private void Awake()
     {
         crosshair = GetComponent<ThirdPersonCrosshair>();
@@ -57,6 +57,8 @@ public class Bow : MonoBehaviour
         playerScript = Player.GetComponent<Player>();
         animator = GetComponent<Animator>();
         animator.SetBool("IsChargingBow", true);
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = soundClip;
     }
 
     private void OnDisable()
@@ -107,6 +109,7 @@ public class Bow : MonoBehaviour
                 {
                     ShootArrow();
                 }
+                PlaySound();
                 weapon.ArrowCount--;
                 ResetBow();
             }
@@ -119,11 +122,21 @@ public class Bow : MonoBehaviour
         UpdateRotation();
         UpdatePosition();
     }
+
+ 
     private void ResetBow()
     {
         coolDownCounter = 0.5f;
         isDoingSpecialAttack = false;
         specialAttackGlow.SetActive(false);
+    }
+
+    private void PlaySound()
+    {
+        if (audioSource != null && soundClip != null)
+        {
+            audioSource.Play();
+        }
     }
 
     public void AddArrows(int arrows)
