@@ -8,37 +8,36 @@ public class Bow : MonoBehaviour
 {
     [Header("References")]
     [SerializeField]
-    private GameObject Arrow;
+    private GameObject arrow;
     [SerializeField]
-    private GameObject Player;
+    private GameObject player;
     [SerializeField]
-    private Camera PlayerCamera;
+    private Camera playerCamera;
+    [SerializeField]
+    private AudioClip soundClip;
 
     [Header("Variables")]
     [SerializeField]
-    private float GravityForce; // TODO move out
+    private float gravityForce; // TODO move out
     [SerializeField]
-    private LayerMask ArrowHitMask;
-    [SerializeField]
-    private int arrowCount;
+    private LayerMask arrowHitMask;
     [SerializeField]
     private float arrowSpeed;
+    [SerializeField]
+    private Vector3 bowOffset;
 
     [Header("SpecialAttacks")]
     [SerializeField]
-    private SpecialArrowType SpecialAttack;
+    private SpecialArrowType specialAttack;
     [SerializeField]
-    private int SpecialArrowCount;
+    private int specialArrowCount;
     [SerializeField]
-    private int SpecialAoeDamage;
+    private int specialAoeDamage;
     [SerializeField]
-    private int SpecialAoeRadius;
-    [SerializeField]
-    private Vector3 bowOffset;
+    private int specialAoeRadius;
     [SerializeField]
     private GameObject specialAttackGlow;
-    [SerializeField]
-    private AudioClip soundClip;
+  
     [SerializeField]
     private Weapon weapon;
     private GameObject arrowsParent;
@@ -54,9 +53,10 @@ public class Bow : MonoBehaviour
     {
         crosshair = GetComponent<ThirdPersonCrosshair>();
         arrowsParent = new GameObject("ArrowContainer");
-        playerScript = Player.GetComponent<Player>();
+        playerScript = player.GetComponent<Player>();
         animator = GetComponent<Animator>();
         animator.SetBool("IsChargingBow", true);
+
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = soundClip;
     }
@@ -85,11 +85,12 @@ public class Bow : MonoBehaviour
         {
             if (InputManager.Instance.GetkeyUp(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
             {
+                PlaySoundEffect();
                 animator.SetBool("IsChargingBow", false);
                 if (isDoingSpecialAttack) // special attack
                 {
                     CoolDownManager.Instance.StartArrowRainCoolDown(10);
-                    switch (SpecialAttack)
+                    switch (specialAttack)
                     {
                         case SpecialArrowType.RainOfArrows:
                             ShootRainOfArrows();
@@ -109,7 +110,6 @@ public class Bow : MonoBehaviour
                 {
                     ShootArrow();
                 }
-                PlaySound();
                 weapon.ArrowCount--;
                 ResetBow();
             }
@@ -131,9 +131,9 @@ public class Bow : MonoBehaviour
         specialAttackGlow.SetActive(false);
     }
 
-    private void PlaySound()
+    private void PlaySoundEffect()
     {
-        if (audioSource != null && soundClip != null)
+        if(audioSource != null && soundClip != null)
         {
             audioSource.Play();
         }
@@ -146,7 +146,7 @@ public class Bow : MonoBehaviour
     }
     private void ShootRainOfArrows()
     {
-        var arrowPoints = Manager.Instance.GetRandomPointsInAreaXYZ(PlayerCamera.transform.forward, 50, SpecialArrowCount, 2);
+        var arrowPoints = Manager.Instance.GetRandomPointsInAreaXYZ(playerCamera.transform.forward, 50, specialArrowCount, 2);
         foreach (var item in arrowPoints)
         {
             ShootArrowWithCalculatedArc(item);
@@ -154,7 +154,7 @@ public class Bow : MonoBehaviour
     }
     private void ShootShotgunArrows()
     {
-        var arrowPoints = Manager.Instance.GetRandomPointsInAreaXYZ(PlayerCamera.transform.forward, 50, SpecialArrowCount, 2);
+        var arrowPoints = Manager.Instance.GetRandomPointsInAreaXYZ(playerCamera.transform.forward, 50, specialArrowCount, 2);
         foreach (var item in arrowPoints)
         {
             ShootArrowShotgun(item.normalized);
@@ -162,13 +162,13 @@ public class Bow : MonoBehaviour
     }
     private void ShootAoeHitArrow()
     {
-        ShootArrowExplosion(PlayerCamera.transform.forward);
+        ShootArrowExplosion(playerCamera.transform.forward);
     }
 
     private void ShootArrow()
     {
-        Vector3 direction = PlayerCamera.transform.forward;
-        var arrow = Instantiate(Arrow, PlayerCamera.transform.position + direction * arrowSpeed / 25f, Quaternion.LookRotation(direction), arrowsParent.transform);
+        Vector3 direction = playerCamera.transform.forward;
+        var arrow = Instantiate(this.arrow, playerCamera.transform.position + direction * arrowSpeed / 25f, Quaternion.LookRotation(direction), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         float speed = arrowSpeed * chargeTime;
         SetArrowProperties(arrowScript, direction * speed, chargeTime);
@@ -177,45 +177,45 @@ public class Bow : MonoBehaviour
     private void ShootArrowWithCalculatedArc(Vector3 direction)
     {
         float gravityModifier = 2.4f; // Only parameter to alter time to impact with calculated arc
-        Vector3 velocity = Manager.Instance.GetInitialVelocity2(transform.position, direction, -GravityForce * gravityModifier);
-        var arrow = Instantiate(Arrow, transform.position, Quaternion.LookRotation(PlayerCamera.transform.forward), arrowsParent.transform);
+        Vector3 velocity = Manager.Instance.GetInitialVelocity2(transform.position, direction, -gravityForce * gravityModifier);
+        var arrow = Instantiate(this.arrow, transform.position, Quaternion.LookRotation(playerCamera.transform.forward), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         SetArrowProperties(arrowScript, velocity, 1);
-        arrowScript.SetGravity(GravityForce * gravityModifier);
+        arrowScript.SetGravity(gravityForce * gravityModifier);
     }
     // Shoots an array of arrows where aiming
     private void ShootArrowShotgun(Vector3 direction)
     {
-        var arrow = Instantiate(Arrow, PlayerCamera.transform.position, Quaternion.LookRotation(PlayerCamera.transform.forward), arrowsParent.transform);
+        var arrow = Instantiate(this.arrow, playerCamera.transform.position, Quaternion.LookRotation(playerCamera.transform.forward), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         SetArrowProperties(arrowScript, direction * arrowSpeed, 1);
     }
     // aoe around the arrow hit
     private void ShootArrowExplosion(Vector3 direction)
     {
-        var arrow = Instantiate(Arrow, PlayerCamera.transform.position, Quaternion.LookRotation(PlayerCamera.transform.forward), arrowsParent.transform);
+        var arrow = Instantiate(this.arrow, playerCamera.transform.position, Quaternion.LookRotation(playerCamera.transform.forward), arrowsParent.transform);
         Arrow arrowScript = arrow.GetComponent<Arrow>();
         float speed = arrowSpeed * chargeTime;
         SetArrowProperties(arrowScript, direction * speed, chargeTime);
-        arrowScript.EnableAoeOnHit(SpecialAoeDamage, SpecialAoeRadius);
+        arrowScript.EnableAoeOnHit(specialAoeDamage, specialAoeRadius);
     }
 
     private void SetArrowProperties(Arrow arrow, Vector3 initialVelocity, float damageMultiplier)
     {
-        arrow.SetGravity(GravityForce);
+        arrow.SetGravity(gravityForce);
         arrow.SetDamage(damageMultiplier);
         arrow.ApplyInitialVelocity(initialVelocity);
     }
 
     private void UpdateRotation(float swing = 0)
     {
-        var direction = PlayerCamera.transform.forward;
+        var direction = playerCamera.transform.forward;
         transform.rotation = Quaternion.LookRotation(direction);
     }
 
     private void UpdatePosition()
     {
         Vector3 update = transform.rotation * bowOffset.normalized;
-        transform.position = update * bowOffset.magnitude + Player.transform.position;
+        transform.position = update * bowOffset.magnitude + player.transform.position;
     }
 }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class EventHandler : MonoBehaviour
 {
     public delegate void EventListener(BaseEventInfo e);
-    public enum EventType { DeathEvent, SpawnEvent, ArrowAoeHitEvent, DamageEvent, IsDyingEvent, RevitalizeEvent, RevitalizeZoneEvent, PickUpEvent, CheckPointEvent, CoolDownEvent, AnimTriggerEvent, BossFightTrigger, SaveEvent, LoadEvent, UIButtonEvent, WeapondHitEvent, ParticleEvent, AudioEvent}
+    public enum EventType { DeathEvent, SpawnEvent, ArrowAoeHitEvent, DamageEvent, IsDyingEvent, RevitalizeEvent, RevitalizeZoneEvent, PickUpEvent, CheckPointEvent, CoolDownEvent, AnimTriggerEvent, BossFightTrigger, SaveEvent, LoadEvent, UIButtonEvent, WeapondHitEvent, ParticleEvent, AudioEvent,
+        ShieldBlock
+    }
     private Dictionary<EventType, List<EventListener>> eventListeners;
     private static EventHandler instance;
     public static EventHandler Instance

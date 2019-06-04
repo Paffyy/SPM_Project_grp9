@@ -21,6 +21,10 @@ public class Arrow : MonoBehaviour
     private int aoeDamage;
     [SerializeField]
     private int aoeRadius;
+    [SerializeField]
+    private AudioClip soundClip;
+
+    private AudioSource audioSource;
 
     public int AoeDamage
     {
@@ -38,6 +42,8 @@ public class Arrow : MonoBehaviour
     private void Awake()
     {
         capCollider = GetComponentInChildren<CapsuleCollider>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = soundClip;
     }
     private void Update()
     {
@@ -52,6 +58,7 @@ public class Arrow : MonoBehaviour
         {
             if (!isTerminating)
             {
+                PlaySoundEffect();
                 StartCoroutine(Terminate());
             }
         }
@@ -64,6 +71,13 @@ public class Arrow : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void PlaySoundEffect()
+    {
+        if (audioSource != null && soundClip != null)
+        {
+            audioSource.Play();
+        }
+    }
     public void SetGravity(float gravForce)
     {
         gravityForce = gravForce;

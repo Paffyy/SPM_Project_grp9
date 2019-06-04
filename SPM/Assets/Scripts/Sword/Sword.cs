@@ -30,11 +30,18 @@ public class Sword : MonoBehaviour
     private ParticleSystem.EmissionModule trailsEmissionModule;
     private bool isAttacking;
 
+    [SerializeField]
+    private AudioClip soundClip;
+
+    private AudioSource audioSource;
+
     void Start()
     {
         swordOffset = new Vector3(0.3f, 0.2f, 0.55f);
         trailsEmissionModule = Trails.emission;
         isAttacking = false;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = soundClip;
     }
 
     // Update is called once per frame
@@ -177,15 +184,19 @@ public class Sword : MonoBehaviour
 
     private void DealDamage(Collider item)
     {
-        //testing
+        PlaySoundEffect();
         Vector3 pushBack = (Vector3.ProjectOnPlane((item.gameObject.transform.position - PlayerObject.transform.position), Vector3.up).normalized + Vector3.up * 5) * 2;
         item.gameObject.GetComponent<Health>().TakeDamage(Damage, pushBack, PlayerObject.transform.position);
-
-        //item.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
-
         Color c = item.GetComponent<Renderer>().material.color;
         item.GetComponent<Renderer>().material.color = Color.red;
         StartCoroutine(RemoveRedColor(item, c));
+    }
+    private void PlaySoundEffect()
+    {
+        if (audioSource != null && soundClip != null)
+        {
+            audioSource.Play();
+        }
     }
     //testing
     IEnumerator RemoveRedColor(Collider item, Color c)

@@ -15,10 +15,17 @@ public class Shield : MonoBehaviour
     public Animator Anim;
     private BoxCollider boxCollider;
     private Vector3 shieldPos;
-
+    private AudioSource audioSource;
+    private float defaultVolume;
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        defaultVolume = audioSource.volume;
+    }
     // Start is called before the first frame update
     void Start()
     {
+        EventHandler.Instance.Register(EventHandler.EventType.ShieldBlock, PlayShieldBlockClip);
         //shieldPos = new Vector3(0.31f, 0.45f, -0.43f);
         shieldPos = new Vector3(0.2f, 0.3f, -0.5f);
         boxCollider = GetComponentInChildren<BoxCollider>();
@@ -78,6 +85,16 @@ public class Shield : MonoBehaviour
         IsBlocking = false;
     }
 
+    private void PlayShieldBlockClip(BaseEventInfo e)
+    {
+        var audio = e as AudioEventInfo;
+        if (audio != null)
+        {
+            audioSource.clip = audio.audioClip;
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+        }
+    }
     void Block()
     {
         Anim.SetBool("IsBlocking", true);

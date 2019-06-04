@@ -14,7 +14,9 @@ public class Projectile : MonoBehaviour
     private bool isTerminating;
     private bool isReflected;
     private Vector3 prevPos;
-
+    [SerializeField]
+    private AudioClip soundClip;
+ 
     void Start()
     {
         prevPos = Vector3.zero;
@@ -44,6 +46,8 @@ public class Projectile : MonoBehaviour
             isReflected = true;
             Velocity = -Velocity;
             transform.rotation = Quaternion.LookRotation(-transform.forward);
+            AudioEventInfo audioEvent = new AudioEventInfo(soundClip);
+            EventHandler.Instance.FireEvent(EventHandler.EventType.ShieldBlock, audioEvent);
         }
         else if (other.gameObject.CompareTag("Enemy") && isReflected)
         {
