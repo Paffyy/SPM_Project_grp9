@@ -13,7 +13,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1234,6 +1234,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1542689619950666324, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
         type: 3}
       propertyPath: Radius
@@ -1268,7 +1273,7 @@ PrefabInstance:
         type: 3}
       propertyPath: attackSoundClip
       value: 
-      objectReference: {fileID: 8300000, guid: ce40d23c8689fec4d862d4ba659f7db9, type: 3}
+      objectReference: {fileID: 8300000, guid: e0a2973e20cd9af4cba7da43b29d57dc, type: 3}
     - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
         type: 3}
       propertyPath: bladeStormSoundClip
