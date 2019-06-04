@@ -11,18 +11,21 @@ public class TutorialScript : MonoBehaviour
     private GameObject TutorialText;
     [SerializeField]
     private bool isShownOnStart;
+    [SerializeField]
+    private float shownOnStartTimeOffset;
 
     private IEnumerator previousCoroutine;
     void Awake()
     {
         if (isShownOnStart)
         {
-            ShowAndRemove();
+            StartCoroutine(ShowOnStart(shownOnStartTimeOffset));
+            
         }
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.H) && Manager.Instance.IsPaused == false)
         {
             ShowAndRemove();
         }
@@ -47,5 +50,11 @@ public class TutorialScript : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         TutorialText.SetActive(false);
+    }
+
+    IEnumerator ShowOnStart(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        ShowAndRemove();
     }
 }

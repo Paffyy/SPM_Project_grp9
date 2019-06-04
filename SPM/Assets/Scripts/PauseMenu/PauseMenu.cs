@@ -61,10 +61,6 @@ public class PauseMenu : MonoBehaviour
         var buttonEventInfo = e as UIButtonEventInfo;
         if (buttonEventInfo != null)
         {
-            Debug.Log("boop ius " + buttonEventInfo.MenuEnum.ToString());
-            //if (buttonEventInfo.MenuEnum != UIButtonEventInfo.Menu.MainMenu)
-            //{
-                Debug.Log("boop " + (int)buttonEventInfo.ButtonEnum);
                 switch ((int)buttonEventInfo.ButtonEnum)
                 {
                     case 0:
@@ -78,7 +74,6 @@ public class PauseMenu : MonoBehaviour
                         break;
 
                 }
-            //}
 
         }
     }
@@ -92,11 +87,11 @@ public class PauseMenu : MonoBehaviour
 
     private void OptionsButton()
     {
-
+        Debug.Log("Options");
     }
 
     private void SaveAndQuitButton()
     {
-
+        Debug.Log("Save and quit");
     }
 }
