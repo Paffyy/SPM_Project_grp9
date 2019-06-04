@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     [SerializeField] private GameObject loadingScreen;
     void Start()
     {
@@ -27,24 +27,28 @@ public class MainMenu : MonoBehaviour
             switch ((int)buttonEventInfo.ButtonEnum)
             {
                 case 0:
-                    //Resume borde vara här sen när den implementeras
-                    //Resume();
                     NewGame();
                     break;
                 case 1:
-                    OptionsButton();
+                    LoadGame();
                     break;
                 case 2:
-                    Quit();
+                    OptionsButton();
                     break;
                 case 3:
-                    NewGame();
+                    Quit();
                     break;
             }
 
         }
     }
 
+    private void LoadGame()
+    {
+        loadingScreen.SetActive(true);
+        Manager.Instance.HasLoadedFromSave = true;
+        SceneManager.LoadSceneAsync(SaveSystem.LoadGame().CurrentSceneIndex);
+    }
 
     private void NewGame()
     {
