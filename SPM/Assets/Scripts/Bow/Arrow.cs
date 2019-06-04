@@ -98,7 +98,7 @@ public class Arrow : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
-                Vector3 pushBack = Vector3.ProjectOnPlane(velocity.normalized, Vector3.up) * 2 + (Vector3.up * 2) * 3;
+                Vector3 pushBack = Vector3.up * 13;
                 gameObject.transform.SetParent(hit.collider.gameObject.transform);
                 hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, pushBack, Vector3.zero);
 

@@ -23,7 +23,6 @@ public abstract class Health : MonoBehaviour
     public virtual void Update()
     {
         timer -= Time.deltaTime;
-
     }
 
     virtual public bool CanTakeDamage()
