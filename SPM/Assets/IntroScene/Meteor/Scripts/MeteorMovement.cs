@@ -11,7 +11,6 @@ public class MeteorMovement : MonoBehaviour
     [SerializeField]
     private List<GameObject> trails;
     private Rigidbody rigidBody;
-
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -28,6 +27,7 @@ public class MeteorMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         speed = 0;
+
         if (!collision.gameObject.CompareTag("MeteorGround"))
         {
             Physics.IgnoreCollision(collision.collider, GetComponent<BoxCollider>());
@@ -45,6 +45,7 @@ public class MeteorMovement : MonoBehaviour
                     IntroScene.IntroSceneInstance.FirstMeteorHit = true;
                 }
                 GameObject impactVFX = Instantiate(impactPrefab, pos, rot) as GameObject;
+                impactVFX.GetComponent<AudioSource>().Play();
                 Destroy(impactVFX, 60f);
             }
 
