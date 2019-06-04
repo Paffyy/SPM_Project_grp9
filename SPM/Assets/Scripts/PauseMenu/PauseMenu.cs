@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenu;
     [SerializeField]
+    private GameObject uIHud;
+    [SerializeField]
     private GameObject helpUIHud;
 
 
