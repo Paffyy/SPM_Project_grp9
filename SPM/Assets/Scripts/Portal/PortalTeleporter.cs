@@ -15,7 +15,7 @@ public class PortalTeleporter : MonoBehaviour
         {
             Manager.Instance.HasLoadedFromPreviousLevel = true;
             SaveSystem.SaveGame(new GameData());
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
             //Vector3 portalToPlayer = Player.position - transform.position;
             //float dotProduct = Vector3.Dot(transform.up, portalToPlayer);
             //if(dotProduct < 0f)
