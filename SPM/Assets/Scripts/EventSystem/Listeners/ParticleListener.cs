@@ -67,18 +67,16 @@ public class ParticleListener : MonoBehaviour
                     Debug.Log("boop");
                     SpawnHitEffect(hitEvent);
                     break;
-
             }
-
         }
     }
 
     private void SpawnHitEffect(AttackHitEventInfo hitEvent)
     {
-            Vector3 particlePos;
-            particlePos = hitEvent.TargetHit.ClosestPointOnBounds(hitEvent.self.transform.position);
-            ParticleSystem part = Instantiate(hitParticelsEffect, particlePos, Quaternion.identity, transform);
-            part.Play();
+        //Vector3 particlePos;
+        //particlePos = hitEvent.TargetHit.ClosestPointOnBounds(hitEvent.self.transform.position);
+        //ParticleSystem part = Instantiate(hitParticelsEffect, particlePos, Quaternion.identity, transform);
+        //part.Play();
     }
 
     private void HandleParticleSpawn(BaseEventInfo e)
