@@ -13,8 +13,6 @@ public class Bow : MonoBehaviour
     private GameObject Player;
     [SerializeField]
     private Camera PlayerCamera;
-    [SerializeField]
-    private TextMeshProUGUI ArrowCountText; // TODO move out
 
     [Header("Variables")]
     [SerializeField]
@@ -49,15 +47,13 @@ public class Bow : MonoBehaviour
     private bool isDoingSpecialAttack;
     private Animator animator;
     private Player playerScript;
-    [HideInInspector]
-    public int ArrowCount { get { return arrowCount; } set { arrowCount = value; ArrowCountText.text = arrowCount.ToString(); } }
+
     public enum SpecialArrowType { RainOfArrows, ShotgunArrows, AoeHitArrow }
 
     private void Awake()
     {
         crosshair = GetComponent<ThirdPersonCrosshair>();
         arrowsParent = new GameObject("ArrowContainer");
-        ArrowCountText.text = weapon.ArrowCount.ToString();
         playerScript = Player.GetComponent<Player>();
         animator = GetComponent<Animator>();
         animator.SetBool("IsChargingBow", true);
@@ -107,12 +103,11 @@ public class Bow : MonoBehaviour
                             break;
                     }
                 }
-                else // default arrow shot
+                else
                 {
                     ShootArrow();
                 }
                 weapon.ArrowCount--;
-                ArrowCountText.text = weapon.ArrowCount.ToString();
                 ResetBow();
             }
         }
@@ -134,7 +129,7 @@ public class Bow : MonoBehaviour
     public void AddArrows(int arrows)
     {
         weapon.ArrowCount += arrows;
-        ArrowCountText.text = weapon.ArrowCount.ToString();
+        //ArrowCountText.text = weapon.ArrowCount.ToString();
     }
     private void ShootRainOfArrows()
     {

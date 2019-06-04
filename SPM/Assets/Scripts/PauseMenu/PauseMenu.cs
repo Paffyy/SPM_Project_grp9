@@ -91,7 +91,6 @@ public class PauseMenu : MonoBehaviour
 
     private void SaveAndQuitButton()
     {
-        Debug.Log("Save and quit");
         SaveEventInfo saveEventInfo = new SaveEventInfo("Saving...");
         EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
         SaveSystem.SaveGame(new GameData());

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Weapon : StateMachine
 {
@@ -15,10 +16,11 @@ public class Weapon : StateMachine
     public GameObject BowFirstPerson;
     public GameObject Sword;
     public Image ShieldIcon;
-    //public RawImage BowIcon;
-    //public RawImage SwordIcon;
     public WeaponsPanel WeponsPanel;
-    public int ArrowCount { get { return arrowCount; } set { arrowCount = value; } }
+    public int ArrowCount { get { return arrowCount; } set { arrowCount = value; arrowCountText.text = arrowCount.ToString(); } }
+
+    [SerializeField]
+    private TextMeshProUGUI arrowCountText;
 
     [SerializeField]
     private int arrowCount;
@@ -31,6 +33,7 @@ public class Weapon : StateMachine
     protected override void Awake()
     {
         base.Awake();
+        arrowCountText.text = arrowCount.ToString();
         player = GetComponent<Player>();
     }
 
