@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,11 +17,14 @@ public class RangedBaseEnemy : BaseEnemy
     private GameObject leftHand;
     [SerializeField]
     private GameObject fireBall;
-
+    [SerializeField]
+    private AudioClip attackClip;
+    private AudioSource audioSource { get; set; }
 
     protected override void Awake()
     {
         base.Awake();
+        audioSource = GetComponent<AudioSource>();
        // Anim = GetComponent<Animator>();
     }
 
@@ -31,11 +35,19 @@ public class RangedBaseEnemy : BaseEnemy
         {
             fireBallClone = Instantiate(fireBall, RightHand.transform.position, transform.rotation);
             fireBallClone.GetComponent<Projectile>().Velocity = fireBallClone.GetComponent<Projectile>().Speed * (player.transform.position - fireBallClone.transform.position).normalized;
+            PlaySound();
         }
         else if(!Anim.GetBool("IsUsingRightHand"))
         {
             fireBallClone = Instantiate(fireBall, LeftHand.transform.position, transform.rotation);
             fireBallClone.GetComponent<Projectile>().Velocity = fireBallClone.GetComponent<Projectile>().Speed * (player.transform.position - fireBallClone.transform.position).normalized;
+            PlaySound();
         }
+    }
+
+    private void PlaySound()
+    {
+        AudioEventInfo audioEventInfo = new AudioEventInfo(attackClip, audioSource);
+        EventHandler.Instance.FireEvent(EventHandler.EventType.EnemyAttackEvent, audioEventInfo);
     }
 }

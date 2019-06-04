@@ -16,11 +16,10 @@ public class Shield : MonoBehaviour
     private BoxCollider boxCollider;
     private Vector3 shieldPos;
     private AudioSource audioSource;
-    private float defaultVolume;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        defaultVolume = audioSource.volume;
     }
     // Start is called before the first frame update
     void Start()
