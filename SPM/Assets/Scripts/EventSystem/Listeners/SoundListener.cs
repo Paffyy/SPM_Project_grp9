@@ -14,7 +14,7 @@ public class SoundListener : MonoBehaviour
     {
         EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, PlayDeathSound);
         EventHandler.Instance.Register(EventHandler.EventType.PickUpEvent, PlayPickUpSound);
-        EventHandler.Instance.Register(EventHandler.EventType.AudioEvent, PlayAudioClip)
+        EventHandler.Instance.Register(EventHandler.EventType.AudioEvent, PlayAudioClip);
     }
 
     void Start()
