@@ -3722,6 +3722,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2093523449477133055, guid: f6b851c321ca85d4383a91689fe3e32c,
         type: 3}
       propertyPath: m_Name
@@ -9983,11 +9987,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pitch
       value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4919028187714049801, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe14f689f0bf4924ab5c3ebe4a1a77be, type: 3}
