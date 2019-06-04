@@ -80,11 +80,11 @@ public class BaseEnemyAttackState : BaseEnemyBaseState
                 Vector3 push = (((owner.player.transform.position) - owner.transform.position).normalized + Vector3.up * 2) * 4;
                 player.TakeDamage(owner.Damage, push, owner.transform.position);
             //}
-
+            AudioEventInfo audioEventInfo = new AudioEventInfo(owner.AttackClip, owner.EnemyAudioSource);
+            EventHandler.Instance.FireEvent(EventHandler.EventType.EnemyAttackEvent, audioEventInfo);
         }
         //arr[0].GetComponent<Player>.Hit();
         currentCooldown = cooldown;
-
     }
 
 }

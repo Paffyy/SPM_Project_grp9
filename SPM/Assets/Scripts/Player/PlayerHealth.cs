@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     private Shield shield;
     public float DamageCooldown;
     private float currentCooldown;
+    [SerializeField]
+    private AudioClip shieldblockClip;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -65,11 +67,13 @@ public class PlayerHealth : MonoBehaviour
         if (ShieldObject != null)
         {
             var dotProduct = Vector3.Dot(ShieldObject.transform.TransformDirection(transform.forward), position - transform.position);
-            if (dotProduct < ShieldObject.transform.forward.x && shield.IsBlocking) // shieldblocked
+            if (dotProduct > 0.2 && shield.IsBlocking) // shieldblocked
             {
                 //ShieldObject.TakeDamage(damage);
                 //skölden tar bort 90% av pushBack effekten
                 player.Velocity += pushBack * 0.4f;
+                AudioEventInfo audioEvent = new AudioEventInfo(shieldblockClip);
+                EventHandler.Instance.FireEvent(EventHandler.EventType.ShieldBlock, audioEvent);
                 Debug.Log("shield hit!");
                 return;
             }

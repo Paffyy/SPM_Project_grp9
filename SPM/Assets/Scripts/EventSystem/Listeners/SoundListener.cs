@@ -45,10 +45,14 @@ public class SoundListener : MonoBehaviour
         var pickUpEventInfo = e as PickupEventInfo;
         if(pickUpEventInfo != null)
         {
-            audioSource.clip = pickUpEventInfo.PickUpObject.GetComponent<PickUp>().PickUpSound;
-            audioSource.Play();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = pickUpEventInfo.PickUpObject.GetComponent<PickUp>().PickUpSound;
+                audioSource.Play();
+            }
+
         }
-    
+
     }
 
     private void PlayAudioClip(BaseEventInfo e)
@@ -56,8 +60,11 @@ public class SoundListener : MonoBehaviour
         var audio = e as AudioEventInfo;
         if (audio != null)
         {
-            audioSource.clip = audio.audioClip;
-            audioSource.Play();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = audio.audioClip;
+                audioSource.Play();
+            }
         }
     }
 
@@ -65,7 +72,6 @@ public class SoundListener : MonoBehaviour
     {
         audioSource.clip = revSound;
         audioSource.Play();
-       
     }
 
 }

@@ -260,12 +260,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6039308025696700034, guid: e75b885024d69064e94e2745dbefde0d,
-        type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 7651501562885396188, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
     - target: {fileID: 6039308025696700158, guid: e75b885024d69064e94e2745dbefde0d,
         type: 3}
       propertyPath: m_Enabled
@@ -384,6 +378,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 7405512950873966707}
+    - target: {fileID: 7243566105080365996, guid: e75b885024d69064e94e2745dbefde0d,
+        type: 3}
+      propertyPath: attackClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 96fa2e03cd3315f469af9b47ea9209bc, type: 3}
     - target: {fileID: 808108416169347160, guid: e75b885024d69064e94e2745dbefde0d,
         type: 3}
       propertyPath: m_Enabled
@@ -424,6 +423,12 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6039308025696700034, guid: e75b885024d69064e94e2745dbefde0d,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 7651501562885396188, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 6953694510287780995, guid: e75b885024d69064e94e2745dbefde0d, type: 3}
     - {fileID: 6039308025696700034, guid: e75b885024d69064e94e2745dbefde0d, type: 3}

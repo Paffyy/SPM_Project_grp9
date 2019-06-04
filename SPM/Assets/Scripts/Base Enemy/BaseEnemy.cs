@@ -47,10 +47,12 @@ public class BaseEnemy : StateMachine
             numberOfEnemiesInAttackState = value;
         }
     }
-
+    public AudioClip AttackClip;
+    public AudioSource EnemyAudioSource { get; set; }
 
     protected override void Awake()
     {
+        EnemyAudioSource = GetComponent<AudioSource>();
         //för debug
         MeshRen = GetComponent<MeshRenderer>();
         enemyID = transform.position.sqrMagnitude;

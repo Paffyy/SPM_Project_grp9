@@ -6,9 +6,14 @@ public class AudioEventInfo : BaseEventInfo
 {
 
     public AudioClip audioClip;
-
+    public AudioSource audioSource;
     public AudioEventInfo(AudioClip audio)
     {
         audioClip = audio;
+    }
+    public AudioEventInfo(AudioClip audio, AudioSource source)
+    {
+        audioClip = audio;
+        audioSource = source;
     }
 }
