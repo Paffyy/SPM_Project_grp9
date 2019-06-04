@@ -3797,18 +3797,6 @@ PrefabInstance:
       propertyPath: CollidersToHit.m_Bits
       value: 16384
       objectReference: {fileID: 0}
-    - target: {fileID: 8663097922859377773, guid: f6b851c321ca85d4383a91689fe3e32c,
-        type: 3}
-      propertyPath: revParticleEffect
-      value: 
-      objectReference: {fileID: 6783240149549553370, guid: f5a121c9d197d2243b3c68451af7a097,
-        type: 3}
-    - target: {fileID: 8663097922859377773, guid: f6b851c321ca85d4383a91689fe3e32c,
-        type: 3}
-      propertyPath: arrowSpecialParticleEffect
-      value: 
-      objectReference: {fileID: 7418829533252662723, guid: 771b1f29f04df044bae6adba60cc382d,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6b851c321ca85d4383a91689fe3e32c, type: 3}
 --- !u!1 &940537962
@@ -9631,6 +9619,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2279219361730397839, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 7651501562885396185, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: yAngle
@@ -9779,11 +9772,6 @@ PrefabInstance:
       propertyPath: hearts
       value: 
       objectReference: {fileID: 2039870791}
-    - target: {fileID: 2279219361730397839, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 7486069670875497263, guid: fe14f689f0bf4924ab5c3ebe4a1a77be,
         type: 3}
       propertyPath: m_LocalPosition.z
