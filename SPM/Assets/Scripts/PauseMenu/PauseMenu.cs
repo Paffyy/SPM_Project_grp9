@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenu;
     [SerializeField]
-    private GameObject UIHud;
+    private GameObject uIHud;
+    [SerializeField]
+    private GameObject helpUIHud;
 
 
     void Start()
@@ -34,14 +37,13 @@ public class PauseMenu : MonoBehaviour
 
     void Register()
     {
-        Debug.Log("register");
         EventHandler.Instance.Register(EventHandler.EventType.UIButtonEvent, CheckButtonClick);
     }
 
     private void Resume()
     {
         pauseMenu.SetActive(false);
-        UIHud.SetActive(true);
+        uIHud.SetActive(true);
         Time.timeScale = 1f;
         IsPaused = false;
         Manager.Instance.IsPaused = false;
@@ -50,7 +52,8 @@ public class PauseMenu : MonoBehaviour
     private void Pause()
     {
         pauseMenu.SetActive(true);
-        UIHud.SetActive(false);
+        uIHud.SetActive(false);
+        helpUIHud.SetActive(false);
         Time.timeScale = 0f;
         IsPaused = true;
         Manager.Instance.IsPaused = true;
@@ -93,5 +96,11 @@ public class PauseMenu : MonoBehaviour
     private void SaveAndQuitButton()
     {
         Debug.Log("Save and quit");
+        SaveEventInfo saveEventInfo = new SaveEventInfo("Saving...");
+        EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
+        SaveSystem.SaveGame(new GameData());
+
+        SceneManager.LoadScene(0);
+
     }
 }

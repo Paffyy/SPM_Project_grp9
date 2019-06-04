@@ -31,6 +31,7 @@ public class TutorialScript : MonoBehaviour
         }
     }
 
+
     private void ShowAndRemove()
     {
         var coroutine = Display(terminationDelay);

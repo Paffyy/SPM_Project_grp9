@@ -36,16 +36,20 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if(Manager.Instance.IsPaused == false)
         {
-            SaveEventInfo saveEventInfo = new SaveEventInfo("Saving...");
-            EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
-            SaveSystem.SaveGame(new GameData());
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                SaveEventInfo saveEventInfo = new SaveEventInfo("Saving...");
+                EventHandler.Instance.FireEvent(EventHandler.EventType.SaveEvent, saveEventInfo);
+                SaveSystem.SaveGame(new GameData());
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                Manager.Instance.HasLoadedFromSave = true;
+                SceneManager.LoadScene(CurrentSceneIndex);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Manager.Instance.HasLoadedFromSave = true;
-            SceneManager.LoadScene(CurrentSceneIndex);
-        }
+
     }
 }
