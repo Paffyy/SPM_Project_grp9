@@ -43,7 +43,6 @@ public class PauseMenu : MonoBehaviour
     private void Resume()
     {
         pauseMenu.SetActive(false);
-        uIHud.SetActive(true);
         Time.timeScale = 1f;
         IsPaused = false;
         Manager.Instance.IsPaused = false;
@@ -52,7 +51,6 @@ public class PauseMenu : MonoBehaviour
     private void Pause()
     {
         pauseMenu.SetActive(true);
-        uIHud.SetActive(false);
         helpUIHud.SetActive(false);
         Time.timeScale = 0f;
         IsPaused = true;
