@@ -35,7 +35,6 @@ public class MenuButtonController : MonoBehaviour
         {
             if (!KeyDown)
             {
-                //if(Input.GetAxis("Vertical") < 0 || Input.GetKeyDown(KeybindManager.Instance.MenuUp.GetKeyCode()))
                 if(input == 1)
                 {
                     if(Index < MaxIndex)
@@ -46,7 +45,7 @@ public class MenuButtonController : MonoBehaviour
                         Index = 0;
                     }
                 }
-                //else if (Input.GetAxis("Vertical") > 0 || Input.GetKeyDown(KeybindManager.Instance.MenuDown.GetKeyCode()))
+
                 else if (input == -1)
                 {
                     if(Index > 0)
