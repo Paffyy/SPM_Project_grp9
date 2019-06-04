@@ -1264,6 +1264,16 @@ PrefabInstance:
       propertyPath: SlashParticleSystem
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: attackSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ce40d23c8689fec4d862d4ba659f7db9, type: 3}
+    - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: bladeStormSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2999cbe7f28e90a4dab7b0af3f41ce20, type: 3}
     - target: {fileID: 622652556719148068, guid: f3b0743748735a14b9bc4dd6549545e2,
         type: 3}
       propertyPath: m_LocalPosition.x

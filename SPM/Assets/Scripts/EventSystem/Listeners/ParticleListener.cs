@@ -9,10 +9,18 @@ public class ParticleListener : MonoBehaviour
     [SerializeField] private ParticleSystem arrowSpecialParticleEffect;
     [SerializeField] private ParticleSystem hitParticelsEffect;
     [SerializeField] private ParticleSystem hitHeartParticelsEffect;
+    [SerializeField]
+    private AudioClip specialAttackAudioClip;
+
     private Vector3 aOEverticalParticlesOffset = new Vector3(0, 0.2f, 0);
     private Vector3 aOEyOffset = new Vector3(0, 0.5f, 0);
+    private AudioSource audioSource;
 
-
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+        
     private void Start()
     {
         Register();
@@ -24,7 +32,7 @@ public class ParticleListener : MonoBehaviour
         EventHandler.Instance.Register(EventHandler.EventType.WeapondHitEvent, HandleHit);
         EventHandler.Instance.Register(EventHandler.EventType.ParticleEvent, HandleParticleSpawn);
     }
-
+ 
     private void DoAoeArrowAttack(BaseEventInfo e)
     {
         var arrowEventInfo = e as ArrowHitEventInfo;
@@ -37,7 +45,10 @@ public class ParticleListener : MonoBehaviour
             {
                 transform.position = arrowHitLocation.position + aOEverticalParticlesOffset;
                 var revEffect = Instantiate(revParticleEffect, arrowHitLocation.transform.position + aOEyOffset, Quaternion.identity);
-                revEffect.Play();
+                audioSource = revEffect.GetComponent<AudioSource>();
+                audioSource.clip = specialAttackAudioClip;
+                audioSource.Play();
+                revEffect.GetComponent<ParticleSystem>().Play();
             }
          
             foreach (var item in enemiesInArea)

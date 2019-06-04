@@ -31,7 +31,9 @@ public class Sword : MonoBehaviour
     private bool isAttacking;
 
     [SerializeField]
-    private AudioClip soundClip;
+    private AudioClip attackSoundClip;
+    [SerializeField]
+    private AudioClip bladeStormSoundClip;
 
     private AudioSource audioSource;
 
@@ -41,7 +43,7 @@ public class Sword : MonoBehaviour
         trailsEmissionModule = Trails.emission;
         isAttacking = false;
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = soundClip;
+        audioSource.clip = attackSoundClip;
     }
 
     // Update is called once per frame
@@ -155,6 +157,7 @@ public class Sword : MonoBehaviour
 
     private void BladeStorm()
     {
+        PlaySoundEffect(bladeStormSoundClip, true);
         StartCoroutine(InflictBladeStormDamage());
     }
 
@@ -179,23 +182,27 @@ public class Sword : MonoBehaviour
         {
             EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(PlayerObject.transform ,item, AttackHitEventInfo.Weapon.Sword));
             DealDamage(item);
+            PlaySoundEffect(attackSoundClip);
         }
     }
 
     private void DealDamage(Collider item)
     {
-        PlaySoundEffect();
         Vector3 pushBack = (Vector3.ProjectOnPlane((item.gameObject.transform.position - PlayerObject.transform.position), Vector3.up).normalized + Vector3.up * 5) * 2;
         item.gameObject.GetComponent<Health>().TakeDamage(Damage, pushBack, PlayerObject.transform.position);
         Color c = item.GetComponent<Renderer>().material.color;
         item.GetComponent<Renderer>().material.color = Color.red;
         StartCoroutine(RemoveRedColor(item, c));
     }
-    private void PlaySoundEffect()
+    private void PlaySoundEffect(AudioClip clip, bool overrideSound = false)
     {
-        if (audioSource != null && soundClip != null)
+        if (audioSource != null && clip != null)
         {
-            audioSource.Play();
+            if (!audioSource.isPlaying || overrideSound)
+	        {
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
         }
     }
     //testing

@@ -112,11 +112,13 @@ public class Arrow : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
+                audioSource.volume = 0.5f;
                 Vector3 pushBack = Vector3.up * 13;
                 gameObject.transform.SetParent(hit.collider.gameObject.transform);
                 hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, pushBack, Vector3.zero);
                 EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(null, hit.collider, AttackHitEventInfo.Weapon.Bow));
             }
+            audioSource.volume = 0.2f;
             hasCollided = true;
             if (EventHandler.Instance != null)
             {
