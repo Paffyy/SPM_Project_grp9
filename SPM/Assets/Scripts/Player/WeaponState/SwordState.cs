@@ -6,8 +6,14 @@ using UnityEngine.UI;
 [CreateAssetMenu(menuName = "Weapon/SwordState")]
 public class SwordState : WeaponBaseState
 {
+    [SerializeField]
+    public AudioClip clip;
+
     public override void Enter()
     {
+        AudioEventInfo audioEvent = new AudioEventInfo(clip);
+        EventHandler.Instance.FireEvent(EventHandler.EventType.AudioEvent, audioEvent);
+
         owner.CurrentStateID = 0;
         owner.WeponsPanel.SelectWeapon(1, true);
         owner.Sword.SetActive(true);
