@@ -14279,7 +14279,6 @@ GameObject:
   - component: {fileID: 2488865128021147204}
   - component: {fileID: 2488865128021147206}
   - component: {fileID: 2488865128021147207}
-  - component: {fileID: 1269851802083372624}
   m_Layer: 0
   m_Name: Beam
   m_TagString: Untagged
@@ -19033,20 +19032,52 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!82 &1269851802083372624
+--- !u!1 &2488865129122187313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2488865129122187312}
+  - component: {fileID: 6764844462057839967}
+  m_Layer: 0
+  m_Name: MeteorHit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2488865129122187312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2488865129122187313}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1113.01, y: 13.11, z: -101.62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2488865128021147204}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &6764844462057839967
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2488865128021147205}
+  m_GameObject: {fileID: 2488865129122187313}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243566034441828398, guid: ae7ceb3adc43a18428f70108ac767659,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 71af6610932a6a24395ff3264b9b5bf6, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1.2
   Loop: 0
   Mute: 0
@@ -19055,7 +19086,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 25
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -19090,7 +19121,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 0.6
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -19130,37 +19161,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &2488865129122187313
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2488865129122187312}
-  m_Layer: 0
-  m_Name: MeteorHit
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2488865129122187312
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2488865129122187313}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1113.01, y: 13.11, z: -101.62}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2488865128021147204}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5156227025132516292
 GameObject:
   m_ObjectHideFlags: 0
