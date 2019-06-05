@@ -140,6 +140,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   impactDamage: 10
+  parent: {fileID: 0}
 --- !u!1001 &1973463333178332445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -147,6 +148,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1989663003150398048}
     m_Modifications:
+    - target: {fileID: 920048580236380232, guid: 9c821ac261e55cc46ac7447f63c4b02c,
+        type: 3}
+      propertyPath: m_Name
+      value: Small_Fire
+      objectReference: {fileID: 0}
     - target: {fileID: 920048580236380245, guid: 9c821ac261e55cc46ac7447f63c4b02c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -201,11 +207,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 920048580236380232, guid: 9c821ac261e55cc46ac7447f63c4b02c,
-        type: 3}
-      propertyPath: m_Name
-      value: Small_Fire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c821ac261e55cc46ac7447f63c4b02c, type: 3}
