@@ -11,7 +11,8 @@ public class BossFight : MonoBehaviour
     public Boss Boss;
     private EnemyHealth health;
     public GameObject FightBorder;
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject endScreen;
 
     public void Start()
     {
@@ -24,7 +25,6 @@ public class BossFight : MonoBehaviour
         health = Boss.GetComponent<EnemyHealth>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -51,15 +51,20 @@ public class BossFight : MonoBehaviour
 
         if(death.GameObject.name == "Boss")
         {
-
             //borde göra något fadeout av ui:n
             BossCanvas.SetActive(false);
             FightBorder.SetActive(false);
-
             //temp
-            SceneManager.LoadScene(0);
-
+            endScreen.SetActive(true);
+            RevSoundEventInfo revSoundEventInfo = new RevSoundEventInfo();
+            EventHandler.Instance.FireEvent(EventHandler.EventType.RevAudioEvent, revSoundEventInfo);
+            Invoke("LoadMainMenu", 5f);
         }
+    }
+
+    private void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }

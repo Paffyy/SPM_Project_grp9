@@ -20,7 +20,6 @@ public class Boss : BaseEnemy
 
     public void SpawnShockWaveInState()
     {
-        Debug.Log("spawn");
         //Y-värdet är beroende på offseten på showwave
         GameObject.Instantiate(ShockWaveObject, new Vector3(transform.position.x, ShockWaveObejctYOffset, transform.position.z),
         transform.rotation);
