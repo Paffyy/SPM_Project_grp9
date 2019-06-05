@@ -64,8 +64,8 @@ public class BossFight : MonoBehaviour
                 RevSoundEventInfo revSoundEventInfo = new RevSoundEventInfo();
                 EventHandler.Instance.FireEvent(EventHandler.EventType.RevAudioEvent, revSoundEventInfo);
                 hasPlayedRevSound = true;
+                Invoke("LoadMainMenu", 5f);
             }
-            Invoke("LoadMainMenu", 5f);
         }
     }
 
