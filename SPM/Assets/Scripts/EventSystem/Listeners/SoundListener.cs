@@ -49,6 +49,7 @@ public class SoundListener : MonoBehaviour
         {
             if (!primaryAudioSource.isPlaying)
             {
+                primaryAudioSource.volume = 0.5f;
                 primaryAudioSource.clip = pickUpEventInfo.PickUpObject.GetComponent<PickUp>().PickUpSound;
                 primaryAudioSource.Play();
             }
@@ -64,6 +65,7 @@ public class SoundListener : MonoBehaviour
         {
             if (!primaryAudioSource.isPlaying)
             {
+                primaryAudioSource.volume = 0.1f;
                 primaryAudioSource.clip = audio.audioClip;
                 primaryAudioSource.Play();
             }

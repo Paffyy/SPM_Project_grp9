@@ -14,8 +14,11 @@ public class BossFight : MonoBehaviour
     [SerializeField]
     private GameObject endScreen;
 
+    private bool hasPlayedRevSound;
+
     public void Start()
     {
+        hasPlayedRevSound = false;
         Register();
     }
 
@@ -56,8 +59,12 @@ public class BossFight : MonoBehaviour
             FightBorder.SetActive(false);
             //temp
             endScreen.SetActive(true);
-            RevSoundEventInfo revSoundEventInfo = new RevSoundEventInfo();
-            EventHandler.Instance.FireEvent(EventHandler.EventType.RevAudioEvent, revSoundEventInfo);
+            if (!hasPlayedRevSound)
+            {
+                RevSoundEventInfo revSoundEventInfo = new RevSoundEventInfo();
+                EventHandler.Instance.FireEvent(EventHandler.EventType.RevAudioEvent, revSoundEventInfo);
+                hasPlayedRevSound = true;
+            }
             Invoke("LoadMainMenu", 5f);
         }
     }
