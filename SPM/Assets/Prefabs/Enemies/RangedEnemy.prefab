@@ -383,6 +383,11 @@ PrefabInstance:
       propertyPath: attackClip
       value: 
       objectReference: {fileID: 8300000, guid: 96fa2e03cd3315f469af9b47ea9209bc, type: 3}
+    - target: {fileID: 7243566105080365996, guid: e75b885024d69064e94e2745dbefde0d,
+        type: 3}
+      propertyPath: DeathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 0bd6b954c4021f141be9ead5594bcf9d, type: 3}
     - target: {fileID: 808108416169347160, guid: e75b885024d69064e94e2745dbefde0d,
         type: 3}
       propertyPath: m_Enabled

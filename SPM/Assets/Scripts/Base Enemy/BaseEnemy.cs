@@ -10,7 +10,6 @@ public class BaseEnemy : StateMachine
 
 
     public PathMaker Path;
-    //public int Health;
     public int Damage;
     [HideInInspector] public NavMeshAgent NavAgent;
     [HideInInspector] public FieldOfView Fow;
@@ -48,6 +47,7 @@ public class BaseEnemy : StateMachine
         }
     }
 
+    public AudioClip DeathSound;
     public AudioClip AttackClip;
     public AudioSource EnemyAudioSource { get; set; }
 

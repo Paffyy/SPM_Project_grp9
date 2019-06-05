@@ -5,22 +5,24 @@ using UnityEngine;
 
 public class SoundListener : MonoBehaviour
 {
-    private AudioSource audioSource;
+    [SerializeField]
+    private AudioSource primaryAudioSource;
+    [SerializeField]
+    private AudioSource secondaryAudioSource;
 
     [SerializeField]
     public AudioClip revSound;
 
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
     }
+
     public void Register()
     {
-        EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, PlayDeathSound);
+        //EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, PlayDeathSound);
         EventHandler.Instance.Register(EventHandler.EventType.PickUpEvent, PlayPickUpSound);
         EventHandler.Instance.Register(EventHandler.EventType.AudioEvent, PlayAudioClip);
         EventHandler.Instance.Register(EventHandler.EventType.RevAudioEvent, PlayRevZoneClip);
-
     }
 
     void Start()
@@ -28,27 +30,27 @@ public class SoundListener : MonoBehaviour
         Register();
     }
 
-    private void PlayDeathSound(BaseEventInfo e)
-    {
-        var deathEventInfo = e as DeathEventInfo;
-        if (deathEventInfo != null)
-        {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
-        }
-    }
+    //private void PlayDeathSound(BaseEventInfo e)
+    //{
+    //    var deathEventInfo = e as DeathEventInfo;
+    //    if (deathEventInfo != null)
+    //    {
+    //        if (!primaryAudioSource.isPlaying)
+    //        {
+    //            primaryAudioSource.Play();
+    //        }
+    //    }
+    //}
 
     private void PlayPickUpSound(BaseEventInfo e)
     {
         var pickUpEventInfo = e as PickupEventInfo;
         if(pickUpEventInfo != null)
         {
-            if (!audioSource.isPlaying)
+            if (!primaryAudioSource.isPlaying)
             {
-                audioSource.clip = pickUpEventInfo.PickUpObject.GetComponent<PickUp>().PickUpSound;
-                audioSource.Play();
+                primaryAudioSource.clip = pickUpEventInfo.PickUpObject.GetComponent<PickUp>().PickUpSound;
+                primaryAudioSource.Play();
             }
 
         }
@@ -60,18 +62,18 @@ public class SoundListener : MonoBehaviour
         var audio = e as AudioEventInfo;
         if (audio != null)
         {
-            if (!audioSource.isPlaying)
+            if (!primaryAudioSource.isPlaying)
             {
-                audioSource.clip = audio.audioClip;
-                audioSource.Play();
+                primaryAudioSource.clip = audio.audioClip;
+                primaryAudioSource.Play();
             }
         }
     }
 
     private void PlayRevZoneClip(BaseEventInfo e)
     {
-        audioSource.clip = revSound;
-        audioSource.Play();
+        secondaryAudioSource.clip = revSound;
+        secondaryAudioSource.Play();
     }
 
 }

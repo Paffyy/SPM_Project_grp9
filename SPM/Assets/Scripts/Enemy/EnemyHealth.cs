@@ -133,6 +133,7 @@ public class EnemyHealth : Health
 
     public void EnemyDead()
     {
+        EventHandler.Instance.FireEvent(EventHandler.EventType.AudioEvent, new AudioEventInfo(thisEnemy.DeathSound));
         EventHandler.Instance.FireEvent(EventHandler.EventType.DeathEvent, new DeathEventInfo(gameObject));
         GameController.GameControllerInstance.DeadEnemies.Add(gameObject.GetComponent<BaseEnemy>().EnemyID);
         if(thisEnemy != null)
