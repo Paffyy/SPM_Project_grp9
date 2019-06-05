@@ -10,15 +10,20 @@ public class PortalTeleporter : MonoBehaviour
     [SerializeField]
     private GameObject loadingScreen;
     private bool playerIsOverlapping = false;
+    private bool hasLoadedScene = false;
 
     void Update()
     {
         if (playerIsOverlapping)
         {
-            Manager.Instance.HasLoadedFromPreviousLevel = true;
-            SaveSystem.SaveGame(new GameData());
-            loadingScreen.SetActive(true);
-            SceneManager.LoadSceneAsync(3);
+            if (!hasLoadedScene)
+            {
+                hasLoadedScene = true;
+                Manager.Instance.HasLoadedFromPreviousLevel = true;
+                SaveSystem.SaveGame(new GameData());
+                loadingScreen.SetActive(true);
+                SceneManager.LoadSceneAsync(3);
+            }
         }   
     }
 
