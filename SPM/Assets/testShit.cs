@@ -14,7 +14,7 @@ public class testShit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        controller.MovePosition(new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical")));
+        controller.Move(new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical")));
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
@@ -25,6 +25,6 @@ public class testShit : MonoBehaviour
     {
 
             Vector3 jump = Vector3.up * 5;
-            controller.MovePosition(jump);
+            controller.Move(jump);
     }
 }
