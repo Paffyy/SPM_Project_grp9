@@ -80,6 +80,7 @@ public class Sword : MonoBehaviour
                 if (Manager.Instance.IsPaused == false && Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
                 {
                     coolDownCounter = CoolDownValue;
+                    PlayerObject.GetComponent<Player>().characterAnimator.SetTrigger("Sword");
                     Attack();
                 }
                 UpdateRotation();

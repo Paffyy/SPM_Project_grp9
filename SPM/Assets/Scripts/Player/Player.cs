@@ -84,7 +84,6 @@ public class Player : StateMachine
 
     #endregion
 
-
     public LayerMask CollisionMask;
     public Vector3 Velocity { get; set; }
     public float TransitionTime { get; set; }
@@ -95,9 +94,10 @@ public class Player : StateMachine
     public float SpeedModifier;
     public float DefaultDynamicFriction { get; set; }
     public float DefaultStaticFriction { get; set; }
-
+    public Animator characterAnimator { get; set; }
     protected override void Awake()
     {
+        characterAnimator = GetComponent<Animator>();
         RotationY = 90;
         RotationX = 25;
         SpeedModifier = 1f;

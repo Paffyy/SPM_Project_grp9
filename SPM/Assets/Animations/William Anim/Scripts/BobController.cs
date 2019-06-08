@@ -4,25 +4,23 @@ using UnityEngine;
 
 public class BobController : MonoBehaviour {
 
-    private float Speed;
-    private float Direction;
+    private float speed;
+    private float direction;
     private Animator anim;
     
 
-    // Start is called before the first frame update
     void Start()
     {
-        anim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
-        Direction = Input.GetAxis("Vertical");
-        Speed = Input.GetAxis("Horizontal");
-        anim.SetFloat("Speed", Speed);
-        anim.SetFloat("Direction", Direction);
+        direction = Input.GetAxis("Vertical");
+        speed = Input.GetAxis("Horizontal");
+        anim.SetFloat("Speed", speed);
+        anim.SetFloat("Direction", direction);
 
         if (Input.GetButtonDown("Fire1"))
         {
