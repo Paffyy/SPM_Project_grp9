@@ -18,9 +18,9 @@ public class MenuButtonController : MonoBehaviour
     void CheckInput()
     {
 
-        if (InputManager.Instance.Getkey(KeybindManager.Instance.MenuDown, InputManager.ControllMode.Menu))
+        if (InputManager.Instance.Getkey(KeybindManager.Instance.MenuDown, InputManager.ControllMode.Menu) || Input.GetAxisRaw("VerticalDpad") == 1)
             input = 1;
-        else if(InputManager.Instance.Getkey(KeybindManager.Instance.MenuUp, InputManager.ControllMode.Menu))
+        else if(InputManager.Instance.Getkey(KeybindManager.Instance.MenuUp, InputManager.ControllMode.Menu) || Input.GetAxisRaw("VerticalDpad") == -1)
             input = -1;
         else
             input =  0;

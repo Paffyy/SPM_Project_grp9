@@ -10,16 +10,16 @@ public class KeybindManager
     {
         // Declare here (probably move to keybinds menu l8er)
         SpecialAttack = new Keybind(new KeyCode[] { KeyCode.E, KeyCode.JoystickButton2 }, "Perform a special attack with equiped weapon");
-        ShootAndAttack = new Keybind(new KeyCode[] { KeyCode.Mouse0, KeyCode.JoystickButton10 }, "Perform a regular attack with equiped weapon");
-        BlockAndAim = new Keybind(new KeyCode[] { KeyCode.Mouse1, KeyCode.JoystickButton9 }, "Block with shield or aim bow");
+        ShootAndAttack = new Keybind(new KeyCode[] { KeyCode.Mouse0, KeyCode.JoystickButton5 }, "Perform a regular attack with equiped weapon");
+        BlockAndAim = new Keybind(new KeyCode[] { KeyCode.Mouse1, KeyCode.JoystickButton4 }, "Block with shield or aim bow");
         EquipmentSlot1 = new Keybind(new KeyCode[] { KeyCode.Alpha1, KeyCode.JoystickButton1 });
         EquipmentSlot2 = new Keybind(new KeyCode[] { KeyCode.Alpha2, KeyCode.JoystickButton3 });
         EquipmentSlot3 = new Keybind(new KeyCode[] { KeyCode.Alpha3 });
         PauseMenuButton = new Keybind(new KeyCode[] { KeyCode.Escape, KeyCode.JoystickButton7 });
         Jump = new Keybind(new KeyCode[] { KeyCode.Space, KeyCode.JoystickButton0});
-        MenuUp = new Keybind(new KeyCode[] { KeyCode.W, KeyCode.UpArrow });
+        MenuUp = new Keybind(new KeyCode[] { KeyCode.W, KeyCode.UpArrow});
         MenuDown = new Keybind(new KeyCode[] { KeyCode.S, KeyCode.DownArrow });
-        MenuSelect = new Keybind(new KeyCode[] { KeyCode.Space, KeyCode.Return});
+        MenuSelect = new Keybind(new KeyCode[] { KeyCode.Space, KeyCode.Return, KeyCode.JoystickButton0});
     }
 
     private static KeybindManager instance;
