@@ -28,6 +28,7 @@ public class WalkingState : PlayerBaseState
         {
             Vector3 jump = Vector3.up * owner.JumpHeight;
             owner.Velocity += jump;
+            owner.characterAnimator.SetTrigger("Jump");
             owner.Transition<AirState>();
         }
     }

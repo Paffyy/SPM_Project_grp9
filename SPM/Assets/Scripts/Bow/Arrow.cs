@@ -118,7 +118,7 @@ public class Arrow : MonoBehaviour
                 hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage, pushBack, Vector3.zero);
                 EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(null, hit.collider, AttackHitEventInfo.Weapon.Bow));
             }
-            audioSource.volume = 0.05f;
+            audioSource.volume = 0.03f;
             hasCollided = true;
             if (EventHandler.Instance != null)
             {

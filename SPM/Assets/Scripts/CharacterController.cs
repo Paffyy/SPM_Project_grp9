@@ -51,7 +51,7 @@ public class CharacterController : MonoBehaviour
         //rotateDir = transform.eulerAngles;
     }
 
-    public void MovePosition(Vector3 newPos)
+    public void Move(Vector3 newPos)
     {
         Vector3 direction = newPos;
         direction = Vector3.ProjectOnPlane(direction, GetGroundNormal().normalized);

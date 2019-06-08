@@ -81,6 +81,7 @@ public class Shield : MonoBehaviour
     public void GoToIdle()
     {
         Anim.SetBool("IsBlocking", false);
+        Player.characterAnimator.SetBool("Block", false);
         IsBlocking = false;
     }
 
@@ -97,6 +98,7 @@ public class Shield : MonoBehaviour
     void Block()
     {
         Anim.SetBool("IsBlocking", true);
+        Player.characterAnimator.SetBool("Block", true);
         IsBlocking = true;
     }
 

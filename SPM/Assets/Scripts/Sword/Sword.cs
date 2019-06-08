@@ -35,10 +35,12 @@ public class Sword : MonoBehaviour
     [SerializeField]
     private AudioClip bladeStormSoundClip;
 
+    private Player playerScript;
     private AudioSource audioSource;
 
     void Start()
     {
+        playerScript = PlayerObject.GetComponent<Player>();
         swordOffset = new Vector3(0.3f, 0.2f, 0.55f);
         trailsEmissionModule = Trails.emission;
         isAttacking = false;
@@ -52,6 +54,7 @@ public class Sword : MonoBehaviour
         if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.SpecialAttack, InputManager.ControllMode.Play) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
         {
             BladeStorm();
+            playerScript.characterAnimator.SetTrigger("Spin");
             IsBladeStorming = true;
             CoolDownManager.Instance.StartBladeStormCoolDown(bladeStormCoolDown);
         }
@@ -80,6 +83,7 @@ public class Sword : MonoBehaviour
                 if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play) && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
                 {
                     coolDownCounter = CoolDownValue;
+                    playerScript.characterAnimator.SetTrigger("Sword");
                     Attack();
                 }
                 UpdateRotation();
