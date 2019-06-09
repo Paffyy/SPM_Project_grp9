@@ -33,13 +33,13 @@ public class RangedBaseEnemy : BaseEnemy
         if (Anim.GetBool("IsUsingRightHand"))
         {
             fireBallClone = Instantiate(fireBall, RightHand.transform.position, transform.rotation);
-            fireBallClone.GetComponent<Projectile>().Velocity = fireBallClone.GetComponent<Projectile>().Speed * (player.transform.position - fireBallClone.transform.position).normalized;
+            fireBallClone.GetComponent<Projectile>().Velocity = fireBallClone.GetComponent<Projectile>().Speed * ((player.transform.position + new Vector3(0, 1.2f, 0)) - fireBallClone.transform.position).normalized;
             PlaySound();
         }
         else if(!Anim.GetBool("IsUsingRightHand"))
         {
             fireBallClone = Instantiate(fireBall, LeftHand.transform.position, transform.rotation);
-            fireBallClone.GetComponent<Projectile>().Velocity = fireBallClone.GetComponent<Projectile>().Speed * (player.transform.position - fireBallClone.transform.position).normalized;
+            fireBallClone.GetComponent<Projectile>().Velocity = fireBallClone.GetComponent<Projectile>().Speed * ((player.transform.position + new Vector3(0, 1.2f, 0)) - fireBallClone.transform.position).normalized;
             PlaySound();
         }
     }
