@@ -8,8 +8,6 @@ public class Shield : MonoBehaviour
     [SerializeField]
     private Player player;
     [SerializeField]
-    private LayerMask projectileMask;
-    [SerializeField]
     private Camera playerCamera;
     [SerializeField]
     private float facingOffset;
@@ -18,7 +16,6 @@ public class Shield : MonoBehaviour
     [SerializeField]
     private GameObject shieldObject;
     private int currentHealth;
-    private BoxCollider boxCollider;
     private Vector3 shieldPos;
     private AudioSource audioSource;
 
@@ -31,7 +28,6 @@ public class Shield : MonoBehaviour
     {
         EventHandler.Instance.Register(EventHandler.EventType.ShieldBlock, PlayShieldBlockClip);
         shieldPos = new Vector3(0.2f, 0.3f, -0.5f);
-        boxCollider = GetComponentInChildren<BoxCollider>();
         currentHealth = shieldHealth;
         IsBlocking = false;
     }

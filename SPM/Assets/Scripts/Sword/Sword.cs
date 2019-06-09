@@ -133,7 +133,7 @@ public class Sword : MonoBehaviour
         isAttacking = true;
         playerScript.CharacterAnimator.SetTrigger("Sword");
         SpawnTrail();
-        Invoke("InflictDamage", 0.35f);
+        Invoke("InflictDamage", 0.45f);
     }
     private void InflictDamage()
     {

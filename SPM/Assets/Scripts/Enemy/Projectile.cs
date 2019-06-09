@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public Vector3 Velocity;
-    public float Speed = 15.0f;
-    public GameObject Player;
-    public GameObject ProjectileObject;
-    public LayerMask ShieldLayer;
-    public SphereCollider coll;
-    public int Damage = 25;
+    public Vector3 Velocity { get; set; }
+    public float Speed { get { return speed; } set { speed = value; } }
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private int damage = 8;
     private bool isTerminating;
     private bool isReflected;
     private Vector3 prevPos;
@@ -22,7 +21,6 @@ public class Projectile : MonoBehaviour
         prevPos = Vector3.zero;
         isReflected = false;
     }
-
 
     void Update()
     {
@@ -38,8 +36,8 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !isReflected)
         {
             Vector3 pushBack = Vector3.ProjectOnPlane(Velocity.normalized, Vector3.up) * 2 + (Vector3.up * 2) * 3;
-            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(Damage, pushBack, transform.position);
-            Destroy(ProjectileObject);
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage, pushBack, transform.position);
+            Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("Shield"))
         {
@@ -51,16 +49,8 @@ public class Projectile : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Enemy") && isReflected)
         {
-            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage * 4);
-            Destroy(ProjectileObject);
-        }
-        else
-        {
-            //if (!other.gameObject.CompareTag("Projectile"))
-            //{
-            //    Debug.Log("OtherColl");
-            //    Destroy(ProjectileObject);
-            //}
+            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage * 4);
+            Destroy(gameObject);
         }
     }
 
@@ -68,6 +58,6 @@ public class Projectile : MonoBehaviour
     {
         isTerminating = true;
         yield return new WaitForSeconds(5);
-        Destroy(ProjectileObject);
+        Destroy(gameObject);
     }
 }
