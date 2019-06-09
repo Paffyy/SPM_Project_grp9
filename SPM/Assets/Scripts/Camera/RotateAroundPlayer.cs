@@ -8,15 +8,9 @@ public class RotateAroundPlayer : MonoBehaviour
     private GameObject RotateAroundObject;
     [SerializeField]
     private Vector3 offset;
-
+    [SerializeField]
     private Camera mainCamera;
 
-    void Awake()
-    {
-        mainCamera = Camera.main;
-    }
-
-    // Update is called once per frame
     void Update()
     {
         UpdateRotation();

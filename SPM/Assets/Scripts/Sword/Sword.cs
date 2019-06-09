@@ -25,6 +25,8 @@ public class Sword : MonoBehaviour
     private int bladeStormDamage = 20;
     [SerializeField]
     private GameObject bladeStormEffect;
+    [SerializeField]
+    private Vector3 bladeStormOffset;
     private Animator swordAnimator;
     [SerializeField]
     private ParticleSystem trails;
@@ -68,7 +70,7 @@ public class Sword : MonoBehaviour
             if (bladeStormEffect.activeInHierarchy == false)
             {
                 bladeStormEffect.SetActive(true);
-                bladeStormEffect.transform.position = playerObject.transform.position;
+                bladeStormEffect.transform.position = playerObject.transform.position + bladeStormOffset;
             }
             var direction = playerCamera.transform.forward;
             transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swingValue, 0, 0);
@@ -88,7 +90,6 @@ public class Sword : MonoBehaviour
                 if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play) && !isAttacking && !playerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
                 {
                     coolDownCounter = coolDownValue;
-                    playerScript.CharacterAnimator.SetTrigger("Sword");
                     Attack();
                 }
                 UpdateRotation();
@@ -130,6 +131,15 @@ public class Sword : MonoBehaviour
     void Attack()
     {
         isAttacking = true;
+        playerScript.CharacterAnimator.SetTrigger("Sword");
+        SpawnTrail();
+        Invoke("InflictDamage", 0.35f);
+    }
+    private void InflictDamage()
+    {
+        CheckCollision();
+        StopTrail();
+        SetIsAttacking();
     }
 
     public void SetIsAttacking()

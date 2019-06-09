@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-
-    //public float SplashDamageArea;
-    //public float SplashDamage;
-
     private CharacterController controller;
     public AreaOfEffect AOEEffect;
     public float LifeTimeOFFireEffect;
@@ -16,14 +12,12 @@ public class FireBall : MonoBehaviour
     [SerializeField]
     private int impactDamage;
     [HideInInspector] public Transform parent;
-    //public GameObject Parent;
-    // Start is called before the first frame update
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
         AOEEffect.LifeTimeBool = true;
         AOEEffect.LifeTime = LifeTimeOFFireEffect;
-
     }
 
     // Update is called once per frame
