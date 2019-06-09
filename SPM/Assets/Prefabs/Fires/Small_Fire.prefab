@@ -4736,13 +4736,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e7917865d198340a447cb6ce5a83a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SphereCollider: {fileID: 5734472662613401778}
-  CollisionMask:
+  collisionMask:
     serializedVersion: 2
     m_Bits: 512
-  Damage: 10
-  LifeTimeBool: 0
-  LifeTime: 0
 --- !u!135 &5734472662613401778
 SphereCollider:
   m_ObjectHideFlags: 0

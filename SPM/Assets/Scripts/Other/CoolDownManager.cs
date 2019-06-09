@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class CoolDownManager : MonoBehaviour
 {
-    public bool BladeStormOnCoolDown = false;
-    public bool ArrowRainOnCoolDown = false;
+    public bool BladeStormOnCoolDown { get; set; }
+    public bool ArrowRainOnCoolDown { get; set; }
     public bool RangedEnemyAttackOnCoolDown { get; set; }
-    public Image BladeStormCoolDownImage;
-    public Image ArrowRainCoolDownImage;
+    [SerializeField]
+    private Image bladeStormCoolDownImage;
+    [SerializeField]
+    private Image arrowRainCoolDownImage;
     private float bladeStormCoolDownTimer;
     private float arrowRainCoolDownTimer;
     private float bladeStormCoolDown;
@@ -31,20 +33,20 @@ public class CoolDownManager : MonoBehaviour
         if (BladeStormOnCoolDown)
         {
             bladeStormCoolDownTimer -= Time.deltaTime;
-            BladeStormCoolDownImage.fillAmount += 1 / bladeStormCoolDown * Time.deltaTime;
+            bladeStormCoolDownImage.fillAmount += 1 / bladeStormCoolDown * Time.deltaTime;
             if (bladeStormCoolDownTimer <= 0)
             {
-                BladeStormCoolDownImage.fillAmount = 0;
+                bladeStormCoolDownImage.fillAmount = 0;
                 BladeStormOnCoolDown = false;
             }
         }
         if (ArrowRainOnCoolDown)
         {
             arrowRainCoolDownTimer -= Time.deltaTime;
-            ArrowRainCoolDownImage.fillAmount += 1 / arrowRainCoolDown * Time.deltaTime;
+            arrowRainCoolDownImage.fillAmount += 1 / arrowRainCoolDown * Time.deltaTime;
             if (arrowRainCoolDownTimer <= 0)
             {
-                ArrowRainCoolDownImage.fillAmount = 0;
+                arrowRainCoolDownImage.fillAmount = 0;
                 ArrowRainOnCoolDown = false;
             }
         }

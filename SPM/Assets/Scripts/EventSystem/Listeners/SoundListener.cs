@@ -9,17 +9,11 @@ public class SoundListener : MonoBehaviour
     private AudioSource primaryAudioSource;
     [SerializeField]
     private AudioSource secondaryAudioSource;
-
     [SerializeField]
-    public AudioClip revSound;
-
-    void Awake()
-    {
-    }
+    private AudioClip revSound;
 
     public void Register()
     {
-        //EventHandler.Instance.Register(EventHandler.EventType.DeathEvent, PlayDeathSound);
         EventHandler.Instance.Register(EventHandler.EventType.PickUpEvent, PlayPickUpSound);
         EventHandler.Instance.Register(EventHandler.EventType.AudioEvent, PlayAudioClip);
         EventHandler.Instance.Register(EventHandler.EventType.RevAudioEvent, PlayRevZoneClip);
@@ -29,18 +23,6 @@ public class SoundListener : MonoBehaviour
     {
         Register();
     }
-
-    //private void PlayDeathSound(BaseEventInfo e)
-    //{
-    //    var deathEventInfo = e as DeathEventInfo;
-    //    if (deathEventInfo != null)
-    //    {
-    //        if (!primaryAudioSource.isPlaying)
-    //        {
-    //            primaryAudioSource.Play();
-    //        }
-    //    }
-    //}
 
     private void PlayPickUpSound(BaseEventInfo e)
     {
@@ -66,7 +48,7 @@ public class SoundListener : MonoBehaviour
             if (!primaryAudioSource.isPlaying)
             {
                 primaryAudioSource.volume = 0.1f;
-                primaryAudioSource.clip = audio.audioClip;
+                primaryAudioSource.clip = audio.AudioClip;
                 primaryAudioSource.Play();
             }
         }

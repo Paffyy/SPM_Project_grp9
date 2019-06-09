@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
 
     [SerializeField] private GameObject loadingScreen;
+
     void Start()
     {
         Register();

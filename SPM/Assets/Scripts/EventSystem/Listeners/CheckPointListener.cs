@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class CheckPointListener : MonoBehaviour
 {
-    public GameObject FirstCheckPoint;
-    public Camera PlayerCamera;
-    public GameObject Player;
-
-    private Transform CurrentRespawnPosition;
+    [SerializeField]
+    private GameObject firstCheckPoint;
+    [SerializeField]
+    private GameObject player;
+    private Transform currentRespawnPosition;
 
     void Start()
     {
-        CurrentRespawnPosition = FirstCheckPoint.GetComponent<CheckPoint>().RespawnPosition;
+        currentRespawnPosition = firstCheckPoint.GetComponent<CheckPoint>().RespawnPosition;
         Register();
     }
 
@@ -28,12 +28,12 @@ public class CheckPointListener : MonoBehaviour
         var checkPointEventInfo = e as CheckPointEventInfo;
         if (checkPointEventInfo != null)
         {
-            CurrentRespawnPosition = checkPointEventInfo.CheckPoint.GetComponent<CheckPoint>().RespawnPosition;
+            currentRespawnPosition = checkPointEventInfo.CheckPoint.GetComponent<CheckPoint>().RespawnPosition;
             GameData data = new GameData();
-            data.PlayerPosition[0] = CurrentRespawnPosition.position.x;
-            data.PlayerPosition[1] = CurrentRespawnPosition.position.y;
-            data.PlayerPosition[2] = CurrentRespawnPosition.position.z;
-            data.PlayerHealth = Player.GetComponent<PlayerHealth>().StartingHealth;
+            data.PlayerPosition[0] = currentRespawnPosition.position.x;
+            data.PlayerPosition[1] = currentRespawnPosition.position.y;
+            data.PlayerPosition[2] = currentRespawnPosition.position.z;
+            data.PlayerHealth = player.GetComponent<PlayerHealth>().StartingHealth;
             if (data.ArrowCount < 5)
                 data.ArrowCount = 5;
             SaveSystem.SaveGame(data);

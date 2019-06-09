@@ -877,6 +877,21 @@ PrefabInstance:
       propertyPath: Anim
       value: 
       objectReference: {fileID: 2279219361730397832}
+    - target: {fileID: 1491642827446477480, guid: d0267600f679d9849b345429fa9ea622,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 7651501562885396185}
+    - target: {fileID: 1491642827446477480, guid: d0267600f679d9849b345429fa9ea622,
+        type: 3}
+      propertyPath: shieldObject
+      value: 
+      objectReference: {fileID: 2279219361730397839}
+    - target: {fileID: 1491642827446477482, guid: d0267600f679d9849b345429fa9ea622,
+        type: 3}
+      propertyPath: shieldBlockAnimator
+      value: 
+      objectReference: {fileID: 2279219361730397832}
     - target: {fileID: 1491642828141292737, guid: d0267600f679d9849b345429fa9ea622,
         type: 3}
       propertyPath: m_Layer

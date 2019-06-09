@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckPointEventInfo : BaseEventInfo
 {
-    public GameObject CheckPoint;
+    public GameObject CheckPoint { get; set; }
 
     public CheckPointEventInfo(GameObject newCheckPoint)
     {

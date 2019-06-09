@@ -22,6 +22,7 @@ public class PlayerBaseState : State
     private float rotationSmoothTime = 0.1f;
     private float fallMultiplier = 2.5f;
     protected Vector3 Position { get { return owner.transform.position; } set { owner.transform.position = value; } }
+
     public override void Enter()
     {
         Cursor.lockState = CursorLockMode.Locked;

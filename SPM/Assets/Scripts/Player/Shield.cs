@@ -4,48 +4,53 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    public Player Player;
-    public LayerMask ProjectileMask;
-    public Camera playerCamera;
-    public float FacingOffset;
-    public int ShieldHealth = 500;
-    public int CurrentHealth;
-    public GameObject ShieldObject;
-    public bool IsBlocking;
-    public Animator Anim;
+    public bool IsBlocking { get; set; }
+    [SerializeField]
+    private Player player;
+    [SerializeField]
+    private LayerMask projectileMask;
+    [SerializeField]
+    private Camera playerCamera;
+    [SerializeField]
+    private float facingOffset;
+    [SerializeField]
+    private int shieldHealth = 500;
+    [SerializeField]
+    private GameObject shieldObject;
+    private int currentHealth;
+    private Animator shieldAnimator;
     private BoxCollider boxCollider;
     private Vector3 shieldPos;
     private AudioSource audioSource;
 
     private void Awake()
     {
+        shieldAnimator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         EventHandler.Instance.Register(EventHandler.EventType.ShieldBlock, PlayShieldBlockClip);
-        //shieldPos = new Vector3(0.31f, 0.45f, -0.43f);
         shieldPos = new Vector3(0.2f, 0.3f, -0.5f);
         boxCollider = GetComponentInChildren<BoxCollider>();
-        CurrentHealth = ShieldHealth;
+        currentHealth = shieldHealth;
         IsBlocking = false;
-        //Player.Transition<ShieldState>();
     }
     void OnDisable()
     {
-        Player.SpeedModifier = 1f;
+        player.SpeedModifier = 1f;
     }
-    // Update is called once per frame
+
     void Update()
     {
         UpdateTransformation();
         if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
         {
-            if (IsBlocking  == false && Player.GetComponent<Weapon>().Sword.GetComponent<Sword>().IsBladeStorming == false)
+            if (IsBlocking  == false && player.GetComponent<Weapon>().Sword.GetComponent<Sword>().IsBladeStorming == false)
             {
                 Block();
-                Player.SpeedModifier = 0.85f;
+                player.SpeedModifier = 0.85f;
             }
             else
             {
@@ -55,33 +60,30 @@ public class Shield : MonoBehaviour
         if (InputManager.Instance.GetkeyUp(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
         {
             GoToIdle();
-            Player.SpeedModifier = 1f;
+            player.SpeedModifier = 1f;
         }
-        //  ExtDebug.DrawBoxCastBox(transform.position, Quaternion.Euler(0, 90, 0) * boxCollider.size / 2, transform.rotation, transform.forward, 0.5f, Color.white);
     }
 
     public void UpdateTransformation()
     {
-
         Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
-       // Vector3 direction = playerCamera.transform.forward;
         transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 90, 0);
         Vector3 update = transform.rotation * shieldPos.normalized;
-        transform.position = update * shieldPos.magnitude + Player.transform.position;
+        transform.position = update * shieldPos.magnitude + player.transform.position;
     }
     public void TakeDamage(int damage)
     {
-        CurrentHealth -= damage;
-        if (CurrentHealth <= 0 && ShieldObject != null)
+        currentHealth -= damage;
+        if (currentHealth <= 0 && shieldObject != null)
         {
-            Destroy(ShieldObject);
+            Destroy(shieldObject);
         }
     }
 
     public void GoToIdle()
     {
-        Anim.SetBool("IsBlocking", false);
-        Player.characterAnimator.SetBool("Block", false);
+        shieldAnimator.SetBool("IsBlocking", false);
+        player.characterAnimator.SetBool("Block", false);
         IsBlocking = false;
     }
 
@@ -90,17 +92,19 @@ public class Shield : MonoBehaviour
         var audio = e as AudioEventInfo;
         if (audio != null)
         {
-            audioSource.clip = audio.audioClip;
+            audioSource.clip = audio.AudioClip;
             if (!audioSource.isPlaying)
                 audioSource.Play();
         }
     }
     void Block()
     {
-        Anim.SetBool("IsBlocking", true);
-        Player.characterAnimator.SetBool("Block", true);
+        shieldAnimator.SetBool("IsBlocking", true);
+        player.characterAnimator.SetBool("Block", true);
         IsBlocking = true;
     }
+
+    #region Debug
 
     public static class ExtDebug
     {
@@ -211,4 +215,6 @@ public class Shield : MonoBehaviour
             return pivot + rotation * direction;
         }
     }
+
+    #endregion
 }

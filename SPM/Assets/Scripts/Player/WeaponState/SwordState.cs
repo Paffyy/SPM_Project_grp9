@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SwordState : WeaponBaseState
 {
     [SerializeField]
-    public AudioClip clip;
+    private AudioClip clip;
 
     public override void Enter()
     {

@@ -29,9 +29,9 @@ public class EnemySoundListener : MonoBehaviour
         {
             if (soundDelayTime < 0 )
             {
-                audio.audioSource.clip = audio.audioClip;
+                audio.AudioSource.clip = audio.AudioClip;
                 soundDelayTime = 0.25f;
-                audio.audioSource.Play();
+                audio.AudioSource.Play();
             }
         }
     }

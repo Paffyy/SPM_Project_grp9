@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "RangedBaseEnemy/IdleState")]
 public class RangedEnemyIdleState : RangedEnemyBaseState
 {
-
     [SerializeField] private Vector3[] patrolPoints;
     private float pointSize = 1.1f;
     private int currentPoint = 0;

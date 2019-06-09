@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LoadGame : MonoBehaviour
 {
-    public GameObject Player;
+    [SerializeField]
+    private GameObject player;
 
     void Start()
     {
@@ -23,9 +24,9 @@ public class LoadGame : MonoBehaviour
     private void LoadPlayerDataOnly()
     {
         GameData data = SaveSystem.LoadGame();
-        Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
-        Player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
-        Player.GetComponent<Weapon>().ChangeState(data.CurrentWeaponState);
+        player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
+        player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
+        player.GetComponent<Weapon>().ChangeState(data.CurrentWeaponState);
     }
 
     private void LoadFromSave()
@@ -35,11 +36,11 @@ public class LoadGame : MonoBehaviour
         position.x = data.PlayerPosition[0];
         position.y = data.PlayerPosition[1];
         position.z = data.PlayerPosition[2];
-        Player.transform.position = position;
-        Player.GetComponent<Player>().RotationY = data.PlayerRotation;
-        Player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
-        Player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
-        Player.GetComponent<Weapon>().ChangeState(data.CurrentWeaponState);
+        player.transform.position = position;
+        player.GetComponent<Player>().RotationY = data.PlayerRotation;
+        player.GetComponent<PlayerHealth>().CurrentHealth = data.PlayerHealth;
+        player.GetComponent<Weapon>().ArrowCount = data.ArrowCount;
+        player.GetComponent<Weapon>().ChangeState(data.CurrentWeaponState);
         List<float> ZonesID = data.RevitalizedZonesID;
         foreach (float ID in ZonesID)
         {

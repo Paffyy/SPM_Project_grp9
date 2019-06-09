@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class DebugEventInfo : BaseEventInfo
 {
-    public string DebugInfoText;
+    public string DebugInfoText { get; set; }
 }

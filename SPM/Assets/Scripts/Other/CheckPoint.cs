@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    public Transform RespawnPosition;
+    public Transform RespawnPosition { get { return respawnPosition; } }
+    [SerializeField]
+    private Transform respawnPosition;
     private BoxCollider triggerCollider;
 
     void Start()
     {
         triggerCollider = GetComponent<BoxCollider>();
-    }
-
-    void Update()
-    {
-        
     }
 
     void OnTriggerEnter(Collider other)

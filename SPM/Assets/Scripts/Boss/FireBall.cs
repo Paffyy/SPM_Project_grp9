@@ -31,7 +31,7 @@ public class FireBall : MonoBehaviour
     {
         if (controller.IsGrounded())
         {
-            var collidersHit = Manager.Instance.GetAoeHit(transform.position, playerLayer, AOEEffect.SphereCollider.radius * ((AOEEffect.transform.localScale.x + AOEEffect.transform.localScale.z) / 2));
+            var collidersHit = Manager.Instance.GetAoeHit(transform.position, playerLayer, AOEEffect.ContactCollider.radius * ((AOEEffect.transform.localScale.x + AOEEffect.transform.localScale.z) / 2));
             if (collidersHit.Count > 0)
             {
                 foreach (var item in collidersHit)
@@ -46,7 +46,7 @@ public class FireBall : MonoBehaviour
                     }
                 }
             }
-            GameObject obj = Instantiate(AOEEffect.gameObject, transform.position - new Vector3(0, (AOEEffect.SphereCollider.radius * AOEEffect.transform.localScale.x) / 2, 0), Quaternion.identity, parent);
+            GameObject obj = Instantiate(AOEEffect.gameObject, transform.position - new Vector3(0, (AOEEffect.ContactCollider.radius * AOEEffect.transform.localScale.x) / 2, 0), Quaternion.identity, parent);
 
             //obj.transform.SetParent(Parent.transform);
             Destroy(gameObject);

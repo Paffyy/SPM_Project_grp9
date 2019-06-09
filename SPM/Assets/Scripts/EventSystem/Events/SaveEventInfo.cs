@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SaveEventInfo : BaseEventInfo
 {
-    public string SaveGameText;
+    public string SaveGameText { get; set; }
     public SaveEventInfo(string saveGameText)
     {
        SaveGameText = saveGameText;

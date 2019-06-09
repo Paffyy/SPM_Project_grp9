@@ -1158,10 +1158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be605ccde837824dad64e63532ac3b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Index: 0
-  MaxIndex: 3
-  KeyDown: 0
-  AudioSource: {fileID: 1434245633}
+  maxIndex: 3
 --- !u!82 &1434245633
 AudioSource:
   m_ObjectHideFlags: 0

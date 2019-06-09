@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class MenuButtonController : MonoBehaviour
 {
-    public int Index;
-    public int MaxIndex;
-    public bool KeyDown;
-    public AudioSource AudioSource;
+    public AudioSource AudioSource { get; private set; }
+    public int Index { get; set; }
+    [SerializeField]
+    private int maxIndex;
+    private bool keyDown;
     private int input;
-    // Start is called before the first frame update
+
     void Start()
     {
         AudioSource = GetComponent<AudioSource>();
@@ -26,18 +27,18 @@ public class MenuButtonController : MonoBehaviour
             input =  0;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         CheckInput();
         //if(Input.GetAxis("Vertical") != 0)
         if(input != 0)
         {
-            if (!KeyDown)
+            if (!keyDown)
             {
                 if(input == 1)
                 {
-                    if(Index < MaxIndex)
+                    if(Index < maxIndex)
                     {
                         Index++;
                     } else
@@ -53,14 +54,14 @@ public class MenuButtonController : MonoBehaviour
                         Index--;
                     } else
                     {
-                        Index = MaxIndex;
+                        Index = maxIndex;
                     }
                 }
-                KeyDown = true;
+                keyDown = true;
             }
         } else
         {
-            KeyDown = false;
+            keyDown = false;
         }
     }
 }

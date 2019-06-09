@@ -7,7 +7,7 @@ public class RangedBaseEnemy : BaseEnemy
 {
     public Animator Anim { get { return animator; } }
     public GameObject RightHand { get { return rightHand; } set { rightHand = value; } }
-    public GameObject LeftHand { get { return leftHand; }set { leftHand = value; } }
+    public GameObject LeftHand { get { return leftHand; } set { leftHand = value; } }
 
     [SerializeField]
     private Animator animator;
@@ -19,13 +19,12 @@ public class RangedBaseEnemy : BaseEnemy
     private GameObject fireBall;
     [SerializeField]
     private AudioClip attackClip;
-    private AudioSource audioSource { get; set; }
+    private AudioSource audioSource;
 
     protected override void Awake()
     {
         base.Awake();
         audioSource = GetComponent<AudioSource>();
-       // Anim = GetComponent<Animator>();
     }
 
     public void InstantiateFireBall()

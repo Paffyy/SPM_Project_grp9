@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DeathEventInfo : BaseEventInfo
 {
-    public GameObject GameObject;
+    public GameObject GameObject { get; set; }
+
     public DeathEventInfo( GameObject gameObject)
     {
         GameObject = gameObject;

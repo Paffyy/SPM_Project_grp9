@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class AreaOfEffect : MonoBehaviour
 {
-
-    public SphereCollider SphereCollider;
-    public LayerMask CollisionMask;
-    public int Damage = 10;
-    //public GameObject Player;
-    public bool LifeTimeBool = false;
-    public float LifeTime;
+    public float LifeTime { get; set; }
+    public bool LifeTimeBool { get; set; }
+    public SphereCollider ContactCollider { get; set; }
+    [SerializeField]
+    private LayerMask collisionMask;
+    private int damage = 10;
     private float timer;
-    // Start is called before the first frame update
+
     void Start()
     {
         StartCoroutine(InflictDamage());
         timer = LifeTime;
+        ContactCollider = GetComponent<SphereCollider>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         timer -= Time.deltaTime;
@@ -32,7 +32,7 @@ public class AreaOfEffect : MonoBehaviour
 
     private GameObject CheckArea()
     {
-        List<Collider> colliders = Manager.Instance.GetAoeHit(transform.position, CollisionMask, SphereCollider.radius * ((transform.localScale.x + transform.localScale.z) / 2));
+        List<Collider> colliders = Manager.Instance.GetAoeHit(transform.position, collisionMask, ContactCollider.radius * ((transform.localScale.x + transform.localScale.z) / 2));
         foreach (Collider c in colliders)
         {
             if (c.gameObject.CompareTag("Player"))
@@ -48,13 +48,12 @@ public class AreaOfEffect : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1.5f);
-            GameObject obj = CheckArea();
-            if (obj != null)
+            GameObject contactObject = CheckArea();
+            if (contactObject != null)
             {
-                //Player.GetComponent<PlayerHealth>().TakeDamage(Damage);
-                Vector3 direction = obj.transform.position - transform.position;
+                Vector3 direction = contactObject.transform.position - transform.position;
                 Vector3 pushBack = Vector3.ProjectOnPlane(direction, Vector3.up) * 2 + (Vector3.up * 2) * 3;
-                obj.GetComponent<PlayerHealth>().TakeDamage(Damage,pushBack,transform.position);
+                contactObject.GetComponent<PlayerHealth>().TakeDamage(damage,pushBack,transform.position);
             }
         }
     }

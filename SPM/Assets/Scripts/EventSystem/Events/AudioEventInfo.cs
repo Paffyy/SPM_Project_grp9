@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class AudioEventInfo : BaseEventInfo
 {
+    public AudioClip AudioClip { get; set; }
+    public AudioSource AudioSource { get; set; }
 
-    public AudioClip audioClip;
-    public AudioSource audioSource;
     public AudioEventInfo(AudioClip audio)
     {
-        audioClip = audio;
+        AudioClip = audio;
     }
     public AudioEventInfo(AudioClip audio, AudioSource source)
     {
-        audioClip = audio;
-        audioSource = source;
+        AudioClip = audio;
+        AudioSource = source;
     }
 }

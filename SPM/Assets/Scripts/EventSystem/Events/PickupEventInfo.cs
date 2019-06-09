@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickupEventInfo : BaseEventInfo
 {
-    public GameObject PickUpObject;
+    public GameObject PickUpObject { get; set; }
 
     public PickupEventInfo(GameObject PickUp)
     {

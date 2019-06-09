@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PuzzleEventInfo : BaseEventInfo
 {
-    public GameObject PuzzleObject;
+    public GameObject PuzzleObject { get; set; }
+
     public PuzzleEventInfo(GameObject puzzleObject)
     {
         PuzzleObject = puzzleObject;

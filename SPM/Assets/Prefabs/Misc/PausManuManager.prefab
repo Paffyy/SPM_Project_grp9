@@ -732,10 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be605ccde837824dad64e63532ac3b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Index: 0
-  MaxIndex: 2
-  KeyDown: 0
-  AudioSource: {fileID: 4178578323444298712}
+  maxIndex: 2
 --- !u!82 &4178578323444298712
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1038,7 +1035,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 4178578323444298706}
-  uIHud: {fileID: 0}
   helpUIHud: {fileID: 0}
 --- !u!1 &4178578325090702643
 GameObject:

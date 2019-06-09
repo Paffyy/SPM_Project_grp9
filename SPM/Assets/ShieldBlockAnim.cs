@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class ShieldBlockAnim : MonoBehaviour
 {
-    public Animator Anim;
-    // Start is called before the first frame update
-    void Start()
+    private Animator shieldBlockAnimator;
+
+    private void Start()
     {
-        
+        shieldBlockAnimator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Anim.SetBool("IsBlocking", true);
+            shieldBlockAnimator.SetBool("IsBlocking", true);
         }
     }
 
     public void GoToIdle()
     {
-        Anim.SetBool("IsBlocking", false);
+        shieldBlockAnimator.SetBool("IsBlocking", false);
     }
 
     void Block()
     {
-        Anim.SetBool("IsBlocking", true);
+        shieldBlockAnimator.SetBool("IsBlocking", true);
     }
 }
