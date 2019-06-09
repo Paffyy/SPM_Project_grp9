@@ -41,7 +41,6 @@ public class PlayerBaseState : State
             owner.RotationX = Mathf.Clamp(owner.RotationX, minCameraAngle, maxCameraAngle);
             owner.RotationY += Input.GetAxisRaw("Mouse X") * owner.MouseSensitivity;
             playerCamera.transform.rotation = Quaternion.Euler(owner.RotationX, owner.RotationY, 0.0f);
-            owner.transform.rotation = Quaternion.Euler(0.0f, owner.RotationY, 0.0f);
             Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             owner.CharacterAnimator.SetFloat("Direction", Input.GetAxis("Vertical"));
             owner.CharacterAnimator.SetFloat("Speed" ,Input.GetAxis("Horizontal"));
@@ -109,43 +108,43 @@ public class PlayerBaseState : State
     {
         RaycastHit hit;
         Vector3 cameraUpdate = playerCamera.transform.rotation * owner.BowOffset.normalized;
-        if (Physics.SphereCast(sphere.transform.position, sphere.radius, cameraUpdate, out hit, owner.BowOffset.magnitude, CameraCollisionMask))
+        if (Physics.SphereCast(owner.transform.position, sphere.radius, cameraUpdate, out hit, owner.BowOffset.magnitude, CameraCollisionMask))
         {
             Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius);
-            playerCamera.transform.position = newPosition + sphere.transform.position;
+            playerCamera.transform.position = newPosition + owner.transform.position;
         }
         else
         {
-            playerCamera.transform.position = cameraUpdate * owner.BowOffset.magnitude + sphere.transform.position;
+            playerCamera.transform.position = cameraUpdate * owner.BowOffset.magnitude + owner.transform.position;
         }
     }
     protected virtual void HandleThirdPersonCamera()
     {
         RaycastHit hit;
         Vector3 cameraUpdate = playerCamera.transform.rotation * cameraPosition.normalized;
-        if (Physics.SphereCast(sphere.transform.position, sphere.radius, cameraUpdate, out hit, cameraPosition.magnitude, CameraCollisionMask))
+        if (Physics.SphereCast(owner.transform.position, sphere.radius, cameraUpdate, out hit, cameraPosition.magnitude, CameraCollisionMask))
         {
             Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius);
-            playerCamera.transform.position = newPosition + sphere.transform.position;
+            playerCamera.transform.position = newPosition + owner.transform.position;
         }
         else
         {
-            playerCamera.transform.position = cameraUpdate * cameraPosition.magnitude + sphere.transform.position;
+            playerCamera.transform.position = cameraUpdate * cameraPosition.magnitude + owner.transform.position;
         }
     }
     protected virtual void TransitionFirstPersonCamera()
     {
         RaycastHit hit;
         Vector3 cameraUpdate = playerCamera.transform.rotation * owner.BowOffset.normalized;
-        if (Physics.SphereCast(sphere.transform.position, sphere.radius, cameraUpdate, out hit, owner.BowOffset.magnitude, CameraCollisionMask))
+        if (Physics.SphereCast(owner.transform.position, sphere.radius, cameraUpdate, out hit, owner.BowOffset.magnitude, CameraCollisionMask))
         {
-            Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius) + sphere.transform.position;
+            Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius) + owner.transform.position;
             Vector3 lerpPosition = Vector3.Lerp(playerCamera.transform.position, newPosition, owner.CameraLerpSpeed * Time.deltaTime);
             playerCamera.transform.position = lerpPosition;
         }
         else
         {
-            Vector3 lerpPosition = Vector3.Lerp(playerCamera.transform.position, cameraUpdate * owner.BowOffset.magnitude + sphere.transform.position, owner.CameraLerpSpeed * Time.deltaTime);
+            Vector3 lerpPosition = Vector3.Lerp(playerCamera.transform.position, cameraUpdate * owner.BowOffset.magnitude + owner.transform.position, owner.CameraLerpSpeed * Time.deltaTime);
             playerCamera.transform.position = lerpPosition;
         }
     }
@@ -153,15 +152,15 @@ public class PlayerBaseState : State
     {
         RaycastHit hit;
         Vector3 cameraUpdate = playerCamera.transform.rotation * cameraPosition.normalized;
-        if (Physics.SphereCast(sphere.transform.position, sphere.radius, cameraUpdate, out hit, cameraPosition.magnitude, CameraCollisionMask))
+        if (Physics.SphereCast(owner.transform.position, sphere.radius, cameraUpdate, out hit, cameraPosition.magnitude, CameraCollisionMask))
         {
-            Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius) + sphere.transform.position;
+            Vector3 newPosition = cameraUpdate * (hit.distance - sphere.radius) + owner.transform.position;
             Vector3 lerpPosition = Vector3.Lerp(playerCamera.transform.position, newPosition, owner.CameraLerpSpeed * Time.deltaTime);
             playerCamera.transform.position = lerpPosition;
         }
         else
         {
-            Vector3 lerpPosition = Vector3.Lerp(playerCamera.transform.position, cameraUpdate * cameraPosition.magnitude + sphere.transform.position, owner.CameraLerpSpeed * Time.deltaTime);
+            Vector3 lerpPosition = Vector3.Lerp(playerCamera.transform.position, cameraUpdate * cameraPosition.magnitude + owner.transform.position, owner.CameraLerpSpeed * Time.deltaTime);
             playerCamera.transform.position = lerpPosition;
         }
     }
