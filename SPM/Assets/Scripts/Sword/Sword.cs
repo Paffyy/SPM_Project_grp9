@@ -72,8 +72,8 @@ public class Sword : MonoBehaviour
                 bladeStormEffect.SetActive(true);
                 bladeStormEffect.transform.position = playerObject.transform.position + bladeStormOffset;
             }
-            var direction = playerCamera.transform.forward;
-            transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swingValue, 0, 0);
+            //var direction = playerCamera.transform.forward;
+            //transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swingValue, 0, 0);
             BladeStormTimer -= Time.deltaTime;
             if (BladeStormTimer <= 0)
             {
