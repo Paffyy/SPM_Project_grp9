@@ -41,6 +41,7 @@ public class PlayerBaseState : State
             owner.RotationX = Mathf.Clamp(owner.RotationX, minCameraAngle, maxCameraAngle);
             owner.RotationY += Input.GetAxisRaw("Mouse X") * owner.MouseSensitivity;
             playerCamera.transform.rotation = Quaternion.Euler(owner.RotationX, owner.RotationY, 0.0f);
+            owner.transform.rotation = Quaternion.Euler(0.0f, owner.RotationY, 0.0f);
             Vector3 direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0.0f, Input.GetAxisRaw("Vertical"));
             owner.CharacterAnimator.SetFloat("Direction", Input.GetAxis("Vertical"));
             owner.CharacterAnimator.SetFloat("Speed" ,Input.GetAxis("Horizontal"));
