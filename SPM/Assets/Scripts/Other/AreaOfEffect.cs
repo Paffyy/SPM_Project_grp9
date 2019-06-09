@@ -6,7 +6,9 @@ public class AreaOfEffect : MonoBehaviour
 {
     public float LifeTime { get; set; }
     public bool LifeTimeBool { get; set; }
-    public SphereCollider ContactCollider { get; set; }
+    public SphereCollider ContactCollider { get { return contactCollider; } }
+    [SerializeField]
+    private SphereCollider contactCollider;
     [SerializeField]
     private LayerMask collisionMask;
     private int damage = 10;
@@ -16,9 +18,7 @@ public class AreaOfEffect : MonoBehaviour
     {
         StartCoroutine(InflictDamage());
         timer = LifeTime;
-        ContactCollider = GetComponent<SphereCollider>();
     }
-
 
     void Update()
     {
