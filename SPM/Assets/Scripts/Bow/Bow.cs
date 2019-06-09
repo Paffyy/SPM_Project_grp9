@@ -45,7 +45,6 @@ public class Bow : MonoBehaviour
     private ThirdPersonCrosshair crosshair;
     private float coolDownCounter = 0f;
     private bool isDoingSpecialAttack;
-    private Animator animator;
     private Player playerScript;
     private AudioSource audioSource;
     public enum SpecialArrowType { RainOfArrows, ShotgunArrows, AoeHitArrow }
@@ -54,9 +53,6 @@ public class Bow : MonoBehaviour
         crosshair = GetComponent<ThirdPersonCrosshair>();
         arrowsParent = new GameObject("ArrowContainer");
         playerScript = player.GetComponent<Player>();
-        animator = GetComponent<Animator>();
-        animator.SetBool("IsChargingBow", true);
-
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = soundClip;
     }
@@ -86,7 +82,7 @@ public class Bow : MonoBehaviour
             if (InputManager.Instance.GetkeyUp(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play))
             {
                 PlaySoundEffect();
-                animator.SetBool("IsChargingBow", false);
+                playerScript.CharacterAnimator.SetTrigger("Bow");
                 if (isDoingSpecialAttack) // special attack
                 {
                     CoolDownManager.Instance.StartArrowRainCoolDown(10);
@@ -117,7 +113,6 @@ public class Bow : MonoBehaviour
         else
         {
             coolDownCounter -= Time.deltaTime;
-            animator.SetBool("IsChargingBow", true);
         }
         UpdateRotation();
         UpdatePosition();
@@ -209,13 +204,13 @@ public class Bow : MonoBehaviour
 
     private void UpdateRotation(float swing = 0)
     {
-        var direction = playerCamera.transform.forward;
-        transform.rotation = Quaternion.LookRotation(direction);
+        //var direction = playerCamera.transform.forward;
+        //transform.rotation = Quaternion.LookRotation(direction);
     }
 
     private void UpdatePosition()
     {
-        Vector3 update = transform.rotation * bowOffset.normalized;
-        transform.position = update * bowOffset.magnitude + player.transform.position;
+        //Vector3 update = transform.rotation * bowOffset.normalized;
+        //transform.position = update * bowOffset.magnitude + player.transform.position;
     }
 }

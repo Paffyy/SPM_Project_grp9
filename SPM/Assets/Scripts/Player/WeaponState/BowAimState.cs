@@ -29,14 +29,10 @@ public class BowAimState : WeaponBaseState
     {
         if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot1, InputManager.ControllMode.Play) && owner.player.TransitionTime <= 0)
         {
+            owner.player.CharacterAnimator.SetBool("Bow", false);
+            owner.player.CharacterAnimator.SetBool("Sword", true);
             owner.Transition<SwordState>();
             owner.player.TransitionTime = 0.1f;
         }
-        //if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.BlockAndAim, InputManager.ControllMode.Play))
-        //{
-        //    owner.Transition<BowState>();
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Alpha3))
-        //    owner.Transition<ShieldState>();
     }
 }

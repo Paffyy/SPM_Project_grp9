@@ -59,7 +59,7 @@ public class Sword : MonoBehaviour
         if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.SpecialAttack, InputManager.ControllMode.Play) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming && !isAttacking && !playerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
         {
             BladeStorm();
-            playerScript.characterAnimator.SetTrigger("Spin");
+            playerScript.CharacterAnimator.SetTrigger("Spin");
             IsBladeStorming = true;
             CoolDownManager.Instance.StartBladeStormCoolDown(bladeStormCoolDown);
         }
@@ -88,7 +88,7 @@ public class Sword : MonoBehaviour
                 if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play) && !isAttacking && !playerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
                 {
                     coolDownCounter = coolDownValue;
-                    playerScript.characterAnimator.SetTrigger("Sword");
+                    playerScript.CharacterAnimator.SetTrigger("Sword");
                     Attack();
                 }
                 UpdateRotation();
@@ -129,13 +129,7 @@ public class Sword : MonoBehaviour
 
     void Attack()
     {
-        swordAnimator.SetBool("Attack", true);
         isAttacking = true;
-    }
-
-    public void GoToIdle()
-    {
-        swordAnimator.SetBool("Attack", false);
     }
 
     public void SetIsAttacking()
@@ -161,14 +155,14 @@ public class Sword : MonoBehaviour
 
     private void UpdateRotation(float swing = 0)
     {
-        Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
-        transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-15, 90, 0);
+        //Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
+        //transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-15, 90, 0);
     }
 
     private void UpdatePosition()
     {
-        Vector3 update = transform.rotation * swordOffset.normalized;
-        transform.position = update * swordOffset.magnitude + playerObject.transform.position;
+        //Vector3 update = transform.rotation * swordOffset.normalized;
+        //transform.position = update * swordOffset.magnitude + playerObject.transform.position;
     }
 
     void CheckCollision()

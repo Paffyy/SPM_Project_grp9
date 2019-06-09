@@ -35,6 +35,8 @@ public class SwordState : WeaponBaseState
         {
             if (InputManager.Instance.GetkeyDown(KeybindManager.Instance.EquipmentSlot2, InputManager.ControllMode.Play) && owner.player.TransitionTime <= 0)
             {
+                owner.player.CharacterAnimator.SetBool("Sword", false);
+                owner.player.CharacterAnimator.SetBool("Bow", true);
                 owner.Transition<BowAimState>();
                 owner.player.TransitionTime = 0.1f;
             }

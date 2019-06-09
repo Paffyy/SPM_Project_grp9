@@ -18,14 +18,12 @@ public class Shield : MonoBehaviour
     [SerializeField]
     private GameObject shieldObject;
     private int currentHealth;
-    private Animator shieldAnimator;
     private BoxCollider boxCollider;
     private Vector3 shieldPos;
     private AudioSource audioSource;
 
     private void Awake()
     {
-        shieldAnimator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -66,10 +64,10 @@ public class Shield : MonoBehaviour
 
     public void UpdateTransformation()
     {
-        Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
-        transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 90, 0);
-        Vector3 update = transform.rotation * shieldPos.normalized;
-        transform.position = update * shieldPos.magnitude + player.transform.position;
+        //Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
+        //transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(0, 90, 0);
+        //Vector3 update = transform.rotation * shieldPos.normalized;
+        //transform.position = update * shieldPos.magnitude + player.transform.position;
     }
     public void TakeDamage(int damage)
     {
@@ -82,8 +80,7 @@ public class Shield : MonoBehaviour
 
     public void GoToIdle()
     {
-        shieldAnimator.SetBool("IsBlocking", false);
-        player.characterAnimator.SetBool("Block", false);
+        player.CharacterAnimator.SetBool("Block", false);
         IsBlocking = false;
     }
 
@@ -99,8 +96,7 @@ public class Shield : MonoBehaviour
     }
     void Block()
     {
-        shieldAnimator.SetBool("IsBlocking", true);
-        player.characterAnimator.SetBool("Block", true);
+        player.CharacterAnimator.SetBool("Block", true);
         IsBlocking = true;
     }
 

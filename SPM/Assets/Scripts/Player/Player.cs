@@ -94,10 +94,10 @@ public class Player : StateMachine
     public float SpeedModifier;
     public float DefaultDynamicFriction { get; set; }
     public float DefaultStaticFriction { get; set; }
-    public Animator characterAnimator { get; set; }
+    public Animator CharacterAnimator { get; set; }
     protected override void Awake()
     {
-        characterAnimator = GetComponent<Animator>();
+        CharacterAnimator = GetComponent<Animator>();
         RotationY = 90;
         RotationX = 25;
         SpeedModifier = 1f;
