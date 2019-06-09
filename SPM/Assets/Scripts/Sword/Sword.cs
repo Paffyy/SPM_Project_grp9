@@ -6,21 +6,28 @@ using UnityEngine.SocialPlatforms;
 
 public class Sword : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public float Radius;
-    [Range(0, 360)]
-    public float Angle;
-    public LayerMask CollisionMask;
-    public float CoolDownValue;
-    public GameObject PlayerObject;
-    public Camera playerCamera;
-    public int Damage = 50;
-    public int BladeStormDamage = 5;
-    public GameObject BladeStormEffect;
-    public bool IsBladeStorming;
-    public Animator Anim;
-    public ParticleSystem Trails;
-    public GameObject SlashParticleSystem;
+    public bool IsBladeStorming { get; set; }
+    [SerializeField]
+    private float radius;
+    [Range(0, 360)] [SerializeField]
+    private float angle;
+    [SerializeField]
+    private LayerMask collisionMask;
+    [SerializeField]
+    private float coolDownValue;
+    [SerializeField]
+    private GameObject playerObject;
+    [SerializeField]
+    private Camera playerCamera;
+    [SerializeField]
+    private int damage = 50;
+    [SerializeField]
+    private int bladeStormDamage = 20;
+    [SerializeField]
+    private GameObject bladeStormEffect;
+    private Animator swordAnimator;
+    [SerializeField]
+    private ParticleSystem trails;
     private float coolDownCounter;
     private bool onCooldown;
     private Vector3 swordOffset;
@@ -29,29 +36,27 @@ public class Sword : MonoBehaviour
     private float BladeStormTimer = 3f;
     private ParticleSystem.EmissionModule trailsEmissionModule;
     private bool isAttacking;
-
     [SerializeField]
     private AudioClip attackSoundClip;
     [SerializeField]
     private AudioClip bladeStormSoundClip;
-
     private Player playerScript;
     private AudioSource audioSource;
 
     void Start()
     {
-        playerScript = PlayerObject.GetComponent<Player>();
+        swordAnimator = GetComponent<Animator>();
+        playerScript = playerObject.GetComponent<Player>();
         swordOffset = new Vector3(0.3f, 0.2f, 0.55f);
-        trailsEmissionModule = Trails.emission;
+        trailsEmissionModule = trails.emission;
         isAttacking = false;
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = attackSoundClip;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.SpecialAttack, InputManager.ControllMode.Play) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
+        if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.SpecialAttack, InputManager.ControllMode.Play) && !CoolDownManager.Instance.BladeStormOnCoolDown && !IsBladeStorming && !isAttacking && !playerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
         {
             BladeStorm();
             playerScript.characterAnimator.SetTrigger("Spin");
@@ -60,17 +65,17 @@ public class Sword : MonoBehaviour
         }
         if (IsBladeStorming)
         {
-            if (BladeStormEffect.activeInHierarchy == false)
+            if (bladeStormEffect.activeInHierarchy == false)
             {
-                BladeStormEffect.SetActive(true);
-                BladeStormEffect.transform.position = PlayerObject.transform.position;
+                bladeStormEffect.SetActive(true);
+                bladeStormEffect.transform.position = playerObject.transform.position;
             }
             var direction = playerCamera.transform.forward;
             transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swingValue, 0, 0);
             BladeStormTimer -= Time.deltaTime;
             if (BladeStormTimer <= 0)
             {
-                BladeStormEffect.SetActive(false);
+                bladeStormEffect.SetActive(false);
                 IsBladeStorming = false;
                 BladeStormTimer = 3f;
                 StopAllCoroutines();
@@ -80,9 +85,9 @@ public class Sword : MonoBehaviour
         {
             if (coolDownCounter < 0)
             {
-                if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play) && !isAttacking && !PlayerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
+                if (Manager.Instance.IsPaused == false && InputManager.Instance.GetkeyDown(KeybindManager.Instance.ShootAndAttack, InputManager.ControllMode.Play) && !isAttacking && !playerObject.GetComponent<Weapon>().Shield.GetComponent<Shield>().IsBlocking)
                 {
-                    coolDownCounter = CoolDownValue;
+                    coolDownCounter = coolDownValue;
                     playerScript.characterAnimator.SetTrigger("Sword");
                     Attack();
                 }
@@ -92,7 +97,7 @@ public class Sword : MonoBehaviour
             {
                 coolDownCounter -= Time.deltaTime;
 
-                if (coolDownCounter < CoolDownValue)
+                if (coolDownCounter < coolDownValue)
                 {
                     UpdateRotation(swingValue);
                 }
@@ -104,44 +109,33 @@ public class Sword : MonoBehaviour
         }
         UpdatePosition();
     }
+
     IEnumerator InflictBladeStormDamage()
     {
         while (true)
         {
             yield return new WaitForSeconds(0.2f);
-            List<Collider> colliders = Manager.Instance.GetAoeHit(PlayerObject.transform.position, CollisionMask, 4.8f);
-            // Gizmos.DrawSphere(PlayerObject.transform.position, BladeStormCollider.radius * ((transform.localScale.x + transform.localScale.z) / 2));
+            List<Collider> colliders = Manager.Instance.GetAoeHit(playerObject.transform.position, collisionMask, 4.8f);
             foreach (Collider c in colliders)
             {
                 if (c.gameObject.CompareTag("Enemy"))
                 {
-                    EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(PlayerObject.transform, c, AttackHitEventInfo.Weapon.Sword));
-                    c.gameObject.GetComponent<EnemyHealth>().TakeDamage(BladeStormDamage, true);
+                    EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(playerObject.transform, c, AttackHitEventInfo.Weapon.Sword));
+                    c.gameObject.GetComponent<EnemyHealth>().TakeDamage(bladeStormDamage, true);
                 }
             }
         }
     }
 
-
     void Attack()
     {
-        Anim.SetBool("Attack", true);
+        swordAnimator.SetBool("Attack", true);
         isAttacking = true;
-    }
-
-    public void EnableSlashEffect()
-    {
-        //GameObject PSClone = Instantiate(SlashParticleSystem, transform.position, Quaternion.identity, transform);
-        //Destroy(PSClone, 0.4f);
-    }
-
-    public void DisableSlashEffect()
-    {
     }
 
     public void GoToIdle()
     {
-        Anim.SetBool("Attack", false);
+        swordAnimator.SetBool("Attack", false);
     }
 
     public void SetIsAttacking()
@@ -167,24 +161,22 @@ public class Sword : MonoBehaviour
 
     private void UpdateRotation(float swing = 0)
     {
-        //var direction = playerCamera.transform.forward;
         Vector3 direction = Vector3.ProjectOnPlane(playerCamera.transform.forward, Vector3.up);
-        //  transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-90 + swing, 0, 0);
         transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(-15, 90, 0);
     }
 
     private void UpdatePosition()
     {
         Vector3 update = transform.rotation * swordOffset.normalized;
-        transform.position = update * swordOffset.magnitude + PlayerObject.transform.position;
+        transform.position = update * swordOffset.magnitude + playerObject.transform.position;
     }
 
     void CheckCollision()
     {
-        var enemyInRange = Manager.Instance.GetFrontConeHit(playerCamera.transform.forward, PlayerObject.transform, CollisionMask, Radius, Angle);
+        var enemyInRange = Manager.Instance.GetFrontConeHit(playerCamera.transform.forward, playerObject.transform, collisionMask, radius, angle);
         foreach (var item in enemyInRange)
         {
-            EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(PlayerObject.transform ,item, AttackHitEventInfo.Weapon.Sword));
+            EventHandler.Instance.FireEvent(EventHandler.EventType.WeapondHitEvent, new AttackHitEventInfo(playerObject.transform ,item, AttackHitEventInfo.Weapon.Sword));
             DealDamage(item);
             PlaySoundEffect(attackSoundClip);
         }
@@ -192,8 +184,8 @@ public class Sword : MonoBehaviour
 
     private void DealDamage(Collider item)
     {
-        Vector3 pushBack = (Vector3.ProjectOnPlane((item.gameObject.transform.position - PlayerObject.transform.position), Vector3.up).normalized + Vector3.up * 5) * 2;
-        item.gameObject.GetComponent<Health>().TakeDamage(Damage, pushBack, PlayerObject.transform.position);
+        Vector3 pushBack = (Vector3.ProjectOnPlane((item.gameObject.transform.position - playerObject.transform.position), Vector3.up).normalized + Vector3.up * 5) * 2;
+        item.gameObject.GetComponent<Health>().TakeDamage(damage, pushBack, playerObject.transform.position);
         Color c = item.GetComponent<Renderer>().material.color;
         item.GetComponent<Renderer>().material.color = Color.red;
         StartCoroutine(RemoveRedColor(item, c));

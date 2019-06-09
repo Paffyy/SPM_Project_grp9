@@ -29,12 +29,4 @@ public class GameController : MonoBehaviour
         weaponScript = player.GetComponent<Weapon>();
         playerHealthScript = player.GetComponent<PlayerHealth>();
     }
-
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-    }
 }

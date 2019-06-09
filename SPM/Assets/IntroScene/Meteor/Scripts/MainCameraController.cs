@@ -13,12 +13,6 @@ public class MainCameraController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-
-    void Update()
-    {
-        
-    }
-
     private void GoToLookUpState()
     {
         IntroScene.IntroSceneInstance.ActivateCameraLookUp();

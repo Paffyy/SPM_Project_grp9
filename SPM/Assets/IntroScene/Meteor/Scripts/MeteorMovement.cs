@@ -11,6 +11,7 @@ public class MeteorMovement : MonoBehaviour
     [SerializeField]
     private List<GameObject> trails;
     private Rigidbody rigidBody;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();

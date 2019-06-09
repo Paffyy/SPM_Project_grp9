@@ -279,21 +279,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f09c1803a5f023408567f3d6db05b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 5
-  Angle: 110
-  CollisionMask:
+  radius: 0
+  angle: 0
+  collisionMask:
     serializedVersion: 2
-    m_Bits: 16384
-  CoolDownValue: 0
-  PlayerObject: {fileID: 7651501562885396188}
+    m_Bits: 0
+  coolDownValue: 0
+  playerObject: {fileID: 0}
   playerCamera: {fileID: 7651501562274134278}
-  Damage: 50
-  BladeStormDamage: 20
-  BladeStormEffect: {fileID: 3721958055867091756}
-  IsBladeStorming: 0
-  Anim: {fileID: 6453448438386392472}
-  Trails: {fileID: 6453448439647745881}
-  SlashParticleSystem: {fileID: 0}
+  damage: 50
+  bladeStormDamage: 20
+  bladeStormEffect: {fileID: 0}
+  trails: {fileID: 0}
   attackSoundClip: {fileID: 8300000, guid: e0a2973e20cd9af4cba7da43b29d57dc, type: 3}
   bladeStormSoundClip: {fileID: 8300000, guid: 7bad6d2cebbf32e49b70e054a1722b80, type: 3}
 --- !u!82 &8434506833700381309
@@ -1474,6 +1471,36 @@ PrefabInstance:
       propertyPath: bladeStormSoundClip
       value: 
       objectReference: {fileID: 8300000, guid: 7bad6d2cebbf32e49b70e054a1722b80, type: 3}
+    - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: trails
+      value: 
+      objectReference: {fileID: 6453448439647745881}
+    - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: bladeStormEffect
+      value: 
+      objectReference: {fileID: 3721958055867091756}
+    - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 7651501562885396188}
+    - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: collisionMask.m_Bits
+      value: 16384
+      objectReference: {fileID: 0}
+    - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: angle
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 622652556510898375, guid: f3b0743748735a14b9bc4dd6549545e2,
+        type: 3}
+      propertyPath: radius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 622652556719148068, guid: f3b0743748735a14b9bc4dd6549545e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1569,12 +1596,6 @@ PrefabInstance:
 --- !u!198 &6453448439647745881 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 622652557805969924, guid: f3b0743748735a14b9bc4dd6549545e2,
-    type: 3}
-  m_PrefabInstance: {fileID: 5848867609642259805}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &6453448438386392472 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 622652556510898373, guid: f3b0743748735a14b9bc4dd6549545e2,
     type: 3}
   m_PrefabInstance: {fileID: 5848867609642259805}
   m_PrefabAsset: {fileID: 0}

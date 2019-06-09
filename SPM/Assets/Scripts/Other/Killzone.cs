@@ -4,26 +4,16 @@ using UnityEngine;
 
 public class Killzone : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private int damage = 1000;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(1000);
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
         } else if (other.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(1000);
+            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
         }
     }
 }
