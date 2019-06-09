@@ -95,6 +95,7 @@ public class Player : StateMachine
     public float DefaultDynamicFriction { get; set; }
     public float DefaultStaticFriction { get; set; }
     public Animator CharacterAnimator { get; set; }
+
     protected override void Awake()
     {
         CharacterAnimator = GetComponent<Animator>();
